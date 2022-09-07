@@ -9,99 +9,28 @@ Subsection Text
 
 ### Forward Model
 
-Perfectly Flat sea surface emission
+SSS retrieval over a specular sea surface 
 
-The brightness temperature emitted by the sea surface can be expressed as the sum of two terms; the brightness temperature in the case of completely flat sea and the additional brightness temperature (Tb) due to the surface roughness, as follows:
+The dependence of $T_{B}$ on SSS is contained in the emissivity, e: $T_{B} = T \times e$, where $\it{T}$ is the sea surface temperature. The emissivity is a quantity that depends on physical and chemical properties of the water (e.g. salinity and temperature), observational conditions (incidence angle, electromagnetic frequency, polarization, as well as sea surface roughness. For a perfectly flat ocean surface with salinity, $\it{S}$, temperature, $\it{T}$, and observed at incidence angle $\theta$, the emissivity at polarization, $\it{p}$ (horizontal or vertical), and electromagnetic frequency, $\it{f}$, (note that we quote the center of a microwave frequency bandwidth associated with a given radiometer) is given by Peake (1959):
 
-[4.1.1]
+$e_{p} (\theta,f,S,T)=1-|R_{p} (\theta,f,S,T)|^2$
 
-The first term is Tb due to the emission of a flat sea surface, which is well described by the Fresnel equations and is polarization dependent (p). The second term is the increment of brightness temperature due to sea roughness, which can be described through several parameters (Prough) related to processes that modify this roughness. θ is the angle under which Tb is measured, SST is the sea surface temperature and SSS the sea surface salinity. ,
+where $R_p$  is the Fresnel reflection coefficient given by :
 
-The brightness temperature is defined as:
+$R_v (θ,f,S,T)=\displaystyle\frac{\sqrt{ε_{sw}-\sin^2⁡{\theta}}-ε_{sw} cos\theta}{\sqrt{ε_{sw}-\sin^2{\theta}}+ε_{sw} \cos{\theta}}$ for vertical polarization, and,
 
- 				           	       [4.1.2]
+$R_h (θ,f,S,T)=\displaystyle\frac{\sqrt{ε_{sw}-\sin^2⁡\theta}-cos\theta}{\sqrt{ε_{sw}-sin^2⁡θ}+cos\theta}$  for horizontal polarization.
 
+In the expression above, $ε_{sw}(f, S, T)$ is the dielectric constant of sea water.  In its simplest form, SSS remote sensing, therefore, consists of measuring the L-band $T_{B}$ together with SST. The intersection of the two values on a graph such as shown in Figure 3.b can be used to retrieve SSS.  It is also important to note that the penetration depth of electromagnetic wave into the sea water (defined as the e‐folding attenuation of the energy flux transported by electromagnetic radiation into water, see Ulaby et al., 1986) is less than 1 cm at 1.4 GHz for typical open ocean salinity and temperature. Given that the majority of in situ measurements of SSS are obtained at depth ranging from 0.5 to 20 meters (e.g., Argo floats, TSG, surface drifters, etc..), understanding the vertical distributions of salinity in the upper ocean is critical for many applications. These applications include the assimilation of satellite SSS in numerical ocean models which requires dedicated treatment of shallow stratifications (Large and Caron, 2015; Fine et al., 2015) and the  validation of satellite SSS with in situ data (Boutin et al. 2016).
+There are also other issues that complicate the remote sensing of salinity from space. Several geophysical parameters other than seawater salinity and temperature contribute significantly to L-band $T_B$ measured by satellite sensors (e.g., see Yueh et al., 2001; Font et al., 2004). These contributions need to be accurately known and used in corrections of measured antenna TB to properly retrieve SSS. As illustrated in Figure 8,  they include:  the direct and earth-reflected solar and sky emission (Le Vine et al. 2005; Reul et al., 2007, 2008; Tenerelli et al., 2008; Dinnat and Le Vine, 2008), the Faraday rotation in the ionosphere (Yueh et al., 2000; Le Vine and Abraham, 2002; Vergely et al., 2014),  the impact of the atmosphere (Liebe et al., 1992; Skou et al., 2005; Wentz and Meissner, 2016), and the effect of sea surface roughness on L-band emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Yueh et al., 2010, 2014).   For all L-band radiometers, SSS retrievals algorithms are therefore based on:   
+	
+- an empirical sea-water dielectric constant model at 1.4 GHz,
+-  a surface roughness correction model,
+-  a Radiative Transfer Model for Atmospheric corrections,
+-  a scattering model to correct for sea surface scattered Solar and celestial radiation, and, 
+-  a model to correct for Faraday rotation and geometric rotation associated with the finite beam width of the antenna.
 
-where e(θ) is the surface emissivity at L-Band which carries the major information regarding SSS. Assuming thermodynamical equilibrium, the Kirchhoff laws applies and emissivity is considered equal to absorption, and equal to 1 – reflectivity.
-
-It can be written, as follows:
-
- 			       [4.1.3]
-
-where  is the reflectivity, which is dependent on the incident radiation nadir angle , on the complex dielectric constant of sea water  (’+j’’), the azimuth angle , the roughness and the polarisation.
-
-In the case of a smooth surface sea, the reflectivity can be calculated straighforward using the Fresnel reflection laws, and providing an accurate dielectric constant model.
-
-The Fresnel reflection coefficients R, for each polarisation, are defined as function of the sea water dielectric constant and the incidence angle, as follows:
-
-  			       [4.1.4]
-
-Therefore Th and Tv for a flat surface are computed as:
-
-
- 			          [4.1.5]
-
-
-The complex dielectric constant of the sea water is dependent on temperature and on the concentration of salt. It can be calculated at any frequency, within the microwave band, from Debye (1929) expression:
-
- 				         [4.1.6]
-in which i is the imaginary number,  is the electrical permittivity at very high frequencies, s is the static dielectric constant,  is the relaxation time,  is the ionic conductivity, and 0 is the permittivity of free space. s,  and  are functions of the temperature and salinity of sea-water, and have been evaluated by Klein and Swift (1977), Ellison et al. (1998) and Blanch and Aguasca (2004).
-
-After some comparisons and analysis (Camps et al., 2004; Wilson et al., 2004), the Klein and Swift dielectric constant model has been agreed to be the model that better expresses this parameter and is the one presented here.
-
-The term Tbrough is described by 3 different models in sections 4.2, 4.3 and 4.4.
-
-4.1.1.2. Mathematical description of algorithm
-
-Some of the parameters in eq. 4.1.4 can be expressed through polynomial functions of salinity (SSS in the case of SMOS) in psu (practical salinity units, UNESCO, 1978) and water temperature in ºC
-
-       	 		[4.1.7]
-
-           		 		[4.1.8]
-
-       		  		[4.1.9]
-
-The values of these parameters are provided in SMOS TGRD document. The present version considers the model provided by Klein and Swift (1977), but this will be modified if a more accurate model is available before SMOS launch
-
-
-The dielectric constant  is computed following equation [4.1.6] and a complex value results.
- 
-4.1.1.3. Error budget estimates (sensitivity analysis)
-
-  has an error of 20% but this is negligible at L-band.
-
-Cox quotes that the ionic conductivity of the sea water, , has an error of  0.03% for salinities between 30 and 40 psu, which is also negligible.
-
-The static permittivity, s, has a maximum per cent error of 0.49 with respect the measurements, and an average per cent error of 0.11.
-
-The relaxation time, , has been derived from measurement with an accuracy of 2.12*10-13 and this is the assumed error for that parameter.
-
-Ho’s estimated error for ’ is 0.2%.
-
-Taking  =75 + j42, which is the approximate value of the dielectric constant of the sea water at 1.43 GHz when SSS=20 psu and T=20ºC, it then follows that the error associated with this particular choice is:
-
-  1.15(’+’’)10-3
-
-Using the above mentioned values,  ’  0.15 and ’’  0.13. Hence, the error in the brightness temperature with T=293K is
-
-Tb = e*T  0.09 K
-
-4.1.2. Practical considerations
-4.1.2.1. Calibration and validation
-
-S. Blanch, from the Polytechnic University of Catalonia (UPC), is preparing a new laboratory experiment to compute the parameters that describe the dielectric constant following the Debye expression. Results of this experiment will be used to validate the Klein and Swift model. If any change or tuning of the parameters is necessary this should be applied to the model, and the corresponding coefficients file modified accordingly.
-4.1.2.2. Quality control and diagnostics
-
-We expect that the SMOS Cal/Val activities will provide, after commissioning phase, further information on the quality of the model, and if necessary new values to improve it
-
-4.1.2.3. Exception handling
-There is no particular exception handling in the mathematical algorithm except if the following auxiliary data are not provided by the processor or exceed the ranges: SST, SSS,   incidence angles at SMOS pixel. In that case the computation could not be done.
-
-4.1.3. Assumption and limitations
-
-The measurements on which the Klein & Swift model has been based, were obtained from NaCl solutions and some from real sea water samples. Few measurements were done on the salinity range from 30-40 psu, which are the most common values in the world’s ocean. However the authors confirm that the model should be valid for sea waters that have a salinity range between 3 and 35 psu. However, until a new model is established and validated, the SMOS and Aquarius communities agreed on using Klein and Swift.
-
-
+We review these models and corrections in the following subsections.
 
  
 
