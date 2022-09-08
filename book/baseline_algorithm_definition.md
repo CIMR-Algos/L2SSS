@@ -11,6 +11,9 @@ Subsection Text
 
 SSS retrieval over a specular sea surface 
 
+from IPython.display import Image
+Image(url= "images/no_regrets_cat.jpg", width=400, height=400)
+
 The dependence of $T_{B}$ on SSS is contained in the emissivity, e: $T_{B} = T \times e$, where $\it{T}$ is the sea surface temperature. The emissivity is a quantity that depends on physical and chemical properties of the water (e.g. salinity and temperature), observational conditions (incidence angle, electromagnetic frequency, polarization, as well as sea surface roughness. For a perfectly flat ocean surface with salinity, $\it{S}$, temperature, $\it{T}$, and observed at incidence angle $\theta$, the emissivity at polarization, $\it{p}$ (horizontal or vertical), and electromagnetic frequency, $\it{f}$, (note that we quote the center of a microwave frequency bandwidth associated with a given radiometer) is given by Peake (1959):
 
 $e_{p} (\theta,f,S,T)=1-|R_{p} (\theta,f,S,T)|^2$
