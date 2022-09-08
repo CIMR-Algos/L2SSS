@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: ATBD Template
+title: ATBD SSS
 author: CIMR Devalgo
 logo: logo.jpg
 
@@ -36,3 +36,9 @@ repository:
 html:
   use_issues_button: false
   use_repository_button: true
+  
+parse:
+  myst_enable_extensions:
+    # don't forget to list any other extensions you want enabled,
+    # including those that are enabled by default!
+    - html_image
