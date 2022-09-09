@@ -14,7 +14,7 @@ name: Flat_Sea_Rad
 Radiometer measuring the brightness temperature emitted by a perfectly flat sea surface water body. 
 ```
 
-The dependence of the microwave brigthness temperature emitted by the sea surface $T_{B}$ on SSS is contained in the emissivity, $e$: $T_{B} = T \times e$, where $\it{T}$ is the sea surface temperature. The emissivity $e$ is a quantity that depends on physical and chemical properties of the water (e.g. salinity and temperature), observational conditions (incidence angle, electromagnetic frequency, polarization, as well as sea surface roughness). For a perfectly flat ocean surface with salinity, $\it{S}$, temperature, $\it{T}$, and observed at incidence angle $\theta$, the emissivity at polarization, $\it{p}$ (horizontal or vertical), and electromagnetic frequency, $\it{f}$, (note that we quote the center of a microwave frequency bandwidth associated with a given radiometer) is given by Peake (1959):
+The dependence of the microwave brigthness temperature emitted by the sea surface $T_{B}$ on SSS is contained in the emissivity, $e$: $T_{B} = T \times e$, where $\it{T}$ is the sea surface temperature. The emissivity $e$ is a quantity that depends on physical and chemical properties of the water (e.g. salinity and temperature), observational conditions (incidence angle, electromagnetic frequency, polarization), as well as on the sea surface roughness. For a perfectly flat ocean surface with salinity, $\it{S}$, temperature, $\it{T}$, and observed at incidence angle $\theta$, the emissivity at polarization, $\it{p}$ (horizontal or vertical), and electromagnetic frequency, $\it{f}$, (note that we quote the center of a microwave frequency bandwidth associated with a given radiometer) is given by Peake (1959):
 
 $e_{p} (\theta,f,S,T)=1-|R_{p} (\theta,f,S,T)|^2$
 
@@ -24,7 +24,13 @@ $R_v (θ,f,S,T)=\displaystyle\frac{\sqrt{ε_{sw}-\sin^2⁡{\theta}}-ε_{sw} cos\
 
 $R_h (θ,f,S,T)=\displaystyle\frac{\sqrt{ε_{sw}-\sin^2⁡\theta}-cos\theta}{\sqrt{ε_{sw}-sin^2⁡θ}+cos\theta}$  for horizontal polarization.
 
-In the expression above, $ε_{sw}(f, S, T)$ is the dielectric constant of sea water. 
+In the expression above, $ε_{sw}(f, S, T)$ is the dielectric constant of sea water. The sensitivity of  $T_{B}$ to SSS, $\partial T_{B}/\partial SSS$ depends on the electromagnetic frequency $f$, incidence angle $\theta$ and polarization. 
+
+<img src="../Figure3a.png" alt="fishy" class="bg-primary" width="400px">
+
+As shown in \ref{Figure3b}, $\partial T_{B}/\partial SSS$ increases with decreasing electromagnetic frequency, peaking at ~1 GHz (L-band) and with increasing incidence angle.  As the frequency band 1.400 to 1.427 GHz is protected for radio-astronomy observation is has been used for SSS remote sensing.
+
+Given a model for $ε_{sw}(f, S, T)$, in its simplest form, SSS remote sensing, therefore, consists of measuring/estimating the L-band $T_{B}$ emitted by the perfectly flat ocean surface together with an auxilliary SST. The intersection of the two values on a graph such as shown in Figure \ref{Figure3b} can then be used to retrieve SSS. 
 
 <img src="../Figure3b.png" alt="fishy" class="bg-primary" width="400px">
 
@@ -34,7 +40,9 @@ name: Figure3b
 ---
 Brightness temperature $(T_{H}+T_{V})/2$ changes at 1.4 GHz and nadir as a function of salinity (x-axis) and temperature (colors). The gray domain indicates the range of SSS values mostly encountered in the open ocean. 
 ```
-In its simplest form, SSS remote sensing, therefore, consists of measuring/estimating the L-band $T_{B}$ emitted by the perfectly flat ocean surface together with an auxilliary SST. The intersection of the two values on a graph such as shown in Figure \ref{Figure3b} can then be used to retrieve SSS given a model for $ε_{sw}(f, S, T)$. 
+
+
+
 
 ### Sea Surface Salinity retrieval from Top Of the Atmosphere brightness temperature 
 
