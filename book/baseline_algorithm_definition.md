@@ -156,6 +156,20 @@ and
 
 $$R_{\sigma}(f,S,T)=1+T\cdot(3.76017\times10^{-2} + 6.32830\times10^{-5}\cdot T +4.83420\times10^{-7}\cdot T^2 − 3.97484\times10^{-4}\cdot·S+6.26522\times10^{-6}\cdot S^2)$$
 
+Using the laboratory-measurement based GSW2020's model for the sea water dielectric constant at L-band, the changes in the specular sea surface brightness temperatures at 1.4 GHz, at V- and H-polarization, for the the CIMR nominal incidence angle of 53° and as a function of sea surface salinity for different representative sea surface temperature values is shown in \ref{T0esv_GSW2020_LBand.png}:
+
+<img src="T0esv_GSW2020_LBand.png" alt="fishy" class="bg-primary" width="400px">
+<img src="T0esh_GSW2020_LBand.png" alt="fishy" class="bg-primary" width="400px">
+
+```
+--- 
+name: T0esv_GSW2020_LBand.png
+---
+Specular sea surface brightness temperatures at 1.4 GHz, at V- (a) and H- (b) polarization, for the CIMR nominal OZA of 53° and as a function of sea surface salinity (x-axis) for different representative sea surface temperature values (colors). The gray histogram represents the non-normalized distribution of historical in situ SSS observation in the Arctic.
+```
+
+As found, the sensitivity of $T_B$ to SSS is quasi-linear for a given SST. $\partial T_{B}/\partial SSS$ is greater in V-polarization than in H-polarization and increases with increasing SST. In Artic conditions, $\partial T_{B}/\partial SSS$ ranges in V-polarization from -0.26 K/pss $(T_s=0°C)$ to -0.36 K/pss $(T_s=5°C)$.  With the CIMR L-band radiometer NEDT~0.3 K and in cold seas, one can therefore expect ~1 pss instrumental noise error in instantaneous recordings. 
+
 Despite its importance for SSS remote sensing, uncertainties remain in the 1.4 GHz seawater dielectric constant model. The new GW Debye model laboratory measurements combined with satellite data, will certainly help to minimize those remaining uncertainties.
 
 
@@ -172,6 +186,79 @@ Various electromagnetic models have been developed to estimate the effects of wi
 
 In the latest algorithms implemented at ESA and NASA data centers, L-band Geophysical Model Functions (GMF) used for correction for the roughness-induced emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Fore et al., 2016) are all rather similar in shape and provide consistent results as a function of the 10 m height neutral wind speed, U_10, incidence angles and polarization (Figure 10). They usually include an even 2nd order harmonic representation of relative wind azimuth dependence (Meissner et al., 2014), $\phi_{r}=\phi_{w}-\alpha$, where $\phi_{w}$, is the wind direction and $\alpha$ the radiometer azimuthal look direction relative to North:
 $$∆T_{rough,p}(U_{10},θ)=T_s\cdot e_{rough,p}(U_{10},θ)=T_s\cdot \left\(∆e_{o,p}(U_{10},θ)+∆e_{1,p}(U_{10},θ)\cdot \cos⁡(\phi_{r} )+∆e_{2,p}(U_{10},θ)\cdot\cos⁡(2\phi_{r})\right\) $$
+
+## Atmospheric contributions
+	
+	In the L-band, the effect of atmospheric scattering as well as clouds, and water vapor attenuation are all small thanks to relatively long electromagnetic wavelength ($~$21 cm) in comparison with typical atmospheric hydrometeor size (Yueh et al., 2001). However, the effect of atmospheric emission must be corrected to achieve accurate salinity retrievals. This contribution includes both upwelling and downwelling components of atmospheric radiation (the latter is reflected from the surface).  The atmosphere emits and absorbs L-band radiation mostly due to molecular oxygen ($O_2$) with small contributions from water vapor, cloud liquid water, and rain (Blume et al., 1978; Ulaby et al., 1981; Blume and Kendall, 1982, Swift and MacIntosh, 1983, Rozenkranz, 1998). The net atmospheric emission varies from about 2.4 to 2.8 K and is proportional to atmospheric pressure (Yueh et al., 2001). The approach adopted to correct SMOS, Aquarius, and SMAP, $T_B$ for atmospheric impacts consists in using the conventional radiative transfer theory to model atmospheric attenuation and emission (e.g., Liebe et al., 1992). Atmospheric temperature and pressure profiles are needed in the transfer model and are usually obtained from meteorological models such as those provided by the ECMWF, or the NCEP. In general, the atmospheric impacts in the L-band can be corrected to within 0.3 K error (Meissner et al., 2018).
+
+Following the simpified single layer atmospheric model used in the ESA SMOS Level 2 Ocean Salinity Processor [RD.12], the atmospheric contributions are approximated by the following formulation in which the emission and absorption are expressed purely in terms of air surface temperature $T_o$, surface pressure $P_s$, and total column water vapor $V$. 
+
+In terms of these quantities, the vertically integrated absorption owing to modelcular oxygen and water vapor are, respectively:
+$$A_d=A_d^{(u)}=A_d^{(d)}=10^{-6}\cdot (C_{aao}^{(0)}+C_{aao}^{(1)} T_o+C_{aao}^{(2)} P_s+C_{aao}^{(3)} T_o^2+C_{aao}^{(4)} P_s^2+C_{aao}^{(5)} T_o\cdot P_s )$$
+and
+$$A_v=A_v^{(u)}=A_v^{(d)}=10^{-6}\cdot (C_{aav}^{(0)}+C_{aav}^{(1)} P_s+C_{aav}^{(2)} V)$$
+Where the numerical values for coefficients in this mono-layer model are from the papers of Liebe (1989, RD.18) and of Liebe et al. (1993, RD.19).
+
+$$
+\begin{matrix}
+C_{aao}^{(0)} &= & 8033.3 \\ 
+C_{aao}^{(1)} & = & -103.999 \\
+C_{aao}^{(2)} & = & 28.2992 \\
+C_{aao}^{(3)} & = & 0.2626 \\
+C_{aao}^{(4)} & = & 0.0064 \\
+C_{aao}^{(5)} & = & -0.0942
+\end{matrix}
+$$
+
+and
+
+$$
+\begin{matrix}
+C_{aav}^{(0)} & = & -151.7150 \\
+C_{aav}^{(1)} & = & 0.1554  \\
+C_{aav}^{(2)} & = & 3.5406
+\end{matrix}
+$$
+
+The corresponding 1-way atmosphereic transmittances associated with molecular oxygen absorption and water vapor along a line of sight at angle $θ_s$ from nadir are:
+$$τ_d=\exp{[-A_d \sec{⁡θ_s}]}$$
+$$τ_v=\exp{[-A_v \sec{⁡θ_s}]}$$
+
+with this formulation, the surface brightness temperature after passage through the atmosphere $T_{B}^{'}$ is related to the unattenuated brightness temperature $T_B$  by:
+$$T_{B}^{'}=(τ_{d} τ_{v})T_{B}$$
+
+The upwelling and downwelling atmospheric emission are assumed to be equal and take the following form at nadir for the oxygen and water vapor contributions, respectively:
+
+$$T_{bad}=A_d \cdot[T_o-C_{aeo}^{(0)}-C_{aeo}^{(1)}T_o-C_{aeo}^{(2)} P_{s}-C_{aeo}^{(3)}T_o^2-C_{aeo}^{(4)} P_s^2-C_{aeo}^{(5)} T_{o} P_{s}]$$
+
+and
+
+$$T_{bav}=A_v \cdot [T_o-C_{aev}^{(0)}-C_{aev}^{(1)} P_{s}-C_{aev}^{(2)} V]$$
+
+where
+
+$$
+\begin{matrix}
+C_{aeo}^{(0)} &= & -0.7789 \\ 
+C_{aeo}^{(1)} & = & 0.1376 \\
+C_{aeo}^{(2)} & = & -0.0011 \\
+C_{aeo}^{(3)} & = & -1.1578\times 10^{-4}\\
+C_{aeo}^{(4)} & = & 1.2847 \times 10^{-6} \\
+C_{aeo}^{(5)} & = & -1.1133\times 10^{-5}
+\end{matrix}
+$$
+
+and
+
+$$
+\begin{matrix}
+C_{aev}^{(0)} & = & 8.1637 \\
+C_{aev}^{(1)} & = & 2.4235 \times 10^{-4} \\
+C_{aev}^{(2)} & = & 0.0337
+\end{matrix}
+$$
+
+### CIMR 
 
 ### CIMR Level-1b re-sampling approach
 
