@@ -187,7 +187,7 @@ Various electromagnetic models have been developed to estimate the effects of wi
 In the latest algorithms implemented at ESA and NASA data centers, L-band Geophysical Model Functions (GMF) used for correction for the roughness-induced emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Fore et al., 2016) are all rather similar in shape and provide consistent results as a function of the 10 m height neutral wind speed, U_10, incidence angles and polarization (Figure 10). They usually include an even 2nd order harmonic representation of relative wind azimuth dependence (Meissner et al., 2014), $\phi_{r}=\phi_{w}-\alpha$, where $\phi_{w}$, is the wind direction and $\alpha$ the radiometer azimuthal look direction relative to North:
 $$∆T_{rough,p}(U_{10},θ)=T_s\cdot e_{rough,p}(U_{10},θ)=T_s\cdot \left\(∆e_{o,p}(U_{10},θ)+∆e_{1,p}(U_{10},θ)\cdot \cos⁡(\phi_{r} )+∆e_{2,p}(U_{10},θ)\cdot\cos⁡(2\phi_{r})\right\) $$
 
-## Sunglint contributions ##
+## Sea Surface Scattered Solar (Sunglint) contributions ##
 
 At the surface, the brightness temperature of the scattered solar radiation in polarization $p$ may be expressed as (Reul et al., 2007 [RD.14]):
 
@@ -200,19 +200,36 @@ rough sea surface, expressed as functions of the scattering geometry. The incide
 respectively, and the corresponding angles towards the satellite are $θ_s$ and $\phi_s$. Atmospheric attenutaion on the downward path from the sun to 
 the sea surface is accounted for by the factor $τ_d τ_v$ expressed in a following subsection (atmospheric contributions).
 
-The Kirchhoff Approximation (KA) is used  to model the bistatic scattering coefficients  $σ^0_{\alpha\alpha_o}$ for scattering of the incoming plane waves of polarization $\alpha_o$ into
-the outgoing plane waves of polarization $\alpha$:
+The Kirchhoff Approximation (KA) is used  to model the bistatic scattering coefficients  $σ^0_{\alpha\alpha_o}$ for scattering of the incoming plane waves of polarization $\alpha_o$ into the outgoing plane waves of polarization $\alpha$:
 
 $$σ^0_{\alpha\alpha_o}(\mathbf{k_s},\mathbf{k_o})=\displaystyle\frac{1}{\pi}\cdot |\frac{2q_s q_o}{q_s+q_o} B_{αα_o}(\mathbf{k_s},\mathbf{k_o})|^2 e^{-(q_s+q_o )^2 \rho(0,0)}\cdot I_K
 $$
 
-where $\bf{k_o}$ and  $\bf{k_s}$ are the incident and scattered radiation wavenumber vectors, respectively, and, can be expressed in component form as:
+where $\bf k_{o}$ and  $\bf k_{s}$ are the incident and scattered radiation wavenumber vectors, respectively, and, can be expressed in component form as:
 
+$$\displaystyle\frac{\mathbf{k_{o}}}{k}=(\sin\theta_o\cos⁡\phi_o) \mathbf{\hat{x}}+(\sin⁡\theta_o\sin\phi_o)\mathbf{\hat{y}}+(\cos⁡\theta_o)\mathbf{\hat{z}}$$
 
+$$\displaystyle\frac{\mathbf{k_{s}}}{k}=(\sin\theta_s\cos⁡\phi_s) \mathbf{\hat{x}}+(\sin⁡\theta_s\sin\phi_s)\mathbf{\hat{y}}+(\cos⁡\theta_s)\mathbf{\hat{z}}$$
 
-## Atmospheric contributions ##\mathbf{
-	
-}	\mathbf{In }the L-band, the effect of atmospheric scattering as well as clouds, and water vapor attenuation are all small thanks to relatively long electromagnetic wavelength (21 cm) in comparison with typical atmospheric hydrometeor size (Yueh et al., 2001). However, the effect of atmospheric emission must be corrected to achieve accurate salinity retrievals. This contribution includes both upwelling and downwelling components of atmospheric radiation (the latter is reflected from the surface).  The atmosphere emits and absorbs L-band radiation mostly due to molecular oxygen ($O_2$) with small contributions from water vapor, cloud liquid water, and rain (Blume et al., 1978; Ulaby et al., 1981; Blume and Kendall, 1982, Swift and MacIntosh, 1983, Rozenkranz, 1998). The net atmospheric emission varies from about 2.4 to 2.8 K and is proportional to atmospheric pressure (Yueh et al., 2001). The approach adopted to correct SMOS, Aquarius, and SMAP, $T_B$ for atmospheric impacts consists in using the conventional radiative transfer theory to model atmospheric attenuation and emission (e.g., Liebe et al., 1992). Atmospheric temperature and pressure profiles are needed in the transfer model and are usually obtained from meteorological models such as those provided by the ECMWF, or the NCEP. In general, the atmospheric impacts in the L-band can be corrected to within 0.3 K error (Meissner et al., 2018).
+where $(\bf{\hat{x}},\bf{\hat{y}},\bf{\hat{z}})$ are basis vectors for a local cartesian coordinate system centered at the scattering surface and  $k$ is the wavenumber vector magnitude. The Kirchhoff Integral $I_K$ is given in cartesian coordinates by:
+
+$$I_K=\displaystyle\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}[e^{[(q_s+q_o)^2 \rho(x)]} -1]\cdot  e^{[-i(\mathbf{k_s}-\mathbf{k_o})\cdot \mathbf{x}]}  dxdy $$
+
+The vector $\bf{x}$ is the horizontal displacement and the integral is evaluated over all possible displacements on the horizontal plane.  $q_s=\bf{\hat{z_e}}\cdot\bf{k_s}$ and $q_o=-\bf{\hat{z_e}}\cdot\bf{k_o}$ are the vertical projections of the scattered and incident wavenumbers, respectively; the kernel functions  $B_{\alpha\alpha_o}(\bf{k_s},\bf{k_o})$ are functions of both the scattering geometry and the dielectric constant of sea water.  Analytical expression of these functions for the Kirchhoff Approximation (KA) can be found in  Voronovich and Zavarotny (2001, RD.15). The dielectric constant for seawater at L-band is obtained from GW2020's model. The sea surface elevation function is assumed to be a Gaussian random process, and the correlation function of the ocean surface elevation, $\rho(x)$, is obtained from the Fourier transform of the directional roughness spectrum $W(k)$, which here is given by the wave spectrum model of [RD. 16]. In the present algorithm, only the isotropic part of the spectrum is considered.
+
+## Sea Surface scattered celestial sky radiation contribution ##
+
+<img src="T0esh_GSW2020_LBand.png" alt="fishy" class="bg-primary" width="400px">
+
+```
+--- 
+name: T0esv_GSW2020_LBand.png
+---
+Specular sea surface brightness temperatures at 1.4 GHz, at V- (a) and H- (b) polarization, for the CIMR nominal OZA of 53° and as a function of sea surface salinity (x-axis) for different representative sea surface temperature values (colors). The gray histogram represents the non-normalized distribution of historical in situ SSS observation in the Arctic.
+```
+## Atmospheric contributions ##
+
+In the L-band, the effect of atmospheric scattering as well as clouds, and water vapor attenuation are all small thanks to relatively long electromagnetic wavelength (21 cm) in comparison with typical atmospheric hydrometeor size (Yueh et al., 2001). However, the effect of atmospheric emission must be corrected to achieve accurate salinity retrievals. This contribution includes both upwelling and downwelling components of atmospheric radiation (the latter is reflected from the surface).  The atmosphere emits and absorbs L-band radiation mostly due to molecular oxygen ($O_2$) with small contributions from water vapor, cloud liquid water, and rain (Blume et al., 1978; Ulaby et al., 1981; Blume and Kendall, 1982, Swift and MacIntosh, 1983, Rozenkranz, 1998). The net atmospheric emission varies from about 2.4 to 2.8 K and is proportional to atmospheric pressure (Yueh et al., 2001). The approach adopted to correct SMOS, Aquarius, and SMAP, $T_B$ for atmospheric impacts consists in using the conventional radiative transfer theory to model atmospheric attenuation and emission (e.g., Liebe et al., 1992). Atmospheric temperature and pressure profiles are needed in the transfer model and are usually obtained from meteorological models such as those provided by the ECMWF, or the NCEP. In general, the atmospheric impacts in the L-band can be corrected to within 0.3 K error (Meissner et al., 2018).
 
 Following the simpified single layer atmospheric model used in the ESA SMOS Level 2 Ocean Salinity Processor [RD.12], the atmospheric contributions are approximated by the following formulation in which the emission and absorption are expressed purely in terms of air surface temperature $T_o$, surface pressure $P_s$, and total column water vapor $V$. 
 
