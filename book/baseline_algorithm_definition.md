@@ -500,6 +500,110 @@ This scattering model is using effective sea surface slope variance parameters w
 ### Accounting for rotation of the polarization plane in the Stokes vector ###
 
 In this section, we summarize the Stokes vector transformation that is applied to the forward model from the surface basis to the instrument antenna frame basis, accounting for both a change in polarization basis and the Faraday rotation associated with the passage of radiation through the ionosphere.
+#### From surface polarization basis to Ludwig-3 antenna basis ####
+
+<img src="ludwig-3.png" alt="fishy" class="bg-primary" width="200px">
+
+```{figure} ludwig-3.png
+--- 
+name: ludwig-3.png
+---
+Diagram summarizing the two rotations required to transport a brightness temperature vector from the surface basis $(\bf{h},\bf{v})$ into the instrument Ludwig-3 basis $(\bf{\hat{L'}}_x,\bf{\hat{L'}}_y$.  Here boresight is into the page so we are looking down towards the target from the instrument. Positive Faraday rotation corresponds to the rotation of the electric field vector $\bf{E}$ into $\bf{E’}$ by the angle $\Omega$ as shown. The additional rotation associated with the change of basis is a further counterclockwise rotation of the electric field vector, or clockwise rotation of the basis $(\bf{h},\bf{v})$ by the angle $\alpha'$. 
+```
+
+The first rotation, counterclockwise by angle $\alpha'$ looking down towards the target from the instrument, is associated with the change of polarization basis from the surface basis to the instrument basis (so-called Ludwig-3 basis as defined in RD.20), so that:
+
+$$
+\begin{pmatrix}
+E_{x} \\ 
+E_{y} \\
+\end{pmatrix}=
+\begin{pmatrix}
+\cos\alpha' & -\sin\alpha'  \\ 
+ \sin\alpha' & \cos\alpha' \\ 
+\end{pmatrix}
+\begin{pmatrix}
+E_{h} \\ 
+E_{v} \\
+\end{pmatrix}$$	
+
+and the corresponding transformation of the Stokes vector is given by:
+
+$$
+\begin{pmatrix}
+T_{x} \\ 
+T_{y}  \\
+U_{xy} \\
+V_{xy}  \\
+\end{pmatrix}=
+\begin{pmatrix}
+\cos^2\alpha' & \sin^2\alpha' & -\cos\alpha'\sin\alpha' & 0 \\ 
+\sin^2\alpha' & \cos^2\alpha' & \cos\alpha'\sin\alpha' & 0 \\
+\sin2\alpha' & -\sin2\alpha' & \cos2\alpha' & 0 \\
+0 & 0 & 0 & 1 \\
+\end{pmatrix}
+\begin{pmatrix}
+T_{h} \\ 
+T_{v}  \\
+U \\
+V  \\
+\end{pmatrix}$$	
+$$
+
+<img src="ludwig-3_1.png" alt="fishy" class="bg-primary" width="200px">
+<img src="ludwig-3_2.png" alt="fishy" class="bg-primary" width="200px">
+```{figure} ludwig-3.png
+--- 
+name: ludwig-32.png
+---
+Top : Diagram showing the geometry and polarization basis vectors in the surface target frame, denoted by $(\bf{h},\bf{v})$. The altitude of the emission vector, directed towards the satellite, is $\theta_e$, and the azimuth of this vector, $\phi_e$, is measured positive counterclockwise from due east.  Right : Diagram showing the geometry in the instrument, or antenna, frame. Ludwig-3 polarization basis vectors are denoted by basis $(\bf{\hat{L'}}_x,\bf{\hat{L'}}_y)$.  The polarisation basis rotation angle $\alpha'$ is the clockwise rotation of the surface  $(\bf{h},\bf{v})$ into the instrument Ludwig-3 polarization basis $(\bf{\hat{L'}}_x,\bf{\hat{L'}}_y)$. Equivalently, this angle is the counterclockwise rotation of the electric field vector looking down towards the target. The angle of the look direction (towards the ground) off of boresight is $\theta_s$, and the azimuth of the look direction $\phi_s$, is measured positive clockwise from north. 
+```
+
+Figure \ref{ludwig-32.png} shows the surface and instrument (Ludwig-3) polarization basis vectors. The polarization basis rotation angle is found using the method introduced by Duesman and Zundo [AD.5]. In this method, the surface polarization basis vectors have the following cartesian components:
+
+$$
+\begin{matrix}
+\mathbf{\hat{h}}\cdot\mathbf{\hat{X_e}}&=&-\sin\phi_e \\
+\mathbf{\hat{h}}\cdot\mathbf{\hat{Y_e}}&=&\cos\phi_e \\
+\mathbf{\hat{h}}\cdot\mathbf{\hat{Z_e}}&=&0 \\
+\mathbf{\hat{v}}\cdot\mathbf{\hat{X_e}}&=&-\sin\theta_e\cos\phi_e \\
+\mathbf{\hat{v}}\cdot\mathbf{\hat{Y_e}}&=&-\sin\theta_e\sin\phi_e \\
+\mathbf{\hat{v}}\cdot\mathbf{\hat{Z_e}}&=&\cos\theta_e \\
+\end{matrix}
+$$
+
+For the instrument polarization basis, the following associations are made:
+
+$$
+\begin{matrix}
+\mathbf{\hat{x}_{s}} & \rightarrow & \mathbf{\hat{y}} \\
+\mathbf{\hat{y}_{s}} & \rightarrow & \mathbf{\hat{x}} \\
+\mathbf{\hat{z}_{s}} & \rightarrow & -\mathbf{\hat{z}} \\
+\end{matrix}
+$$
+
+Now in the conventional formulation for the Ludwig-3 polarization basis vectors, we denote the vector pointing from the antenna to the target by $\bf{\hat{t}}$ and we simply begin by defining the usual « zonal » and « meridional » unit vectors on the sphere and then rotate them about the target vector $\bf{\hat{t}}$ by the antenna azimuth $\phi$. Thus, we define :
+
+$$
+\hat{e}_{\phi}=\displaystyle\frac{\mathbf{\hat{z}}\times\mathbf{\hat{t}}}{||\mathbf{\hat{z}}\times\mathbf{\hat{t}}||}=\frac{(\mathbf{\hat{x}}\times\mathbf{\hat{y}})\times\mathbf{\hat{t}}}{||(\mathbf{\hat{x}}\times\mathbf{\hat{y}})\times\mathbf{\hat{t}}||}=\frac{\mathbf{\hat{y}}(\mathbf{\hat{t}}\cdot\mathbf{\hat{x}})-\mathbf{\hat{x}}(\mathbf{\hat{t}}\cdot\mathbf{\hat{y}})}{||\mathbf{\hat{y}}(\mathbf{\hat{t}}\cdot\mathbf{\hat{x}})-\mathbf{\hat{x}}(\mathbf{\hat{t}}\cdot\mathbf{\hat{y}})||}
+$$
+
+$$
+\hat{e}_{\theta}=\displaystyle (\mathbf{\hat{z}}\times\mathbf{\hat{t}})\times \mathbf{\hat{t}}
+$$
+
+For convenience, we also define the corresponding unnormalized polarization vectors:
+
+$$
+e_{\phi}=\displaystyle \mathbf{\hat{y}}(\mathbf{\hat{t}}\cdot\mathbf{\hat{x}})-\mathbf{\hat{x}}(\mathbf{\hat{t}}\cdot\mathbf{\hat{y}})
+$$
+
+$$
+e_{\theta}=\displaystyle (\mathbf{\hat{z}}\times\mathbf{\hat{t}})\times\mathbf{\hat{t}}=(\mathbf{\hat{z}}\cdot\mathbf{\hat{t}})\mathbf{\hat{t}}-\mathbf{\hat{z}}
+$$
+
+which both have the same length, given by $||\mathbf{\hat{y}}(\mathbf{\hat{t}}\cdot\mathbf{\hat{x}})-\mathbf{\hat{x}}(\mathbf{\hat{t}}\cdot\mathbf{\hat{y}})||$. For simplicity, we will use these latter two vectors, rather than the normalized vectors, in what follows. The Ludwig-3 unnormalized components are defined in terms of the preceding unnormliazed vectors by a rotation by the target azimuth in the antenna frame. This rotation is defined so that at boresight, the resulting vectors are now a function of azimuth $\phi$:
+
 
 
 ### CIMR Leve1b re-sampling approach ###
