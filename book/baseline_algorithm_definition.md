@@ -32,7 +32,7 @@ E_{h}(\theta_s,\phi_s-180°) \\
 E_{v}(\theta_s,\phi_s-180°)
 \end{pmatrix}$$	
 
-where $(\theta_s,\phi_s)$ is the specular reflection direction for radiation incident from direction $(\theta_s,\phi_s-180°$). The superscripts on the reflection coefficients indicate that they correpond to zero order expansion in surface slope, i.e., the flat surface reflection. The flat surface reflection coefficents on the preceeding matrix are given by the Fresnel equations:
+where $(\theta_s,\phi_s)$ is the specular reflection direction for radiation incident from direction $(\theta_s,\phi_s-180°$). The superscripts on the reflection coefficients indicate that they correpond to zero order expansion in surface slope, i.e., the flat surface reflection. The flat surface reflection coefficients on the preceeding matrix are given by the Fresnel equations:
 
 $R_{vv}^{(0)} (\theta_s,f,S,T_s)=\displaystyle\frac{\sqrt{ε_{sw}(f,S,T_s)-\sin^2⁡{\theta_s}}-ε_{sw}(f,S,T_s) \cos\theta_s}{\sqrt{ε_{sw}(f,S,T_s)-\sin^2{\theta_s}}+ε_{sw}(f,S,T_s) \cos{\theta}}$ for vertical polarization, and,
 
@@ -148,12 +148,12 @@ in which:
 
 For all L-band radiometers, SSS retrievals algorithms are therefore based on:   
 	
--  an empirical sea-water dielectric constant model at 1.4 GHz,
+-  an sea-water dielectric constant model at 1.4 GHz,
 -  a surface roughness and foam-induced correction model,
 -  a Radiative Transfer Model for Atmospheric corrections,
 -  a scattering model to correct for sea surface scattered Solar and celestial radiation, and, 
--  a model to correct for geometric rotation from surface polarization basis to antenna basis
--  a model to correct for Faraday rotation in the ionosphere.
+-  a model to correct for geometric rotation from surface polarization basis to antenna basis,
+-  and to model the $T_B$ at antenna level, a model to correct for Faraday rotation in the ionosphere.
 
 We review these models and corrections in the following subsections.
 
@@ -671,6 +671,48 @@ and so, the polarization rotation angle $\alpha'$ may be computed as :
 $$
 \alpha'=\mathrm{atan2}(-\mathbf{\hat{L}_x}'\cdot\mathbf{\hat{v}},\mathbf{\hat{L}_x}'\cdot\mathbf{\hat{h}})
 $$
+
+
+#### Faraday rotation angle ####
+
+<img src="faraday.png" alt="fishy" class="bg-primary" width="400px">
+```{figure} faraday.png
+--- 
+name: faraday.png
+---
+Diagram showing how the sense of Faraday rotation depends upon the relative directions of the magnetic field and energy propagation. Also noted is the expected sense of rotation in each hemisphere.
+```
+
+The plane of polarization rotates as radiation passes through the ionosphere with the angle :
+
+$$
+\Omega=(K_f⁄f^2 )\cdot \mathrm{VTEC}(z=800 km,lat_{400},lon_{400})\cdot B_0\cdot \cos⁡\tilde{\theta}\cdot\mathrm{sec}\chi
+$$
+
+where $K_f=1.355\times 10^4\rm{TECU}^{-1}\rm{GHz}^2T^{-1}$, $f$ is the electromagnetic frequency, VTEC is the vertical total electron content reduced to the satellite altitude using the formulation of Floury [RD.21], $B_0$ is the magnetic field strength [Tesla] evaluated at the ionospheric pierce point (IPP), the point where the ray from the spacecraft to the surface crosses 400 km $(lat_{400},lon_{400})$; $\psi$ is the angle the ray makes with the vertical towards the target and $\tilde{\theta}$ is the angle between the magnetic field vector and the ray from spacecraft to the surface. As shown  in Fig.\ref{faraday.png}, this angle is generaly larger than 90° in the northern hemisphere (with negative Ω) and less than 90° in the southern hemisphere (with positive Ω).
+The reduction of VTEC to satellite altitude is formulated as two equations, one (morning) for local time within 6 hours of 6 a.m., and the other (evening) for local times within 6 hours of 6 p.m.
+
+$$
+\mathrm{VTEC}(z=800 km,lat_{400},lon_{400})=$$
+
+$$\mathrm{VTEC}(z=\infty,lat_{400},lon_{400})\times[(A_m \cdot F_s+B_m )+C_m \cdot \cos⁡(D_m \cdot C_m \cdot lat_{400}\cdot (\pi/180))]
+$$
+
+where $F_s$  is the daily solar flux that can be obtained from daily RSGA files [sfu] and the coefficients $A_m$, $B_m$, $C_m$ and $D_m$ were determined by N. Floury from ESA  as provided in Table 5.
+The $\mathrm{VTEC}(z=\infty,lat_{400},lon_{400})$ can be obtained from the 1-day forecast produced Centre for Orbit Determination in Europe (CODE), University of Berne, Switzerland. For reprocessed SSS products, the VTEC can be obtained from IGS consolidated VTEC.
+
+| Coefficient | Morning value (between 00 and 12 LT) | Evening value (between 12 and 24 LT) |
+| :-: | :-: |:-: |
+|$A_m$ | $-1.43\times 10^{-4}[\mathrm{sfu}^{-1}]$ | $-9.67\times 10^{-5}[\mathrm{sfu}^{-1}]$ |
+|$B_m$ | $8.66\times 10^{-1}[\mathrm{nd}]$ | $8.76\times 10^{-1}[\mathrm{nd}]$ |
+|$C_m$ | $3.75\times 10^{-3}[\mathrm{nd}]$ | $8.98\times 10^{-3}[\mathrm{nd}]$ |
+|$D_m$ | $3.7[\mathrm{deg}^{-1}]$ | $2.03[\mathrm{deg}^{-1}]$ |
+	Table: Coefficients in Floury TEC Altitude Correction
+
+The Magnetic field vector can be obtained from the 12th generation of the International Geomagnetic Reference Field (IGRF), evaluated at 400 km above the earth's surface along the line of sight using the software provided in https://www.ngdc.noaa.gov/IAGA/vmod/igrf12.f as converted into a callable FORTRAN function available here:https://gist.github.com/myjr52/62ca6c3e9c78ea0411
+The function outputs magnetic field strength in nanoTeslas (1e-9 Teslas) which is converted into Gauss (1e-4 Teslas). This model is valid to the year 2020 and should be updated when a new version of the model becomes available.
+Further information on the derivation of the associated geomagnetic model may be found here: https://www.ngdc.noaa.gov/IAGA/vmod/igrf.html
+
 
 ### CIMR Leve1b re-sampling approach ###
 |
