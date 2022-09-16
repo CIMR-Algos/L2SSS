@@ -94,7 +94,7 @@ Brightness temperature $$(T_{H}+T_{V})/2$$ changes at 1.4 GHz and nadir as a fun
 ```
 
 
-### Sea Surface Salinity retrieval from Top Of the Atmosphere brightness temperature at L-band
+### Sea Surface Salinity retrieval from Satellite Antenna brightness temperature at L-band
 <img src="../Figure8.png" alt="fishy" class="bg-primary" width="400px">
 
 ```
@@ -113,17 +113,47 @@ and in vertical polarization:
 
 $$T_{tv}^{(full)}=(τ_d τ_v )[T_{esv}+T_{scv}+T_{ssv}+R_h T_{ea}]+T_{ea}+(τ_d τ_v)[(1-F_f ) T_{erv}-F_f T_{esv}-e_{rv} T_{ea}]$$
 
+The only contribution to the third and fourth Stokes parameters in the surface polarization basis comes from the rough surface emission component, so that:
+
+$$T_{tU}^{(full)}=(τ_d τ_v ) T_{erU}$$
+
+and
+
+$$T_{tV}^{(full)}=(τ_d τ_v ) T_{erV}$$
+
 in which:
 
-
+| Notation | Definition | 
+| :-: | :-: |
+|$τ_d$ | 1-way atmosphereic transmittance associated with molecular oxygen absorption [nd]|
+|$τ_v$|	1-way atmosphereic transmittance associated with water vapor absorption [nd]|
+|$T_{esh}$|	H-pol brightness temperature of specular emission (surface pol. Basis) [K]|
+|$T_{erh}$|	H-pol brightness temperature of rough surface emission (surface pol. Basis) [K]|
+|$T_{sch}$|	H-pol brightness temperature of scattered celestial sky radiation (surface pol. Basis) [K]|
+|$T_{ssh}$|	H-pol brightness temperature of scattered solar radiation (sunglint) (surface pol. Basis) [K]|
+|$T_{esv}$|	V-pol brightness temperature of specular emission (surface pol. Basis) [K]|
+|$T_{erv}$|	V-pol brightness temperature of rough surface emission (surface pol. Basis) [K]|
+|$T_{scv}$|	V-pol brightness temperature of scattered celestial sky radiation (surface pol. Basis) [K]|
+|$T_{ssv}$|	V-pol brightness temperature of scattered solar radiation (sunglint) (surface pol. Basis) [K]|
+|$T_{ea}$|	Unpolarized brightness temperature of atmospheric 1-way emission [K]|
+|$R_h$|	Fresnel power reflection coefficient at the surface in H-pol|
+|$R_v$|	Fresnel power reflection coefficient at the surface in V-pol|
+|$e_{rh}$|	Rough surface emissivity in H-pol|
+|$e_{rv}$|	Rough surface emissivity in V-pol
+|$T_{erU}$|	Third Stokes brightness temperature of rough surface emission (surface pol. Basis) [K]|
+|$T_{erV}$|	Fourth Stokes brightness temperature of rough surface emission (surface pol. Basis) [K]|
+|$F_f$|	Fractionnal area of sea surface covered by foam [nd]|
+|$T_s$|	Sea Surface Temperature [K]|
+|$U_{10}$|	10-m height Sea surface wind speed modulus [m/s]|
 
 For all L-band radiometers, SSS retrievals algorithms are therefore based on:   
 	
 -  an empirical sea-water dielectric constant model at 1.4 GHz,
--  a surface roughness correction model,
+-  a surface roughness and foam-induced correction model,
 -  a Radiative Transfer Model for Atmospheric corrections,
 -  a scattering model to correct for sea surface scattered Solar and celestial radiation, and, 
--  a model to correct for Faraday rotation and geometric rotation associated with the finite beam width of the antenna.
+-  a model to correct for geometric rotation from surface polarization basis to antenna basis
+-  a model to correct for Faraday rotation in the ionosphere.
 
 We review these models and corrections in the following subsections.
 
@@ -187,7 +217,7 @@ As found, the sensitivity of $T_B$ to SSS is quasi-linear for a given SST. $\par
 Despite its importance for SSS remote sensing, uncertainties remain in the 1.4 GHz seawater dielectric constant model. The new GW Debye model laboratory measurements combined with satellite data, will certainly help to minimize those remaining uncertainties.
 
 
-###  Surface roughness-induced emission model at L-band
+###  Surface roughness-induced emission model at L-band ###
 
 At a given frequency, the total surface emissivity $E_p$ can be modeled with a specular part $e_{pp}^{(0)} (\theta_s,S,T_s)$ and a part caused by ocean roughness $\Delta e_{pp}^{rough}$. In order to measure sea surface salinity with the required accuracy it is necessary to remove the ocean surface roughness signal from the observed CIMR brightness temperatures. This requires an accurate
 knowledge of the signal itself as well as the ocean surface wind speed.
@@ -203,9 +233,9 @@ $$∆T_{rough,p}(U_{10},θ)=T_s\cdot e_{rough,p}(U_{10},θ)=T_s\cdot \left\(∆e
 
 ### Atmospheric contributions at L-band ###
 
-	In the L-band, the effect of atmospheric scattering as well as clouds, and water vapor attenuation are all small thanks to relatively long electromagnetic wavelength (21 cm) in comparison with typical atmospheric hydrometeor size (Yueh et al., 2001). However, the effect of atmospheric emission must be corrected to achieve accurate salinity retrievals. This contribution includes both upwelling and downwelling components of atmospheric radiation (the latter is reflected from the surface).  The atmosphere emits and absorbs L-band radiation mostly due to molecular oxygen ($O_2$) with small contributions from water vapor, cloud liquid water, and rain (Blume et al., 1978; Ulaby et al., 1981; Blume and Kendall, 1982, Swift and MacIntosh, 1983, Rozenkranz, 1998). The net atmospheric emission varies from about 2.4 to 2.8 K and is proportional to atmospheric pressure (Yueh et al., 2001). The approach adopted to correct SMOS, Aquarius, and SMAP, $T_B$ for atmospheric impacts consists in using the conventional radiative transfer theory to model atmospheric attenuation and emission (e.g., Liebe et al., 1992). Atmospheric temperature and pressure profiles are needed in the transfer model and are usually obtained from meteorological models such as those provided by the ECMWF, or the NCEP. In general, the atmospheric impacts in the L-band can be corrected to within 0.3 K error (Meissner et al., 2018).
+	
 
-Following the simpified single layer atmospheric model used in the ESA SMOS Level 2 Ocean Salinity Processor [RD.12], the atmospheric contributions are approximated by the following formulation in which the emission and absorption are expressed purely in terms of air surface temperature $T_o$, surface pressure $P_s$, and total column water vapor $V$. 
+In the L-band, the effect of atmospheric scattering as well as clouds, and water vapor attenuation are all small thanks to relatively long electromagnetic wavelength (~21 cm) in comparison with typical atmospheric hydrometeor size (Yueh et al., 2001). However, the effect of atmospheric emission must be corrected to achieve accurate salinity retrievals. This contribution includes both upwelling and downwelling components of atmospheric radiation (the latter is reflected from the surface).  The atmosphere emits and absorbs L-band radiation mostly due to molecular oxygen (O2) with small contributions from water vapor, cloud liquid water, and rain (Blume et al., 1978; Ulaby et al., 1981; Blume and Kendall, 1982, Swift and MacIntosh, 1983, Rozenkranz, 1998). The net atmospheric emission varies from about 2.4 to 2.8 K and is proportional to atmospheric pressure (Yueh et al., 2001). The approach adopted to correct SMOS, Aquarius, and SMAP, $T_B$ for atmospheric impacts consists in using the conventional radiative transfer theory to model atmospheric attenuation and emission (e.g., Liebe et al., 1992). Atmospheric temperature and pressure profiles are needed in the transfer model and are usually obtained from meteorological models such as those provided by the ECMWF, or the NCEP. In general, the atmospheric impacts in the L-band can be corrected to within 0.3 K error (Meissner et al., 2018). Following the simpified single layer atmospheric model used in the ESA SMOS Level 2 Ocean Salinity Processor [RD.12], the atmospheric contributions are approximated by the following formulation in which the emission and absorption are expressed purely in terms of air surface temperature $T_o$, surface pressure $P_s$, and total column water vapor $V$. 
 
 In terms of these quantities, the vertically integrated absorption owing to modelcular oxygen and water vapor are, respectively:
 $$A_d=A_d^{(u)}=A_d^{(d)}=10^{-6}\cdot (C_{aao}^{(0)}+C_{aao}^{(1)} T_o+C_{aao}^{(2)} P_s+C_{aao}^{(3)} T_o^2+C_{aao}^{(4)} P_s^2+C_{aao}^{(5)} T_o\cdot P_s )$$
@@ -469,6 +499,7 @@ This scattering model is using effective sea surface slope variance parameters w
 
 ### Accounting for rotation of the polarization plane in the Stokes vector ###
 
+In this section, we summarize the Stokes vector transformation that is applied to the forward model from the surface basis to the instrument antenna frame basis, accounting for both a change in polarization basis and the Faraday rotation associated with the passage of radiation through the ionosphere.
 
 
 ### CIMR Leve1b re-sampling approach ###
