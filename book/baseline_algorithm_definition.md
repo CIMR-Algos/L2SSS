@@ -103,7 +103,21 @@ name: Figure8
 ---
 signals received by a Space borne L-band radiometer 
 ```
-There are also other issues that complicate the remote sensing of salinity from space. Several geophysical parameters other than seawater salinity and temperature contribute significantly to L-band $T_{B}$ measured by satellite sensors (e.g., see Yueh et al., 2001; Font et al., 2004). These contributions need to be accurately known and used in corrections of measured antenna $T_{B}$ to properly retrieve SSS. As illustrated in Figure 8,  they include:  the direct and earth-reflected solar and sky emission (Le Vine et al. 2005; Reul et al., 2007, 2008; Tenerelli et al., 2008; Dinnat and Le Vine, 2008), the Faraday rotation in the ionosphere (Yueh et al., 2000; Le Vine and Abraham, 2002; Vergely et al., 2014),  the impact of the atmosphere (Liebe et al., 1992; Skou et al., 2005; Wentz and Meissner, 2016), and the effect of sea surface roughness on L-band emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Yueh et al., 2010, 2014).   For all L-band radiometers, SSS retrievals algorithms are therefore based on:   
+There are also other issues that complicate the remote sensing of salinity from space. Several geophysical parameters other than seawater salinity and temperature contribute significantly to L-band $T_{B}$ measured by satellite sensors (e.g., see Yueh et al., 2001; Font et al., 2004). These contributions need to be accurately known and used in corrections of measured antenna $T_{B}$ to properly retrieve SSS. As illustrated in Figure 8,  they include:  the direct and earth-reflected solar and sky emission (Le Vine et al. 2005; Reul et al., 2007, 2008; Tenerelli et al., 2008; Dinnat and Le Vine, 2008), the Faraday rotation in the ionosphere (Yueh et al., 2000; Le Vine and Abraham, 2002; Vergely et al., 2014),  the impact of the atmosphere (Liebe et al., 1992; Skou et al., 2005; Wentz and Meissner, 2016), and the effect of sea surface roughness on L-band emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Yueh et al., 2010, 2014).   
+
+Considering all components of the scene brightness temperature at L-band, the complete model solution for the upwelling brightness temperatures above the atmosphere but below the ionosphere (before Faraday rotation) in the surface polarization basis, is, in horizontal  polarization:
+
+$$T_{th}^{(full)}=(τ_d τ_v )[T_{esh}+T_{sch}+T_{ssh}+R_h T_{ea}]+T_{ea}+(τ_d τ_v)[(1-F_f ) T_{erh}-F_f T_{esh}-e_{rh} T_{ea}]$$
+
+and in vertical polarization:
+
+$$T_{tv}^{(full)}=(τ_d τ_v )[T_{esv}+T_{scv}+T_{ssv}+R_h T_{ea}]+T_{ea}+(τ_d τ_v)[(1-F_f ) T_{erv}-F_f T_{esv}-e_{rv} T_{ea}]$$
+
+in which:
+
+
+
+For all L-band radiometers, SSS retrievals algorithms are therefore based on:   
 	
 -  an empirical sea-water dielectric constant model at 1.4 GHz,
 -  a surface roughness correction model,
@@ -296,17 +310,15 @@ The vector $\bf{x}$ is the horizontal displacement and the integral is evaluated
 
 ### Sea Surface scattered celestial sky radiation contribution ###
 
-<img src="galactic_glint.png" alt="fishy" class="bg-primary" width="400px">
+For a flat ocean the contribution of the reflected galactic radiation to the antenna temperature
+is given by integrating radiation from the galactic sources and reflected at the ocean surface
+over the antenna gain pattern. Location and strength of the galactic sources at L-band are taken from the galactic map [Le Vine et al. 2004; Reul et al., 2008; Dinnat et al., 2018], which was derived from radio-astronomy observations. In actuality, bistatic scattering from a rough ocean will result in galactic radiation entering the mainlobe of the antenna from many different directions. In effect, a rough ocean surface tends to add additional spatial smoothing to
+the perfectly flat sea surface reflected sky signal. Modeling of this effect is based on the geometric optics (GO) approach, in which the rough surface is modeled as a collection of tilted facets with each facet acting as an independent
+specular reflector.  A crucial input to the GO model is the distribution of the slopes of the tilted facets of the rough
+ocean surface, which depends on the surface wind speed $U_{10}$. At L-band frequencies, Aquarius, SMAP and SMOS algorithms use the slope variance which represents about a 50% reduction in the slope variance from the classic Cox and Munk experiment (Cox and Munk, 1954), which measured the ocean sun glitter distribution.
 
-```
---- 
-name: Galactic_LBand.png
----
-Map of the incident Total power from sky radiation at L-band including CMB, Hi-line (integrated over a 23 MHz radiometer bandwidth centered on 1.4 GHz) and continuum contributions
-```
-
-	Radiation from the galactic background (Le Vine and Abraham, 2004) includes Cosmic Microwave Background (CMB) radiation, which is constant in space and time at 2.7 K, plus hydrogen line emission and continuum radiation from extraterrestrial sources. Both are variable across the sky and can affect the measured brightness values by up to 2 – 3 K in general. The total contribution can however be more than 12 K in the direction of the plane of the galaxy even when smoothed by the aperture of large antennas like CIMR (Tenerelli et al., 2008, R.D. 17). Galactic radiation reflects at the sea surface into the satellite radiometer aperture, but can be corrected using data obtained from all sky surveys using L-band radiometers (LeVine and Abraham, 2004; Dinnat and Le Vine, 2008; Tenerelli et al., 2008; Reul et al., 2008a).  
-	In our algorithm we use the same celestial sky radiation map as is now used in the SMOS level 2 processor [RD.12]. An electromagnetic scattering model is used to quantify the proportion and direction of reflection at the sea surface into the satellite radiometer aperture. As shown in RD.17,we can uniquely represent the rough sea surface scattered sky radiation as a function of six variables:
+Radiation from the galactic background (Le Vine and Abraham, 2004) includes Cosmic Microwave Background (CMB) radiation, which is constant in space and time at 2.7 K, plus hydrogen line emission and continuum radiation from extraterrestrial sources. Both are variable across the sky and can affect the measured brightness values by up to 2 – 3 K in general. The total contribution can however be more than 12 K in the direction of the plane of the galaxy even when smoothed by the aperture of large antennas like CIMR (Tenerelli et al., 2008). Galactic radiation reflects at the sea surface into the satellite radiometer aperture, but can be corrected using data obtained from all sky surveys using L-band radiometers (LeVine and Abraham, 2004; Dinnat and Le Vine, 2008; Tenerelli et al., 2008; Reul et al., 2008a).  
+	In our algorithm we use a similar celestial sky radiation map as is now used in the SMOS level 2 processor but adapted for the central frequency and bandwidth of the CIMR L-band chanels. The GO electromagnetic scattering model is used to quantify the proportion and direction of reflection at the sea surface into the satellite radiometer aperture. We can uniquely represent the rough sea surface scattered sky radiation as a function of six variables:
 $$T_{scp}\rightarrow T_{scp} (\alpha_s,\delta_s,\theta_s,\psi_{uh},U_{10},φ_{w})$$
 where
 
@@ -320,6 +332,17 @@ where
 | $\phi_w$   |Wind direction relative to North [deg]|
 
 Table: variables used in the scattering model used for sky radiation
+
+<img src="galactic_glint.png" alt="fishy" class="bg-primary" width="400px">
+
+```
+--- 
+name: Galactic_LBand.png
+---
+Map of the incident Total power from sky radiation at L-band including CMB, Hi-line (integrated over a 23 MHz radiometer bandwidth centered on 1.4 GHz) and continuum contributions
+```
+
+	
 
 The approach used to model the sea surface scattered sky brightness towards the radiometer integrates the sea surface bistatic scattering coefficients at the radiometer frequency over the incident sky brightness temperatures at 1.4 GHz:
 
@@ -399,6 +422,53 @@ The unit vectors pointing inward towards the origin from the incident and scatte
 $$\mathbf{\hat{n}_o}=-\hat{k}_{ox} \cdot \mathbf{\hat{x}} - \hat{k}_{oy} \cdot \mathbf{\hat{y}} - \hat{k}_{oz}\cdot \mathbf{\hat{z}}$$
 
 $$\mathbf{\hat{n}_s}=\hat{k}_{sx} \cdot \mathbf{\hat{x}} - \hat{k}_{sy} \cdot \mathbf{\hat{y}} - \hat{k}_{sz}\cdot \mathbf{\hat{z}}$$
+
+and with the polarization basis vectors for the incident and scattered waves in the forward scattering alignment basis convention which are:
+
+$$
+\begin{matrix}
+\mathbf{\hat{h_o}}=\hat{h_{ox}} \mathbf{\hat{x}}+\hat{h_{oy}}  \mathbf{\hat{y}}+\hat{h_{oz}}\mathbf{\hat{z}} \\
+\mathbf{\hat{h_s}}=\hat{h_{sx}} \mathbf{\hat{x}}+\hat{h_{sy}}  \mathbf{\hat{y}}+\hat{h_{sz}}  \mathbf{\hat{z}} \\
+\mathbf{\hat{v_o}}=\hat{v_{ox}}  \mathbf{\hat{x}}+\hat{v_{oy}}  \mathbf{\hat{y}}+\hat{v_{oz}}  \mathbf{\hat{z}} \\
+\mathbf{\hat{v_s}}=\hat{v_{sx}} \mathbf{\hat{x}}+\hat{v_{sy}}\mathbf{\hat{y}}+\hat{v_{sz}} \mathbf{\hat{z}}
+\end{matrix}
+$$
+
+where: 
+
+$$\hat{h_{ox}}=-\sin(\bar\phi_o)$$
+
+$$\hat{h_{oy}}=\cos(\bar\phi_o)$$
+
+$$\hat{h_{oz}}=0$$
+
+$$\hat{h_{sx}}=-\sin(\bar\phi_s)$$
+
+$$\hat{h_{sy}}=\cos(\bar\phi_s)$$
+
+$$\hat{h_{sz}}=0$$
+
+ The vertical polarization basis vector components are given by:
+
+$$\hat{v_{ox}}=-\cos\theta_o\cos(\bar\phi_o)$$
+
+$$\hat{v_{oy}}=-\cos\theta_o\sin(\bar\phi_o)$$
+
+$$\hat{h_{oz}}=-\sin\theta_o$$
+
+$$\hat{v_{sx}}=-\cos\theta_s\cos(\bar\phi_s)$$
+
+$$\hat{v_{sy}}=-\cos\theta_s\sin(\bar\phi_s)$$
+
+$$\hat{v_{sz}}=-\sin\theta_s$$
+
+With $\bar\phi_o=\tilde\phi_o+180°$ and $\bar\phi_s=\tilde\phi_s$.
+
+This scattering model is using effective sea surface slope variance parameters which are about 50% less than for optical data (Cox and Munk, 1954). These values are consistent with the model used for SMAP (Meissner et al., 2021), GNSS-Reflectometry studies at L-band (RD.26)  and well match the aircraft flight data acquired by the JPL PALS instrument (RD.27; RD.28), or during the ESA/COSMOS, campaigns (RD.29).
+
+
+### Accounting for rotation of the polarization plane in the Stokes vector ###
+
 
 
 ### CIMR Leve1b re-sampling approach ###
