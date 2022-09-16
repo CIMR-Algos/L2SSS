@@ -604,7 +604,73 @@ $$
 
 which both have the same length, given by $||\mathbf{\hat{y}}(\mathbf{\hat{t}}\cdot\mathbf{\hat{x}})-\mathbf{\hat{x}}(\mathbf{\hat{t}}\cdot\mathbf{\hat{y}})||$. For simplicity, we will use these latter two vectors, rather than the normalized vectors, in what follows. The Ludwig-3 unnormalized components are defined in terms of the preceding unnormliazed vectors by a rotation by the target azimuth in the antenna frame. This rotation is defined so that at boresight, the resulting vectors are now a function of azimuth $\phi$:
 
+$$
+\mathbf{L_x}'=e_{\theta}\cos\phi-e_{\phi}\sin\phi
+$$
 
+$$
+\mathbf{L_y}'=e_{\theta}\sin\phi+e_{\phi}\cos\phi
+$$
+
+Now $\cos⁡\phi$ and $\sin⁡\phi$ can be expressed in terms of the target vector and the cartesian basis vector as follows:
+
+$$
+\cos⁡\phi=-\mathbf{\hat{y}}\cdot\displaystyle\left\[\frac{\mathbf{\hat{t}}\times\mathbf{\hat{z}}}{||\mathbf{\hat{t}}\times\mathbf{\hat{z}}||}\right\]
+$$
+
+$$
+\sin⁡\phi=-\mathbf{\hat{x}}\cdot\displaystyle\left\[\frac{\mathbf{\hat{t}}\times\mathbf{\hat{z}}}{||\mathbf{\hat{t}}\times\mathbf{\hat{z}}||}\right\]
+$$
+
+The normalized Ludwig-3 basis vectors are:
+
+$$
+\mathbf{\hat{L}_x}'=\mathbf{L_x}'/||\mathbf{L_x}'||
+$$
+
+$$
+\mathbf{\hat{L}_y}'=\mathbf{L_y}'/||\mathbf{L_y}'||
+$$
+
+Given a target/satellite position with angles $(\theta_e, \phi_e)$ and $(\theta_s, \phi_s)$, both the surface polarization basis vectors $(\bf{\hat{h}},\bf{\hat{v}})$ and Ludwig-3 basis $(\mathbf{\hat{L}_x}',\mathbf{\hat{L}_y}')$ can be determined with the previous equations. To find the clockwise basis rotation of the surface basis into the Ludwig-3 basis, we note that this corresponds to a counterclockwise rotation of the electric field vector itself, and so :
+
+$$
+\begin{pmatrix}
+E_{x} \\ 
+E_{y} \\
+\end{pmatrix}=
+\begin{pmatrix}
+\mathbf{\hat{L}_x}'\cdot\mathbf{\hat{h}} & \mathbf{\hat{L}_x}'\cdot\mathbf{\hat{v}}\\ 
+\mathbf{\hat{L}_y}'\cdot\mathbf{\hat{h}} & \mathbf{\hat{L}_y}'\cdot\mathbf{\hat{v}}\\
+\end{pmatrix}
+\begin{pmatrix}
+E_{h} \\ 
+E_{v} \\
+\end{pmatrix}=
+\begin{pmatrix}
+\cos\alpha' & -\sin\alpha'  \\ 
+ \sin\alpha' & \cos\alpha' \\ 
+\end{pmatrix}
+\begin{pmatrix}
+E_{h} \\ 
+E_{v} \\
+\end{pmatrix}$$	
+
+Therefore, we have :
+
+$$
+\mathbf{\hat{L}_x}'\cdot\mathbf{\hat{h}}=\cos\alpha'
+$$
+
+$$
+\mathbf{\hat{L}_x}'\cdot\mathbf{\hat{v}}=-\sin\alpha'
+$$
+
+and so, the polarization rotation angle $\alpha'$ may be computed as :
+
+$$
+\alpha'=\mathrm{atan2}(-\mathbf{\hat{L}_x}'\cdot\mathbf{\hat{v}},\mathbf{\hat{L}_x}'\cdot\mathbf{\hat{h}})
+$$
 
 ### CIMR Leve1b re-sampling approach ###
 |
