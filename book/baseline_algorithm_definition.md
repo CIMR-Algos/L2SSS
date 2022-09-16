@@ -265,7 +265,7 @@ Along a path at angle $θ_s$ from  nadir, the  unpolarized brightness temperatur
 $$T_{ea}(\theta_{s})=\sec⁡\theta_s [T_{bad}+T_{bav}]$$
 
 ### Sea Surface Scattered Solar (Sunglint) contributions ###
-At L-band, the sun is also a very hot thermal source with effective temperatures on the order of 106 degrees during active periods of the solar cycle (Le Vine et al., 2005; Reul et al, 2007) with even higher amplitude emission is reached during solar flares. Even though the sun is relatively small in angular extent, it is such a strong source of radiation at L-band that solar effects remain an important potential sources of uncertainty on salinity retrieval (Le Vine, et al., 2005 ; Reul et al., 2007). 	For a real-aperture radiometer such as the Aquarius, SMAP and CIMR radiometers, sun glint (i.e. reflection at the sea surface) impacts the measurements through its contribution to the antenna temperature. Dinnat and Le Vine (2008) estimated that this contribution does not exceed about 0.14 K for Aquarius mission in quiet sun conditions (i.e., the sun brightness temperature equal about 500,000 K). Because the antenna boresight of the rotating real-aperture radiometer of SMAP and CIMR will enters the day side of the Earth’s terminator (i.e., the moving curve that divides the daylight side and the dark night side on Earth), the solar effects on the antenna brightness can be of much higher amplitude for this mission, potentially exceeding 15 K.  Observations with large sun glint shall be flagged in the CIMR salinity retrievals but small sunglint signal (less than few tenth of K) can be corrected for.  
+At L-band, the sun is also a very hot thermal source with effective temperatures on the order of $10^6$ degrees during active periods of the solar cycle (Le Vine et al., 2005; Reul et al, 2007) with even higher amplitude emission is reached during solar flares. Even though the sun is relatively small in angular extent, it is such a strong source of radiation at L-band that solar effects remain an important potential sources of uncertainty on salinity retrieval (Le Vine, et al., 2005 ; Reul et al., 2007). 	For a real-aperture radiometer such as the Aquarius, SMAP and CIMR radiometers, sun glint (i.e. reflection at the sea surface) impacts the measurements through its contribution to the antenna temperature. Dinnat and Le Vine (2008) estimated that this contribution does not exceed about 0.14 K for Aquarius mission in quiet sun conditions (i.e., the sun brightness temperature equal about 500,000 K). Because the antenna boresight of the rotating real-aperture radiometer of SMAP and CIMR will enters the day side of the Earth’s terminator (i.e., the moving curve that divides the daylight side and the dark night side on Earth), the solar effects on the antenna brightness can be of much higher amplitude for this mission, potentially exceeding 15 K.  Observations with large sun glint shall be flagged in the CIMR salinity retrievals but small sunglint signal (less than few tenth of K) can be corrected for.  
 
 At the surface, the brightness temperature of the scattered solar radiation in polarization $p$ may be expressed as (Reul et al., 2007 [RD.14]):
 
@@ -328,13 +328,77 @@ $$T_{scp} (\alpha_s,\delta_s,\theta_s,\psi_{uh},U_{10},\phi_w)=\displaystyle\fra
 where the domain of integration is determined uniquely by the set ${\alpha_s,\delta_s,\theta_s,\psi_{uh}}$ and $T_{p}^{sky}$ and $T_{q}^{sky}$  are the downwelling celestial sky radiation at polarization p and q and $(\sigma_{pp},\sigma_{pq})$ are the bistatic scattering cross-sections of the rough sea surface. 
 The scattered sky radiation is dominated by contributions around the specular directions, so that the scattering cross-sections model can be simplified using the Geometrical Optics approximation (which is valid around the specular direction) as follows:
 
-$$\sigma_{pq}=A\cdot P(S_u,S_c)\cdot|\overline{\kappa_{pq}}|^2$$
+$$\sigma_{pq}=A\cdot P(S_u,S_c)\cdot|\bar{\kappa_{pq}}|^2$$
 
 where  $A=(\pi k^2 q^2)/(q_z^4)$ and $P$ is the sea surface slope 2D probability distribution function which is taken to be Gaussian in the upwind and crosswind directions: 
 
 $$P(S_u,S_c)=\displaystyle\frac{1}{2\pi\sigma_u\sigma_c} \exp[-\frac{ξ^2+η^2}{2}]$$
 
 where  $σ_u^2$ and $σ_c^2$ are the upwind and crosswind mean square slope which are function of the surface wind speed (see further) and the normalized facet slopes are:
+$$\eta=  S_u⁄σ_u$$
+$$\zeta=S_c/σ_c$$
+and where the specular facet upwind and crosswind slopes are defined by:
+$$S_u=  s_{nx}⁄s_{nz}$$ 
+$$S_c=  -s_{ny}⁄s_{nz}$$ 
+with the cartesian components of the specular facet normal vector which are proportional to:
+     
+$$s_{nx}=\displaystyle\frac{\hat{k}_{ox}+\hat{k}_{sx}}{2}$$
+
+$$s_{ny}=\displaystyle\frac{\hat{k}_{oy}+\hat{k}_{sy}}{2}$$
+
+$$s_{nz}=\displaystyle\frac{\hat{k}_{oz}+\hat{k}_{sz}}{2}$$
+
+The unit vectors pointing outward from the origin towards the incident and scattered wave directions
+are: 
+
+$$\mathbf{\hat{k}_o}=\hat{k}_{ox} \cdot \mathbf{x} + \hat{k}_{oy} \cdot \mathbf{y} + \hat{k}_{oz}\cdot \mathbf{z}$$
+
+$$\mathbf{\hat{k}_s}=\hat{k}_{sx} \cdot \mathbf{x} + \hat{k}_{sy} \cdot \mathbf{y} + \hat{k}_{sz}\cdot \mathbf{z}$$
+
+with:
+
+$$
+\begin{matrix}
+\hat{k}_{ox}=\sin\theta_o\cos\tilde{\phi_o} \\
+\hat{k}_{oy}=\sin\theta_o\sin\tilde{\phi_o} \\
+\hat{k}_{oz}=\cos\theta_o 
+\end{matrix}
+$$
+
+and
+
+$$
+\begin{matrix}
+\hat{k}_{sx}=\sin\theta_s\cos\tilde{\phi_s} \\
+\hat{k}_{sy}=\sin\theta_s\sin\tilde{\phi_s} \\
+\hat{k}_{sz}=\cos\theta_s 
+\end{matrix}
+$$
+
+where we have defined the downwind-relative azimuth directions as follows:
+
+$$\tilde{\phi_o}=\phi_o-\phi_w$$
+
+$$\tilde{\phi_s}=\phi_s-\phi_w$$
+
+The scattering coefficients $σ_{pq}$ can be estimated with the previous terms and the dimensionless Kirchhoff kernel functions $\overline{\kappa_{pq}}$  : 
+
+$$\displaystyle\bar{\kappa_{hh}}=C \cdot [R_v (\mathbf{\hat{h}_{s} \cdot \hat{n}_{o}})(\mathbf{\hat{h}_{o} \cdot \hat{n}_{s}})+R_h (\mathbf{\hat{v}_{s} \cdot \hat{n}_{o}})(\mathbf{\hat{v}_{o} \cdot \hat{n}_{s}})] $$
+
+$$\displaystyle\bar{\kappa_{vv}}=C \cdot [R_v (\mathbf{\hat{v}_{s} \cdot \hat{n}_{o}})(\mathbf{\hat{v}_{o} \cdot \hat{n}_{s}})+R_h (\mathbf{\hat{h}_{s} \cdot \hat{n}_{o}})(\mathbf{\hat{h}_{o} \cdot \hat{n}_{s}})] $$
+
+$$\displaystyle\bar{\kappa_{hv}}=C \cdot [R_v (\mathbf{\hat{h}_{s} \cdot \hat{n}_{o}})(\mathbf{\hat{v}_{o} \cdot \hat{n}_{s}})+R_h (\mathbf{\hat{v}_{s} \cdot \hat{n}_{o}})(\mathbf{\hat{h}_{o} \cdot \hat{n}_{s}})] $$
+
+$$\displaystyle\bar{\kappa_{hv}}=C \cdot [R_v (\mathbf{\hat{v}_{s} \cdot \hat{n}_{o}})(\mathbf{\hat{h}_{o} \cdot \hat{n}_{s}})+R_h (\mathbf{\hat{h}_{s} \cdot \hat{n}_{o}})(\mathbf{\hat{v}_{o} \cdot \hat{n}_{s}})] $$
+
+Here, Rv and Rh are the Fresnel reflection coefficients, given as functions of surface salinity S, physical surface temperature $T_s$ and local incidence angle $\theta_L$ at the facet, where
+where $\theta_L=\mathrm{acos}(\mathbf{\hat{k_o}\cdot\hat{k_s}})/2$.
+
+The unit vectors pointing inward towards the origin from the incident and scattered wave directions are :
+
+$$\mathbf{\hat{n}_o}=-\hat{k}_{ox} \cdot \mathbf{\hat{x}} - \hat{k}_{oy} \cdot \mathbf{\hat{y}} - \hat{k}_{oz}\cdot \mathbf{\hat{z}}$$
+
+$$\mathbf{\hat{n}_s}=\hat{k}_{sx} \cdot \mathbf{\hat{x}} - \hat{k}_{sy} \cdot \mathbf{\hat{y}} - \hat{k}_{sz}\cdot \mathbf{\hat{z}}$$
 
 
 ### CIMR Leve1b re-sampling approach ###
