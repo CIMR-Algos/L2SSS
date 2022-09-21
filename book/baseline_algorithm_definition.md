@@ -232,6 +232,24 @@ In the latest algorithms implemented at ESA and NASA data centers, L-band Geophy
 
 $$∆T_{rough,p}(U_{10},θ)=T_s\cdot e_{rough,p}(U_{10},θ)=T_s\cdot \left\(∆e_{o,p}(U_{10},θ)+∆e_{1,p}(U_{10},θ)\cdot \cos⁡(\phi_{r} )+∆e_{2,p}(U_{10},θ)\cdot\cos⁡(2\phi_{r})\right\) $$
 
+
+Analytical and numerical models for the calculation of the rough ocean surface polarimetric thermal emission have been developed [6]–[11], primarily through application of standard surface scattering approximate methods to calculate surface emissivity using Kirchhoff’s law. Models based on both the small perturbation method (SPM) and the physical optics (PO) approximation has been presented.  The physical optics (PO) approximation was shown to clearly underestimate the sea surface emissivity observations at L-band [12, 13], particularly in the low incidence angle range (less than about 20-30°). This is mainly because such model does not account for scattering on small roughness elements. Recent works [8-10] has further revealed that use of the SPM for emission calculations results in a small slope, rather than small height, emission approximation identical to that which would be obtained from the small slope approximation of [14], so that the SPM can provide accurate emission predictions even for surfaces with large heights in terms of the electromagnetic wavelength. Numerical tests of the SPM for a set of canonical periodic surfaces have confirmed this statement [15]. Moreover, the success of the SPM/SSA in matching measured brightness temperature [6,16-19] has shown that the technique should be applicable for rough ocean surface brightness temperature predictions. These results motivate use of the SPM/small slope approximation (SPM/SSA) for the prediction of ocean polarimetric thermal emission at L-band.
+The Stokes vector of sea surface brightness temperatures observed at radiometer frequency f, incidence angle $\theta$ and azimuth angle relative to wind direction $\phi_{r}$ can be written:
+
+The SPM/SSA applies standard small perturbation theory to predict the bistatic scattering coefficients of a rough surface, and integrates these scattering coefficients over the upper hemisphere to obtain the reflectivities and hence brightness temperatures. The resonance behaviours observed in the critical phenomena region [20] produce a significant sensitivity of emission harmonics predicted by the SSA to ocean length scales of order equal to the electromagnetic wavelength. However, these emission harmonics are also sensitive (with the exception of the fourth Stokes parameter) to anisotropy in ocean length scale much larger than  the electromagnetic wavelength. Use of the SPM/SSA up to 2nd order produces an expansion in surface slope, with zero order terms reproducting flat surface emission results, first order terms identically zero, and second order terms providing the first prediction of changes from flat surface brightnesses.
+
+The second order terms take the form of an integral of a set of weighting functions over the surface directional spectrum, so that the wind-excess emissivity Stokes vector    can be expressed as follows using the second order SPM/Small Slope Approximation theory (e.g., see [19]):
+
+$$
+\left[\begin{matrix}
+e_{rough,h} \\ 
+e_{rough,v} \\
+e_{rough,3} \\
+e_{rough,4}
+\end{matrix}\right]
+
+$$
+
 ### Atmospheric contributions at L-band ###
 
 	
