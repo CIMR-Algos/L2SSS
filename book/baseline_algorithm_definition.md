@@ -246,9 +246,32 @@ e_{rough,h} \\
 e_{rough,v} \\
 e_{rough,3} \\
 e_{rough,4}
-\end{matrix}\right]
-
+\end{matrix}\right\]
+=-\displaystyle\int_o^{\infty}dk_{\rho}'k_{\rho}'\displaystyle\int_o^{2\pi}d\phi'{W(k_{\rho}',\phi')}
+\left[
+\begin{matrix}
+g_h(f,\theta_i,\phi_i,\epsilon_{sw},k_{\rho}',\phi')\\
+g_v(f,\theta_i,\phi_i,\epsilon_{sw},k_{\rho}',\phi')\\
+g_U(f,\theta_i,\phi_i,\epsilon_{sw},k_{\rho}',\phi')\\
+g_V(f,\theta_i,\phi_i,\epsilon_{sw},k_{\rho}',\phi')\\
+\end{matrix}
+\right]
 $$
+
+where the $g_{\gamma}$ "weighting" functions are formulated in terms
+of scattering coefficients determined from the small perturbation
+method (SPM). $\phi_i$ is the difference between the radiometer
+azimuth angle and the wind direction, $\theta_i$ is the radiometer
+incidence angle.
+
+Typically, the roughness induced brightness temperature is decomposed
+into azimuthal harmonics, and for a sea surface with reflection
+symmetry only even harmonics can be different from zero, in which case
+the rough surface contribution becomes
+
+
+
+
 
 ### Atmospheric contributions at L-band ###
 
