@@ -355,10 +355,7 @@ $$
 $$
 
 with the resulting $\tilde{g_{\gamma}}$ functions depending on
-frequency only through: $\displaystyle\frac{k_{\rho}'}{k_o}$. 
-
-Using these ideas and re-writing the second order change in emissivity
-from a flat surface $(\Delta e_{\gamma})$ in terms of
+frequency only through: $\displaystyle\frac{k_{\rho}'}{k_o}$. Using these ideas and re-writing the second order change in emissivity from a flat surface $(\Delta e_{\gamma})$ in terms of
 $\beta=k'_{\rho}/k_o$ yields
 
 $$
@@ -393,6 +390,197 @@ $$
 
 and the new $g_{\gamma}'$ functions have no explicit dependence on frequency.
 
+A second simplification is used to separate individual azimuth
+harmonics of the emission vector. First a study of the
+$g_{\gamma}'$ functions reveals them to be functions of
+$\phi_i-\phi'$  alone and not $\phi_i$ and $\phi'$ separately.
+This motivates expansion of the $g_{\gamma}'$  functions in a
+Fourier series as:
+
+$$
+g_{\gamma}'(\theta_i,\phi_i;\epsilon_{sw},\beta,\phi')=\displaystyle\sum_{n=-\infty}^{\infty}e^{in(\phi_i-\phi')}g_{\gamma,n}'(\theta_i,\epsilon_{sw},\beta)
+$$
+
+Consideration of the fact that the $g_{\gamma}'$  functions are
+real functions and the symmetric properties in $\phi_i-\phi'$ for
+each polarimetric quantity reveals that $g_h'$ and $g_v'$ should
+have only real valued $g_{\gamma,n}'$ which are even in $\it{n}$, while
+$g_U'$ and $g_V'$ should have only imaginary valued
+$g_{\gamma,n}'$ which are odd in $\it{n}$. Using the Fourier
+expansion in the emssion equation results in:
+
+$$
+\begin{array}{l}
+\Delta e_{\gamma}=-\left(\left[
+\begin{array}{c}
+\displaystyle\int_o^{\infty} g_{\gamma,0}'C_0(k_o\beta) d\beta\\
+0 \\
+\end{array}\right]+ \right.
+\left. \displaystyle\sum_{n=1}^{\infty} \left[
+\begin{array}{c}
+2\cos(n\phi_i)\int_o^{\infty} \Re{\left[g_{\gamma,n}'(\beta)\right]}C_n(k_o\beta) d\beta\\
+-2\sin(n\phi_i)\int_o^{\infty} \Im{\left[g_{\gamma,n}'(\beta)\right]}C_n(k_o\beta) d\beta\\
+\end{array}\right]\right)\\
+\end{array}
+$$
+
+where the upper row in the final equality holds for $h$ and $v$,
+the lower row for $U$ and $V$, and an assumption that the
+curvature spectrum contains only cosine harmonics has been made.
+
+The last Equation has separated out individual
+emission azimuthal harmonic terms (the $\cos(n\phi_i)$ and
+$sin(n\phi_i)$ terms) and reveals them to be proportional to an
+integral of a weighting function $g_{\gamma,n}'(\beta)$ times the
+$C_n(k_o\beta)$ functions. Note that:
+
+$$
+C_n(k_o\beta)=\displaystyle\int_o^{2\pi}e^{-in
+\phi'}C(k\beta,\phi')d\phi'
+$$
+
+represents the $n$ th harmonic of the surface curvature spectrum,
+so the above equation demonstrates the direct correspondence
+between emission and surface azimuthal harmonics. Again, since the
+properties of a surface directional spectrum require it to have no
+odd azimuthal harmonics, the above equation clarifies that no odd
+emission harmonics will be obtained in this second order
+formulation. In addition, the above equation makes calculation of
+emission harmonics a much more direct procedure, since two single
+integrals (one for the Fourier series expansion of the
+$g_{\gamma}'$ functions and the $d\beta$ integration in this last equation
+replace the multiple double integrals in an
+azimuth sweep procedure.
+
+### Sea Foam emissivity modelling at L-band ###
+
+Foam and whitecaps belong to the class of colloidal systems that
+include two phases: atmosphere gases and sea water. In the present
+work, we model foam layers at the ocean surface as media of
+densely packed sticky spherical air bubbles, coated with thin
+seawater coating following the approach of Guo et al.
+[2001]. The dipole approximation model developed by
+Dombrovskiy and Raizer [1992] is then used to
+describe the effective permittivity of the system.
+
+##### Brightness temperature modeling of the foam-water system #####
+
+Following  Guo et al. [2001], we assumed that foam on
+the ocean surface is composed of nearly spherical coated bubbles
+described by an outer radius $r$, made of an air core with
+permittivity $\varepsilon_a$, surrounded by a shell of sea water
+with thickness $\delta$ and permittivity $\varepsilon_w$. The foam
+covered ocean is modeled by the succession of three media : the
+air (region 0), a foam layer defined as a region of effective
+permittivity $\varepsilon_{N\alpha}$ with a layer thickness $d$
+(region 1), and the underlying seawater with some air bubbles
+(region 2) with permittivity $\varepsilon_{W}$.
+
+ Boundaries between each region are assumed flat.
+
+The brightness temperature of the foam-water system at incidence angle $\theta_i$ and polarization $\gamma=h$ (horizontal) or $v$
+(vertical) is then equal to
+
+$$
+T_{B_{\gamma}}(\theta_i)=T_s\left[1-|R_{\gamma}(\theta_i)|^2\right]
+$$
+
+where $T_s$ is the foam layer physical temperature, the
+coefficient $R_{\gamma}$ is the spectral reflection coefficient of
+the  foam layer medium with the effective dielectric constant
+$\varepsilon_{N\alpha}$ and is given by:
+
+$$
+R_{\gamma}(\theta_i)=\displaystyle\frac{R_{01}^{\gamma}(\theta_i)e^{-2i\psi}+R_{12}^{\gamma}(\theta_i)}
+{e^{-2i\psi}+R_{01}^{\gamma}(\theta_i)R_{12}^{\gamma}(\theta_i)}
+$$
+
+where $\psi$ is an attenuation factor that depends on the foam
+layer thickness $d$, the electromagnetic wavelength $\lambda$, and
+the effective permittivity $\varepsilon_{N\alpha}$:
+
+$$
+\psi=\frac{2\pi d}{\lambda_o} \sqrt{\varepsilon_{N\alpha}-sin^2
+\theta_i}
+$$
+
+where $\lambda_o$ is the electromagnetic wavelength.  $R_{01}^{\gamma}$ are the
+Fresnel reflection coefficients between air (region 0) and foam
+(region 1):
+
+$$
+\begin{array}{lr}
+ R_{01}^h(\theta_i)=\displaystyle\frac{\cos(\theta_i)-\sqrt{\varepsilon_{N\alpha}-\sin^2(\theta_i)}}{\cos(\theta_i)+\sqrt{\varepsilon_{N\alpha}-\sin^2(\theta_i)}}
+&
+R_{01}^v(\theta_i)=\displaystyle\frac{\varepsilon_{N\alpha}\cos(\theta_i)-\sqrt{\varepsilon_{N\alpha}-\sin^2(\theta_i)}}{\varepsilon_{N\alpha}\cos(\theta_i)+\sqrt{\varepsilon_{N\alpha}-\sin^2(\theta_i)}} \\
+\end{array}
+$$
+
+and $R_{12}^{\gamma}$ are the Fresnel reflection coefficients
+between foam (region 1) and water (region 2):
+
+$$
+\begin{array}{c}
+ R_{12}^h(\theta_i)=\displaystyle\frac{\sqrt{\varepsilon_{N\alpha}-\sin^2(\theta_i)}-\sqrt{\varepsilon_{w}-\sin^2(\theta_i)}}{\sqrt{\varepsilon_{N\alpha}-\sin^2(\theta_i)}+\sqrt{\varepsilon_{w}-\sin^2(\theta_i)}}\\
+ \\
+ R_{12}^v(\theta_i)=\displaystyle\frac{\varepsilon_{w}\sqrt{\varepsilon_{N\alpha}-\sin^2(\theta_i)}-\varepsilon_{N\alpha}\sqrt{\varepsilon_{w}-\sin^2(\theta_i)}}{\varepsilon_{w}\sqrt{\varepsilon_{N\alpha}-\sin^2(\theta_i)}+\varepsilon_{N\alpha}\sqrt{\varepsilon_{w}-\sin^2(\theta_i)}}\\
+\end{array}
+$$
+
+Region 2 consists of air bubbles embedded in the ocean background
+and is assumed to be absorptive. To solve the previous system of
+equations, one need to define an effective permittivity for region
+1, namely $\varepsilon_{N\alpha}$, and for region 2, namely
+$\varepsilon_{w}$.
+
+##### Effective permittivity of sea Foam formations at L-band #####
+
+The main parameter of the previous multi-layer emissivity model
+for foam is the effective permittivity $\varepsilon_{N\alpha}$ of
+the foam-layer considered. To define this parameter, the
+well-known, from molecular optics, $\it{Lorenz-Lorentz}$ and
+$\it{Hulst}$ equations can be used and modified for the
+polydispersed system of bubbles. The first formula take into
+account $\it{dipole}$ $\it{interaction}$ of bubbles in a close-packed
+dispersed system (the quasi static approximation). The Hulst
+equations describe the contribution of the $\it{multipole}$ $\it{moment}$
+of bubbles into effective permittivity of the system. Spectral
+calculations by Cherny and Raizer, [1998] show that
+first resonant electromagnetic effects by Hulst's mechanism occur
+for bubbles radius $a\sim\lambda_o/4$. At L-band ($\lambda_o=21
+cm$), this corresponds to bubble diameters of order 10 cm. Such
+very large bubbles are extremely rare at the sea surface and therefore, the
+multipole mechanism may be  neglected at L-band  for
+which  bubbles might be considered dipole only. In the present
+algorithm, we use the dipole approximation model developed by
+Dombrovskiy and Raizer [1992] to describe the
+effective permittivity of the system. It involves use of a
+modification of the Lorenz-Lorentz equation and yields the
+following simple formula for the complex effective permittivity
+$\varepsilon_{N\alpha}$ of a foam-layer :
+
+$$
+    \varepsilon_{N\alpha}(z)=\displaystyle\frac{1+\displaystyle\frac{8}{3}\pi\overline{N\alpha(z)}}{1-\displaystyle\frac{4}{3}\pi\overline{N\alpha(z)}}
+ $$   
+    
+where
+    
+$$
+    \overline{N\alpha(z)}=\displaystyle\frac{\kappa\displaystyle\int\alpha(r)p_f(r,z)dr}{\displaystyle\frac{4}{3}\int
+r^3p_f(r,z)dr}
+$$
+
+where $N$ is the volume concentration of the bubbles,
+$\alpha(r)$ is the complex polarizability of a single bubble with
+external radius $r$, $\kappa$ is the so-called stickiness
+parameter and $p_f(r,z)$ is the normalized size-distribution
+function of the bubbles as function of depth $z$. In natural media such as foam, the
+densely packed particles can have adhesive forces that make them
+adhere to form aggregates. This effect is accounted for in the
+model through the introduction of the $\it{stickiness}$ $\it{parameter}$
+\textbf{$\kappa$}, also called packing coefficient of the bubbles
+which is inversely proportional to the strength of the attractive
+force between bubbles [Zurk et al.95].
 
 
 
