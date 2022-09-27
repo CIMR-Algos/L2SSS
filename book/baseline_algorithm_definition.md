@@ -315,7 +315,7 @@ defined to be 1 for $k_z$ real, 0 for $k_z$ complex, and limits
 the incoherent contributions to waves propagating in the upper
 hemisphere. Evaluation of the rough surface emission is
 performed through numerical integration of the double integral for
-fixed values of all the radiometer and surface parameters $(f,\theta_i, \phi_i, \epsilon_{sw}, and W(k_{\rho'},\phi'))$.
+fixed values of all the radiometer and surface parameters $(f,\theta_i, \phi_i, \epsilon_{sw}, \rm{and}, W(k_{\rho'},\phi'))$.
 Typical formulations based on Yueh et al. (1994a) would
 numerically calculate double integrals for the coherent and
 incoherent contributions separately; the above expression combines
@@ -327,7 +327,71 @@ effect results in extremely high accuracy required in the separate
 numerical integrations. Combining the two into one double integral
 eliminates this problem.
 
+Since evaluation of the integral emissiion equation results in an emissivity
+vector for one value of $\phi_i$ only, studies of
+brightness temperature azimuthal harmonics require repeated
+evaluation of the double integral for varying values of  $\phi_i$
+to produce functions of azimuth. Harmonic coefficients can then be
+extracted from these functions through a Fourier transform.
+Calculation of emissivities azimuthal harmonic
+coefficients and their variations with other surface and
+radiometer parameters can therefore be quite time consuming.
 
+
+To address these issues, Johnson and Zhang (1999)
+proposed to use several properties of the original $g_{\gamma}$
+functions and of the surface directional spectrum and this approach is
+applied in the present algorithm. First, it is widely accepted
+that the ocean surface spectrum should vary as $1/k_{\rho}^{'4}$
+for large values of $k_{\rho}'$; it is advantageous to remove this
+dependency through use of the ocean curvature spectrum,
+$C(k_{\rho}',\phi')$, defined as
+$k_{\rho}^{'4}W(k_{\rho}',\phi')$. Next it is noted that the
+$g_{\gamma}$ functions have a $k_o^2$ dependence on frequency
+which can be factored out by defining: 
+
+$$
+\tilde{g_{\gamma}}(\theta_i,\phi_i,\epsilon_{sw},k_{\rho}'/k_o,\phi')=\frac{1}{k_o^2}g_{\gamma}(f,\theta_i,\phi_i,\epsilon_{sw},k_{\rho}',\phi')
+$$
+
+with the resulting $\tilde{g_{\gamma}}$ functions depending on
+frequency only through: $\displaystyle\frac{k_{\rho}'}{k_o}$. 
+
+Using these ideas and re-writing the second order change in emissivity
+from a flat surface $(\Delta e_{\gamma})$ in terms of
+$\beta=k'_{\rho}/k_o$ yields
+
+$$
+\left[
+\begin{matrix}
+\Delta e_{Bh} \\
+\Delta e_{Bv} \\
+\Delta e_{U}\\
+\Delta e_{V}\\
+\end{matrix}
+\right]=- \left(
+\displaystyle\int_o^{\infty}\displaystyle\int_o^{2\pi}C(k_o\beta,\phi')
+\left[
+\begin{matrix}
+g_h'(\theta_i,\phi_i;\epsilon_{sw},\beta,\phi')\\
+g_v'(\theta_i,\phi_i;\epsilon_{sw},\beta,\phi')\\
+g_U'(\theta_i,\phi_i;\epsilon_{sw},\beta,\phi')\\
+g_V'(\theta_i,\phi_i;\epsilon_{sw},\beta,\phi')\\
+\end{matrix}
+\right]d\phi'd\beta \right)
+$$
+
+where
+
+$$
+\begin{array}{ll}
+g_{\gamma}'(\theta_i,\phi_i;\epsilon_{sw},\beta,\phi')d\beta&=\displaystyle\frac{1}{\beta^3}\tilde{g_{\gamma}}
+\left(\theta_i,\phi_i;\epsilon_{sw},\displaystyle\frac{k_{\rho}'}{k_o}=\beta,\phi'\right)d\beta \\
+&\hspace{-.5cm}=\displaystyle\frac{k_o^2}{k_{\rho}^{'3}}\left[\displaystyle\frac{1}{k_o^2}g_{\gamma}\left(f,\theta_i,\phi_i;\epsilon_{sw},k_{\rho}'=k_o\beta,\phi'\right)\right]dk_{\rho}'
+\end{array}
+$$
+
+and the new $g_{\gamma}'$ functions have no explicit dependence on frequency.
 
 
 
