@@ -547,8 +547,8 @@ equations describe the contribution of the $\it{multipole}$ $\it{moment}$
 of bubbles into effective permittivity of the system. Spectral
 calculations by Cherny and Raizer, [1998] show that
 first resonant electromagnetic effects by Hulst's mechanism occur
-for bubbles radius $a\sim\lambda_o/4$. At L-band ($\lambda_o=21
-cm$), this corresponds to bubble diameters of order 10 cm. Such
+for bubbles radius $a\sim\lambda_o/4$. At L-band $(\lambda_o=21
+cm)$, this corresponds to bubble diameters of order 10 cm. Such
 very large bubbles are extremely rare at the sea surface and therefore, the
 multipole mechanism may be  neglected at L-band  for
 which  bubbles might be considered dipole only. In the present
@@ -581,6 +581,99 @@ model through the introduction of the $\it{stickiness}$ $\it{parameter}$
 \textbf{$\kappa$}, also called packing coefficient of the bubbles
 which is inversely proportional to the strength of the attractive
 force between bubbles [Zurk et al.95].
+According to Dombrovskiy and Raizer [1992], the
+complex polarizability depends on the external radius of bubbles
+$r$, the complex permittivity of the shell medium (salt water)
+$\varepsilon_w$, and the bubble's filling factor $q=1-\delta/r$
+following:
+
+$$
+    \alpha(r)=r^3\displaystyle\frac{(\varepsilon_w-1)(2\varepsilon_w+1)(1-q^3)}{(\varepsilon_w+2)(2\varepsilon_w+1)(1-q^3)+9\varepsilon_w q^3}
+$$
+
+ where $q=1-\delta/r$ is the so-called bubble's filling factor.
+Experimental measurements on stable foam reveal that the effective
+permittivity might be dependent on the vertical position within
+the foam layer, i.e,
+$\varepsilon_{N\alpha}=\varepsilon_{N\alpha}(z)$. In the simplest
+case, the foam-water system may be modelled as a succession of
+elementary foam-layers, each of them having an homogeneous
+effective dielectric constant. However, the exact dependence of
+such function with vertical, which depends on the vertical
+distribution of the bubble's size is very poorly known. It is very
+likely that the vertical distribution of the bubble's size
+$p_f(r,z)$ is function of the intensity and scale of the
+underlying breaking event. Moreover it will certainly strongly
+evolve during a transient breaking event. Nevertheless, in order
+to keep a tractable number of parameters in the present model, we
+choose to consider a uniform vertical distribution of bubbles
+sizes $p_f(r,z)=p_f(r)$ within the foam layer.
+
+ The foam void fraction (i.e., the ratio of the volume of air to the total
+volume of the foam) depends on the distribution of the bubble's
+filling factor $q$. The distribution of bubbles radii
+$p_f(r)$ together with the distribution of coating thicknesses
+$f(\delta)$ therefore determines the foam layer void fraction.  In
+the present simplified model, we fixed the value of the shell
+thickness $\delta$ but  the outer bubble radius $r$ is randomly
+distributed. According to Dombrovskiy [1979], this
+approximation reflects an experimentally established fact for an
+emulsion layer of foam (young foam) but it requires verification
+for a foam with honeycomb structure (aged foam). Numerous
+observations of oceanic bubble size distributions are reported in
+the literature based on acoustic, photographic, optical, and
+holographic methods [e.g., see Wu, 1988]. Currently, it
+is not clear how to parameterize the ocean surface bubble size
+distribution. Following Bordonskiy et al.[1978] and
+Dombrovskskiy and Rayzer [1992], we used a $\gamma$
+distribution for the size distribution function of the bubbles:
+
+$$
+p_f(r)=\frac{A^{B+1}}{\Gamma(B+1)}r^B e^{-Ar}
+$$
+
+where $A$ and $B$ are parameters of the distribution with
+$r_p=A/B$ being the most probable radius.
+
+Finally, to calculate $\varepsilon_{w}$, a simple physical model based on
+induced dipoles is used. Let $\varepsilon_{sw}$ denote the
+permittivity of the seawater, $f_a$ the fractional volume occupied
+by the air bubbles. Then the effective permittivity
+$\varepsilon_{w}$, is given by the Maxwell-Garnett mixing formula
+(see Guo et al. [2001]\cite{guo01}):
+
+$$
+\varepsilon_w=\varepsilon_{sw}\frac{1+2f_a y}{1-f_a y}
+$$
+
+where
+
+$$
+y=\frac{1-\varepsilon_{sw}}{1+2\varepsilon_{sw}} \\
+$$
+
+with $\varepsilon_{sw}$, the sea-water permittivity, derived for
+L-band using the GW2020's model. Note that
+the effective permittivity $\varepsilon_{w}$ here does not include
+scattering attenuation which is small due to the fact that the
+seawater is heavily absorptive.
+
+According to our simplified emissivity model for foam, the brightness temperature
+induced by a sea foam layer should be a function of:
+
+$$
+T_{B}=function(\theta_i,f,p,T_s,r_p,\delta,\kappa,d,f_a,SSS,SST)
+$$
+
+where $\theta_i$ is the radiometer incidence angle, $f$ the E.M.
+frequency, $p$ is an index denoting the signal Polarization, $T_s$
+is the foam physical temperature, $r_p$ is the average bubble
+radius, $\delta$ is the  bubble's water coating thickness,
+$\kappa$ is the bubble's packing coefficient, $d$ is the foam
+layer thickness, $f_a$ is the void fraction beneath the foam
+layer, and finally, $SSS$ and $SST$ are the sea surface salinity
+and temperature respectively.
+
 
 
 
