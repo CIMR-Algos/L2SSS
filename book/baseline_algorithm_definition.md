@@ -105,13 +105,11 @@ signals received by a Space borne L-band radiometer
 ```
 There are also other issues that complicate the remote sensing of salinity from space. Several geophysical parameters other than seawater salinity and temperature contribute significantly to L-band $T_{B}$ measured by satellite sensors (e.g., see Yueh et al., 2001; Font et al., 2004). These contributions need to be accurately known and used in corrections of measured antenna $T_{B}$ to properly retrieve SSS. As illustrated in Figure 8,  they include:  the direct and earth-reflected solar and sky emission (Le Vine et al. 2005; Reul et al., 2007, 2008; Tenerelli et al., 2008; Dinnat and Le Vine, 2008), the Faraday rotation in the ionosphere (Yueh et al., 2000; Le Vine and Abraham, 2002; Vergely et al., 2014),  the impact of the atmosphere (Liebe et al., 1992; Skou et al., 2005; Wentz and Meissner, 2016), and the effect of sea surface roughness on L-band emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Yueh et al., 2010, 2014).   
 
-Considering all components of the scene brightness temperature at L-band, the complete model solution for the upwelling brightness temperatures above the atmosphere but below the ionosphere (before Faraday rotation) in the surface polarization basis, is, in horizontal  polarization:
 
-$$T_{th}^{(full)}=(τ_d τ_v )[T_{esh}+T_{sch}+T_{ssh}+R_h T_{ea}]+T_{ea}+(τ_d τ_v)[(1-F_f ) T_{erh}-F_f T_{esh}-e_{rh} T_{ea}]$$
 
-and in vertical polarization:
+Considering all components of the scene brightness temperature at L-band, the complete model solution for the upwelling brightness temperatures above the atmosphere but below the ionosphere (before Faraday rotation) in the surface polarization basis, is, in polarization $p$:
 
-$$T_{tv}^{(full)}=(τ_d τ_v )[T_{esv}+T_{scv}+T_{ssv}+R_h T_{ea}]+T_{ea}+(τ_d τ_v)[(1-F_f ) T_{erv}-F_f T_{esv}-e_{rv} T_{ea}]$$
+$$T_{tp}^{TOA}=T_{atm}^{up}+(τ_d τ_v )[T_{surf,p}^{tot}+R_{surf,p}^{tot}\cdot T_{atm}^{dw}+T_{scp}+T_{ssp}]$$
 
 The only contribution to the third and fourth Stokes parameters in the surface polarization basis comes from the rough surface emission component, so that:
 
@@ -125,8 +123,52 @@ in which:
 
 | Notation | Definition | 
 | :-: | :-: |
+| $T_{atm}^{up}$ | Unpolarized upwelling brightness temperature of atmospheric 1-way emission [K]|
 |$τ_d$ | 1-way atmosphereic transmittance associated with molecular oxygen absorption [nd]|
 |$τ_v$|	1-way atmosphereic transmittance associated with water vapor absorption [nd]|
+|T_{surf,p}^{tot}| p-pol brightness temperature of the total sea surface emission (specular+rough+foam) [K] |
+|$R_{surf,p}^{tot}$|	reflectivity of the total sea surface (specular+rough+foam) in p-pol|
+| $T_{atm}^{dw}$ | Unpolarized downwelling brightness temperature of atmospheric 1-way emission [K]|
+|$T_{erU}$|	Third Stokes brightness temperature of rough surface emission (surface pol. Basis) [K]|
+|$T_{erV}$|	Fourth Stokes brightness temperature of rough surface emission (surface pol. Basis) [K]|
+|$T_{scp}$|	p-pol brightness temperature of scattered celestial sky radiation (surface pol. Basis) [K]|
+|$T_{ssp}$|	p-pol brightness temperature of scattered solar radiation (sunglint) (surface pol. Basis) [K]|
+
+In our algorithm (see dedicated section further), the upwelling and downwelling atmospheric emission are assumed to 
+be equal :
+
+$$T_{atm}^{up}=T_{atm}^{dw}=T_{ea}$$
+
+where $T_{ea}$ is the unpolarized brightness temperature of atmospheric 1-way emission. 
+In addition, the brightness temperature of the total sea surface emission, $T_{surf,p}^{tot}$ can be decomposed as follows:
+
+$$T_{surf,p}^{tot}=T_s\cdot e_{surf,p}^{tot}=T_s\cdot\left[(1-F_f)\cdot(e_{sp}+e_{rp})\right]+T_{foam,p}=(1-F_f)\cdot(T_{esp}+T_{erp})+T_{foam,p}$$
+
+in which:
+
+| Notation | Definition | 
+| :-: | :-: |
+|$T_s$|	Sea Surface Temperature [K]|
+|e_{surf,p}^{tot}| p (h or v)-pol total sea surface emission (specular+rough+foam) [K] |
+|$F_f$|	Fractionnal area of sea surface covered by foam [nd]|
+|$T_{esp}$|	p-pol brightness temperature of specular emission (surface pol. Basis) [K]|
+|$T_{erp}$|	p-pol brightness temperature of rough surface emission (surface pol. Basis) [K]|
+| T_{foam,p} | p-pol brightness temperature of the total foam emission (surface pol. Basis) [K]|
+
+and where we split the surface emission into three components: (i) the emission from the non-foamy perfectly sea surface $(T_{esp})$, (ii) the emission from the non-foamy rough sea surface $(T_{erp})$, and (iii), the total emission from the foam-covered sea surface $(T_{foam,p})$. Note that the total surface reflectivity is related to the total surface emissivity by $R_{surf,p}^{tot}=1-e_{surf,p}^{tot}$.
+
+Considering all components of the scene brightness temperature at L-band, the complete model solution for the upwelling brightness temperatures above the atmosphere but below the ionosphere (before Faraday rotation) in the surface polarization basis, is, therefore in H-polarization:
+
+$$T_{th}^{TOA}=T_{ea}+(τ_d τ_v )[(1-F_f)\cdot(T_{esh}+T_{erh})+T_{foam,h}+R_{surf,h}^{tot}\cdot T_{ea}+T_{sch}+T_{ssh}]$$
+
+and in V-polarization:
+
+$$T_{tv}^{TOA}=T_{ea}+(τ_d τ_v )[(1-F_f)\cdot(T_{esv}+T_{erv})+T_{foam,v}+R_{surf,v}^{tot}\cdot T_{ea}+T_{scv}+T_{ssv}]$$
+
+in which:
+
+| Notation | Definition | 
+| :-: | :-: |
 |$T_{esh}$|	H-pol brightness temperature of specular emission (surface pol. Basis) [K]|
 |$T_{erh}$|	H-pol brightness temperature of rough surface emission (surface pol. Basis) [K]|
 |$T_{sch}$|	H-pol brightness temperature of scattered celestial sky radiation (surface pol. Basis) [K]|
@@ -138,6 +180,8 @@ in which:
 |$T_{ea}$|	Unpolarized brightness temperature of atmospheric 1-way emission [K]|
 |$R_h$|	Fresnel power reflection coefficient at the surface in H-pol|
 |$R_v$|	Fresnel power reflection coefficient at the surface in V-pol|
+|$e_{sh}$|	Perfectly flat sea surface emissivity in H-pol|
+|$e_{sv}$|	Perfectly flat sea surface emissivity in V-pol
 |$e_{rh}$|	Rough surface emissivity in H-pol|
 |$e_{rv}$|	Rough surface emissivity in V-pol
 |$T_{erU}$|	Third Stokes brightness temperature of rough surface emission (surface pol. Basis) [K]|
@@ -149,6 +193,7 @@ in which:
 For all L-band radiometers, SSS retrievals algorithms are therefore based on:   
 	
 -  an sea-water dielectric constant model at 1.4 GHz,
+-  a perfectly flat sea surface emission model,
 -  a surface roughness and foam-induced correction model,
 -  a Radiative Transfer Model for Atmospheric corrections,
 -  a scattering model to correct for sea surface scattered Solar and celestial radiation, and, 
