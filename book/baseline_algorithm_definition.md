@@ -260,7 +260,31 @@ $$
 
 where the $g_{\gamma}$ "weighting" functions are formulated in terms
 of scattering coefficients determined from the small perturbation
-method (SPM). $\phi_i$ is the difference between the radiometer
+method (SPM):
+
+$$
+\begin{matrix}
+g_h=2\Re{\left[R_{hh}^{(0)\star}f_{hh}^{(2)}\right]} +\displaystyle\frac{k_{zi}}{k_z}\left[|f_{hh}^{(1)}|^2+|f_{hv}^{(1)}|^2\right]F\\
+g_v=2\Re{\left[R_{vv}^{(0)\star}f_{vv}^{(2)}\right]}+\displaystyle\frac{k_{zi}}{k_z}\left[|f_{vv}^{(1)}|^2+|f_{vh}^{(1)}|^2\right]F\\
+g_U=2\Re{\left[(R_{hh}^{(0)\star}-R_{vv}^{(0)\star})f_{hv}^{(2)}\right]}+\displaystyle\frac{2k_{zi}}{k_z}\Re{\left[f_{vh}^{(1)}f_{hh}^{(1)\star}+f_{vv}^{(1)}f_{hv}^{(1)\star}\right]}F\\
+g_V=2\Im{\left[(R_{hh}^{(0)\star}+R_{vv}^{(0)\star})f_{hv}^{(2)}\right]}+\displaystyle\frac{2k_{zi}}{k_z}\Im{\left[f_{vh}^{(1)}f_{hh}^{(1)\star}+f_{vv}^{(1)}f_{hv}^{(1)\star}\right]}F\\
+\end{matrix}
+$$
+
+In the above equations, $\Re$ and $\Im$ represent the real
+and imaginary part operators respectively, $k_o=2\pi/\lambda_o$ is
+the electromagnetic wavenumber, $k_{zi}=k_o\cos(\theta_i)$, and
+$f_{\alpha\beta}^{(1)}$ and $f_{\alpha\beta}^{(2)}$ are the first
+and second order SPM scattering coefficients as given in the
+appendix with some modification given below. The first terms in
+the above $g_{\gamma}$ expressions represent the second order
+coherent reflection coefficient contributions, while the second
+terms represent the incoherent Bragg scatter contributions.
+
+
+
+
+$\phi_i$ is the difference between the radiometer
 azimuth angle and the wind direction, $\theta_i$ is the radiometer
 incidence angle.
 
