@@ -233,10 +233,7 @@ In the latest algorithms implemented at ESA and NASA data centers, L-band Geophy
 $$∆T_{rough,p}(U_{10},θ)=T_s\cdot e_{rough,p}(U_{10},θ)=T_s\cdot \left\(∆e_{o,p}(U_{10},θ)+∆e_{1,p}(U_{10},θ)\cdot \cos⁡(\phi_{r} )+∆e_{2,p}(U_{10},θ)\cdot\cos⁡(2\phi_{r})\right\) $$
 
 
-Analytical and numerical models for the calculation of the rough ocean surface polarimetric thermal emission have been developed [6]–[11], primarily through application of standard surface scattering approximate methods to calculate surface emissivity using Kirchhoff’s law. Models based on both the small perturbation method (SPM) and the physical optics (PO) approximation has been presented.  The physical optics (PO) approximation was shown to clearly underestimate the sea surface emissivity observations at L-band [12, 13], particularly in the low incidence angle range (less than about 20-30°). This is mainly because such model does not account for scattering on small roughness elements. Recent works [8-10] has further revealed that use of the SPM for emission calculations results in a small slope, rather than small height, emission approximation identical to that which would be obtained from the small slope approximation of [14], so that the SPM can provide accurate emission predictions even for surfaces with large heights in terms of the electromagnetic wavelength. Numerical tests of the SPM for a set of canonical periodic surfaces have confirmed this statement [15]. Moreover, the success of the SPM/SSA in matching measured brightness temperature [6,16-19] has shown that the technique should be applicable for rough ocean surface brightness temperature predictions. These results motivate use of the SPM/small slope approximation (SPM/SSA) for the prediction of ocean polarimetric thermal emission at L-band.
-The Stokes vector of sea surface brightness temperatures observed at radiometer frequency f, incidence angle $\theta$ and azimuth angle relative to wind direction $\phi_{r}$ can be written:
-
-The SPM/SSA applies standard small perturbation theory to predict the bistatic scattering coefficients of a rough surface, and integrates these scattering coefficients over the upper hemisphere to obtain the reflectivities and hence brightness temperatures. The resonance behaviours observed in the critical phenomena region [20] produce a significant sensitivity of emission harmonics predicted by the SSA to ocean length scales of order equal to the electromagnetic wavelength. However, these emission harmonics are also sensitive (with the exception of the fourth Stokes parameter) to anisotropy in ocean length scale much larger than  the electromagnetic wavelength. Use of the SPM/SSA up to 2nd order produces an expansion in surface slope, with zero order terms reproducting flat surface emission results, first order terms identically zero, and second order terms providing the first prediction of changes from flat surface brightnesses.
+Analytical and numerical models for the calculation of the rough ocean surface polarimetric thermal emission have been developed [6]–[11], primarily through application of standard surface scattering approximate methods to calculate surface emissivity using Kirchhoff’s law. Models based on both the small perturbation method (SPM) and the physical optics (PO) approximation has been presented.  The physical optics (PO) approximation was shown to clearly underestimate the sea surface emissivity observations at L-band [12, 13], particularly in the low incidence angle range (less than about 20-30°). This is mainly because such model does not account for scattering on small roughness elements. Recent works [8-10] has further revealed that use of the SPM for emission calculations results in a small slope, rather than small height, emission approximation identical to that which would be obtained from the small slope approximation of [14], so that the SPM can provide accurate emission predictions even for surfaces with large heights in terms of the electromagnetic wavelength. Numerical tests of the SPM for a set of canonical periodic surfaces have confirmed this statement [15]. Moreover, the success of the SPM/SSA in matching measured brightness temperature [6,16-19] has shown that the technique should be applicable for rough ocean surface brightness temperature predictions. These results motivate use of the SPM/small slope approximation (SPM/SSA) for the prediction of ocean polarimetric thermal emission at L-band. The SPM/SSA applies standard small perturbation theory to predict the bistatic scattering coefficients of a rough surface, and integrates these scattering coefficients over the upper hemisphere to obtain the reflectivities and hence brightness temperatures. The resonance behaviours observed in the critical phenomena region [20] produce a significant sensitivity of emission harmonics predicted by the SSA to ocean length scales of order equal to the electromagnetic wavelength. However, these emission harmonics are also sensitive (with the exception of the fourth Stokes parameter) to anisotropy in ocean length scale much larger than  the electromagnetic wavelength. Use of the SPM/SSA up to 2nd order produces an expansion in surface slope, with zero order terms reproducting flat surface emission results, first order terms identically zero, and second order terms providing the first prediction of changes from flat surface brightnesses.
 
 The second order terms take the form of an integral of a set of weighting functions over the surface directional spectrum, so that the wind-excess emissivity Stokes vector    can be expressed as follows using the second order SPM/Small Slope Approximation theory (e.g., see [19]):
 
@@ -258,7 +255,9 @@ g_V(f,\theta_i,\phi_i,\epsilon_{sw},k_{\rho}',\phi')\\
 \right]
 $$
 
-where the $g_{\gamma}$ "weighting" functions are formulated in terms
+where $\phi_i$ is the difference between the radiometer
+azimuth angle and the wind direction, $\theta_i$ is the radiometer
+incidence angle, $W(k_{\rho}',\phi')$ is the sea surface height directional wavenumber spectrum, and the $g_{\gamma}$ "weighting" functions are formulated in terms
 of scattering coefficients determined from the small perturbation
 method (SPM):
 
@@ -276,22 +275,58 @@ and imaginary part operators respectively, $k_o=2\pi/\lambda_o$ is
 the electromagnetic wavenumber, $k_{zi}=k_o\cos(\theta_i)$, and
 $f_{\alpha\beta}^{(1)}$ and $f_{\alpha\beta}^{(2)}$ are the first
 and second order SPM scattering coefficients as given in the
-appendix with some modification given below. The first terms in
+appendix A with some modification given below. The first terms in
 the above $g_{\gamma}$ expressions represent the second order
 coherent reflection coefficient contributions, while the second
 terms represent the incoherent Bragg scatter contributions.
 
+Second order
+scattering coefficients are exactly those taken from Yueh et
+al.\cite{yuehetal94a}, with the variables $k_x$, $k_y$, and $k_z$
+given by 
 
+$$
+\begin{matrix}
+k_x = k_{xi} +k_{\rho'}\cos{\phi'} \\
+k_y = k_{yi} +k_{\rho'}\sin{\phi'} \\
+k_z = \sqrt{k_o^2-k_{x}^2-k_y^2} \\
+\end{matrix}
+$$
 
+where $k_{xi} = k_o\sin{\theta_i}\cos{\phi_i}$ and $k_{yi} =k_o\sin{\theta_i}\sin{\phi_i}$. Note that $f_{hv}^{(2)}$
+ is used with $g_U$ and $g_V$ as opposed to $f_{vh}^{(2)}$ in Yueh et al.(1994a) due to
+an evaluation of the second order reflection coefficient in
+scattered field coordinates.
 
-$\phi_i$ is the difference between the radiometer
-azimuth angle and the wind direction, $\theta_i$ is the radiometer
-incidence angle.
+First order coefficients are as given in in Yueh et
+al. (1994a), except that the incident $(k_{xi},k_{yi}, k_{zi})$ and scattered $(k_x, k_y, k_z)$ variables
+are first interchanged and then the above equations used to
+represent $k_x$, etc. in terms of $k_{xi}$ , $k_{\rho'}$ and
+$\phi'$. This set of new projected coefficients are rewritten in
+appendix for completeness.
 
-Typically, the roughness induced brightness temperature is decomposed
-into azimuthal harmonics, and for a sea surface with reflection
-symmetry only even harmonics can be different from zero, in which case
-the rough surface contribution becomes
+The integral in the equation  for emissivities is over all length
+ scales of the ocean spectrum $(k_{\rho'}$  from 0 to $\infty)$; however, the integration
+ of incoherent scattering coefficients should
+be limited to only those length scales which produced a
+propagating Bragg scattered wave. The function $\it{F}$ in the second
+terms of the scattering coefficients equations indicates this fact: $\it{F}$ is
+defined to be 1 for $k_z$ real, 0 for $k_z$ complex, and limits
+the incoherent contributions to waves propagating in the upper
+hemisphere. Evaluation of the rough surface emission is
+performed through numerical integration of the double integral for
+fixed values of all the radiometer and surface parameters $(f,\theta_i, \phi_i, \epsilon_{sw}, and W(k_{\rho'},\phi'))$.
+Typical formulations based on Yueh et al. (1994a) would
+numerically calculate double integrals for the coherent and
+incoherent contributions separately; the above expression combines
+both into one integration. This is important because the coherent
+and incoherent terms when calculated separately for large height
+surfaces can both obtain very large values which cancel when
+combined to yield the total emission prediction. This cancellation
+effect results in extremely high accuracy required in the separate
+numerical integrations. Combining the two into one double integral
+eliminates this problem.
+
 
 
 
@@ -820,4 +855,175 @@ SubSubsection Text
 
 SubSubsection Text
 
+##### Appendix A: SPM  polarimetric bistatic coefficients
 
+The bistatic coefficients are exactly those given by Yueh et al
+\cite{yuehetal94a} in appendix 1,2 and 3. Let us introduce a
+polarimetric scattering matrix element
+$f_{\alpha\beta}(\theta,\phi;\theta_i,\phi_i)$ to describe the
+scattering from a surface illuminated by a unit amplitude plane
+wave with the polarization $\beta$ from the direction
+$(\theta_i,\phi_i)$. The polarization component $\alpha$ of the
+scattered field propagating in the direction $(\theta,\phi)$ can
+be written as:
+
+$$
+E_\alpha=\displaystyle\frac{\exp(ik_or)}{r}f_{\alpha\beta}(\theta,\phi;\theta_i,\phi_i)
+$$
+
+where $r$ is the range from the receiver to the scattering target,
+and $k_o$ is the free space wavenumber. Given that, the
+polarimetric bistatic scattering coefficients can be defined as:
+
+$$
+\gamma_{\alpha\beta\mu\nu}(\theta,\phi;\theta_i,\phi_i)
+=\displaystyle\frac{4\pi
+<f_{\alpha\beta}(\theta,\phi;\theta_i,\phi_i)f^{\star}_{\mu\nu}(\theta,\phi;\theta_i,\phi_i)>}{A\cos(\theta_i)}
+$$
+
+where A is the illuminated area.
+
+###### First-Order Scattering coefficients
+
+The coefficients for the incoherent bistatic scattering
+coefficients due to the first-order scattered fields are defined
+as:
+
+$$
+\Gamma_{\alpha\beta\mu\nu}(k_x,k_y,k_xi,k_yi)
+=f_{\alpha\beta}^{(1)}(\theta,\phi;\theta_i,\phi_i)f_{\mu\nu}^{(1)\star}(\theta,\phi;\theta_i,\phi_i)
+$$
+
+with
+
+$$
+\begin{matrix}
+f_{hh}^{(1)}(\theta,\phi;\theta_i,\phi_i)=\displaystyle\frac{2k_{zi}(k_1^2-k_o^2)}{k_z+k_{1z}}\displaystyle\frac{1}{k_{zi}+k_{1zi}}\\
+\\
+\cdot\left(\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}\right)
+\end{matrix}
+$$
+
+$$
+\begin{matrix}
+f_{hv}^{(1)}(\theta,\phi;\theta_i,\phi_i)=\displaystyle\frac{2k_{zi}(k_1^2-k_o^2)}{k_z+k_{1z}}\displaystyle\frac{k_{1zi}k_o}{k_1^2k_{zi}+k_o^2k_{1zi}}\\
+\\
+\cdot\left(-\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}\right)
+\end{matrix}
+$$
+
+$$
+\begin{matrix}
+f_{vh}^{(1)}(\theta,\phi;\theta_i,\phi_i)=\displaystyle\frac{2k_{zi}(k_1^2-k_o^2)}{k_1^2k_z+k_o^2k_{1z}}\displaystyle\frac{k_{1z}k_o}{k_{zi}+k_{1zi}}\\
+\\
+\cdot\left(-\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}\right)
+\end{matrix}
+$$
+
+$$
+\begin{matrix}
+f_{vh}^{(1)}(\theta,\phi;\theta_i,\phi_i)=\displaystyle\frac{2k_{zi}(k_1^2-k_o^2)}{k_1^2k_z+k_o^2k_{1z}}\displaystyle\frac{1}{k_1^2k_{zi}+k_o^2k_{1zi}}\\
+\\
+\cdot\left[k_1^2k_{\rho}k_{\rho
+i}-k_o^2k_{1z}k_{1zi}\left(\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}\right)\right]
+\end{matrix}
+$$
+
+where
+
+$$
+\begin{matrix}
+k_{\rho_i}=k_o\sin(\theta_i) \\
+\\
+k_{xi}=k_{\rho_i}\cos(\phi_i) \\
+\\
+k_{yi}=k_{\rho_i}\sin(\phi_i) \\
+\\
+k_{zi}=\sqrt{k_o^2-k_{\rho_i}^2} \\
+\\
+k_{1zi}=\sqrt{k_1^2-k_{\rho_i}^2} \\
+\\
+k_{\rho}=k_o\sin(\theta) \\
+\\
+k_{x}=k_{\rho}\cos(\phi) \\
+\\
+k_{y}=k_{\rho}\sin(\phi) \\
+\\
+k_{z}=\sqrt{k_o^2-k_{\rho}^2} \\
+\\
+k_{1z}=\sqrt{k_1^2-k_{\rho}^2} \\
+\end{matrix}
+$$ 
+
+and $k_o$ and $k_1$ are the electromagnetic wavenumbers of the
+free space and lower half space. In sea water with complex
+dielectric constant $\epsilon_{sw}$, the electromagnetic
+wavenumber is complex and given by:
+$$k_1=k_o\sqrt{\epsilon_{sw}}$$
+
+###### Second-Order Scattering coefficients
+
+The correction terms due to second order scattered field are given
+as follows:
+
+$$
+\begin{matrix}
+f_{hh}^{(2)}=\displaystyle\frac{k_1^2-k_o^2}{k_{zi}+k_{1zi}}\displaystyle\frac{2k_{zi}}{k_{zi}+k_{1zi}}
+\cdot\left[k_{1zi}+\displaystyle\frac{(k_o^2-k_1^2)}{(k^2_{\rho}+k_{1z}k_z)(k_z+k_{1z})}\right.
+\\
+\left.\cdot\left[k_{1z}k_z+k^2_{\rho}\left(\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}\right)^2\right]
+\right]\\
+\end{matrix}
+$$
+
+$$
+\begin{matrix}
+f_{vh}^{(2)}=\displaystyle\frac{k_1^2-k_o^2}{k_{zi}+k_{1zi}}\displaystyle\frac{2k_ok_{zi}}{k_1^2k_{zi}+k_o^2k_{1zi}}\left(\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}-\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}\right)
+\\
+\cdot\left[\displaystyle\frac{k_{\rho}k_{\rho
+i}k_1^2}{k^2_{\rho}+k_{1z}k_z}+\displaystyle\frac{k_{1zi}k^2_{\rho}(k_o^2-k_1^2)}{(k^2_{\rho}+k_{1z}k_z)(k_z+k_{1z})}\left(\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}\right)\right]
+\end{matrix}
+$$
+
+$$
+f_{hv}^{(2)}=-f_{vh}^{(2)}
+$$
+
+$$
+\begin{matrix}
+f_{vv}^{(2)}=\displaystyle\frac{k_o^2-k_1^2}{k_1^2k_{zi}+k_o^2k_{1zi}}\displaystyle\frac{2k_{zi}k_1^2k_o^2}{k_1^2k_{zi}+k_o^2k_{1zi}} \\
+\\
+\cdot\left[\displaystyle\frac{k_{\rho
+i}^2k_{\rho}^2(k_1^2-k_o^2)}{k_o^2(k^2_{\rho}+k_{1z}k_z)(k_z+k_{1z})}\right.\\
+\\
++k_{1zi}\left[1-\displaystyle\frac{2k_{\rho
+i}k_{\rho}}{k_{1z}k_z+k^2_{\rho}}\left(\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}\right)\right]\\
+\\
++\displaystyle\frac{k_{1zi}^2(k_o^2-k_1^2)}{k_1^2(k_z+k_{1z})}\\
+\\
+\cdot\left.
+\left[1-\displaystyle\frac{k_{\rho}^2}{k_{1z}k_z+k^2_{\rho}}\left(\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}\right)^2\right]\right]\\
+\end{matrix}
+$$
+
+where $k_{xi}$, $k_{yi}$, $k_{\rho i}$, $k_{zi}$, $k_{1zi}$,
+$k_{\rho}$, $k_z$, and $k_{1z}$ are the same as those defined
+previously.
