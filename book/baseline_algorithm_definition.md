@@ -1,9 +1,7 @@
 # Baseline Algorithm Definition
 
 
-### Sea Surface Salinity retrieval over a perfectly flat sea surface 
-
-
+### Perfectly flat sea surface emission
 
 <img src="../Flat_Sea_Rad.png" alt="fishy" class="bg-primary" width="200px">
 
@@ -66,7 +64,7 @@ $$
 
 where $\delta$ is the Kroneker delta, $\Re$ and $\Im$ are the real and imaginary part, respectively. For a perfectly flat ocean surface with salinity, $\it{S}$, temperature, $\it{T_s}$, and observed at incidence angle $\theta$, the emissivity at polarization, $\it{p}$ (horizontal or vertical), and electromagnetic frequency, $\it{f}$, (note that we quote the center of a microwave frequency bandwidth associated with a given radiometer) is given by Peake (1959):
 
-$e_{pp}^{(0)} (\theta_s,f,S,T_s)=1-|R_{pp}^{(0)} (\theta_s,f,S,T_s)|^2$
+$e_{sp}^{(0)} (\theta_s,f,S,T_s)=1-|R_{pp}^{(0)} (\theta_s,f,S,T_s)|^2$
 
 The specular brightness temperature emitted by the sea surface in horizontal polarization is then
 
@@ -82,7 +80,7 @@ where $R_{pp}^{(0)}$  is the Fresnel reflection coefficient given above.
 
 As shown in \ref{Figure3b}, the specular brightness temperature sensitivity to SSS $\partial T_{esp}/\partial SSS$ increases with decreasing electromagnetic frequency, peaking at ~1 GHz (L-band) and with increasing incidence angle.  As the frequency band 1.400 to 1.427 GHz is protected for radio-astronomy observation, it has been used for SSS remote sensing.
 
-Given a model for $ε_{sw}(f, S, T)$, in its simplest form, SSS remote sensing, therefore, consists of measuring/estimating the L-band $T_{B}$ emitted by the perfectly flat ocean surface together with an auxilliary SST. The intersection of the two values on a graph such as shown in Figure \ref{Figure3b} can then be used to retrieve SSS. 
+Given a model for $ε_{sw}(f, S, T)$, in its simplest form, SSS remote sensing, therefore, consists of measuring/estimating the L-band $T_{esp}$ emitted by the perfectly flat ocean surface together with an auxilliary SST. The intersection of the two values on a graph such as shown in Figure \ref{Figure3b} can then be used to retrieve SSS. 
 
 <img src="../Figure3b.png" alt="fishy" class="bg-primary" width="400px">
 
@@ -90,7 +88,7 @@ Given a model for $ε_{sw}(f, S, T)$, in its simplest form, SSS remote sensing, 
 --- 
 name: Figure3b
 ---
-Brightness temperature $$(T_{H}+T_{V})/2$$ changes at 1.4 GHz and nadir as a function of salinity (x-axis) and temperature (colors). The gray domain indicates the range of SSS values mostly encountered in the open ocean. 
+First Stokes parameter of the Brightness temperature $$(T_{esh}+T_{esv})/2$$ changes at 1.4 GHz and nadir of the perfectly flat sea surface as a function of salinity (x-axis) and temperature (colors). The gray domain indicates the range of SSS values mostly encountered in the open ocean. 
 ```
 
 
@@ -103,29 +101,34 @@ name: Figure8
 ---
 signals received by a Space borne L-band radiometer 
 ```
-There are also other issues that complicate the remote sensing of salinity from space. Several geophysical parameters other than seawater salinity and temperature contribute significantly to L-band $T_{B}$ measured by satellite sensors (e.g., see Yueh et al., 2001; Font et al., 2004). These contributions need to be accurately known and used in corrections of measured antenna $T_{B}$ to properly retrieve SSS. As illustrated in Figure 8,  they include:  the direct and earth-reflected solar and sky emission (Le Vine et al. 2005; Reul et al., 2007, 2008; Tenerelli et al., 2008; Dinnat and Le Vine, 2008), the Faraday rotation in the ionosphere (Yueh et al., 2000; Le Vine and Abraham, 2002; Vergely et al., 2014),  the impact of the atmosphere (Liebe et al., 1992; Skou et al., 2005; Wentz and Meissner, 2016), and the effect of sea surface roughness on L-band emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Yueh et al., 2010, 2014).   
+There are other issues that complicate the remote sensing of salinity from space. Several geophysical parameters other than seawater salinity and temperature contribute significantly to L-band $T_{B}$ measured by satellite sensors at antenna level (e.g., see Yueh et al., 2001; Font et al., 2004). These contributions need to be accurately known and used in corrections of measured antenna $T_{B}$ to properly retrieve SSS. As illustrated in Figure 8,  they include:  the direct and earth-reflected solar and sky emission (Le Vine et al. 2005; Reul et al., 2007, 2008; Tenerelli et al., 2008; Dinnat and Le Vine, 2008), the Faraday rotation in the ionosphere (Yueh et al., 2000; Le Vine and Abraham, 2002; Vergely et al., 2014),  the impact of the atmosphere (Liebe et al., 1992; Skou et al., 2005; Wentz and Meissner, 2016), and the effect of sea surface roughness on L-band emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Yueh et al., 2010, 2014).   
+
+The upwelling brightness temperatures above the atmosphere but below the ionosphere (before Faraday rotation) is referred to as the "Top of Atmosphere" brightness temperature and denoted $T_{tp}^{TOA}$ (with superscript "TOA") for upwelling signal in polarization $p$.
+Considering all components of the scene brightness temperature at L-band, the complete model solution for $T_{tp}^{TOA}$, in the surface polarization basis, is:
 
 
+$$
+\left(\begin{matrix}
+T_{th}^{TOA} \\ 
+T_{tv}^{TOA} \\
+U^{TOA} \\
+V^{TOA}
+\end{matrix}\right)=
+\left(\begin{matrix}
+T_{atm}^{up}+(τ_d τ_v )[T_{surf,h}^{tot}+R_{surf,h}^{tot}\cdot T_{atm}^{dw}+T_{sch}+T_{ssh}] \\
+T_{atm}^{up}+(τ_d τ_v )[T_{surf,v}^{tot}+R_{surf,v}^{tot}\cdot T_{atm}^{dw}+T_{scv}+T_{ssv}] \\
+(τ_d τ_v ) T_{erU} \\
+(τ_d τ_v ) T_{erV} \\
+\end{matrix}\right)
+$$
 
-Considering all components of the scene brightness temperature at L-band, the complete model solution for the upwelling brightness temperatures above the atmosphere but below the ionosphere (before Faraday rotation) in the surface polarization basis, is, in polarization $p$:
-
-$$T_{tp}^{TOA}=T_{atm}^{up}+(τ_d τ_v )[T_{surf,p}^{tot}+R_{surf,p}^{tot}\cdot T_{atm}^{dw}+T_{scp}+T_{ssp}]$$
-
-The only contribution to the third and fourth Stokes parameters in the surface polarization basis comes from the rough surface emission component, so that:
-
-$$T_{tU}^{(full)}=(τ_d τ_v ) T_{erU}$$
-
-and
-
-$$T_{tV}^{(full)}=(τ_d τ_v ) T_{erV}$$
-
-in which:
+where the only contribution to the third and fourth Stokes parameters in the surface polarization basis comes from the rough surface emission components, and in which:
 
 | Notation | Definition | 
 | :-: | :-: |
 | $T_{atm}^{up}$ | Unpolarized upwelling brightness temperature of atmospheric 1-way emission [K]|
-|$τ_d$ | 1-way atmosphereic transmittance associated with molecular oxygen absorption [nd]|
-|$τ_v$|	1-way atmosphereic transmittance associated with water vapor absorption [nd]|
+|$τ_d$ | 1-way atmospheric transmittance associated with molecular oxygen absorption [nd]|
+|$τ_v$|	1-way atmospheric transmittance associated with water vapor absorption [nd]|
 |$T_{surf,p}^{tot}$| p-pol brightness temperature of the total sea surface emission (specular+rough+foam) [K] |
 |$R_{surf,p}^{tot}$|	reflectivity of the total sea surface (specular+rough+foam) in p-pol|
 | $T_{atm}^{dw}$ | Unpolarized downwelling brightness temperature of atmospheric 1-way emission [K]|
@@ -134,8 +137,7 @@ in which:
 |$T_{scp}$|	p-pol brightness temperature of scattered celestial sky radiation (surface pol. Basis) [K]|
 |$T_{ssp}$|	p-pol brightness temperature of scattered solar radiation (sunglint) (surface pol. Basis) [K]|
 
-In our algorithm (see dedicated section further), the upwelling and downwelling atmospheric emission are assumed to 
-be equal :
+In our algorithm (see dedicated section on atmospheric contributions further), the upwelling and downwelling atmospheric emission are assumed to  be equal :
 
 $$T_{atm}^{up}=T_{atm}^{dw}=T_{ea}$$
 
@@ -190,9 +192,10 @@ in which:
 |$T_s$|	Sea Surface Temperature [K]|
 |$U_{10}$|	10-m height Sea surface wind speed modulus [m/s]|
 
-For all L-band radiometers, SSS retrievals algorithms are therefore based on:   
-	
--  an sea-water dielectric constant model at 1.4 GHz,
+The principle of SSS retrievals algorithms from Spaceborne L-band radiometer measurements in general consist of (i) a forward radiative transfer
+modelling of the top of the atmosphere brightness $T_{tp}^{TOA}$ from first guess geophysical values (SSS, SST, $U_{10}$, etc...), and (ii) the retrieval of the geophysical parameters from a minimization of the differences between the observed and modelled  $T_{tp}^{TOA}$.
+The radiative transfer forward model are based on:   
+-  a sea-water dielectric constant model at 1.4 GHz,
 -  a perfectly flat sea surface emission model,
 -  a surface roughness and foam-induced correction model,
 -  a Radiative Transfer Model for Atmospheric corrections,
@@ -263,6 +266,9 @@ Despite its importance for SSS remote sensing, uncertainties remain in the 1.4 G
 
 
 ###  Surface roughness-induced emission model at L-band ###
+
+
+#### Physics of the problem ####
 
 At a given frequency, the total surface emissivity $E_p$ can be modeled with a specular part $e_{pp}^{(0)} (\theta_s,S,T_s)$ and a part caused by ocean roughness $\Delta e_{pp}^{rough}$. In order to measure sea surface salinity with the required accuracy it is necessary to remove the ocean surface roughness signal from the observed CIMR brightness temperatures. This requires an accurate
 knowledge of the signal itself as well as the ocean surface wind speed.
@@ -475,7 +481,7 @@ curvature spectrum contains only cosine harmonics has been made.
 
 The last Equation has separated out individual
 emission azimuthal harmonic terms (the $\cos(n\phi_i)$ and
-$sin(n\phi_i)$ terms) and reveals them to be proportional to an
+$\sin(n\phi_i)$ terms) and reveals them to be proportional to an
 integral of a weighting function $g_{\gamma,n}'(\beta)$ times the
 $C_n(k_o\beta)$ functions. Note that:
 
@@ -496,6 +502,11 @@ integrals (one for the Fourier series expansion of the
 $g_{\gamma}'$ functions and the $d\beta$ integration in this last equation
 replace the multiple double integrals in an
 azimuth sweep procedure.
+
+In the present algorithm, we use the Kudryatsev et al model (1999) to estimate the sea surface roughness curvature spectrum $C(k\beta,\phi')$, which was  developed based on available field and wave-tank measurements, along with physical arguments concerning the dynamics of short-gravity waves. These scales indeed represent particularly important surface components for emissivity at 1.4 GHz, since they belong to the so-called “critical phenomena” region within which surface components are dominant scatterers at L-band. It is important to note that this spectral model was developed without any relation to remote-sensing data. Moreover, by using the Kudryatsev et al spectral model, we avoided some deficiencies of the Elfouhaily et al spectral model as found by other (problems at the low to moderate wind speed transition).
+
+Note that due to the assumption of gaussianity in the sea surface statistics, the solution can be expressed strictly in terms of a roughness spectrum. Properties of a directional spectrum result in no first azimuthal harmonic variations being obtained; introduction of non-gaussianity is required to obtain first azimuthal harmonics. 
+
 
 ### Sea Foam emissivity modelling at L-band ###
 
@@ -1268,30 +1279,8 @@ SubSubsection Text
 ##### Appendix A: SPM  polarimetric bistatic coefficients
 
 The bistatic coefficients are exactly those given by Yueh et al
-\cite{yuehetal94a} in appendix 1,2 and 3. Let us introduce a
-polarimetric scattering matrix element
-$f_{\alpha\beta}(\theta,\phi;\theta_i,\phi_i)$ to describe the
-scattering from a surface illuminated by a unit amplitude plane
-wave with the polarization $\beta$ from the direction
-$(\theta_i,\phi_i)$. The polarization component $\alpha$ of the
-scattered field propagating in the direction $(\theta,\phi)$ can
-be written as:
+(1994a) in appendix 1,2 and 3. 
 
-$$
-E_\alpha=\displaystyle\frac{\exp(ik_or)}{r}f_{\alpha\beta}(\theta,\phi;\theta_i,\phi_i)
-$$
-
-where $r$ is the range from the receiver to the scattering target,
-and $k_o$ is the free space wavenumber. Given that, the
-polarimetric bistatic scattering coefficients can be defined as:
-
-$$
-\gamma_{\alpha\beta\mu\nu}(\theta,\phi;\theta_i,\phi_i)
-=\displaystyle\frac{4\pi
-<f_{\alpha\beta}(\theta,\phi;\theta_i,\phi_i)f^{\star}_{\mu\nu}(\theta,\phi;\theta_i,\phi_i)>}{A\cos(\theta_i)}
-$$
-
-where A is the illuminated area.
 
 ###### First-Order Scattering coefficients
 
@@ -1310,9 +1299,7 @@ $$
 \begin{matrix}
 f_{hh}^{(1)}(\theta,\phi;\theta_i,\phi_i)=\displaystyle\frac{2k_{zi}(k_1^2-k_o^2)}{k_z+k_{1z}}\displaystyle\frac{1}{k_{zi}+k_{1zi}}\\
 \\
-\cdot\left(\displaystyle\frac{k_{xi}}{k_{\rho
-i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
-i}}\displaystyle\frac{k_y}{k_{\rho}}\right)
+\cdot\left(\displaystyle\frac{k_{xi}}{k_{\rho_i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho_i}}\displaystyle\frac{k_y}{k_{\rho}}\right)
 \end{matrix}
 $$
 
@@ -1320,9 +1307,7 @@ $$
 \begin{matrix}
 f_{hv}^{(1)}(\theta,\phi;\theta_i,\phi_i)=\displaystyle\frac{2k_{zi}(k_1^2-k_o^2)}{k_z+k_{1z}}\displaystyle\frac{k_{1zi}k_o}{k_1^2k_{zi}+k_o^2k_{1zi}}\\
 \\
-\cdot\left(-\displaystyle\frac{k_{yi}}{k_{\rho
-i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{xi}}{k_{\rho
-i}}\displaystyle\frac{k_y}{k_{\rho}}\right)
+\cdot\left(-\displaystyle\frac{k_{yi}}{k_{\rho_i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{xi}}{k_{\rho_i}}\displaystyle\frac{k_y}{k_{\rho}}\right)
 \end{matrix}
 $$
 
@@ -1330,9 +1315,7 @@ $$
 \begin{matrix}
 f_{vh}^{(1)}(\theta,\phi;\theta_i,\phi_i)=\displaystyle\frac{2k_{zi}(k_1^2-k_o^2)}{k_1^2k_z+k_o^2k_{1z}}\displaystyle\frac{k_{1z}k_o}{k_{zi}+k_{1zi}}\\
 \\
-\cdot\left(-\displaystyle\frac{k_{yi}}{k_{\rho
-i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{xi}}{k_{\rho
-i}}\displaystyle\frac{k_y}{k_{\rho}}\right)
+\cdot\left(-\displaystyle\frac{k_{yi}}{k_{\rho_i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{xi}}{k_{\rho_i}}\displaystyle\frac{k_y}{k_{\rho}}\right)
 \end{matrix}
 $$
 
@@ -1340,10 +1323,7 @@ $$
 \begin{matrix}
 f_{vh}^{(1)}(\theta,\phi;\theta_i,\phi_i)=\displaystyle\frac{2k_{zi}(k_1^2-k_o^2)}{k_1^2k_z+k_o^2k_{1z}}\displaystyle\frac{1}{k_1^2k_{zi}+k_o^2k_{1zi}}\\
 \\
-\cdot\left[k_1^2k_{\rho}k_{\rho
-i}-k_o^2k_{1z}k_{1zi}\left(\displaystyle\frac{k_{xi}}{k_{\rho
-i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
-i}}\displaystyle\frac{k_y}{k_{\rho}}\right)\right]
+\cdot\left[k_1^2k_{\rho}k_{\rho_i}-k_o^2k_{1z}k_{1zi}\left(\displaystyle\frac{k_{xi}}{k_{\rho_i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho_i}}\displaystyle\frac{k_y}{k_{\rho}}\right)\right]
 \end{matrix}
 $$
 
@@ -1379,61 +1359,6 @@ dielectric constant $\epsilon_{sw}$, the electromagnetic
 wavenumber is complex and given by:
 $$k_1=k_o\sqrt{\epsilon_{sw}}$$
 
-###### Second-Order Scattering coefficients
 
-The correction terms due to second order scattered field are given
-as follows:
 
-$$
-\begin{matrix}
-f_{hh}^{(2)}=\displaystyle\frac{k_1^2-k_o^2}{k_{zi}+k_{1zi}}\displaystyle\frac{2k_{zi}}{k_{zi}+k_{1zi}}
-\cdot\left[k_{1zi}+\displaystyle\frac{(k_o^2-k_1^2)}{(k^2_{\rho}+k_{1z}k_z)(k_z+k_{1z})}\right.
-\\
-\left.\cdot\left[k_{1z}k_z+k^2_{\rho}\left(\displaystyle\frac{k_{xi}}{k_{\rho
-i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
-i}}\displaystyle\frac{k_y}{k_{\rho}}\right)^2\right]
-\right]\\
-\end{matrix}
-$$
 
-$$
-\begin{matrix}
-f_{vh}^{(2)}=\displaystyle\frac{k_1^2-k_o^2}{k_{zi}+k_{1zi}}\displaystyle\frac{2k_ok_{zi}}{k_1^2k_{zi}+k_o^2k_{1zi}}\left(\displaystyle\frac{k_{xi}}{k_{\rho
-i}}\displaystyle\frac{k_y}{k_{\rho}}-\displaystyle\frac{k_{yi}}{k_{\rho
-i}}\displaystyle\frac{k_x}{k_{\rho}}\right)
-\\
-\cdot\left[\displaystyle\frac{k_{\rho}k_{\rho
-i}k_1^2}{k^2_{\rho}+k_{1z}k_z}+\displaystyle\frac{k_{1zi}k^2_{\rho}(k_o^2-k_1^2)}{(k^2_{\rho}+k_{1z}k_z)(k_z+k_{1z})}\left(\displaystyle\frac{k_{xi}}{k_{\rho
-i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
-i}}\displaystyle\frac{k_y}{k_{\rho}}\right)\right]
-\end{matrix}
-$$
-
-$$
-f_{hv}^{(2)}=-f_{vh}^{(2)}
-$$
-
-$$
-\begin{matrix}
-f_{vv}^{(2)}=\displaystyle\frac{k_o^2-k_1^2}{k_1^2k_{zi}+k_o^2k_{1zi}}\displaystyle\frac{2k_{zi}k_1^2k_o^2}{k_1^2k_{zi}+k_o^2k_{1zi}} \\
-\\
-\cdot\left[\displaystyle\frac{k_{\rho
-i}^2k_{\rho}^2(k_1^2-k_o^2)}{k_o^2(k^2_{\rho}+k_{1z}k_z)(k_z+k_{1z})}\right.\\
-\\
-+k_{1zi}\left[1-\displaystyle\frac{2k_{\rho
-i}k_{\rho}}{k_{1z}k_z+k^2_{\rho}}\left(\displaystyle\frac{k_{xi}}{k_{\rho
-i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
-i}}\displaystyle\frac{k_y}{k_{\rho}}\right)\right]\\
-\\
-+\displaystyle\frac{k_{1zi}^2(k_o^2-k_1^2)}{k_1^2(k_z+k_{1z})}\\
-\\
-\cdot\left.
-\left[1-\displaystyle\frac{k_{\rho}^2}{k_{1z}k_z+k^2_{\rho}}\left(\displaystyle\frac{k_{xi}}{k_{\rho
-i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
-i}}\displaystyle\frac{k_y}{k_{\rho}}\right)^2\right]\right]\\
-\end{matrix}
-$$
-
-where $k_{xi}$, $k_{yi}$, $k_{\rho i}$, $k_{zi}$, $k_{1zi}$,
-$k_{\rho}$, $k_z$, and $k_{1z}$ are the same as those defined
-previously.
