@@ -1,6 +1,188 @@
 # Baseline Algorithm Definition
 
 
+
+### Sea Surface Salinity retrieval from Satellite Antenna brightness temperature at L-band
+<img src="../Figure8.png" alt="fishy" class="bg-primary" width="400px">
+
+```
+--- 
+name: Figure8
+---
+signals received by a Space borne L-band radiometer 
+```
+As illustrated in Figure 8, several geophysical parameters other than seawater salinity and temperature contribute significantly to L-band $T_{B}$ measured by satellite sensors at antenna level (e.g., see Yueh et al., 2001; Font et al., 2004, Reul et al., 2020). To properly retrieve SSS, these contributions need to be accurately known and used in corrections of measured, or forward model simulations, of antenna $T_{B}$. They include:  the direct and earth-reflected solar and sky emission (Le Vine et al. 2005; Reul et al., 2007, 2008; Tenerelli et al., 2008; Dinnat and Le Vine, 2008), the Faraday rotation in the ionosphere (Yueh et al., 2000; Le Vine and Abraham, 2002; Vergely et al., 2014),  the impact of the atmosphere (Liebe et al., 1992; Skou et al., 2005; Wentz and Meissner, 2016), and the effect of sea surface roughness on L-band emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Yueh et al., 2010, 2014).   
+
+The upwelling brightness temperatures above the atmosphere but below the ionosphere (before Faraday rotation) is referred hereafter to as the "Top of Atmosphere" brightness temperature and denoted $T_{tp}^{TOA}$ (with superscript "TOA") for upwelling signal in polarization $p$.
+Considering all components of the scene brightness temperature at L-band, the complete model solution for $T_{tp}^{TOA}$, in the surface polarization basis, is:
+
+
+$$
+\left(\begin{matrix}
+T_{th}^{TOA} \\ 
+T_{tv}^{TOA} \\
+U^{TOA} \\
+V^{TOA}
+\end{matrix}\right)=
+\left(\begin{matrix}
+T_{atm}^{up}+(τ_d τ_v )[T_{surf,h}^{tot}+R_{surf,h}^{tot}\cdot T_{atm}^{dw}+T_{sch}+T_{ssh}] \\
+T_{atm}^{up}+(τ_d τ_v )[T_{surf,v}^{tot}+R_{surf,v}^{tot}\cdot T_{atm}^{dw}+T_{scv}+T_{ssv}] \\
+(τ_d τ_v ) T_{erU} \\
+(τ_d τ_v ) T_{erV} \\
+\end{matrix}\right)
+$$
+
+where the only contribution to the third and fourth Stokes parameters in the surface polarization basis comes from the rough surface emission components, and in which:
+
+| Notation | Definition | 
+| :-: | :-: |
+| $T_{atm}^{up}$ | Unpolarized upwelling brightness temperature of atmospheric 1-way emission [K]|
+|$τ_d$ | 1-way atmospheric transmittance associated with molecular oxygen absorption [nd]|
+|$τ_v$|	1-way atmospheric transmittance associated with water vapor absorption [nd]|
+|$T_{surf,p}^{tot}$| p-pol brightness temperature of the total sea surface emission (specular+rough+foam) [K] |
+|$R_{surf,p}^{tot}$|	reflectivity of the total sea surface (specular+rough+foam) in p-pol|
+| $T_{atm}^{dw}$ | Unpolarized downwelling brightness temperature of atmospheric 1-way emission [K]|
+|$T_{erU}$|	Third Stokes brightness temperature of rough surface emission (surface pol. Basis) [K]|
+|$T_{erV}$|	Fourth Stokes brightness temperature of rough surface emission (surface pol. Basis) [K]|
+|$T_{scp}$|	p-pol brightness temperature of scattered celestial sky radiation (surface pol. Basis) [K]|
+|$T_{ssp}$|	p-pol brightness temperature of scattered solar radiation (sunglint) (surface pol. Basis) [K]|
+
+In our algorithm (see dedicated section on atmospheric contributions further), the upwelling and downwelling atmospheric emission are assumed to  be equal :
+
+$$T_{atm}^{up}=T_{atm}^{dw}=T_{ea}$$
+
+where $T_{ea}$ is the unpolarized brightness temperature of atmospheric 1-way emission. 
+In addition, the brightness temperature of the total sea surface emission, $T_{surf,p}^{tot}$ can be decomposed as follows:
+
+$$T_{surf,p}^{tot}=T_s\cdot e_{surf,p}^{tot}=T_s\cdot\left[(1-F_f)\cdot(e_{sp}+e_{rp})\right]+T_{foam,p}=(1-F_f)\cdot(T_{esp}+T_{erp})+T_{foam,p}$$
+
+in which:
+
+| Notation | Definition | 
+| :-: | :-: |
+|$T_s$|	Sea Surface Temperature [K]|
+|$e_{surf,p}^{tot}$| p (h or v)-pol total sea surface emission (specular+rough+foam) [K] |
+|$F_f$|	Fractionnal area of sea surface covered by foam [nd]|
+|$T_{esp}$|	p-pol brightness temperature of specular emission (surface pol. Basis) [K]|
+|$T_{erp}$|	p-pol brightness temperature of rough surface emission (surface pol. Basis) [K]|
+|$T_{foam,p}$| p-pol brightness temperature of the total foam-covered surface emission (surface pol. Basis) [K]|
+
+and where we split the surface emission into three components: (i) the emission from the non-foamy perfectly sea surface $(T_{esp})$, (ii) the emission from the non-foamy rough sea surface $(T_{erp})$, and (iii), the total emission from the foam-covered sea surface $(T_{foam,p})$. Note that the total surface reflectivity is related to the total surface emissivity by $R_{surf,p}^{tot}=1-e_{surf,p}^{tot}$.
+
+Considering all components of the scene brightness temperature at L-band, the complete model solution for the upwelling brightness temperatures above the atmosphere but below the ionosphere (before Faraday rotation) in the surface polarization basis, is, therefore in H-polarization:
+
+$$T_{th}^{TOA}=T_{ea}+(τ_d τ_v )[(1-F_f)\cdot(T_{esh}+T_{erh})+T_{foam,h}+R_{surf,h}^{tot}\cdot T_{ea}+T_{sch}+T_{ssh}]$$
+
+and in V-polarization:
+
+$$T_{tv}^{TOA}=T_{ea}+(τ_d τ_v )[(1-F_f)\cdot(T_{esv}+T_{erv})+T_{foam,v}+R_{surf,v}^{tot}\cdot T_{ea}+T_{scv}+T_{ssv}]$$
+
+in which:
+
+| Notation | Definition | 
+| :-: | :-: |
+|$T_{esh}$|	H-pol brightness temperature of specular emission (surface pol. Basis) [K]|
+|$T_{erh}$|	H-pol brightness temperature of rough surface emission (surface pol. Basis) [K]|
+|$T_{sch}$|	H-pol brightness temperature of scattered celestial sky radiation (surface pol. Basis) [K]|
+|$T_{ssh}$|	H-pol brightness temperature of scattered solar radiation (sunglint) (surface pol. Basis) [K]|
+|$T_{esv}$|	V-pol brightness temperature of specular emission (surface pol. Basis) [K]|
+|$T_{erv}$|	V-pol brightness temperature of rough surface emission (surface pol. Basis) [K]|
+|$T_{scv}$|	V-pol brightness temperature of scattered celestial sky radiation (surface pol. Basis) [K]|
+|$T_{ssv}$|	V-pol brightness temperature of scattered solar radiation (sunglint) (surface pol. Basis) [K]|
+|$T_{ea}$|	Unpolarized brightness temperature of atmospheric 1-way emission [K]|
+|$R_h$|	Fresnel power reflection coefficient at the surface in H-pol|
+|$R_v$|	Fresnel power reflection coefficient at the surface in V-pol|
+|$e_{sh}$|	Perfectly flat sea surface emissivity in H-pol|
+|$e_{sv}$|	Perfectly flat sea surface emissivity in V-pol
+|$e_{rh}$|	Rough surface emissivity in H-pol|
+|$e_{rv}$|	Rough surface emissivity in V-pol
+|$T_{erU}$|	Third Stokes brightness temperature of rough surface emission (surface pol. Basis) [K]|
+|$T_{erV}$|	Fourth Stokes brightness temperature of rough surface emission (surface pol. Basis) [K]|
+|$F_f$|	Fractionnal area of sea surface covered by foam [nd]|
+|$T_s$|	Sea Surface Temperature [K]|
+|$U_{10}$|	10-m height Sea surface wind speed modulus [m/s]|
+
+The principle of SSS retrievals algorithms from Spaceborne L-band radiometer measurements follows two possible approaches:
+
+Retrieval method 1 (e.g. SMOS L2):
+-  a forward radiative transfer modelling of the top of the atmosphere brightness $T_{tp}^{TOA}$ from first guess geophysical values (SSS, SST, $U_{10}$, etc...),and,
+- the retrieval of the geophysical parameters (SSS, SST, ..) from a minimization of the differences between the observed and modelled  $T_{tp}^{TOA}$. 
+
+Retrieval method 2 (e.g. Aquarius & SMAP V5):
+- correct the measured top of the atmosphere brightness $T_{tp}^{TOA}$ from all needed forward model contributions to estimate the perfectly flat sea surface emission.
+- retrieval of the geophysical parameters (SSS, SST, ..) from a minimization of the difference between the estimated flat sea residual and a forward model of it.
+
+Whatever the chosen retrieval method, a radiative transfer forward model is needed based on the following components:
+
+-  a sea-water dielectric constant model at 1.4 GHz,
+-  a perfectly flat sea surface emission model,
+-  a surface roughness and foam-induced correction model,
+-  a Radiative Transfer Model for Atmospheric corrections,
+-  a scattering model to correct for sea surface scattered Solar and celestial radiation, and, 
+-  a model to correct for geometric rotation from surface polarization basis to antenna basis,
+-  and to model the $T_B$ at antenna level, a model to correct for Faraday rotation in the ionosphere.
+
+We review these forward model components and corrections in the following subsections.
+
+ ### Models for the Dielectric Constant of seawater at 1.4 GHZ
+
+The model function $ε_{sw}(f, S, T)$  is a key component of the radiative transfer forward model used for sea surface salinity retrieval from L-band radiometer data. The relative permittivity (also called dielectric constant) of the seawater, is a complex function dependent on temperature and salinity. The accuracy of SSS retrievals from L-band $T_B$ strongly depends on how well the dielectric constant is known as a function of these two geophysical parameters (Lang et al., 2016). It can be estimated at any frequency within the microwave band from the Debye (1929) expression:
+ 
+ $ε_{sw}(f, S, T)=\displaystyle ε_{\infty}+\frac{(ε_{s}(S,T)-ε_{\infty})}{1+i \omega \tau(f,S,T)}-i\frac{\sigma(f,S,T)}{\omega ε_0}$
+ 
+ in which $\it{i}$ is the imaginary unit, $ε_{\infty}$ is the electrical permittivity at very high frequencies, $ε_{s}$ is the static dielectric constant, $\tau$ is the relaxation time, $\sigma$ is the ionic conductivity, and $ε_0$ is the permittivity of free space, where $ε_{s}$, $\tau$ and $\sigma$ are functions of $\it{T}$ and $\it{S}$. At the time the first salinity mission was developed, these functions had been evaluated historically by Stogryn (1971, 1995), Klein and Swift (1977), and Ellison et al. (1998). Klein and Swift (denoted KS hereafter) modified the Stogryn (1971) model by using a different expression for the static dielectric constant $ε_{s}(S,T)$, based on Ho and Hall (1973) and Ho et al. (1974) measurements at 2.6 and 1.4 GHz, respectively. The KS and Stogryn $ε_{sw}$ models are valid for frequencies ranging from L- to X-bands (Meissner and Wentz, 2004; 2012;Meissner et al., 2014). Following pre-launch comparisons and analyses (Camps et al., 2004; Wilson et al., 2004, Blanch and Aguasca, 2004), the KS model was selected in the Level 2 Ocean Salinity (OS) processor for the SMOS mission (SMOS-Ocean Expert Support Laboratories, 2016).  
+ 	An alternative model function developed by Meissner and Wentz (2004, MW hereafter) fits the dielectric constant data to a double Debye relaxation polynomial that performs best at higher frequencies. The seawater dielectric data were obtained by inverting $T_B$ measurements from the Special Sensor Microwave Imager (SSM/I) at frequencies higher than 19 GHz; measurements from Ho et al. (1974) were used to derive the model at the lower frequencies.  The MW model function was recently updated by providing small adjustments to the Debye parameters based on including results for the C-band and X-band channels of WindSat and AMSR (Meissner and Wentz, 2012, 2014).  The MW model is used in the Aquarius and SMAP SSS retrieval algorithms (Meissner et al. 2018). 
+Dinnat et al. (2014) analyzed the difference in SSS retrieved by SMOS and Aquarius radiometers and found that both instruments observe similar large scale patterns, but also reported significant regional discrepancies (mostly between +/- 1 pss). SMOS SSS was found generally fresher than Aquarius SSS (within 0.2-0.5 pss depending on latitude and SST), except at the very high southern latitudes near the ice edge and in a few local (mostly coastal) areas. It was found that the differences exhibit large-scale patterns similar to SST variations. To investigate its source, Dinnat et al. (2014) reprocessed the Aquarius SSS, including the calibration, using the KS $ε_{sw}$  model that is used in SMOS processing. This reprocessing decreases the difference between Aquarius and SMOS SSS by a few tenths of a pss for SST between 6°C and 18°C while warmer waters show little change in the difference. Water colder than 3°C shows mixed results, probably due to a complex mix of error sources, such as the presence of sea ice and rough seas.  The comparison of the reprocessed Aquarius SSS with in situ data from Argo shows an improvement of a few tenths of a pss for temperatures between 6°C and 18°C. In warmer waters, both the nominal and reprocessed Aquarius data, as well as SMOS data, have a fresh SSS bias. For very cold waters (less than 3°C), the reprocessed Aquarius data using the KS model show significant degradation of the SSS in comparison with the Argo, in turn suggesting that the KS model might be in error in the lowest sea surface temperature regime.
+Direct laboratory measurements of the $ε_{sw}$ at 1.413 GHz and SSS=30, 33, 35, and 38 (Lang et al., 2016) were used to develop a new model (Zhou et al., 2017) by fitting the measurements with a third-order polynomial. This new L-band $ε_{sw}$ model has been compared with KS and MW.  The authors claimed that this new model function  gives more accurate SSS at high (25°C to 30°C) and low (0.5°C to 7°C) SSTs than other existing model functions. Laboratory measurements at low SSS lead to a small increase in the accuracy of the model function.  Although the model showed improvements in salinity retrieval, it had an inconsistent behavior between
+partitioned salinities. To improve the stability of the model, new dielectric measurements of seawater have been made recently 
+over a broad range of salinities and temperatures to expand the data set used for developing the model function (Zhou et al., 2021). The structure of the model function has been changed from a polynomial expansion in $S$ and $T$ to a physics-based model consisting of
+a Debye molecular resonance term plus a conductivity term. Each unknown parameter is expressed in $S$ and $T$ based on
+the expanded measurement data set. Physical arguments have been used to limit the number of unknown coefficients in these
+expressions to improve the stability of the model function. The Zhou et al. (2021)'s Debye model for the seawater dielectric
+constant is used in the present algorithm, will be refered to as "GW2020", and can be expressed by:
+
+ $ε_{sw}(f, S, T)=\displaystyle ε_{\infty}+\frac{(ε_{s-dw}(T)R_{sw-dw}(S,T)-ε_{\infty})}{1+i \omega \tau(T)}-i\frac{\sigma(f,S,T)}{\omega ε_0}$
+
+where $S$ is the salinity of seawater in pss; $ε_0$ is the dielectric
+constant of free space; $ε_{s-dw}(T)$ is the static dielectric
+constant of distilled water, given by:
+$$ε_{s-dw}(T)=88.0516-4.01796\times10^{-1}\cdot T-5.1027\times10^{-5}\cdot T^2+2.55892\times10^{-5}\cdot T^3$$
+and $\tau(T)$  is the relaxation time of distilled water:
+$$\tau(T)=1.75030\times10^{-11}-6.12993\times10^{-13}\cdot T +1.24504\times10^{-14}\cdot T^2-1.14927\times10^{-16}\cdot T^3$$
+
+$R_{sw-dw}(S,T)$ is an additional factor in the static dielectric constant of seawater due to the presence
+of ions, given by: 
+$$R_{sw-dw}(S,T)=\displaystyle 1-S\cdot ( 3.97185\times10^{-3}-2.49205\times10^{-5}\cdot T-4.27558\times10^{-5}\cdot S +3.92825\times10^{-7}\cdot S\cdot T+4.15350\times10^{-7}\cdot S^2)$$
+
+Note that $\sigma(f,S,T)$ needs to be nulled at $S=0$ since the conductivity of distilled water is close to 0. The expression of 
+$\sigma(f,S,T)$ given in Zhou et al. (2021) is:
+
+$$\sigma(f,S,T)=\sigma(f,S,0)\cdot R_{\sigma}(f,S,T)$$
+
+where for f=1.4 GHz,
+
+$$\sigma(f,S,0)=9.50470\times10^{-2}\cdot S -4.30858\times10^{-4}\cdot S^2+2.16182\times10^{-6}\cdot S^3$$
+
+and
+
+$$R_{\sigma}(f,S,T)=1+T\cdot(3.76017\times10^{-2} + 6.32830\times10^{-5}\cdot T +4.83420\times10^{-7}\cdot T^2 − 3.97484\times10^{-4}\cdot·S+6.26522\times10^{-6}\cdot S^2)$$
+
+Using the laboratory-measurement based GSW2020's model for the sea water dielectric constant at L-band, the changes in the specular sea surface brightness temperatures at 1.4 GHz, at V- and H-polarization, for the the CIMR nominal incidence angle of 53° and as a function of sea surface salinity for different representative sea surface temperature values is shown in \ref{T0esv_GSW2020_LBand.png}:
+
+<img src="T0esv_GSW2020_LBand.png" alt="fishy" class="bg-primary" width="400px">
+<img src="T0esh_GSW2020_LBand.png" alt="fishy" class="bg-primary" width="400px">
+
+```
+--- 
+name: T0esv_GSW2020_LBand.png
+---
+Specular sea surface brightness temperatures at 1.4 GHz, at V- (a) and H- (b) polarization, for the CIMR nominal OZA of 53° and as a function of sea surface salinity (x-axis) for different representative sea surface temperature values (colors). The gray histogram represents the non-normalized distribution of historical in situ SSS observation in the Arctic.
+```
+
+As found, the sensitivity of $T_B$ to SSS is quasi-linear for a given SST. $|\partial T_{B}/\partial SSS|$ is greater in V-polarization than in H-polarization and increases with increasing SST. In Artic conditions, $\partial T_{B}/\partial SSS$ ranges in V-polarization from -0.26 K/pss $(T_s=0°C)$ to -0.36 K/pss $(T_s=5°C)$.  With the CIMR L-band radiometer NEDT~0.3 K and in cold seas, one can therefore expect ~1 pss instrumental noise error in instantaneous recordings. 
+
+Despite its importance for SSS remote sensing, uncertainties remain in the 1.4 GHz seawater dielectric constant model. The new GW2020 Debye model laboratory measurements combined with satellite data, will certainly help to minimize those remaining uncertainties.
+
 ### Perfectly flat sea surface emission
 
 <img src="../Flat_Sea_Rad.png" alt="fishy" class="bg-primary" width="200px">
@@ -90,179 +272,6 @@ name: Figure3b
 ---
 First Stokes parameter of the Brightness temperature $$(T_{esh}+T_{esv})/2$$ changes at 1.4 GHz and nadir of the perfectly flat sea surface as a function of salinity (x-axis) and temperature (colors). The gray domain indicates the range of SSS values mostly encountered in the open ocean. 
 ```
-
-
-### Sea Surface Salinity retrieval from Satellite Antenna brightness temperature at L-band
-<img src="../Figure8.png" alt="fishy" class="bg-primary" width="400px">
-
-```
---- 
-name: Figure8
----
-signals received by a Space borne L-band radiometer 
-```
-There are other issues that complicate the remote sensing of salinity from space. Several geophysical parameters other than seawater salinity and temperature contribute significantly to L-band $T_{B}$ measured by satellite sensors at antenna level (e.g., see Yueh et al., 2001; Font et al., 2004). These contributions need to be accurately known and used in corrections of measured antenna $T_{B}$ to properly retrieve SSS. As illustrated in Figure 8,  they include:  the direct and earth-reflected solar and sky emission (Le Vine et al. 2005; Reul et al., 2007, 2008; Tenerelli et al., 2008; Dinnat and Le Vine, 2008), the Faraday rotation in the ionosphere (Yueh et al., 2000; Le Vine and Abraham, 2002; Vergely et al., 2014),  the impact of the atmosphere (Liebe et al., 1992; Skou et al., 2005; Wentz and Meissner, 2016), and the effect of sea surface roughness on L-band emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Yueh et al., 2010, 2014).   
-
-The upwelling brightness temperatures above the atmosphere but below the ionosphere (before Faraday rotation) is referred to as the "Top of Atmosphere" brightness temperature and denoted $T_{tp}^{TOA}$ (with superscript "TOA") for upwelling signal in polarization $p$.
-Considering all components of the scene brightness temperature at L-band, the complete model solution for $T_{tp}^{TOA}$, in the surface polarization basis, is:
-
-
-$$
-\left(\begin{matrix}
-T_{th}^{TOA} \\ 
-T_{tv}^{TOA} \\
-U^{TOA} \\
-V^{TOA}
-\end{matrix}\right)=
-\left(\begin{matrix}
-T_{atm}^{up}+(τ_d τ_v )[T_{surf,h}^{tot}+R_{surf,h}^{tot}\cdot T_{atm}^{dw}+T_{sch}+T_{ssh}] \\
-T_{atm}^{up}+(τ_d τ_v )[T_{surf,v}^{tot}+R_{surf,v}^{tot}\cdot T_{atm}^{dw}+T_{scv}+T_{ssv}] \\
-(τ_d τ_v ) T_{erU} \\
-(τ_d τ_v ) T_{erV} \\
-\end{matrix}\right)
-$$
-
-where the only contribution to the third and fourth Stokes parameters in the surface polarization basis comes from the rough surface emission components, and in which:
-
-| Notation | Definition | 
-| :-: | :-: |
-| $T_{atm}^{up}$ | Unpolarized upwelling brightness temperature of atmospheric 1-way emission [K]|
-|$τ_d$ | 1-way atmospheric transmittance associated with molecular oxygen absorption [nd]|
-|$τ_v$|	1-way atmospheric transmittance associated with water vapor absorption [nd]|
-|$T_{surf,p}^{tot}$| p-pol brightness temperature of the total sea surface emission (specular+rough+foam) [K] |
-|$R_{surf,p}^{tot}$|	reflectivity of the total sea surface (specular+rough+foam) in p-pol|
-| $T_{atm}^{dw}$ | Unpolarized downwelling brightness temperature of atmospheric 1-way emission [K]|
-|$T_{erU}$|	Third Stokes brightness temperature of rough surface emission (surface pol. Basis) [K]|
-|$T_{erV}$|	Fourth Stokes brightness temperature of rough surface emission (surface pol. Basis) [K]|
-|$T_{scp}$|	p-pol brightness temperature of scattered celestial sky radiation (surface pol. Basis) [K]|
-|$T_{ssp}$|	p-pol brightness temperature of scattered solar radiation (sunglint) (surface pol. Basis) [K]|
-
-In our algorithm (see dedicated section on atmospheric contributions further), the upwelling and downwelling atmospheric emission are assumed to  be equal :
-
-$$T_{atm}^{up}=T_{atm}^{dw}=T_{ea}$$
-
-where $T_{ea}$ is the unpolarized brightness temperature of atmospheric 1-way emission. 
-In addition, the brightness temperature of the total sea surface emission, $T_{surf,p}^{tot}$ can be decomposed as follows:
-
-$$T_{surf,p}^{tot}=T_s\cdot e_{surf,p}^{tot}=T_s\cdot\left[(1-F_f)\cdot(e_{sp}+e_{rp})\right]+T_{foam,p}=(1-F_f)\cdot(T_{esp}+T_{erp})+T_{foam,p}$$
-
-in which:
-
-| Notation | Definition | 
-| :-: | :-: |
-|$T_s$|	Sea Surface Temperature [K]|
-|$e_{surf,p}^{tot}$| p (h or v)-pol total sea surface emission (specular+rough+foam) [K] |
-|$F_f$|	Fractionnal area of sea surface covered by foam [nd]|
-|$T_{esp}$|	p-pol brightness temperature of specular emission (surface pol. Basis) [K]|
-|$T_{erp}$|	p-pol brightness temperature of rough surface emission (surface pol. Basis) [K]|
-|$T_{foam,p}$| p-pol brightness temperature of the total foam-covered surface emission (surface pol. Basis) [K]|
-
-and where we split the surface emission into three components: (i) the emission from the non-foamy perfectly sea surface $(T_{esp})$, (ii) the emission from the non-foamy rough sea surface $(T_{erp})$, and (iii), the total emission from the foam-covered sea surface $(T_{foam,p})$. Note that the total surface reflectivity is related to the total surface emissivity by $R_{surf,p}^{tot}=1-e_{surf,p}^{tot}$.
-
-Considering all components of the scene brightness temperature at L-band, the complete model solution for the upwelling brightness temperatures above the atmosphere but below the ionosphere (before Faraday rotation) in the surface polarization basis, is, therefore in H-polarization:
-
-$$T_{th}^{TOA}=T_{ea}+(τ_d τ_v )[(1-F_f)\cdot(T_{esh}+T_{erh})+T_{foam,h}+R_{surf,h}^{tot}\cdot T_{ea}+T_{sch}+T_{ssh}]$$
-
-and in V-polarization:
-
-$$T_{tv}^{TOA}=T_{ea}+(τ_d τ_v )[(1-F_f)\cdot(T_{esv}+T_{erv})+T_{foam,v}+R_{surf,v}^{tot}\cdot T_{ea}+T_{scv}+T_{ssv}]$$
-
-in which:
-
-| Notation | Definition | 
-| :-: | :-: |
-|$T_{esh}$|	H-pol brightness temperature of specular emission (surface pol. Basis) [K]|
-|$T_{erh}$|	H-pol brightness temperature of rough surface emission (surface pol. Basis) [K]|
-|$T_{sch}$|	H-pol brightness temperature of scattered celestial sky radiation (surface pol. Basis) [K]|
-|$T_{ssh}$|	H-pol brightness temperature of scattered solar radiation (sunglint) (surface pol. Basis) [K]|
-|$T_{esv}$|	V-pol brightness temperature of specular emission (surface pol. Basis) [K]|
-|$T_{erv}$|	V-pol brightness temperature of rough surface emission (surface pol. Basis) [K]|
-|$T_{scv}$|	V-pol brightness temperature of scattered celestial sky radiation (surface pol. Basis) [K]|
-|$T_{ssv}$|	V-pol brightness temperature of scattered solar radiation (sunglint) (surface pol. Basis) [K]|
-|$T_{ea}$|	Unpolarized brightness temperature of atmospheric 1-way emission [K]|
-|$R_h$|	Fresnel power reflection coefficient at the surface in H-pol|
-|$R_v$|	Fresnel power reflection coefficient at the surface in V-pol|
-|$e_{sh}$|	Perfectly flat sea surface emissivity in H-pol|
-|$e_{sv}$|	Perfectly flat sea surface emissivity in V-pol
-|$e_{rh}$|	Rough surface emissivity in H-pol|
-|$e_{rv}$|	Rough surface emissivity in V-pol
-|$T_{erU}$|	Third Stokes brightness temperature of rough surface emission (surface pol. Basis) [K]|
-|$T_{erV}$|	Fourth Stokes brightness temperature of rough surface emission (surface pol. Basis) [K]|
-|$F_f$|	Fractionnal area of sea surface covered by foam [nd]|
-|$T_s$|	Sea Surface Temperature [K]|
-|$U_{10}$|	10-m height Sea surface wind speed modulus [m/s]|
-
-The principle of SSS retrievals algorithms from Spaceborne L-band radiometer measurements in general consist of (i) a forward radiative transfer
-modelling of the top of the atmosphere brightness $T_{tp}^{TOA}$ from first guess geophysical values (SSS, SST, $U_{10}$, etc...), and (ii) the retrieval of the geophysical parameters from a minimization of the differences between the observed and modelled  $T_{tp}^{TOA}$.
-The radiative transfer forward model are based on:   
--  a sea-water dielectric constant model at 1.4 GHz,
--  a perfectly flat sea surface emission model,
--  a surface roughness and foam-induced correction model,
--  a Radiative Transfer Model for Atmospheric corrections,
--  a scattering model to correct for sea surface scattered Solar and celestial radiation, and, 
--  a model to correct for geometric rotation from surface polarization basis to antenna basis,
--  and to model the $T_B$ at antenna level, a model to correct for Faraday rotation in the ionosphere.
-
-We review these models and corrections in the following subsections.
-
- ### Models for the Dielectric Constant of seawater at 1.4 GHZ
-
-The model function $ε_{sw}(f, S, T)$  is a key component of the radiative transfer forward model used for sea surface salinity retrieval from L-band radiometer data. The relative permittivity (also called dielectric constant) of the seawater, is a complex function dependent on temperature and salinity. The accuracy of SSS retrievals from L-band $T_B$ strongly depends on how well the dielectric constant is known as a function of these two geophysical parameters (Lang et al., 2016). It can be estimated at any frequency within the microwave band from the Debye (1929) expression:
- 
- $ε_{sw}(f, S, T)=\displaystyle ε_{\infty}+\frac{(ε_{s}(S,T)-ε_{\infty})}{1+i \omega \tau(f,S,T)}-i\frac{\sigma(f,S,T)}{\omega ε_0}$
- 
- in which $\it{i}$ is the imaginary unit, $ε_{\infty}$ is the electrical permittivity at very high frequencies, $ε_{s}$ is the static dielectric constant, $\tau$ is the relaxation time, $\sigma$ is the ionic conductivity, and $ε_0$ is the permittivity of free space, where $ε_{s}$, $\tau$ and $\sigma$ are functions of $\it{T}$ and $\it{S}$. At the time the first salinity mission was developed, these functions had been evaluated historically by Stogryn (1971, 1995), Klein and Swift (1977), and Ellison et al. (1998). Klein and Swift (denoted KS hereafter) modified the Stogryn (1971) model by using a different expression for the static dielectric constant $ε_{s}(S,T)$, based on Ho and Hall (1973) and Ho et al. (1974) measurements at 2.6 and 1.4 GHz, respectively. The KS and Stogryn $ε_{sw}$ models are valid for frequencies ranging from L- to X-bands (Meissner and Wentz, 2004; 2012;Meissner et al., 2014). Following pre-launch comparisons and analyses (Camps et al., 2004; Wilson et al., 2004, Blanch and Aguasca, 2004), the KS model was selected in the Level 2 Ocean Salinity (OS) processor for the SMOS mission (SMOS-Ocean Expert Support Laboratories, 2016).  
- 	An alternative model function developed by Meissner and Wentz (2004, MW hereafter) fits the dielectric constant data to a double Debye relaxation polynomial that performs best at higher frequencies. The seawater dielectric data were obtained by inverting $T_B$ measurements from the Special Sensor Microwave Imager (SSM/I) at frequencies higher than 19 GHz; measurements from Ho et al. (1974) were used to derive the model at the lower frequencies.  The MW model function was recently updated by providing small adjustments to the Debye parameters based on including results for the C-band and X-band channels of WindSat and AMSR (Meissner and Wentz, 2012, 2014).  The MW model is used in the Aquarius and SMAP SSS retrieval algorithms (Meissner et al. 2018). 
-Dinnat et al. (2014) analyzed the difference in SSS retrieved by SMOS and Aquarius radiometers and found that both instruments observe similar large scale patterns, but also reported significant regional discrepancies (mostly between +/- 1 pss). SMOS SSS was found generally fresher than Aquarius SSS (within 0.2-0.5 pss depending on latitude and SST), except at the very high southern latitudes near the ice edge and in a few local (mostly coastal) areas. It was found that the differences exhibit large-scale patterns similar to SST variations. To investigate its source, Dinnat et al. (2014) reprocessed the Aquarius SSS, including the calibration, using the KS $ε_{sw}$  model that is used in SMOS processing. This reprocessing decreases the difference between Aquarius and SMOS SSS by a few tenths of a pss for SST between 6°C and 18°C while warmer waters show little change in the difference. Water colder than 3°C shows mixed results, probably due to a complex mix of error sources, such as the presence of sea ice and rough seas.  The comparison of the reprocessed Aquarius SSS with in situ data from Argo shows an improvement of a few tenths of a pss for temperatures between 6°C and 18°C. In warmer waters, both the nominal and reprocessed Aquarius data, as well as SMOS data, have a fresh SSS bias. For very cold waters (less than 3°C), the reprocessed Aquarius data using the KS model show significant degradation of the SSS in comparison with the Argo, in turn suggesting that the KS model might be in error in the lowest sea surface temperature regime.
-Direct laboratory measurements of the $ε_{sw}$ at 1.413 GHz and SSS=30, 33, 35, and 38 (Lang et al., 2016) were used to develop a new model (Zhou et al., 2017) by fitting the measurements with a third-order polynomial. This new L-band $ε_{sw}$ model has been compared with KS and MW.  The authors claimed that this new model function  gives more accurate SSS at high (25°C to 30°C) and low (0.5°C to 7°C) SSTs than other existing model functions. Laboratory measurements at low SSS lead to a small increase in the accuracy of the model function.  Although the model showed improvements in salinity retrieval, it had an inconsistent behavior between
-partitioned salinities. To improve the stability of the model, new dielectric measurements of seawater have been made recently 
-over a broad range of salinities and temperatures to expand the data set used for developing the model function (Zhou et al., 2021). The structure of the model function has been changed from a polynomial expansion in $S$ and $T$ to a physics-based model consisting of
-a Debye molecular resonance term plus a conductivity term. Each unknown parameter is expressed in $S$ and $T$ based on
-the expanded measurement data set. Physical arguments have been used to limit the number of unknown coefficients in these
-expressions to improve the stability of the model function. The Zhou et al. (2021)'s Debye model for the seawater dielectric
-constant is used in the present algorithm, will be refered to as "GW2020", and can be expressed by:
-
- $ε_{sw}(f, S, T)=\displaystyle ε_{\infty}+\frac{(ε_{s-dw}(T)R_{sw-dw}(S,T)-ε_{\infty})}{1+i \omega \tau(T)}-i\frac{\sigma(f,S,T)}{\omega ε_0}$
-
-where $S$ is the salinity of seawater in pss; $ε_0$ is the dielectric
-constant of free space; $ε_{s-dw}(T)$ is the static dielectric
-constant of distilled water, given by:
-$$ε_{s-dw}(T)=88.0516-4.01796\times10^{-1}\cdot T-5.1027\times10^{-5}\cdot T^2+2.55892\times10^{-5}\cdot T^3$$
-and $\tau(T)$  is the relaxation time of distilled water:
-$$\tau(T)=1.75030\times10^{-11}-6.12993\times10^{-13}\cdot T +1.24504\times10^{-14}\cdot T^2-1.14927\times10^{-16}\cdot T^3$$
-
-$R_{sw-dw}(S,T)$ is an additional factor in the static dielectric constant of seawater due to the presence
-of ions, given by: 
-$$R_{sw-dw}(S,T)=\displaystyle 1-S\cdot ( 3.97185\times10^{-3}-2.49205\times10^{-5}\cdot T-4.27558\times10^{-5}\cdot S +3.92825\times10^{-7}\cdot S\cdot T+4.15350\times10^{-7}\cdot S^2)$$
-
-Note that $\sigma(f,S,T)$ needs to be nulled at $S=0$ since the conductivity of distilled water is close to 0. The expression of 
-$\sigma(f,S,T)$ given in Zhou et al. (2021) is:
-
-$$\sigma(f,S,T)=\sigma(f,S,0)\cdot R_{\sigma}(f,S,T)$$
-
-where for f=1.4 GHz,
-
-$$\sigma(f,S,0)=9.50470\times10^{-2}\cdot S -4.30858\times10^{-4}\cdot S^2+2.16182\times10^{-6}\cdot S^3$$
-
-and
-
-$$R_{\sigma}(f,S,T)=1+T\cdot(3.76017\times10^{-2} + 6.32830\times10^{-5}\cdot T +4.83420\times10^{-7}\cdot T^2 − 3.97484\times10^{-4}\cdot·S+6.26522\times10^{-6}\cdot S^2)$$
-
-Using the laboratory-measurement based GSW2020's model for the sea water dielectric constant at L-band, the changes in the specular sea surface brightness temperatures at 1.4 GHz, at V- and H-polarization, for the the CIMR nominal incidence angle of 53° and as a function of sea surface salinity for different representative sea surface temperature values is shown in \ref{T0esv_GSW2020_LBand.png}:
-
-<img src="T0esv_GSW2020_LBand.png" alt="fishy" class="bg-primary" width="400px">
-<img src="T0esh_GSW2020_LBand.png" alt="fishy" class="bg-primary" width="400px">
-
-```
---- 
-name: T0esv_GSW2020_LBand.png
----
-Specular sea surface brightness temperatures at 1.4 GHz, at V- (a) and H- (b) polarization, for the CIMR nominal OZA of 53° and as a function of sea surface salinity (x-axis) for different representative sea surface temperature values (colors). The gray histogram represents the non-normalized distribution of historical in situ SSS observation in the Arctic.
-```
-
-As found, the sensitivity of $T_B$ to SSS is quasi-linear for a given SST. $|\partial T_{B}/\partial SSS|$ is greater in V-polarization than in H-polarization and increases with increasing SST. In Artic conditions, $\partial T_{B}/\partial SSS$ ranges in V-polarization from -0.26 K/pss $(T_s=0°C)$ to -0.36 K/pss $(T_s=5°C)$.  With the CIMR L-band radiometer NEDT~0.3 K and in cold seas, one can therefore expect ~1 pss instrumental noise error in instantaneous recordings. 
-
-Despite its importance for SSS remote sensing, uncertainties remain in the 1.4 GHz seawater dielectric constant model. The new GW2020 Debye model laboratory measurements combined with satellite data, will certainly help to minimize those remaining uncertainties.
 
 
 ###  Surface roughness-induced emission model at L-band ###
