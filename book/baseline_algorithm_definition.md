@@ -51,7 +51,7 @@ In our algorithm (see dedicated section on atmospheric contributions further), t
 
 $$T_{atm}^{up}=T_{atm}^{dw}=T_{ea}$$
 
-where $T_{ea}$ is the unpolarized brightness temperature of atmospheric 1-way emission. 
+where $T_{ea}$ is the unpolarized brightness temperature of vertically integrated atmospheric 1-way emission. 
 In addition, the brightness temperature of the total sea surface emission, $T_{surf,p}^{tot}$ can be decomposed as follows:
 
 $$T_{surf,p}^{tot}=T_s\cdot e_{surf,p}^{tot}=T_s\cdot\left[(1-F_f)\cdot(e_{sp}+e_{rp})\right]+T_{foam,p}=(1-F_f)\cdot(T_{esp}+T_{erp})+T_{foam,p}$$
@@ -513,7 +513,28 @@ azimuth sweep procedure.
 
 In the present algorithm, we use the Kudryatsev et al model (1999) to estimate the sea surface roughness curvature spectrum $C(k\beta,\phi')$, which was  developed based on available field and wave-tank measurements, along with physical arguments concerning the dynamics of short-gravity waves. These scales indeed represent particularly important surface components for emissivity at 1.4 GHz, since they belong to the so-called “critical phenomena” region within which surface components are dominant scatterers at L-band. It is important to note that this spectral model was developed without any relation to remote-sensing data. Moreover, by using the Kudryatsev et al spectral model, we avoided some deficiencies of the Elfouhaily et al spectral model as found by other (problems at the low to moderate wind speed transition).
 
-Note that due to the assumption of gaussianity in the sea surface statistics, the solution can be expressed strictly in terms of a roughness spectrum. Properties of a directional spectrum result in no first azimuthal harmonic variations being obtained; introduction of non-gaussianity is required to obtain first azimuthal harmonics. 
+Given the spectral model and the ssa/spm $g_{\gamma,n}'$ fonctions, the sea surface roughness-induced Stokes vector emission can be estimated following:
+
+$$
+\left[
+\begin{matrix}
+e_{rh} \\ 
+e_{rv} \\
+e_{rU} \\
+e_{rV} 
+\end{matrix}
+\right]=
+\left[
+\begin{matrix}
+e_{rh}^{(0)}+e_{rh}^{(2)}\cos(2\phi_{wr}) \\ 
+e_{rv}^{(0)}+e_{rv}^{(2)}\cos(2\phi_{wr}) \\
+e_{rU}^{(2)}\sin(2\phi_{wr}) \\
+e_{rV}^{(2)}\sin(2\phi_{wr}) 
+\end{matrix}
+\right]
+$$
+
+where the  terms $e_{r\gamma}^{(n)}$ represent the nth azimuthal harmonics of the wind-excess emissivity. Note that due to the assumption of gaussianity in the sea surface statistics, the solution can be expressed strictly in terms of a roughness spectrum. Properties of a directional spectrum result in no first azimuthal harmonic variations being obtained; introduction of non-gaussianity is required to obtain first azimuthal harmonics.
 
 
 ### Sea Foam emissivity modelling at L-band ###
