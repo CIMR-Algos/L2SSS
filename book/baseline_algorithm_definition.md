@@ -270,7 +270,7 @@ Despite its importance for SSS remote sensing, uncertainties remain in the 1.4 G
 
 #### Physics of the problem ####
 
-At a given frequency, the total surface emissivity $E_p$ can be modeled with a specular part $e_{pp}^{(0)} (\theta_s,S,T_s)$ and a part caused by ocean roughness $\Delta e_{pp}^{rough}$. In order to measure sea surface salinity with the required accuracy it is necessary to remove the ocean surface roughness signal from the observed CIMR brightness temperatures. This requires an accurate
+At a given frequency, the total surface emissivity $E_p$ can be modeled with a specular part $e_{sp}^{(0)} (\theta_s,S,T_s)$ and a part caused by ocean roughness $e_{rp}^{rough}$. In order to measure sea surface salinity with the required accuracy it is necessary to remove the ocean surface roughness signal from the observed CIMR brightness temperatures. This requires an accurate
 knowledge of the signal itself as well as the ocean surface wind speed.
 
 Sea surface microwave emission for a given frequency and viewing geometry depends upon the sea water dielectric constant as well as sea surface roughness and sea foam. From detailed analyses presented in
@@ -281,7 +281,7 @@ Various electromagnetic models have been developed to estimate the effects of wi
 
 In the latest algorithms implemented at ESA and NASA data centers, L-band Geophysical Model Functions (GMF) used for correction for the roughness-induced emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Fore et al., 2016) are all rather similar in shape and provide consistent results as a function of the 10 m height neutral wind speed, $U_{10}$, incidence angles and polarization. They usually include an even 2nd order harmonic representation of relative wind azimuth dependence (Meissner et al., 2014), $\phi_{r}=\phi_{w}-\alpha$, where $\phi_{w}$, is the wind direction and $\alpha$ the radiometer azimuthal look direction relative to North:
 
-$$∆T_{rough,p}(U_{10},θ)=T_s\cdot e_{rough,p}(U_{10},θ)=T_s\cdot \left\(∆e_{o,p}(U_{10},θ)+∆e_{1,p}(U_{10},θ)\cdot \cos⁡(\phi_{r} )+∆e_{2,p}(U_{10},θ)\cdot\cos⁡(2\phi_{r})\right\) $$
+$$∆T_{rough,p}(U_{10},θ)=T_s\cdot ∆e_{r,p}(U_{10},θ)=T_s\cdot \left\(∆e_{o,p}(U_{10},θ)+∆e_{1,p}(U_{10},θ)\cdot \cos⁡(\phi_{r} )+∆e_{2,p}(U_{10},θ)\cdot\cos⁡(2\phi_{r})\right\) $$
 
 
 Analytical and numerical models for the calculation of the rough ocean surface polarimetric thermal emission have been developed [6]–[11], primarily through application of standard surface scattering approximate methods to calculate surface emissivity using Kirchhoff’s law. Models based on both the small perturbation method (SPM) and the physical optics (PO) approximation has been presented.  The physical optics (PO) approximation was shown to clearly underestimate the sea surface emissivity observations at L-band [12, 13], particularly in the low incidence angle range (less than about 20-30°). This is mainly because such model does not account for scattering on small roughness elements. Recent works [8-10] has further revealed that use of the SPM for emission calculations results in a small slope, rather than small height, emission approximation identical to that which would be obtained from the small slope approximation of [14], so that the SPM can provide accurate emission predictions even for surfaces with large heights in terms of the electromagnetic wavelength. Numerical tests of the SPM for a set of canonical periodic surfaces have confirmed this statement [15]. Moreover, the success of the SPM/SSA in matching measured brightness temperature [6,16-19] has shown that the technique should be applicable for rough ocean surface brightness temperature predictions. These results motivate use of the SPM/small slope approximation (SPM/SSA) for the prediction of ocean polarimetric thermal emission at L-band. The SPM/SSA applies standard small perturbation theory to predict the bistatic scattering coefficients of a rough surface, and integrates these scattering coefficients over the upper hemisphere to obtain the reflectivities and hence brightness temperatures. The resonance behaviours observed in the critical phenomena region [20] produce a significant sensitivity of emission harmonics predicted by the SSA to ocean length scales of order equal to the electromagnetic wavelength. However, these emission harmonics are also sensitive (with the exception of the fourth Stokes parameter) to anisotropy in ocean length scale much larger than  the electromagnetic wavelength. Use of the SPM/SSA up to 2nd order produces an expansion in surface slope, with zero order terms reproducting flat surface emission results, first order terms identically zero, and second order terms providing the first prediction of changes from flat surface brightnesses.
@@ -290,10 +290,10 @@ The second order terms take the form of an integral of a set of weighting functi
 
 $$
 \left[\begin{matrix}
-e_{rough,h} \\ 
-e_{rough,v} \\
-e_{rough,3} \\
-e_{rough,4}
+e_{rh} \\ 
+e_{rv} \\
+e_{rU} \\
+e_{rV}
 \end{matrix}\right\]
 =-\displaystyle\int_o^{\infty}dk_{\rho}'k_{\rho}'\displaystyle\int_o^{2\pi}d\phi'{W(k_{\rho}',\phi')}
 \left[
@@ -331,8 +331,7 @@ the above $g_{\gamma}$ expressions represent the second order
 coherent reflection coefficient contributions, while the second
 terms represent the incoherent Bragg scatter contributions.
 
-Second order
-scattering coefficients are exactly those taken from Yueh et
+Second order scattering coefficients are exactly those taken from Yueh et
 al.\cite{yuehetal94a}, with the variables $k_x$, $k_y$, and $k_z$
 given by 
 
@@ -407,15 +406,15 @@ $$
 
 with the resulting $\tilde{g_{\gamma}}$ functions depending on
 frequency only through: $\displaystyle\frac{k_{\rho}'}{k_o}$. Using these ideas and re-writing the second order change in emissivity from a flat surface $(\Delta e_{\gamma})$ in terms of
-$\beta=k'_{\rho}/k_o$ yields
+$\beta=k_{\rho}'/k_o$ yields
 
 $$
 \left[
 \begin{matrix}
-\Delta e_{Bh} \\
-\Delta e_{Bv} \\
-\Delta e_{U}\\
-\Delta e_{V}\\
+e_{rh} \\
+e_{rv} \\
+e_{rU}\\
+e_{rV}\\
 \end{matrix}
 \right]=- \left(
 \displaystyle\int_o^{\infty}\displaystyle\int_o^{2\pi}C(k_o\beta,\phi')
@@ -462,7 +461,7 @@ expansion in the emssion equation results in:
 
 $$
 \begin{array}{l}
-\Delta e_{\gamma}=-\left(\left[
+e_{r\gamma}=-\left(\left[
 \begin{array}{c}
 \displaystyle\int_o^{\infty} g_{\gamma,0}'C_0(k_o\beta) d\beta\\
 0 \\
@@ -518,14 +517,17 @@ At L-band, WISE [ref] and FROG [ref] experiments have provided detailed L-band e
 In [12], it was shown that the emissivity model proposed by [14] correctly predicts the measured foam emissivities at L-band provided some auxiliary parameter describing the foam-water system are tuned. The purpose of this section is to document this forward foam emissivity model, which is used here to provide foam impact corrections in the version of the SSS retrieval algorithm used at launch of the ESA's Soil Moisture and Ocean Salinity (SMOS) satellite mission.
 As proposed by [13], foam formations contribute to the total sea surface brigthness temperature  measured by a radiometer as function of wind speed $U_{10}$ following:
 
-$$T_{foam,p}=T_{foam}\cdot \int e_{foam,p}^{typ}(f,p,\theta_i,\delta) F_f(U_{10},\delta) d\delta $$
+$$T_{foam,p}=T_{foam}\cdot \int e_{foam,p}^{typ}(f,p,\theta_i,t_{foam}) F_f(U_{10},t_{foam}) d t_{foam} $$
 
 where
 
--$f, p$ and $\theta_i$ are the receiving electromagnetic frequency, polarization and incidence angle of the radiometer respectively,
--$F_f(U_{10},\delta)$ is the fraction of sea surface area covered by whitecaps with thickness $delta$ at 10-meter height wind speed $U_{10}$,
--$T_{foam}$ is the physical tempearture of foam, usually assumed the same as the bulk sea  surface temperature: $T_{foam}=T_s$ and,
--$e_{foam,p}^{typ}$  is the emissivity of typical sea foam-layer with thickness $\delta$.
+$f$, $p$ and $\theta_i$ are the receiving electromagnetic frequency, polarization and incidence angle of the radiometer respectively,
+
+$F_{f}(U_{10},t_{foam})$ is the fraction of sea surface area covered by whitecaps with thickness $t_{foam}$ at 10-meter height wind speed $U_{10}$,
+
+$T_{foam}$ is the physical tempearture of foam, usually assumed the same as the bulk sea  surface temperature: $T_{foam}=T_s$ and,
+
+$e_{foam,p}^{typ}$  is the emissivity of typical sea foam-layer with thickness $t_{foam}$.
 
 This model is used in the present algorithm to provide foam impact corrections for CIMR. It contains two submodels: one to parametrize the emissivity of typical sea foam-layer with thickness $e_{foam,p}^{typ}$, namely and the second to model the fraction $F_f(U_{10},\delta)$ of sea surface area covered by whitecaps with thickness $\delta$ at 10-meter height wind speed $U_{10}$. Both of them are successively detailed hereafter.
 
@@ -554,21 +556,21 @@ permittivity $\varepsilon_{N\alpha}$ with a layer thickness $d$
 
  Boundaries between each region are assumed flat.
 
-The brightness temperature of the foam-water system at incidence angle $\theta_i$ and polarization $\gamma=h$ (horizontal) or $v$
+The brightness temperature of the foam-water system at incidence angle $\theta_i$ and polarization $p=h$ (horizontal) or $v$
 (vertical) is then equal to
 
 $$
-T_{B_{\gamma}}(\theta_i)=T_s\left[1-|R_{\gamma}(\theta_i)|^2\right]
+ e_{foam,p}^{typ}(f,\theta_i,d)=1-|R_{foam,p}^{typ}(f,\theta_i,d)|^2
 $$
 
 where $T_s$ is the foam layer physical temperature, the
-coefficient $R_{\gamma}$ is the spectral reflection coefficient of
+coefficient $R_{foam,p}^{typ}$ is the spectral reflection coefficient of
 the  foam layer medium with the effective dielectric constant
 $\varepsilon_{N\alpha}$ and is given by:
 
 $$
-R_{\gamma}(\theta_i)=\displaystyle\frac{R_{01}^{\gamma}(\theta_i)e^{-2i\psi}+R_{12}^{\gamma}(\theta_i)}
-{e^{-2i\psi}+R_{01}^{\gamma}(\theta_i)R_{12}^{\gamma}(\theta_i)}
+R_{foam,p}^{typ}(f,\theta_i,d)=\displaystyle\frac{R_{01}^{p}(\theta_i)e^{-2i\psi}+R_{12}^{p}(\theta_i)}
+{e^{-2i\psi}+R_{01}^{p}(\theta_i)R_{12}^{p}(\theta_i)}
 $$
 
 where $\psi$ is an attenuation factor that depends on the foam
@@ -580,16 +582,16 @@ $$
 \theta_i}
 $$
 
-where $\lambda_o$ is the electromagnetic wavelength.  $R_{01}^{\gamma}$ are the
+where $\lambda_o$ is the electromagnetic wavelength.  $R_{01}^{p}$ are the
 Fresnel reflection coefficients between air (region 0) and foam
 (region 1):
 
 $$
-\begin{array}{lr}
  R_{01}^h(\theta_i)=\displaystyle\frac{\cos(\theta_i)-\sqrt{\varepsilon_{N\alpha}-\sin^2(\theta_i)}}{\cos(\theta_i)+\sqrt{\varepsilon_{N\alpha}-\sin^2(\theta_i)}}
-&
+$$
+
+$$
 R_{01}^v(\theta_i)=\displaystyle\frac{\varepsilon_{N\alpha}\cos(\theta_i)-\sqrt{\varepsilon_{N\alpha}-\sin^2(\theta_i)}}{\varepsilon_{N\alpha}\cos(\theta_i)+\sqrt{\varepsilon_{N\alpha}-\sin^2(\theta_i)}} \\
-\end{array}
 $$
 
 and $R_{12}^{\gamma}$ are the Fresnel reflection coefficients
@@ -734,11 +736,10 @@ the effective permittivity $\varepsilon_{w}$ here does not include
 scattering attenuation which is small due to the fact that the
 seawater is heavily absorptive.
 
-According to our simplified emissivity model for foam, the brightness temperature
-induced by a sea foam layer should be a function of:
+According to our simplified model, the emissivity induced by a typical sea foam layer at L-band is a function of:
 
 $$
-T_{B}=function(\theta_i,f,p,T_s,r_p,\delta,\kappa,d,f_a,SSS,SST)
+e_{foam,p}^{typ}=function(\theta_i,f,p,T_s,r_p,\delta,\kappa,d,f_a,SSS,SST)
 $$
 
 where $\theta_i$ is the radiometer incidence angle, $f$ the E.M.
@@ -750,7 +751,52 @@ layer thickness, $f_a$ is the void fraction beneath the foam
 layer, and finally, $SSS$ and $SST$ are the sea surface salinity
 and temperature respectively.
 
+##### Foam coverage model #####
+In Reul et al. (2003), it was shown that the fractional sea surface covered by foam-layers with thicknesses between $h$ and $h+dh$ at wind speed $U_{10}$, namely, the term $F(U_{10},h)dh$, can be decomposed as follows:
 
+$$
+dF(U_{10},h)=F(U_{10},h)dh= dF_c(U_{10},h)+ dF_s(U_{10},h)
+$$
+
+where $dF_c$ and $dF_s$ are the contributions to the coverage of actively breaking crests or active foam and of the passive foam, or static-foam formations (see [7] for detailed terminology), respectively.
+
+The model which is used for these two terms is a modified form of that described in detail in [13], where the following empirical expression for $dF_c(U_{10},h)$ was derived:
+
+$$
+dF_c(U_{10},h)=[2.9\times 10^{-5}\cdot U_{10}^{3} \cdot \sqrt{h}\cdot e^{-4.48\sqrt{h}}  dh]\times e^{\alpha_c\Delta T-\beta_c}	
+$$
+
+where $U_{10}$ is the 10-meter height wind speed, $\alpha_c$ and $\beta_c$ are numerical constants and $\Delta T$ is the air-sea surface temperature difference. Instead of using this form directly, however, we begin with empirical distribution functions for foam-generating breaker length per unit area per unit breaker speed interval as derived in [13] and then generalize these equations to accommodate improvement in the foam coverage distributions.
+
+The breaker length distribution function is a modified form of that derived from measurements of Melville and Matusov (2002),
+
+$$
+\Lambda(U_{10},c)=\displaystyle\tilde{A}\cdot\left(\frac{U_{10}}{10}\right)^3\times 3.3\times10^{-4}\cdot e^{\displaystyle -0.64\tilde{B}\left(\frac{c}{U_{10}}\right)}
+$$
+
+where $\tilde{A}$  and $\tilde{B}$  are constants to be specified. This distribution function differs from the empirical form of Melville and Matusov (2002) in that the exponent is a function of wave age rather than breaker phase speed.
+
+Using the preceding formulation of the crest length distribution function, we can write the crest and static foam incremental coverages in terms of wind speed $U_{10}$, breaker phase speed $c$c, and air-sea temperature difference $\Delta T$, respectively, as:
+
+$$
+dF_c(U_{10},c,\Delta T)=\displaystyle\left[\frac{2\pi a_{1}}{g}c^2\Lambda(U_{10},c)dc\right]\times e^{\alpha_c\Delta T-\beta_c}	
+$$
+
+$$
+dF_s(U_{10},c,\Delta T)=\displaystyle\left[\frac{2\pi a_{2}}{g}c^2\Lambda(U_{10},c)dc\right]\times e^{\alpha_s\Delta T-\beta_s}	
+$$
+
+The final exponentials in the two previous equations are atmospheric stability correction factors, which have a significant impact on the foam coverage. The free parameters in these correction factors are given fixed values. The constants $a_{1}$  and $a_{2}$  in the above equations are constants that reflect the persistence time of the foam layers, which is typically much larger for static than for crest foam.
+
+In the modified formulation, we note that the incremental foam fractional coverage for both static and crest foam is a function of
+
+-generating breaking front speed $c$,
+-the 10 m wind speed  $U_{10}$, and
+-the air-sea temperature difference $\Delta$.
+
+The parameters $\alpha_c$ and $\beta_c$  of the thermal correction factors were determined in Reul et al. (2003) for both 'crest-foam' and 'static-foam' by best fitting the model to Monahan and Woolf [1989]'s empirical laws. Using a least-square method, the determined numerical values for  $\alpha$ and $\beta$    are: $\alpha_c$= 0.198 and  $\beta_c$  = 0.91    for 'crest-foam coverage', and $\alpha_s$= = 0.086 and  $\beta_s$= 0.38 for 'static-foam coverage'.
+
+To compute the total contribution of foam to the measured brightness temperature, we must determine the distribution of foam as a function of characteristic foam thickness, from which time dependence has been removed by assuming that foam layers associated with fronts moving at a given speed have equal probability of being at any stage of development. Using this assumption together with a simple model for the time dependence of foam layer depth, we obtain for crest foam the depth
 
 
 ### Atmospheric contributions at L-band ###
