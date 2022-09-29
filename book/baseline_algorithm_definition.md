@@ -791,13 +791,26 @@ The final exponentials in the two previous equations are atmospheric stability c
 In the modified formulation, we note that the incremental foam fractional coverage for both static and crest foam is a function of
 
 -generating breaking front speed $c$,
+
 -the 10 m wind speed  $U_{10}$, and
--the air-sea temperature difference $\Delta$.
+
+-the air-sea temperature difference $\Delta T$.
 
 The parameters $\alpha_c$ and $\beta_c$  of the thermal correction factors were determined in Reul et al. (2003) for both 'crest-foam' and 'static-foam' by best fitting the model to Monahan and Woolf [1989]'s empirical laws. Using a least-square method, the determined numerical values for  $\alpha$ and $\beta$    are: $\alpha_c$= 0.198 and  $\beta_c$  = 0.91    for 'crest-foam coverage', and $\alpha_s$= = 0.086 and  $\beta_s$= 0.38 for 'static-foam coverage'.
 
 To compute the total contribution of foam to the measured brightness temperature, we must determine the distribution of foam as a function of characteristic foam thickness, from which time dependence has been removed by assuming that foam layers associated with fronts moving at a given speed have equal probability of being at any stage of development. Using this assumption together with a simple model for the time dependence of foam layer depth, we obtain for crest foam the depth
 
+$$
+\overline{\delta}_{\tau^{\star}}=\displaystyle\frac{0.4c^2}{g}
+$$
+
+and for static foam, we obtain:
+
+$$
+\overline{\delta}_{\tau}=\displaystyle\frac{0.4c}{2\pi a}\left[\frac{5c}{2g}+\tau'\cdot\left(1-e^{\frac{c}{g\tau'}(2\pi a-5)}\right)\right]
+$$
+
+In the above equations, $g$ is the acceleration of gravity and $c$ is the breaker phase speed, and $\tau'$  is the exponential decay time of the foam depth after the mean duration time of the breaking events (nominally taken to be 3.8 s for salt water). These expressions can be used to transform the differential foam coverage expressions into expressions for the incremental coverage per unit foam thickness.
 
 ### Atmospheric contributions at L-band ###
 
