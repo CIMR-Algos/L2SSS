@@ -1332,12 +1332,18 @@ Subsection Text
 
 ### Algorithm Assumptions and Simplifications
 
-Subsection Text
 
 ### Level-2 end to end algorithm functional flow diagram
 
-Subsection Text
+<img src="../Sketch1.png" alt="fishy" class="bg-primary" width="400px">
 
+```
+--- 
+name: Sketch1
+---
+Level-2 SSS end to end algorithm functional flow diagram. This ATBD includes all parts with background Blue domain. We also include the algorithms part (correction for faraday roation and removal of surface scattered space contributions) that shall be corrected for between TOA and antenna level Tbs. These are shown in clear blue background color.  
+
+```
 ### Functional description of each Algorithm step
 
 Subsection Text
