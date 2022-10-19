@@ -322,7 +322,7 @@ applicable at arbitrary microwave frequencies, incidence and azimuth angles, and
 within a limited set of selected model parameters against Aquarius and SMAP observations from 0- to 20-m/s wind speeds.
 
 
-#####Two-scale Approach
+##### Two-scale Approach
 
 
 The two-scale ocean surface emissivity model approximates ocean surface emission statistics using two spectral scales by considering small-scale capillary waves as riding on the top of large-scale gravity waves (Yueh et al., 1997). The total thermal emission is calculated by integration of the rough surface spectral emission
@@ -343,7 +343,15 @@ fractional coverage of the facet, and $\overline{e}_F$ is the emissivity vector
 for a fully foam-covered surface facet. The Stokes emissivity
 vector in the local facet coordinate system is defined as
 
-
+$$
+\overline{e}_l\equiv
+\begin{pmatrix}
+e_{v,l}
+e_{h,l}
+e_{U,l}
+e_{V,l}
+\end{pmatrix}
+$$
  
 Sea surface microwave emission for a given frequency and viewing geometry depends upon the sea water dielectric constant as well as sea surface roughness and sea foam. From detailed analyses presented in Johnson and Zhang (1999), the sea roughness contribution to the surface emissivity can be treated as the product of an electromagnetic weighting function and the sea surface roughness spectrum integrated over all surface wavelengths. The weighting function shows resonance peaks in the neighborhood of surface wavelengths with scales comparable to the electromagnetic wavelength (i.e., 21 cm for the L-band).
 The sea surface roughness spectrum around these small surface wave scales and associated wind-induced emissivity contributions generally correlate with the local surface winds. The sea surface roughness effect on microwave emissivity is therefore generally characterized as a function of the local surface wind speed and direction. These effects largely dominate the error budget of satellite SSS retrieval from L-band
