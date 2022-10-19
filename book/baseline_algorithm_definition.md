@@ -1111,6 +1111,7 @@ This scattering model is using effective sea surface slope variance parameters w
 ### Accounting for rotation of the polarization plane in the Stokes vector ###
 
 In this section, we summarize the Stokes vector transformation that is applied to the forward model from the surface basis to the instrument antenna frame basis, accounting for both a change in polarization basis and the Faraday rotation associated with the passage of radiation through the ionosphere.
+
 #### From surface polarization basis to Ludwig-3 antenna basis ####
 
 <img src="ludwig-3.png" alt="fishy" class="bg-primary" width="200px">
@@ -1243,7 +1244,15 @@ $$
 \mathbf{\hat{L}_y}'=\mathbf{L_y}'/||\mathbf{L_y}'||
 $$
 
-Given a target/satellite position with angles $(\theta_e, \phi_e)$ and $(\theta_s, \phi_s)$, both the surface polarization basis vectors $(\bf{\hat{h}},\bf{\hat{v}})$ and Ludwig-3 basis $(\mathbf{\hat{L}_x}',\mathbf{\hat{L}_y}')$ can be determined with the previous equations. To find the clockwise basis rotation of the surface basis into the Ludwig-3 basis, we note that this corresponds to a counterclockwise rotation of the electric field vector itself, and so :
+Given a target/satellite position with angles $(\theta_e,\phi_e)$ and $(\theta_s,\phi_s)$, both 
+
+- the surface polarization basis vectors $$(\hat{h},\hat{v})$$ 
+
+and 
+
+- Ludwig-3 basis $(\hat{L_x}',\hat{L_y}')$
+
+can be determined with the previous equations. To find the clockwise basis rotation of the surface basis into the Ludwig-3 basis, we note that this corresponds to a counterclockwise rotation of the electric field vector itself, and so :
 
 $$
 \begin{pmatrix}
@@ -1265,7 +1274,8 @@ E_{v} \\
 \begin{pmatrix}
 E_{h} \\ 
 E_{v} \\
-\end{pmatrix}$$	
+\end{pmatrix}
+$$	
 
 Therefore, we have :
 
@@ -1335,7 +1345,7 @@ Subsection Text
 
 ### Level-2 end to end algorithm functional flow diagram
 
-<img src="../Sketch1.png" alt="fishy" class="bg-primary" width="400px">
+<img src="Sketch1.png" alt="fishy" class="bg-primary" width="800px">
 
 ```
 --- 
