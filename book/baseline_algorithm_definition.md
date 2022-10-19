@@ -280,10 +280,72 @@ First Stokes parameter of the Brightness temperature $$(T_{esh}+T_{esv})/2$$ cha
 #### Physics of the problem ####
 
 At a given frequency, the total surface emissivity $E_p$ can be modeled with a specular part $e_{sp}^{(0)} (\theta_s,S,T_s)$ and a part caused by ocean roughness $e_{rp}^{rough}$. In order to measure sea surface salinity with the required accuracy it is necessary to remove the ocean surface roughness signal from the observed CIMR brightness temperatures. This requires an accurate
-knowledge of the signal itself as well as the ocean surface wind speed.
+knowledge of the signal itself as well as the ocean surface wind speed. Wind-induced surface waves are the primary contributor to
+ocean surface roughness, with internal waves, wind-current
+interactions, and ship wakes to be important but secondary
+contributors (Gasiewski and Kunkee, 1994). Wind-induced waves can be divided into two
+primary scales (Yueh, 1997):  1) large-scale gravity waves and 2) smallscale gravity capillary waves riding atop the large-scale gravity
+waves (Johnson and Zhang, 1999). 
 
-Sea surface microwave emission for a given frequency and viewing geometry depends upon the sea water dielectric constant as well as sea surface roughness and sea foam. From detailed analyses presented in
-Johnson and Zhang (1999), the sea roughness contribution to the surface emissivity can be treated as the product of an electromagnetic weighting function and the sea surface roughness spectrum integrated over all surface wavelengths. The weighting function shows resonance peaks in the neighborhood of surface wavelengths with scales comparable to the electromagnetic wavelength (i.e., 21 cm for the L-band).
+- The large-scale waves cause the local surface incidence angle to differ from the effective earth incidence
+angle, and mix vertical and horizontal polarizations (Gasiewski and Kunkee, 1994). 
+
+- The small-scale waves modify the specular surface reflection (or emission) through the bistatic scattering of the radiation incident
+upon the ocean surface. 
+
+Development and analysis of the two-scale model for ocean waves and resulting microwave ocean emissivities were presented in (Yueh, 1997) and (Yueh et al., 1994, 1999; Johnson 2006; Ma et al., 2021; Lee and Gasiewski, 2022), within which were published two-scale model algorithms that have 
+been successfully used to date for the prediction of ocean wave influences on surface emission.
+Ocean foam (i.e., white capping) is an air–sea mixture caused by ocean wave breaking and is an additional
+surface process that strongly increases ocean surface emissivity (Monahan and O’Muircheartaigh, 1986; Stogryn, 1972; Reul et al. 2003; Camps et al., 2005) at microwave frequencies due to its near-blackbody behavior. As wind speed increases, ocean foam coverage also increases, resulting in a large
+discrepancy between two-scale emissivity calculations made with and without consideration of foam coverage. The
+quasi-blackbody models used for both foam emissivity and coverage are in themselves of limited accuracy due to the
+paucity of in situ observations for both foam coverage and emissivity that have been able to be made in conjunction with
+brightness temperatures from passive microwave instruments. In spite of numerous efforts to derive a suitable empirical
+relationship between foam coverage and ocean surface wind speed (Monahan and O’Muircheartaigh, 1986; Erickson et al., 1986; Asher et al., 2002; Bondur and Sharkov, 1982; Anguelova and Webstern 2006; Callaghan et al., 2006), there is to date no universally accepted relationship between them due to the variable conditions under
+which foam is produced, as well as its spatial inhomogeneity. This shortcoming is especially true for breaking waves caused by shoaling. Smith et al. (2008) found that the differences in surface-referenced microwave brightness temperatures between WindSat observations and a two-scale model
+developed by Johnson (2006) were significant, especially in the zeroth-azimuthal-harmonic components of ocean brightness
+at a wind speed of 8–20 m/s. The discrepancy was largely due to foam coverage and emissivity models. They concluded
+that an empirical tuning process using observed satellite data is needed to model ocean surface emissivity with enough precision
+for general retrieval and data assimilation applications. 
+
+The limitations on the various purely physical published models on the ocean surface emissivity include a limited
+range of validity in frequency and incidence angle. Combined physical and empirical models have been used to correct for
+these shortcomings but do not necessarily permit extension of the models to arbitrary frequencies and incidence angles,
+as required for the design and development of new observation systems. The intent of the study has been to synthesize the
+most relevant of the various purely physical models and observational data that have been collected over more than a fouryear
+period into an updated model while making corrections to key errors that have propagated in the literature into the
+physical models used as a basis for much contemporary work in passive microwave radiative transfer modeling.
+
+
+In this algorithm, a full Stokes vector model for ocean surface emissivity based on the two-scale approach is used,
+applicable at arbitrary microwave frequencies, incidence and azimuth angles, and polarizations, and subsequently tuned
+within a limited set of selected model parameters against Aquarius and SMAP observations from 0- to 20-m/s wind speeds.
+
+
+#####Two-scale Approach
+
+
+The two-scale ocean surface emissivity model approximates ocean surface emission statistics using two spectral scales by considering small-scale capillary waves as riding on the top of large-scale gravity waves (Yueh et al., 1997). The total thermal emission is calculated by integration of the rough surface spectral emission
+from each statistically tilted facet, wherein the tilt is governed by the large-scale gravity wave spectrum. In the two-scale
+model, the full Stokes vector for the emissivity from a tilted facet is calculated in the local polarization coordinate system
+for convenience and then transformed into the global (or Earth-centric) polarization coordinate basis. A rotation matrix $\overline{\overline{R}}$ is
+used to convert the Stokes emission vector defined in the local polarization basis into that of the global polarization basis [Johnson, 2006].
+The calculation can be written as
+
+
+$$
+e_{rp}^{rough}=\overline{e}_g=\overline{\overline{R}} \cdot ((1-F_r)\overline{e}_l+F_r \overline{e}_F
+$$
+
+where $\overline{e}_l$ and $\overline{e}_g$ are the Stokes emissivity vectors in the local
+and global coordinates, respectively, $F_r$ is the ocean foam
+fractional coverage of the facet, and $\overline{e}_F$ is the emissivity vector
+for a fully foam-covered surface facet. The Stokes emissivity
+vector in the local facet coordinate system is defined as
+
+
+ 
+Sea surface microwave emission for a given frequency and viewing geometry depends upon the sea water dielectric constant as well as sea surface roughness and sea foam. From detailed analyses presented in Johnson and Zhang (1999), the sea roughness contribution to the surface emissivity can be treated as the product of an electromagnetic weighting function and the sea surface roughness spectrum integrated over all surface wavelengths. The weighting function shows resonance peaks in the neighborhood of surface wavelengths with scales comparable to the electromagnetic wavelength (i.e., 21 cm for the L-band).
 The sea surface roughness spectrum around these small surface wave scales and associated wind-induced emissivity contributions generally correlate with the local surface winds. The sea surface roughness effect on microwave emissivity is therefore generally characterized as a function of the local surface wind speed and direction. These effects largely dominate the error budget of satellite SSS retrieval from L-band
 radiometers (Yueh et al., 2001). Hence, very accurate roughness correction models are needed. Furthermore, roughness measurements must be available in near real time for use in ground segment processors. In this respect, the spatial and temporal collocation of these auxiliary measurements with the satellite observations is also crucial.
 Various electromagnetic models have been developed to estimate the effects of wind-induced roughness on sea surface emission in the L-band. These include rigorous (Reul et al., 2005), asymptotic (Yueh, 1997; Johnson and Zhang, 1999; Dinnat et al., 2002, 2003; Vall-llossera et al., 2003) and empirical or semi-empirical model types (Camps et al., 2004, 2005; Boutin et al., 2004; Gabarró et al., 2004; Guimbard et al., 2012; Font et al., 2013; Yueh et al., 2013, 2014, 2015; Yin et al., 2012, 2016; Fore et al., 2016; Meissner and Wentz, 2012, Meissner et al., 2014, 2018).
@@ -544,7 +606,7 @@ where the  terms $e_{r\gamma}^{(n)}$ represent the nth azimuthal harmonics of th
 Although foam generated by breaking waves typically covers only a few percent of the sea surface, it has a profound effect on the average microwave brightness of the ocean surface [ref missing]. For surface wind speeds greater than 15 m/s, foam-induced effects may provide as much as half of the total sea surface signature to an orbiting microwave radiometer [ref].
 At L-band, WISE [ref] and FROG [ref] experiments have provided detailed L-band emissivity measurements of the sea foam over a wide range of incidence angles and salinities at both polarizations. Although foam as a weaker impact at 1.4 GHz than at higher frequencies, it was shown that the presence of foam also increases the emitted brightness temperature at L-band, since it acts as a transition layer that adapts the wave impedance of the two media: water and air. The increase depends on the fraction of the sea surface covered by foam and its thickness, which can be parameterized in terms of the local wind strength, but it depends as well on other factors, such as the air-sea temperature difference, the sea water temperature, the fetch, etc… FROG 2003 experiments revealed that at a salinity of 37 psu, the foam-induced emissivity increase is ~0.007 per mm of foam thickness (extrapolated at nadir), increasing with increasing incidence angles at vertical polarization, and decreasing with increasing incidence angles at horizontal polarization.  According to the model developed by [ref], for a 12 m/s wind speed, one should expect in average a coverage-weighted foam thickness of about 0.5 cm: this translates to an increase in brightness temperature of about 0.2 K at an SST of about 15°C. At 20 m/s, the calculation predicts a 0.5 K increases: this might have a non negligible impact for salinity retrieval accuracy in high wind.
 
-In [12], it was shown that the emissivity model proposed by [14] correctly predicts the measured foam emissivities at L-band provided some auxiliary parameter describing the foam-water system are tuned. The purpose of this section is to document this forward foam emissivity model, which is used here to provide foam impact corrections in the version of the SSS retrieval algorithm used at launch of the ESA's Soil Moisture and Ocean Salinity (SMOS) satellite mission.
+In [12], it was shown that the emissivity model proposed by [14] correctly predicts the measured foam emissivities at L-band provided some auxiliary parameter describing the foam-water system are tuned. The purpose of this section is to document this forward foam emissivity model, which is used here to provide foam impact corrections in the version of the SSS retrieval algorithm.
 As proposed by [13], foam formations contribute to the total sea surface brigthness temperature  measured by a radiometer as function of wind speed $U_{10}$ following:
 
 $$T_{foam,p}=T_{foam}\cdot \int e_{foam,p}^{typ}(f,p,\theta_i,t_{foam}) F_f(U_{10},t_{foam}) d t_{foam} $$
