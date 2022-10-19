@@ -324,6 +324,7 @@ within a limited set of selected model parameters against Aquarius and SMAP obse
 
 ##### Two-scale Approach
 
+##### Mathematical description
 
 The two-scale ocean surface emissivity model approximates ocean surface emission statistics using two spectral scales by considering small-scale capillary waves as riding on the top of large-scale gravity waves (Yueh et al., 1997). The total thermal emission is calculated by integration of the rough surface spectral emission
 from each statistically tilted facet, wherein the tilt is governed by the large-scale gravity wave spectrum. In the two-scale
@@ -334,7 +335,7 @@ The calculation can be written as
 
 
 $$
-e_{rp}^{rough}=\overline{e}_g=\overline{\overline{R}} \cdot ((1-F_r)\overline{e}_l+F_r \overline{e}_F
+e_{rp}^{rough}=\overline{e}_g=\overline{\overline{R}} \cdot \left\[(1-F_r)\overline{e}_l+F_r \overline{e}_F\right\]
 $$
 
 where $\overline{e}_l$ and $\overline{e}_g$ are the Stokes emissivity vectors in the local
@@ -344,14 +345,36 @@ for a fully foam-covered surface facet. The Stokes emissivity
 vector in the local facet coordinate system is defined as
 
 $$
-\overline{e}_l\equiv
+\overline{e_l} \equiv
 \begin{pmatrix}
-e_{v,l}
-e_{h,l}
-e_{U,l}
-e_{V,l}
+e_{v,l} \\
+e_{h,l} \\
+e_{U,l} \\
+e_{V,l} \\
+\end{pmatrix}
+=\displaystyle\frac{\overline{T}_{B,l}}{T_S}
+$$
+
+ where $e_{v,l}, e_{h,l}, e_{U,l}$ and $e_{V,l}$ are the ocean surface emissivities for vertical polarization, horizontal polarization, and third and
+fourth Stokes emissivity components in the local facet-normal coordinate system, respectively. The third and fourth Stokes
+components represent the in-phase and quadrature cross-correlations between the upwelling vertical and horizontal polarized electric-field components, respectively.
+The vector $\overline{T}_{B,l}$ is the Stokes vector of upwelling microwave thermal emission propagating at angles $(\theta_l,\phi_l)$ from the facet under the
+condition of zero downwelling radiation, and $T_s$ is the surface physical temperature associated with microwave penetration depths of ~1 cm. 
+ 
+ The rotation matrix $\overline{\overline{R}}$ is
+ 
+ $$
+\overline{\overline{R}} =
+\begin{pmatrix}
+\cos^2{\alpha_r} & \sin^2{\alpha_r} & \frac{1}{2}\sin{2\alpha_r} & 0 \\
+\sin^2{\alpha_r} & \cos^2{\alpha_r} & -\frac{1}{2}\sin{2\alpha_r} & 0 \\
+-\sin{2\alpha_r} & \sin{2\alpha_r} & \cos{2\alpha_r} & 0 \\
+0 & 0 & 0 & 1
 \end{pmatrix}
 $$
+ 
+ where $\alpha_r$ is the polarization rotation angle between the local and global polarization systems defined in Fig. 1 and
+Appendix A. This matrix is a function of the surface slopes and observation direction. A derivation of the rotation matrix is provided in Appendix A.
  
 Sea surface microwave emission for a given frequency and viewing geometry depends upon the sea water dielectric constant as well as sea surface roughness and sea foam. From detailed analyses presented in Johnson and Zhang (1999), the sea roughness contribution to the surface emissivity can be treated as the product of an electromagnetic weighting function and the sea surface roughness spectrum integrated over all surface wavelengths. The weighting function shows resonance peaks in the neighborhood of surface wavelengths with scales comparable to the electromagnetic wavelength (i.e., 21 cm for the L-band).
 The sea surface roughness spectrum around these small surface wave scales and associated wind-induced emissivity contributions generally correlate with the local surface winds. The sea surface roughness effect on microwave emissivity is therefore generally characterized as a function of the local surface wind speed and direction. These effects largely dominate the error budget of satellite SSS retrieval from L-band
