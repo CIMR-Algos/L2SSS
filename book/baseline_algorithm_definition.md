@@ -119,8 +119,8 @@ Whatever the chosen retrieval method, a radiative transfer forward model is need
 -  a surface roughness and foam-induced correction model,
 -  a Radiative Transfer Model for Atmospheric corrections,
 -  a scattering model to correct for sea surface scattered Solar and celestial radiation, and, 
--  a model to correct for geometric rotation from surface polarization basis to antenna basis,
--  and to model the $T_B$ at antenna level, a model to correct for Faraday rotation in the ionosphere.
+-  a correction for geometric rotation from surface polarization basis to antenna polarization basis,
+-  and, to model the $T_B$ at antenna level, a model to correct for Faraday rotation in the ionosphere.
 
 We review these forward model components and corrections in the following subsections.
 
