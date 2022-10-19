@@ -373,8 +373,20 @@ condition of zero downwelling radiation, and $T_s$ is the surface physical tempe
 \end{pmatrix}
 $$
  
- where $\alpha_r$ is the polarization rotation angle between the local and global polarization systems defined in Fig. 1 and
-Appendix A. This matrix is a function of the surface slopes and observation direction. A derivation of the rotation matrix is provided in Appendix A.
+ where $\alpha_r$ is the polarization rotation angle between the local and global polarization systems defined in Fig. \ref{Conf_coordinate_system} and
+Appendix A. 
+
+<img src="Conf_coordinate_system.png" alt="fishy" class="bg-primary" width="800px">
+
+```
+--- 
+name: Conf_coordinate_system
+---
+Configuration and coordinate system used in this ATBD.  
+
+
+
+This matrix is a function of the surface slopes and observation direction. A derivation of the rotation matrix is provided in Appendix A.
  
 Sea surface microwave emission for a given frequency and viewing geometry depends upon the sea water dielectric constant as well as sea surface roughness and sea foam. From detailed analyses presented in Johnson and Zhang (1999), the sea roughness contribution to the surface emissivity can be treated as the product of an electromagnetic weighting function and the sea surface roughness spectrum integrated over all surface wavelengths. The weighting function shows resonance peaks in the neighborhood of surface wavelengths with scales comparable to the electromagnetic wavelength (i.e., 21 cm for the L-band).
 The sea surface roughness spectrum around these small surface wave scales and associated wind-induced emissivity contributions generally correlate with the local surface winds. The sea surface roughness effect on microwave emissivity is therefore generally characterized as a function of the local surface wind speed and direction. These effects largely dominate the error budget of satellite SSS retrieval from L-band
