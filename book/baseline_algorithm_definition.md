@@ -10,7 +10,9 @@
 name: Figure8
 ---
 signals received by a Space borne L-band radiometer 
+
 ```
+
 As illustrated in Figure 8, several geophysical parameters other than seawater salinity and temperature contribute significantly to L-band $T_{B}$ measured by satellite sensors at antenna level (e.g., see Yueh et al., 2001; Font et al., 2004, Reul et al., 2020). To properly retrieve SSS, these contributions need to be accurately known and used in corrections of measured, or forward model simulations, of antenna $T_{B}$. They include:  the direct and earth-reflected solar and sky emission (Le Vine et al. 2005; Reul et al., 2007, 2008; Tenerelli et al., 2008; Dinnat and Le Vine, 2008), the Faraday rotation in the ionosphere (Yueh et al., 2000; Le Vine and Abraham, 2002; Vergely et al., 2014),  the impact of the atmosphere (Liebe et al., 1992; Skou et al., 2005; Wentz and Meissner, 2016), and the effect of sea surface roughness on L-band emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Yueh et al., 2010, 2014).   
 
 The upwelling brightness temperatures above the atmosphere but below the ionosphere (before Faraday rotation) is referred hereafter to as the "Top of Atmosphere" brightness temperature and denoted $T_{tp}^{TOA}$ (with superscript "TOA") for upwelling signal in polarization $p$.
@@ -374,20 +376,69 @@ condition of zero downwelling radiation, and $T_s$ is the surface physical tempe
 $$
  
  where $\alpha_r$ is the polarization rotation angle between the local and global polarization systems defined in Fig. \ref{Conf_coordinate_system} and
-Appendix A. 
+Appendix A. This matrix is a function of the surface slopes and observation direction. A derivation of the rotation matrix is provided in Appendix A.
 
-<img src="Conf_coordinate_system.png" alt="fishy" class="bg-primary" width="800px">
+<img src="Conf_coordinate_system.png" alt="fishy" class="bg-primary" width="400px">
 
 ```
 --- 
 name: Conf_coordinate_system
 ---
 Configuration and coordinate system used in this ATBD.  
+```
 
-
-
-This matrix is a function of the surface slopes and observation direction. A derivation of the rotation matrix is provided in Appendix A.
+The Stokes emissivity vector for small-scale emission is effectively averaged over the slope distributions of the large-scale
+waves. In addition to the polarization basis rotation angle, the tilt angles due to large-scale waves also affect the
+projected facet area in the direction of observation. In effect, the emission from tilted facets analyzed using the small-scale
+emission theory is weighted by the subtended solid angle of the large-scale slanted surface as viewed by the observer (Yueh et al., 1997). This
+effect is considered by multiplying by a factor of $1-S_x\tan{\theta_o}$ in the global emissivity integrand for the integration over the
+slope distributions of the large-scale waves. The derivation of this factor can be found in Appendix B.
  
+ Accordingly, the two-scale ocean surface emissivity vector $\overline{e}$ is calculated as
+ 
+ $$
+ \overline{e_{rough}}(\theta_o,\phi_o)=\displaystyle\int_{-\infty}^{\infty}\int_{-\infty}^{\cot{\theta_o}} \overline{e_g}(\theta_o,\phi_o;S_x,S_y)\times (1-S_x\tan{\theta_o}) P(S'_x,S'_y)dS_xdS_y
+ $$
+ 
+where $S_x$ and $S_y$ are the surface slopes in along- and across-radiometer
+look directions, respectively, $\theta_o$ is the Earth observation
+angle with respect to the local zenith direction of the mean surface, and $\phi_o$ is the relative azimuth angle between
+wind and radiometer look directions.  $S_x$ and $S_y$ are calculated from the slopes in the upwind and crosswind directions along with the azimuth angle $\phi_o$:
+
+$$
+\begin{pmatrix}
+S_x' \\
+S_y' \\
+\end{pmatrix}=
+\begin{pmatrix}
+\cos{\phi_o} & -\sin{\phi_o} \\
+\sin{\phi_o} & \cos{\phi_o} \\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+S_x \\
+S_y \\
+\end{pmatrix}
+$$
+
+where $S_x'$ and $S_y'$  are the surface slopes in upwind and crosswind
+coordinate system directions, respectively. In this ATBD, the
+upwind direction is fixed along the negative x-axis (i.e., the wind direction vector points in the positive x-direction).
+A description of the geometry can be found in Fig.\ref{Conf_coordinate_system}. The
+integration over the upwind direction in the two-scale ocean surface emissivity is limited to $\cot{\theta_o}$ 
+to preclude slopes that impart shadowing by large-scale waves in the direction of the observer.
+
+<img src="Conf_coordinate_system.png" alt="fishy" class="bg-primary" width="400px">
+
+```
+--- 
+name: Conf_coordinate_system
+---
+Configuration and coordinate system used in this ATBD.  
+```
+
+###### Small-Scale Perturbation Model
+
 Sea surface microwave emission for a given frequency and viewing geometry depends upon the sea water dielectric constant as well as sea surface roughness and sea foam. From detailed analyses presented in Johnson and Zhang (1999), the sea roughness contribution to the surface emissivity can be treated as the product of an electromagnetic weighting function and the sea surface roughness spectrum integrated over all surface wavelengths. The weighting function shows resonance peaks in the neighborhood of surface wavelengths with scales comparable to the electromagnetic wavelength (i.e., 21 cm for the L-band).
 The sea surface roughness spectrum around these small surface wave scales and associated wind-induced emissivity contributions generally correlate with the local surface winds. The sea surface roughness effect on microwave emissivity is therefore generally characterized as a function of the local surface wind speed and direction. These effects largely dominate the error budget of satellite SSS retrieval from L-band
 radiometers (Yueh et al., 2001). Hence, very accurate roughness correction models are needed. Furthermore, roughness measurements must be available in near real time for use in ground segment processors. In this respect, the spatial and temporal collocation of these auxiliary measurements with the satellite observations is also crucial.
@@ -396,6 +447,8 @@ Various electromagnetic models have been developed to estimate the effects of wi
 In the latest algorithms implemented at ESA and NASA data centers, L-band Geophysical Model Functions (GMF) used for correction for the roughness-induced emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Fore et al., 2016) are all rather similar in shape and provide consistent results as a function of the 10 m height neutral wind speed, $U_{10}$, incidence angles and polarization. They usually include an even 2nd order harmonic representation of relative wind azimuth dependence (Meissner et al., 2014), $\phi_{r}=\phi_{w}-\alpha$, where $\phi_{w}$, is the wind direction and $\alpha$ the radiometer azimuthal look direction relative to North:
 
 $$∆T_{rough,p}(U_{10},θ)=T_s\cdot ∆e_{r,p}(U_{10},θ)=T_s\cdot \left\(∆e_{o,p}(U_{10},θ)+∆e_{1,p}(U_{10},θ)\cdot \cos⁡(\phi_{r} )+∆e_{2,p}(U_{10},θ)\cdot\cos⁡(2\phi_{r})\right\) $$
+
+
 
 
 Analytical and numerical models for the calculation of the rough ocean surface polarimetric thermal emission have been developed [6]–[11], primarily through application of standard surface scattering approximate methods to calculate surface emissivity using Kirchhoff’s law. Models based on both the small perturbation method (SPM) and the physical optics (PO) approximation has been presented.  The physical optics (PO) approximation was shown to clearly underestimate the sea surface emissivity observations at L-band [12, 13], particularly in the low incidence angle range (less than about 20-30°). This is mainly because such model does not account for scattering on small roughness elements. Recent works [8-10] has further revealed that use of the SPM for emission calculations results in a small slope, rather than small height, emission approximation identical to that which would be obtained from the small slope approximation of [14], so that the SPM can provide accurate emission predictions even for surfaces with large heights in terms of the electromagnetic wavelength. Numerical tests of the SPM for a set of canonical periodic surfaces have confirmed this statement [15]. Moreover, the success of the SPM/SSA in matching measured brightness temperature [6,16-19] has shown that the technique should be applicable for rough ocean surface brightness temperature predictions. These results motivate use of the SPM/small slope approximation (SPM/SSA) for the prediction of ocean polarimetric thermal emission at L-band. The SPM/SSA applies standard small perturbation theory to predict the bistatic scattering coefficients of a rough surface, and integrates these scattering coefficients over the upper hemisphere to obtain the reflectivities and hence brightness temperatures. The resonance behaviours observed in the critical phenomena region [20] produce a significant sensitivity of emission harmonics predicted by the SSA to ocean length scales of order equal to the electromagnetic wavelength. However, these emission harmonics are also sensitive (with the exception of the fourth Stokes parameter) to anisotropy in ocean length scale much larger than  the electromagnetic wavelength. Use of the SPM/SSA up to 2nd order produces an expansion in surface slope, with zero order terms reproducting flat surface emission results, first order terms identically zero, and second order terms providing the first prediction of changes from flat surface brightnesses.
