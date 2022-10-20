@@ -1388,7 +1388,7 @@ Wentz, 2004, 2012).
 
 For this version of the validation of our TSM note that the old kudryavtsev (1999)'s spectrum has been used and only a gaussian large scale slope PDF has been used.
 
-<img src="../GMF_vs_TSM_nofoam.png" alt="fishy" class="bg-primary" width="600px">
+<img src="GMF_vs_TSM_nofoam.png" alt="fishy" class="bg-primary" width="600px">
 
 ```
 --- 
