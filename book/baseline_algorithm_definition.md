@@ -428,14 +428,54 @@ A description of the geometry can be found in Fig.\ref{Conf_coordinate_system}. 
 integration over the upwind direction in the two-scale ocean surface emissivity is limited to $\cot{\theta_o}$ 
 to preclude slopes that impart shadowing by large-scale waves in the direction of the observer.
 
-<img src="Conf_coordinate_system.png" alt="fishy" class="bg-primary" width="400px">
+<img src="TSM_Flowchart.png" alt="fishy" class="bg-primary" width="800px">
 
 ```
 --- 
-name: Conf_coordinate_system
+name: TSM_Flowchart
 ---
-Configuration and coordinate system used in this ATBD.  
+Flowchart of the two-scale microwave rough ocean surface emissivity model used in this ATBD.  
 ```
+
+The two-scale model consists of five distinct physical modules (see Fig. \ref{TSM_Flowchart}):
+
+- Sea water dielectric constant model
+- Ocean Wave Height Spectrum
+- Small-scale perturbation
+- Foam Influences
+- Large Scale corrections
+
+
+Each of these four last modules is discussed and clarified relative to the published literature described in the
+following.
+
+###### Ocean Wave Height Spectrum Model
+
+Following Elfouhaily et al.(1987), the model of wave spectrum developed by Kudryatsev et al.
+[1999] is given in the full wavenumber range at surface wind speed $U_{10}$ by:
+
+$$W(\vec{k},,U_{10})=B(\vec{k},U_{10})/k^3=\frac{B_{lw}(\vec{k},c_p/U_{10})+B_{sw}(\vec{k},U_{10})}{k^3}$$
+
+where $B_{lw}$ and $B_{sw}$ are the respective curvature spectrum contributions from low and high wavenumbers and where $c_p/U_{10}$ is the wave age.
+
+The low-wavenumber curvature spectrum $B_{lw}$ is assumed to obey:
+
+$$B_{lw}=\alpha_p L_{PM} F_p c(k_p)/2c(k_{\rho}') $$
+
+The parameters in the above equation are dependent on $U_{10}$, and on inverse wave age $\Omega=U_{10}/c(k_p)$, where $c(k_p)$ is the phase speed at $k_p$, the wavenumber at the spectral peak.
+
+$$ 
+\begin{matrix}
+\alpha_p=0.006 \Omega^{1/2} & k_p=g \Omega^{2}/U^2_{10} \\
+c(k_{\rho}')=\left\[g(1+k_{\rho}^{'2}/k_{m}^{2})/k^{'}_{\rho}\right\]^{1/2} \\
+\end{matrix}
+$$
+
+where $g$ is gravitational constant and $k_m$=370 rad.m$^{-1}$. The function $F_p$ is given by:
+
+$$
+F_p=\gamma^{\Gamma}\exp{{-\Omega[(k_{\rho}'/k_{\rho})^{1/2}-1]\sqrt{10}}}
+$$
 
 ###### Small-Scale Perturbation Model
 
