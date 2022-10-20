@@ -715,7 +715,7 @@ $$
 $$
 $$
 
-where $R_{vv}^{(0)}$ and $R_{hh}^{(0)}are the Fresnel reflection coefficients
+where $R_{vv}^{(0)}$ and $R_{hh}^{(0)}$ are the Fresnel reflection coefficients
 at vertical and horizontal polarizations, respectively. 
 
 Sea surface microwave emission for a given frequency and viewing geometry depends upon the sea water dielectric constant as well as sea surface roughness and sea foam. From detailed analyses presented in Johnson and Zhang (1999), the sea roughness contribution to the surface emissivity $\Delta \bar{e_{ss}}$ can be treated as the product of an electromagnetic weighting function and the sea surface roughness spectrum integrated over all surface wavelengths. The weighting function shows resonance peaks in the neighborhood of surface wavelengths with scales comparable to the electromagnetic wavelength (i.e., 21 cm for the L-band):
@@ -724,8 +724,7 @@ the local polarization coordinate system with local incidence angle $\theta_l$ a
 
 $$
 \Delta \bar{e_{ss}}=
-\
-left[\begin{matrix}
+\left[\begin{matrix}
 \Delta \bar{e_{ssh}} \\ 
 \Delta \bar{e_{ssv}} \\
 \Delta \bar{e_{ssU}} \\
