@@ -678,6 +678,7 @@ spectrum is a folded spectrum, $B_j(\mathbf{k})$, that relates to the directiona
 $$
 B_j(\mathbf{k})=[B(\mathbf{k})+B(-\mathbf{k})]/2
 $$
+
 The angular modulation parameter, $\Delta$, of the folded
 spectra can be expressed through the directional spectrum
 in up-wind, down-wind, and cross-wind directions (spectra
@@ -686,6 +687,7 @@ correspondingly) as:
 $$
 \Delta(k)=\displaystyle\frac{\pi}{2}\frac{B_{up}+B_{d}-2B_{cr}}{B_o}
 $$
+
 where $B_o$ is omnidirectional (integrated over all directions)
 spectrum.
 
@@ -984,6 +986,17 @@ $$
 where $c_1$ and $c_2$ are the skewness coefficients, and $c_3$,
 $c_4$, and $c_5$ are the peakedness coefficients (see Table I).
 
+COEFFICIENTS FOR THE SEA SURFACE SLOPE PDF, WHERE U12.5 IS THE
+WIND SPEED AT 12.5 M ABOVE THE OCEAN SURFACE
+|  --- |
+|  Coefficients |
+|  $c_1=0.01-0.0086U_{12.5}$ |
+|  $c_2=0.04-0.0330U_{12.5}$ |
+|  $c_3=0.4$ |
+|  $c_4=0.12$ |
+|  $c_5=0.23$ |
+
+
 The coefficients $\sigma_u$ and $\sigma_c$   are the root-mean-square (rms)
 slopes for the upwind and crosswind directions, respectively,
 which are calculated from the long-wave height spectrum
@@ -996,6 +1009,19 @@ $$
 $$
 \sigma^2_c=\int_0^{ku}\int_0^{2\pi}k_{\rho}^3 \sin{\phi}^2 W(k_{\rho},\phi)d\phi dk_{\rho}
 $$
+
+where $W(k_{\rho},\phi)$ is the directional ocean surface wave height spectrum
+(discussed in previous Section), $k_{\rho}$  is the ocean surface
+radial wavenumber, $k_u$ is the long-wave cutoff wavenumber
+used to discriminate between the small-scale and large-scale
+regimes, and $\phi$ is the wave azimuthal direction relative to
+the wind. In previous studies (Johnson and Zhang, 1999; Johnson, 2006), the cutoff wavenumber
+$k_u$ has been selected to be between $k_o/5$ and $k_o/10$, where $k_o$ is the electromagnetic wavenumber.
+Determination of the cutoff wavenumbers (i.e., $k_l$ and $k_u$ in the TSM) is important because they determine the magnitude of
+the small-scale bistatic surface scattering contribution. Physically, the calculated contribution of bistatic surface scattering is much more sensitive to $k_l$ than $k_u$ because $k_l$ prescribes the
+somewhat critical boundary between the short- and long-wave
+portions of the spectrum, while $k_u$ needs to be selected large
+enough to ensure convergence of the SPM equations. Following Lee and Gasiewsky (2022), we set initial valuez of $k_l=k_o/10$ and $k_u=8k_o$.
 
 ### Sea Foam emissivity modelling at L-band ###
 
