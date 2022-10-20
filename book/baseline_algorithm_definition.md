@@ -730,7 +730,7 @@ $$
 \Delta \overline{e}_{ssU} \\
 \Delta \overline{e}_{ssV} \\
 \end{matrix}\right\]=
-\displaystyle\int_{k_{l}}^{k_{u}}\displaystyle\int_o^{2\pi}k_{\rho}'{W(k_{\rho}',\phi'+\phi_l)} 
+\displaystyle\int_{k_{l}}^{k_{u}}\int_o^{2\pi}k_{\rho}'{W(k_{\rho}',\phi'+\phi_l)} 
 \left[
 \begin{matrix}
 g_h(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')\\
@@ -960,8 +960,42 @@ e_{ssV}^{(2)}\sin(2\phi_{wr})
 \end{matrix}
 \right]
 $$
+
 where the  terms $e_{r\gamma}^{(n)}$ represent the nth azimuthal harmonics of the wind-excess emissivity. Note that due to the assumption of gaussianity in the sea surface statistics, the solution can be expressed strictly in terms of a roughness spectrum. Properties of a directional spectrum result in no first azimuthal harmonic variations being obtained; introduction of non-gaussianity is required to obtain first azimuthal harmonics.
 
+### Large Scale Correction ###
+
+Here, following Lee and Gasiewsky (2022), the large scale waves probaility distribution function $P(S'_x,S'_y)$ is based upon measurements by Cox and Munk [18] and modeled using the slope variance described by the truncated Gram–Charlier series of coefficients obtained from this publication. This
+probability density function (pdf) describes an anisotropic
+ocean surface:
+
+$$
+\begin{matrix}
+P(S'_x,S'_y) & = &\displaystyle\frac{1}{2\pi\sigma_u\sigma_c} \exp\left\[-\frac{S'^{2}_x}{2\sigma^2_u}-\frac{S'^{2}_y}{2\sigma^2_c}\right\] \\
+    & & \times \begin{bmatrix}
+                1-\frac{1}{2}c_1(\frac{S'^{2}_x}{\sigma^2_u}-1)\frac{S'_y}{\sigma_c}-\frac{1}{6}c_2(\frac{S'^{3}_y}{\sigma^3_c}-3\frac{S'_y}{\sigma_c}) \\
+		+\frac{1}{24}c_3(\frac{S'^{4}_x}{\sigma^4_u}-6\frac{S'^{2}_x}{\sigma^2_u}+3)  \\
+		+\frac{1}{4}c_4(\frac{S'^{2}_x}{\sigma^2_u}-1)(\frac{S'^{2}_y}{\sigma^2_c}-1) \\
+		+\frac{1}{24}c_5(\frac{S'^{4}_y}{\sigma^4_c}-6\frac{S'^{2}_y}{\sigma^2_c}+3)  \\
+				\end{bmatrix}
+\end{matrix}
+$$
+
+where $c_1$ and $c_2$ are the skewness coefficients, and $c_3$,
+$c_4$, and $c_5$ are the peakedness coefficients (see Table I).
+
+The coefficients $\sigma_u$ and $\sigma_c$   are the root-mean-square (rms)
+slopes for the upwind and crosswind directions, respectively,
+which are calculated from the long-wave height spectrum
+as
+
+$$
+\sigma^2_u=\int_0^{ku}\int_0^{2\pi}k_{\rho}^3 \cos{\phi}^2 W(k_{\rho},\phi)d\phi dk_{\rho}
+$$
+
+$$
+\sigma^2_c=\int_0^{ku}\int_0^{2\pi}k_{\rho}^3 \sin{\phi}^2 W(k_{\rho},\phi)d\phi dk_{\rho}
+$$
 
 ### Sea Foam emissivity modelling at L-band ###
 
@@ -1346,6 +1380,7 @@ Along a path at angle $θ_s$ from  nadir, the  unpolarized brightness temperatur
 $$T_{ea}(\theta_{s})=\sec⁡\theta_s [T_{bad}+T_{bav}]$$
 
 ### Sea Surface Scattered Solar (Sunglint) contributions ###
+
 At L-band, the sun is also a very hot thermal source with effective temperatures on the order of $10^6$ degrees during active periods of the solar cycle (Le Vine et al., 2005; Reul et al, 2007) with even higher amplitude emission is reached during solar flares. Even though the sun is relatively small in angular extent, it is such a strong source of radiation at L-band that solar effects remain an important potential sources of uncertainty on salinity retrieval (Le Vine, et al., 2005 ; Reul et al., 2007). 	For a real-aperture radiometer such as the Aquarius, SMAP and CIMR radiometers, sun glint (i.e. reflection at the sea surface) impacts the measurements through its contribution to the antenna temperature. Dinnat and Le Vine (2008) estimated that this contribution does not exceed about 0.14 K for Aquarius mission in quiet sun conditions (i.e., the sun brightness temperature equal about 500,000 K). Because the antenna boresight of the rotating real-aperture radiometer of SMAP and CIMR will enters the day side of the Earth’s terminator (i.e., the moving curve that divides the daylight side and the dark night side on Earth), the solar effects on the antenna brightness can be of much higher amplitude for this mission, potentially exceeding 15 K.  Observations with large sun glint shall be flagged in the CIMR salinity retrievals but small sunglint signal (less than few tenth of K) can be corrected for.  
 
 At the surface, the brightness temperature of the scattered solar radiation in polarization $p$ may be expressed as (Reul et al., 2007 [RD.14]):
@@ -1425,11 +1460,17 @@ where  $A=(\pi k^2 q^2)/(q_z^4)$ and $P$ is the sea surface slope 2D probability
 $$P(S_u,S_c)=\displaystyle\frac{1}{2\pi\sigma_u\sigma_c} \exp[-\frac{ξ^2+η^2}{2}]$$
 
 where  $σ_u^2$ and $σ_c^2$ are the upwind and crosswind mean square slope which are function of the surface wind speed (see further) and the normalized facet slopes are:
+
 $$\eta=  S_u⁄σ_u$$
+
 $$\zeta=S_c/σ_c$$
+
 and where the specular facet upwind and crosswind slopes are defined by:
+
 $$S_u=  s_{nx}⁄s_{nz}$$ 
+
 $$S_c=  -s_{ny}⁄s_{nz}$$ 
+
 with the cartesian components of the specular facet normal vector which are proportional to:
      
 $$s_{nx}=\displaystyle\frac{\hat{k}_{ox}+\hat{k}_{sx}}{2}$$
