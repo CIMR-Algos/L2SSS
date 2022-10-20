@@ -1326,7 +1326,7 @@ $$
 
 In the above equations, $g$ is the acceleration of gravity and $c$ is the breaker phase speed, and $\tau'$  is the exponential decay time of the foam depth after the mean duration time of the breaking events (nominally taken to be 3.8 s for salt water). These expressions can be used to transform the differential foam coverage expressions into expressions for the incremental coverage per unit foam thickness.
 
-### Roughness model validation ###
+### Two scale Roughness-induced emissivity model validation ###
 
 Satellite observations of Aquarius and SMAP were used for model development and validation. The joint U.S./Argentinian Aquarius/SAC-D mission started from
 June 10, 2011 with data available starting at the end of August 2011,
@@ -1366,7 +1366,7 @@ suffered from the failure of radar's high-power amplifier and a significant
 degradation in retrieval performance, its onboard radiometer is still
 continuously measuring fully polarimetric Stokes components of ocean
 surface emission and producing operational products of SSS and sea
-surface wind. In this study, we use the SMAP level-2C swath data from
+surface wind. Here, we use the SMAP level-2C swath data from
 its version 4.0 validated release, which is consistent with the Aquarius
 version 5 release (Meissner et al., 2018). The data were collected from
 Remote Sensing System (RSS) over the time period from April 1, 2015 to
@@ -1385,6 +1385,19 @@ respectively (Meissner et al., 2018). For the calculation of seawater
 dielectric constant, the Meissner-Wentz model is used in both the data
 processing of satellite observations and present study (Meissner and
 Wentz, 2004, 2012).
+
+For this version of the validation of our TSM note that the old kudryavtsev (1999)'s spectrum has been used and only a gaussian large scale slope PDF has been used.
+
+<img src="../GMF_vs_TSM_nofoam.png" alt="fishy" class="bg-primary" width="600px">
+
+```
+--- 
+name: GMF_vs_TSM
+---
+Isotropic Excess ocean emissivities as a function of the wind speed at three Aquarius (column 1–3) incident beams for horizontal (red color) and vertical (blue color) polarizations. The curves with filled and open circles represent the satellite observations and TSM model results without foam, respectively. The temperature and salinity of sea surface in simulations are 20°C and 35 psu, respectively. 
+```
+
+As observed, the proposed TSM in its basic configuration do not badly reproduced the isotropic roughness impact on emissivty at L-band as reported from Aquarius observations for all three beams and associated incidence angles. Results of the simulations with foam included shall be added soon as well as an update of the validation with revised Kudryavtsev 's spectral model and a Gram-Charlier large wave slope distribution.
 
 
 
