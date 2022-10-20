@@ -469,7 +469,7 @@ where $B_{lw}$ and $B_{sw}$ are the respective curvature spectrum contributions 
 The result of solving the energy balance equation is an asymmetric spectrum of surface waves, which shows
 that downwind propagation of a small ripple is more likely than the upwind one. The long‐wavelength spectrum
 in the paper by Donelan et al. (1985) also has an asymmetric spreading function.
-A detailed description of the spectrum can be found in Yurovskaya et al. (2013), Appendix A. We provide the main parts here below:
+A detailed description of the spectrum can be found in Yurovskaya et al. (2013), Appendix A. We provide the main parts of the spectral model here below:
 
 
 ####### Low-wavenumber spectrum
@@ -639,11 +639,37 @@ $$
 \displaystyle\frac{1}{n(k/k_{\gamma})}=(1-\frac{1}{n_g})f(k/k_{\gamma})+\frac{1}{n_g}
 $$
 
-where $f(k/k_{\gamma})$ is a tuning function satisfying conditions, $f\rightarrow 0$ at $k/k_{gamma}\lt\lt1$, and $f\rightarrow 1$ at $k/k_{gamma}\sim 1$. In order to fit wind exponent determined from observations, the tuning function $f(k/k_{\gamma})$ is defined as:
+where $f(k/k_{\gamma})$ is a tuning function satisfying conditions, $f\rightarrow 0$ at $k/k_{\gamma}\lt\lt1$, and $f\rightarrow 1$ at $k/k_{\gamma}\sim 1$. In order to fit wind exponent determined from observations, the tuning function $f(k/k_{\gamma})$ is defined as:
 
 $$
 f(k/k_{\gamma})=[1+\mathrm{tanh}(2(\zeta-\zeta_b))]/2
 $$
+
+where $\zeta=\mathrm{ln}k$, $\zeta_b=\mathrm{ln}k_b$ and $k_b$ is a wave number corresponding
+to center of transition interval which is fixed at $k_b=1/4k_{\gamma}$. Parameter $n_g$ is fixed at $n_g=10$ in order to be consistent with Banner et al. [1989] data. As argued in Kudryavtsev et al. [2003], the other
+tuning function, $\alpha(k/k_{\gamma})$, is linked to $n(k/k_{\gamma})$ as 
+
+$$
+\mathrm{ln}\left\[\alpha(k/k_{\gamma})\right\]=\mathrm{ln} a -\mathrm{ln} (\bar{C_{\beta}})/n(k/k_{\gamma})
+$$
+
+with $\bar{C_{\beta}}=0.03$ as a mean value of the growth rate, and $a$ is
+a constant which is chosen as $a=2\cdot 10^{-3}$ in order to get
+right value of the sea surface MSS.
+
+The filter function  $\phi(k)$ restricting action of the parasitic
+capillaries source is refined to be consistent with
+spectral behavior of f-function defining nonlinear
+dissipation. The ‘‘high-frequency’’ cut-off of
+$\phi(k)$ must be linked to the transition wave number, $k_b$, as
+$k_{pc}^{h}=k_{\gamma}^2/k_b$, while the low-frequency cut-off of 
+$\phi(k)$ to be $k_{pc}^{l}=nk_{\gamma}$ where $n$ should be about $n=2$, but the authors fixed it at
+n=3/2 in order to get location of the parasitic capillaries peak as observed in the experiments. Thus the filter function is
+
+$$
+\phi(k)=f(k/k_{pc}^{l})-f(k/k_{pc}^{h})
+$$
+
 
 ###### Small-Scale Perturbation Model
 
