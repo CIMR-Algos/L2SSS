@@ -458,7 +458,10 @@ $$W(\vec{k},U_{10})=B(\vec{k},U_{10})/k^3=\frac{B_{lw}(\vec{k},c_p/U_{10})+B_{sw
 
 where $B_{lw}$ and $B_{sw}$ are the respective curvature spectrum contributions from low and high wavenumbers and where $c_p/U_{10}$ is the wave age.
 
-The low-wavenumber curvature spectrum $B_{lw}$ is assumed to obey:
+####### Low-wavenumber spectrum
+
+In Kudryatsev et al. [1999]'s model, the low-wavenumber curvature spectrum $B_{lw}$ is identical
+to the shape given in Elfouhaily et al. (1987). The low-wavenumber curvature spectrum $B_{lw}$ is assumed to obey:
 
 $$B_{lw}=\alpha_p L_{PM} F_p c(k_p)/2c(k_{\rho}') $$
 
@@ -493,6 +496,33 @@ and where
 $$
 \Gamma=\exp{(-[(k_{\rho}'/k_{\rho})^{1/2}-1]^2/2\sigma^2)} \ \ \ \ \sigma=0.08(1+4/\Omega^3)
 $$
+
+The Pierson-Mosckowitz shape spectrum $L_{PM}$ is defined as follows:
+
+$$
+L_{PM}=\exp{[-\frac{5}{4}(k_{\rho}'/k_{\rho})^{-2}]}
+$$
+
+####### High-wavenumber spectrum
+
+The main features of the Kudryavtsev et aL. (1999)'s spectral form is a  physical model of the short wind wave
+spectrum $B_{sw}(\vec{k},U_{10})$ in the wavelength range from a few millimeters to few meters which take into
+account statistical properties of breaking waves and mechanism of generation of capillaries. The spectrum shape results from the solution of the energy spectral density balance equation. In the whole capillary and gravity range, it can be defined as:
+
+$$
+B_{sw}(\vec{k})=B_{gc}(\vec{k})+B_{cap}(\vec{k})
+$$
+
+where $B_{gc}$ represents the contribution from short gravity and gravity-capillary waves while $B_{cap}$ is the contribution from capillary waves.
+The short gravity wave spectrum results through the balance between wind input and dissipation due to wave breaking. In the capillary range, the mechanism of the generation of parasitic capillaries is taken into account. This is described as the cascade energy transfer from the gravity to the capillary waves. Thus the capillary wave spectrum results through the balance between generation of capillaries and their viscous dissipation. In the following, we
+briefly recall the theoretical developments that yield the energy sources terms for each of these physically distinct wavenumber domains. The analytical expressions for the spectral forms are then deduced from the energy sources equations.
+
+######## Spectrum of short gravity waves
+
+In their model, Kudryatsev et al. [1999] assumed that in the range of short gravity waves
+($k < k_{gamma} = (g/\gamma)^{1/2}\simeq 364$ rad/m where $g$ is the acceleration of gravity and $\gamma$ the kinematic
+surface tension of water), wave breaking and wind input are the most obvious sours/sinks of
+energy. The energy source term in the energy balance equation then reads:
 
 ###### Small-Scale Perturbation Model
 
