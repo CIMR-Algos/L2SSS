@@ -439,11 +439,11 @@ Flowchart of the two-scale microwave rough ocean surface emissivity model used i
 
 The two-scale model consists of five distinct physical modules (see Fig. \ref{TSM_Flowchart}):
 
-- Sea water dielectric constant model
-- Ocean Wave Height Spectrum
-- Small-scale perturbation
-- Foam Influences
-- Large Scale corrections
+- Sea water dielectric constant model (already provided in previous section),
+- Ocean Wave Height Spectrum,
+- Small-scale perturbation,
+- Foam Influences,
+- Large Scale corrections,
 
 
 Each of these four last modules is discussed and clarified relative to the published literature described in the
@@ -670,48 +670,86 @@ $$
 \phi(k)=f(k/k_{pc}^{l})-f(k/k_{pc}^{h})
 $$
 
+Following the model construction, the wind exponent
+parameter $m=2/n(k/k_{\gamma})$, also imposes the angular
+distribution, as $B(\cos(\phi)^{2/n}$.  The measured
+spectrum is a folded spectrum, $B_j(\mathbf{k})$, that relates to the directional spectrum as 
+
+$$
+B_j(\mathbf{k})=[B(\mathbf{k})+B(-\mathbf{k})]/2
+$$
+The angular modulation parameter, $\Delta$, of the folded
+spectra can be expressed through the directional spectrum
+in up-wind, down-wind, and cross-wind directions (spectra
+correspondingly) as:
+
+$$
+\Delta(k)=\displaystyle\frac{\pi}{2}\frac{B_{up}+B_{d}-2B_{cr}}{B_o}
+$$
+where $B_o$ is omnidirectional (integrated over all directions)
+spectrum.
 
 ###### Small-Scale Perturbation Model
 
-Sea surface microwave emission for a given frequency and viewing geometry depends upon the sea water dielectric constant as well as sea surface roughness and sea foam. From detailed analyses presented in Johnson and Zhang (1999), the sea roughness contribution to the surface emissivity can be treated as the product of an electromagnetic weighting function and the sea surface roughness spectrum integrated over all surface wavelengths. The weighting function shows resonance peaks in the neighborhood of surface wavelengths with scales comparable to the electromagnetic wavelength (i.e., 21 cm for the L-band).
-The sea surface roughness spectrum around these small surface wave scales and associated wind-induced emissivity contributions generally correlate with the local surface winds. The sea surface roughness effect on microwave emissivity is therefore generally characterized as a function of the local surface wind speed and direction. These effects largely dominate the error budget of satellite SSS retrieval from L-band
-radiometers (Yueh et al., 2001). Hence, very accurate roughness correction models are needed. Furthermore, roughness measurements must be available in near real time for use in ground segment processors. In this respect, the spatial and temporal collocation of these auxiliary measurements with the satellite observations is also crucial.
-Various electromagnetic models have been developed to estimate the effects of wind-induced roughness on sea surface emission in the L-band. These include rigorous (Reul et al., 2005), asymptotic (Yueh, 1997; Johnson and Zhang, 1999; Dinnat et al., 2002, 2003; Vall-llossera et al., 2003) and empirical or semi-empirical model types (Camps et al., 2004, 2005; Boutin et al., 2004; Gabarró et al., 2004; Guimbard et al., 2012; Font et al., 2013; Yueh et al., 2013, 2014, 2015; Yin et al., 2012, 2016; Fore et al., 2016; Meissner and Wentz, 2012, Meissner et al., 2014, 2018).
 
-In the latest algorithms implemented at ESA and NASA data centers, L-band Geophysical Model Functions (GMF) used for correction for the roughness-induced emissivity (Meissner et al., 2014, 2018; Yin et al. 2016; Fore et al., 2016) are all rather similar in shape and provide consistent results as a function of the 10 m height neutral wind speed, $U_{10}$, incidence angles and polarization. They usually include an even 2nd order harmonic representation of relative wind azimuth dependence (Meissner et al., 2014), $\phi_{r}=\phi_{w}-\alpha$, where $\phi_{w}$, is the wind direction and $\alpha$ the radiometer azimuthal look direction relative to North:
+Following the initial formulation of the small-scale perturbation model by Yueh (1997), a computationally efficient and
+physically intuitive reformulation of the model by Johnson and Zhang (1999) was developed and is used in this algorithm.
+In this model, the local surface emissivity $e_l$ can be calculated
+based on the Fresnel reflection coefficients incorporated into the small-scale surface emissivity perturbation model (Yueh, 1997; Johnson, 2006):
 
-$$∆T_{rough,p}(U_{10},θ)=T_s\cdot ∆e_{r,p}(U_{10},θ)=T_s\cdot \left\(∆e_{o,p}(U_{10},θ)+∆e_{1,p}(U_{10},θ)\cdot \cos⁡(\phi_{r} )+∆e_{2,p}(U_{10},θ)\cdot\cos⁡(2\phi_{r})\right\) $$
-
-
-
-
-Analytical and numerical models for the calculation of the rough ocean surface polarimetric thermal emission have been developed [6]–[11], primarily through application of standard surface scattering approximate methods to calculate surface emissivity using Kirchhoff’s law. Models based on both the small perturbation method (SPM) and the physical optics (PO) approximation has been presented.  The physical optics (PO) approximation was shown to clearly underestimate the sea surface emissivity observations at L-band [12, 13], particularly in the low incidence angle range (less than about 20-30°). This is mainly because such model does not account for scattering on small roughness elements. Recent works [8-10] has further revealed that use of the SPM for emission calculations results in a small slope, rather than small height, emission approximation identical to that which would be obtained from the small slope approximation of [14], so that the SPM can provide accurate emission predictions even for surfaces with large heights in terms of the electromagnetic wavelength. Numerical tests of the SPM for a set of canonical periodic surfaces have confirmed this statement [15]. Moreover, the success of the SPM/SSA in matching measured brightness temperature [6,16-19] has shown that the technique should be applicable for rough ocean surface brightness temperature predictions. These results motivate use of the SPM/small slope approximation (SPM/SSA) for the prediction of ocean polarimetric thermal emission at L-band. The SPM/SSA applies standard small perturbation theory to predict the bistatic scattering coefficients of a rough surface, and integrates these scattering coefficients over the upper hemisphere to obtain the reflectivities and hence brightness temperatures. The resonance behaviours observed in the critical phenomena region [20] produce a significant sensitivity of emission harmonics predicted by the SSA to ocean length scales of order equal to the electromagnetic wavelength. However, these emission harmonics are also sensitive (with the exception of the fourth Stokes parameter) to anisotropy in ocean length scale much larger than  the electromagnetic wavelength. Use of the SPM/SSA up to 2nd order produces an expansion in surface slope, with zero order terms reproducting flat surface emission results, first order terms identically zero, and second order terms providing the first prediction of changes from flat surface brightnesses.
-
-The second order terms take the form of an integral of a set of weighting functions over the surface directional spectrum, so that the wind-excess emissivity Stokes vector    can be expressed as follows using the second order SPM/Small Slope Approximation theory (e.g., see [19]):
+By this process, the local sea surface emissivity vector can
+be written as a sum of Fresnel emissivities and the emissivity
+perturbation $\Delta \bar{e_{ss}}$ caused by small-scale roughness, namely,
 
 $$
-\left[\begin{matrix}
-e_{rh} \\ 
-e_{rv} \\
-e_{rU} \\
-e_{rV}
+\bar{e_{ss}}=
+\left\(
+\begin{bmatrix}
+1-|R_{vv}^{(0)}|^2 \\
+1-|R_{hh}^{(0)}|^2 \\
+0 \\
+0 \\
+\end{bmatrix}
+-\Delta \bar{e_{ss}}
+\right\)
+$$
+$$
+
+where $R_{vv}^{(0)}$ and $R_{hh}^{(0)}are the Fresnel reflection coefficients
+at vertical and horizontal polarizations, respectively. 
+
+Sea surface microwave emission for a given frequency and viewing geometry depends upon the sea water dielectric constant as well as sea surface roughness and sea foam. From detailed analyses presented in Johnson and Zhang (1999), the sea roughness contribution to the surface emissivity $\Delta \bar{e_{ss}}$ can be treated as the product of an electromagnetic weighting function and the sea surface roughness spectrum integrated over all surface wavelengths. The weighting function shows resonance peaks in the neighborhood of surface wavelengths with scales comparable to the electromagnetic wavelength (i.e., 21 cm for the L-band):
+According to (Yueh, 1997; Johnson, 2006), the emissivity perturbation $\Delta \bar{e_{ss}}$ in
+the local polarization coordinate system with local incidence angle $\theta_l$ and local azimuthal angle $\phi_l$  can be determined as:
+
+$$
+\Delta \bar{e_{ss}}=
+\
+left[\begin{matrix}
+\Delta \bar{e_{ssh}} \\ 
+\Delta \bar{e_{ssv}} \\
+\Delta \bar{e_{ssU}} \\
+\Delta \bar{e_{ssV}}
 \end{matrix}\right\]
-=-\displaystyle\int_o^{\infty}dk_{\rho}'k_{\rho}'\displaystyle\int_o^{2\pi}d\phi'{W(k_{\rho}',\phi')}
+
+=
+\displaystyle\int_{k_l}^{k_u}dk_{\rho}'k_{\rho}'\displaystyle\int_o^{2\pi}d\phi'{W(k_{\rho}',\phi'+\phi_l)}
 \left[
 \begin{matrix}
-g_h(f,\theta_i,\phi_i,\epsilon_{sw},k_{\rho}',\phi')\\
-g_v(f,\theta_i,\phi_i,\epsilon_{sw},k_{\rho}',\phi')\\
-g_U(f,\theta_i,\phi_i,\epsilon_{sw},k_{\rho}',\phi')\\
-g_V(f,\theta_i,\phi_i,\epsilon_{sw},k_{\rho}',\phi')\\
+g_h(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')\\
+g_v(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')\\
+g_U(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')\\
+g_V(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')\\
 \end{matrix}
 \right]
 $$
 
-where $\phi_i$ is the difference between the radiometer
-azimuth angle and the wind direction, $\theta_i$ is the radiometer
-incidence angle, $W(k_{\rho}',\phi')$ is the sea surface height directional wavenumber spectrum, and the $g_{\gamma}$ "weighting" functions are formulated in terms
-of scattering coefficients determined from the small perturbation
-method (SPM):
+where $k_l$ and $k_u$  represent the lower and upper cutoff spectrum
+wavenumbers for short ocean waves. The functions $g_i$ (i = v,
+h, U, and V ) are the second-order weighting functions from
+the small perturbation method [6], and the detailed information
+and formulation of $g_i$ are provided as:
+
 
 $$
 \begin{matrix}
@@ -738,26 +776,25 @@ given by
 
 $$
 \begin{matrix}
-k_x = k_{xi} +k_{\rho'}\cos{\phi'} \\
-k_y = k_{yi} +k_{\rho'}\sin{\phi'} \\
+k_x = k_{xl} +k_{\rho'}\cos{\phi'} \\
+k_y = k_{yl} +k_{\rho'}\sin{\phi'} \\
 k_z = \sqrt{k_o^2-k_{x}^2-k_y^2} \\
 \end{matrix}
 $$
 
-where $k_{xi} = k_o\sin{\theta_i}\cos{\phi_i}$ and $k_{yi} =k_o\sin{\theta_i}\sin{\phi_i}$. Note that $f_{hv}^{(2)}$
+where $k_{xl} = k_o\sin{\theta_l}\cos{\phi_l}$ and $k_{yi} =k_o\sin{\theta_l}\sin{\phi_l}$. Note that $f_{hv}^{(2)}$
  is used with $g_U$ and $g_V$ as opposed to $f_{vh}^{(2)}$ in Yueh et al.(1994a) due to
 an evaluation of the second order reflection coefficient in
 scattered field coordinates.
-
 First order coefficients are as given in in Yueh et
-al. (1994a), except that the incident $(k_{xi},k_{yi}, k_{zi})$ and scattered $(k_x, k_y, k_z)$ variables
+al. (1994a), except that the incident $(k_{xl},k_{yl}, k_{zl})$ and scattered $(k_x, k_y, k_z)$ variables
 are first interchanged and then the above equations used to
-represent $k_x$, etc. in terms of $k_{xi}$ , $k_{\rho'}$ and
+represent $k_x$, etc. in terms of $k_{xl}$ , $k_{\rho'}$ and
 $\phi'$. This set of new projected coefficients are rewritten in
 appendix for completeness.
 
 The integral in the equation  for emissivities is over all length
- scales of the ocean spectrum $(k_{\rho'}$  from 0 to $\infty)$; however, the integration
+ scales of the ocean spectrum $(k_{\rho'}$  from $k_l$ to $k_u$; however, the integration
  of incoherent scattering coefficients should
 be limited to only those length scales which produced a
 propagating Bragg scattered wave. The function $\it{F}$ in the second
@@ -766,7 +803,7 @@ defined to be 1 for $k_z$ real, 0 for $k_z$ complex, and limits
 the incoherent contributions to waves propagating in the upper
 hemisphere. Evaluation of the rough surface emission is
 performed through numerical integration of the double integral for
-fixed values of all the radiometer and surface parameters $(f,\theta_i, \phi_i, \epsilon_{sw}, \rm{and}, W(k_{\rho'},\phi'))$.
+fixed values of all the radiometer and surface parameters $(f,\theta_l, \phi_l, \epsilon_{sw}, \rm{and}, W(k_{\rho'},\phi'))$.
 Typical formulations based on Yueh et al. (1994a) would
 numerically calculate double integrals for the coherent and
 incoherent contributions separately; the above expression combines
@@ -802,7 +839,7 @@ $g_{\gamma}$ functions have a $k_o^2$ dependence on frequency
 which can be factored out by defining: 
 
 $$
-\tilde{g_{\gamma}}(\theta_i,\phi_i,\epsilon_{sw},k_{\rho}'/k_o,\phi')=\frac{1}{k_o^2}g_{\gamma}(f,\theta_i,\phi_i,\epsilon_{sw},k_{\rho}',\phi')
+\tilde{g_{\gamma}}(\theta_l,\phi_l,\epsilon_{sw},k_{\rho}'/k_o,\phi')=\frac{1}{k_o^2}g_{\gamma}(f,\theta_i,\phi_i,\epsilon_{sw},k_{\rho}',\phi')
 $$
 
 with the resulting $\tilde{g_{\gamma}}$ functions depending on
@@ -812,19 +849,19 @@ $\beta=k_{\rho}'/k_o$ yields
 $$
 \left[
 \begin{matrix}
-e_{rh} \\
-e_{rv} \\
-e_{rU}\\
-e_{rV}\\
+\Delta \bar{e_{ssh}} \\
+\Delta \bar{e_{ssv}} \\
+\Delta \bar{e_{ssU}}\\
+\Delta \bar{e_{ssV}}\\
 \end{matrix}
 \right]=- \left(
-\displaystyle\int_o^{\infty}\displaystyle\int_o^{2\pi}C(k_o\beta,\phi')
+\displaystyle\int_{k_l}^{k_u}\displaystyle\int_o^{2\pi}B(k_o\beta,\phi')
 \left[
 \begin{matrix}
-g_h'(\theta_i,\phi_i;\epsilon_{sw},\beta,\phi')\\
-g_v'(\theta_i,\phi_i;\epsilon_{sw},\beta,\phi')\\
-g_U'(\theta_i,\phi_i;\epsilon_{sw},\beta,\phi')\\
-g_V'(\theta_i,\phi_i;\epsilon_{sw},\beta,\phi')\\
+g_h'(\theta_l,\phi_l;\epsilon_{sw},\beta,\phi')\\
+g_v'(\theta_l,\phi_l;\epsilon_{sw},\beta,\phi')\\
+g_U'(\theta_l,\phi_l;\epsilon_{sw},\beta,\phi')\\
+g_V'(\theta_l,\phi_l;\epsilon_{sw},\beta,\phi')\\
 \end{matrix}
 \right]d\phi'd\beta \right)
 $$
@@ -833,9 +870,9 @@ where
 
 $$
 \begin{array}{ll}
-g_{\gamma}'(\theta_i,\phi_i;\epsilon_{sw},\beta,\phi')d\beta&=\displaystyle\frac{1}{\beta^3}\tilde{g_{\gamma}}
-\left(\theta_i,\phi_i;\epsilon_{sw},\displaystyle\frac{k_{\rho}'}{k_o}=\beta,\phi'\right)d\beta \\
-&\hspace{-.5cm}=\displaystyle\frac{k_o^2}{k_{\rho}^{'3}}\left[\displaystyle\frac{1}{k_o^2}g_{\gamma}\left(f,\theta_i,\phi_i;\epsilon_{sw},k_{\rho}'=k_o\beta,\phi'\right)\right]dk_{\rho}'
+g_{\gamma}'(\theta_l,\phi_l;\epsilon_{sw},\beta,\phi')d\beta&=\displaystyle\frac{1}{\beta^3}\tilde{g_{\gamma}}
+\left(\theta_l,\phi_l;\epsilon_{sw},\displaystyle\frac{k_{\rho}'}{k_o}=\beta,\phi'\right)d\beta \\
+&\hspace{-.5cm}=\displaystyle\frac{k_o^2}{k_{\rho}^{'3}}\left[\displaystyle\frac{1}{k_o^2}g_{\gamma}\left(f,\theta_l,\phi_l;\epsilon_{sw},k_{\rho}'=k_o\beta,\phi'\right)\right]dk_{\rho}'
 \end{array}
 $$
 
@@ -844,16 +881,16 @@ and the new $g_{\gamma}'$ functions have no explicit dependence on frequency.
 A second simplification is used to separate individual azimuth
 harmonics of the emission vector. First a study of the
 $g_{\gamma}'$ functions reveals them to be functions of
-$\phi_i-\phi'$  alone and not $\phi_i$ and $\phi'$ separately.
+$\phi_l-\phi'$  alone and not $\phi_l$ and $\phi'$ separately.
 This motivates expansion of the $g_{\gamma}'$  functions in a
 Fourier series as:
 
 $$
-g_{\gamma}'(\theta_i,\phi_i;\epsilon_{sw},\beta,\phi')=\displaystyle\sum_{n=-\infty}^{\infty}e^{in(\phi_i-\phi')}g_{\gamma,n}'(\theta_i,\epsilon_{sw},\beta)
+g_{\gamma}'(\theta_l,\phi_l;\epsilon_{sw},\beta,\phi')=\displaystyle\sum_{n=-\infty}^{\infty}e^{in(\phi_l-\phi')}g_{\gamma,n}'(\theta_l,\epsilon_{sw},\beta)
 $$
 
 Consideration of the fact that the $g_{\gamma}'$  functions are
-real functions and the symmetric properties in $\phi_i-\phi'$ for
+real functions and the symmetric properties in $\phi_l-\phi'$ for
 each polarimetric quantity reveals that $g_h'$ and $g_v'$ should
 have only real valued $g_{\gamma,n}'$ which are even in $\it{n}$, while
 $g_U'$ and $g_V'$ should have only imaginary valued
@@ -862,15 +899,15 @@ expansion in the emssion equation results in:
 
 $$
 \begin{array}{l}
-e_{r\gamma}=-\left(\left[
+\Delta e_{ss\gamma}=-\left(\left[
 \begin{array}{c}
-\displaystyle\int_o^{\infty} g_{\gamma,0}'C_0(k_o\beta) d\beta\\
+\displaystyle\int_o^{\infty} g_{\gamma,0}'B_0(k_o\beta) d\beta\\
 0 \\
 \end{array}\right]+ \right.
 \left. \displaystyle\sum_{n=1}^{\infty} \left[
 \begin{array}{c}
-2\cos(n\phi_i)\int_o^{\infty} \Re{\left[g_{\gamma,n}'(\beta)\right]}C_n(k_o\beta) d\beta\\
--2\sin(n\phi_i)\int_o^{\infty} \Im{\left[g_{\gamma,n}'(\beta)\right]}C_n(k_o\beta) d\beta\\
+2\cos(n\phi_l)\int_o^{\infty} \Re{\left[g_{\gamma,n}'(\beta)\right]}B_n(k_o\beta) d\beta\\
+-2\sin(n\phi_l)\int_o^{\infty} \Im{\left[g_{\gamma,n}'(\beta)\right]}B_n(k_o\beta) d\beta\\
 \end{array}\right]\right)\\
 \end{array}
 $$
@@ -880,13 +917,13 @@ the lower row for $U$ and $V$, and an assumption that the
 curvature spectrum contains only cosine harmonics has been made.
 
 The last Equation has separated out individual
-emission azimuthal harmonic terms (the $\cos(n\phi_i)$ and
-$\sin(n\phi_i)$ terms) and reveals them to be proportional to an
+emission azimuthal harmonic terms (the $\cos(n\phi_l)$ and
+$\sin(n\phi_l)$ terms) and reveals them to be proportional to an
 integral of a weighting function $g_{\gamma,n}'(\beta)$ times the
-$C_n(k_o\beta)$ functions. Note that:
+$B_n(k_o\beta)$ functions. Note that:
 
 $$
-C_n(k_o\beta)=\displaystyle\int_o^{2\pi}e^{-in
+B_n(k_o\beta)=\displaystyle\int_o^{2\pi}e^{-in
 \phi'}C(k\beta,\phi')d\phi'
 $$
 
@@ -903,29 +940,28 @@ $g_{\gamma}'$ functions and the $d\beta$ integration in this last equation
 replace the multiple double integrals in an
 azimuth sweep procedure.
 
-In the present algorithm, we use the Kudryatsev et al model (1999) to estimate the sea surface roughness curvature spectrum $C(k\beta,\phi')$, which was  developed based on available field and wave-tank measurements, along with physical arguments concerning the dynamics of short-gravity waves. These scales indeed represent particularly important surface components for emissivity at 1.4 GHz, since they belong to the so-called “critical phenomena” region within which surface components are dominant scatterers at L-band. It is important to note that this spectral model was developed without any relation to remote-sensing data. Moreover, by using the Kudryatsev et al spectral model, we avoided some deficiencies of the Elfouhaily et al spectral model as found by other (problems at the low to moderate wind speed transition).
+In the present algorithm, we use the Kudryatsev et al model (1999) to estimate the sea surface roughness curvature spectrum $B(k\beta,\phi')$, which was  developed based on available field and wave-tank measurements, along with physical arguments concerning the dynamics of short-gravity waves. These scales indeed represent particularly important surface components for emissivity at 1.4 GHz, since they belong to the so-called “critical phenomena” region within which surface components are dominant scatterers at L-band. It is important to note that this spectral model was developed without any relation to remote-sensing data. Moreover, by using the Kudryatsev et al spectral model, we avoided some deficiencies of the Elfouhaily et al spectral model as found by other (problems at the low to moderate wind speed transition).
 
 Given the spectral model and the ssa/spm $g_{\gamma,n}'$ fonctions, the sea surface roughness-induced Stokes vector emission can be estimated following:
 
 $$
 \left[
 \begin{matrix}
-e_{rh} \\ 
-e_{rv} \\
-e_{rU} \\
-e_{rV} 
+\Delta \bar{e_{ssh}} \\ 
+\Delta \bar{e_{rv}} \\
+\Delta \bar{e_{rU}} \\
+\Delta \bar{e_{rV}} 
 \end{matrix}
 \right]=
 \left[
 \begin{matrix}
-e_{rh}^{(0)}+e_{rh}^{(2)}\cos(2\phi_{wr}) \\ 
-e_{rv}^{(0)}+e_{rv}^{(2)}\cos(2\phi_{wr}) \\
-e_{rU}^{(2)}\sin(2\phi_{wr}) \\
-e_{rV}^{(2)}\sin(2\phi_{wr}) 
+e_{ssh}^{(0)}+e_{ssh}^{(2)}\cos(2\phi_{wr}) \\ 
+e_{ssv}^{(0)}+e_{ssv}^{(2)}\cos(2\phi_{wr}) \\
+e_{ssU}^{(2)}\sin(2\phi_{wr}) \\
+e_{ssV}^{(2)}\sin(2\phi_{wr}) 
 \end{matrix}
 \right]
 $$
-
 where the  terms $e_{r\gamma}^{(n)}$ represent the nth azimuthal harmonics of the wind-excess emissivity. Note that due to the assumption of gaussianity in the sea surface statistics, the solution can be expressed strictly in terms of a roughness spectrum. Properties of a directional spectrum result in no first azimuthal harmonic variations being obtained; introduction of non-gaussianity is required to obtain first azimuthal harmonics.
 
 
