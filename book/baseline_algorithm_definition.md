@@ -723,16 +723,14 @@ According to (Yueh, 1997; Johnson, 2006), the emissivity perturbation $\Delta \b
 the local polarization coordinate system with local incidence angle $\theta_l$ and local azimuthal angle $\phi_l$  can be determined as:
 
 $$
-\Delta \bar{e_{ss}}=
+\Delta \overline{e}_{ss}=
 \left[\begin{matrix}
-\Delta \bar{e_{ssh}} \\ 
-\Delta \bar{e_{ssv}} \\
-\Delta \bar{e_{ssU}} \\
-\Delta \bar{e_{ssV}}
-\end{matrix}\right\]
-
-=
-\displaystyle\int_{k_l}^{k_u}dk_{\rho}'k_{\rho}'\displaystyle\int_o^{2\pi}d\phi'{W(k_{\rho}',\phi'+\phi_l)}
+\Delta \overline{e}_{ssh} \\ 
+\Delta \overline{e}_{ssv} \\
+\Delta \overline{e}_{ssU} \\
+\Delta \overline{e}_{ssV} \\
+\end{matrix}\right\]=
+\displaystyle\int_{k_{l}}^{k_{u}}\displaystyle\int_o^{2\pi}k_{\rho}'{W(k_{\rho}',\phi'+\phi_l)} 
 \left[
 \begin{matrix}
 g_h(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')\\
@@ -741,6 +739,7 @@ g_U(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')\\
 g_V(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')\\
 \end{matrix}
 \right]
+k_{\rho}'dk_{\rho}'d\phi'
 $$
 
 where $k_l$ and $k_u$  represent the lower and upper cutoff spectrum
@@ -752,16 +751,16 @@ and formulation of $g_i$ are provided as:
 
 $$
 \begin{matrix}
-g_h=2\Re{\left[R_{hh}^{(0)\star}f_{hh}^{(2)}\right]} +\displaystyle\frac{k_{zi}}{k_z}\left[|f_{hh}^{(1)}|^2+|f_{hv}^{(1)}|^2\right]F\\
-g_v=2\Re{\left[R_{vv}^{(0)\star}f_{vv}^{(2)}\right]}+\displaystyle\frac{k_{zi}}{k_z}\left[|f_{vv}^{(1)}|^2+|f_{vh}^{(1)}|^2\right]F\\
-g_U=2\Re{\left[(R_{hh}^{(0)\star}-R_{vv}^{(0)\star})f_{hv}^{(2)}\right]}+\displaystyle\frac{2k_{zi}}{k_z}\Re{\left[f_{vh}^{(1)}f_{hh}^{(1)\star}+f_{vv}^{(1)}f_{hv}^{(1)\star}\right]}F\\
-g_V=2\Im{\left[(R_{hh}^{(0)\star}+R_{vv}^{(0)\star})f_{hv}^{(2)}\right]}+\displaystyle\frac{2k_{zi}}{k_z}\Im{\left[f_{vh}^{(1)}f_{hh}^{(1)\star}+f_{vv}^{(1)}f_{hv}^{(1)\star}\right]}F\\
+g_h=2\Re{\left[R_{hh}^{(0)\star}f_{hh}^{(2)}\right]} +\displaystyle\frac{k_{zl}}{k_z}\left[|f_{hh}^{(1)}|^2+|f_{hv}^{(1)}|^2\right]F\\
+g_v=2\Re{\left[R_{vv}^{(0)\star}f_{vv}^{(2)}\right]}+\displaystyle\frac{k_{zl}}{k_z}\left[|f_{vv}^{(1)}|^2+|f_{vh}^{(1)}|^2\right]F\\
+g_U=2\Re{\left[(R_{hh}^{(0)\star}-R_{vv}^{(0)\star})f_{hv}^{(2)}\right]}+\displaystyle\frac{2k_{zl}}{k_z}\Re{\left[f_{vh}^{(1)}f_{hh}^{(1)\star}+f_{vv}^{(1)}f_{hv}^{(1)\star}\right]}F\\
+g_V=2\Im{\left[(R_{hh}^{(0)\star}+R_{vv}^{(0)\star})f_{hv}^{(2)}\right]}+\displaystyle\frac{2k_{zl}}{k_z}\Im{\left[f_{vh}^{(1)}f_{hh}^{(1)\star}+f_{vv}^{(1)}f_{hv}^{(1)\star}\right]}F\\
 \end{matrix}
 $$
 
 In the above equations, $\Re$ and $\Im$ represent the real
 and imaginary part operators respectively, $k_o=2\pi/\lambda_o$ is
-the electromagnetic wavenumber, $k_{zi}=k_o\cos(\theta_i)$, and
+the electromagnetic wavenumber, $k_{zl}=k_o\cos(\theta_l)$, and
 $f_{\alpha\beta}^{(1)}$ and $f_{\alpha\beta}^{(2)}$ are the first
 and second order SPM scattering coefficients as given in the
 appendix A with some modification given below. The first terms in
@@ -838,7 +837,7 @@ $g_{\gamma}$ functions have a $k_o^2$ dependence on frequency
 which can be factored out by defining: 
 
 $$
-\tilde{g_{\gamma}}(\theta_l,\phi_l,\epsilon_{sw},k_{\rho}'/k_o,\phi')=\frac{1}{k_o^2}g_{\gamma}(f,\theta_i,\phi_i,\epsilon_{sw},k_{\rho}',\phi')
+\tilde{g_{\gamma}}(\theta_l,\phi_l,\epsilon_{sw},k_{\rho}'/k_o,\phi')=\frac{1}{k_o^2}g_{\gamma}(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')
 $$
 
 with the resulting $\tilde{g_{\gamma}}$ functions depending on
