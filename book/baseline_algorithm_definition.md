@@ -984,12 +984,10 @@ P(S'_x,S'_y) & = &\displaystyle\frac{1}{2\pi\sigma_u\sigma_c} \exp\left\[-\frac{
 $$
 
 where $c_1$ and $c_2$ are the skewness coefficients, and $c_3$,
-$c_4$, and $c_5$ are the peakedness coefficients (see Table I).
+$c_4$, and $c_5$ are the peakedness coefficients. These coefficients for the sea surface slope PDF are provided as function of $U_{12.5}$, the wind speed at 12.5 m above the ocean surfacesee Table :
 
-COEFFICIENTS FOR THE SEA SURFACE SLOPE PDF, WHERE U12.5 IS THE
-WIND SPEED AT 12.5 M ABOVE THE OCEAN SURFACE
-|  --- |
-|  Coefficients |
+| --- |
+| Coefficients |
 |  $c_1=0.01-0.0086U_{12.5}$ |
 |  $c_2=0.04-0.0330U_{12.5}$ |
 |  $c_3=0.4$ |
@@ -997,7 +995,7 @@ WIND SPEED AT 12.5 M ABOVE THE OCEAN SURFACE
 |  $c_5=0.23$ |
 
 
-The coefficients $\sigma_u$ and $\sigma_c$   are the root-mean-square (rms)
+The coefficients $\sigma_u$ and $\sigma_c$  are the root-mean-square (rms)
 slopes for the upwind and crosswind directions, respectively,
 which are calculated from the long-wave height spectrum
 as
@@ -1327,6 +1325,68 @@ $$
 $$
 
 In the above equations, $g$ is the acceleration of gravity and $c$ is the breaker phase speed, and $\tau'$  is the exponential decay time of the foam depth after the mean duration time of the breaking events (nominally taken to be 3.8 s for salt water). These expressions can be used to transform the differential foam coverage expressions into expressions for the incremental coverage per unit foam thickness.
+
+### Roughness model validation ###
+
+Satellite observations of Aquarius and SMAP were used for model development and validation. The joint U.S./Argentinian Aquarius/SAC-D mission started from
+June 10, 2011 with data available starting at the end of August 2011,
+and has ended by June 7, 2015 (Le Vine et al., 2018). Its primary science
+objectives were well achieved (Meissner et al., 2018). During the period
+of service, Aquarius radiometer (working at 1.413 GHz) continuously
+measured the first three Stokes parameters of microwave radiation from
+the ocean surface. Three antenna beams operating at incidence angles of
+about 29◦, 38◦ and 46◦, respectively, were used for data acquisition
+(Yueh et al., 2013). In present study, the ocean surface TB measurements
+from the Aquarius end-of-mission (Version 5.0) level-2 product released
+by the Physical Oceanography Distributed Active Archive Center (PO.
+DAAC) are collected over the whole 2012 (more than 5300 passes) and
+used for model optimization and validation. Specifically, the $T_B$ measurements
+at sea surface level after a standard series of corrections of
+space radiation, radio frequency interference (RFI), Faraday effect, land contamination, atmosphere attenuation and emission, etc.,
+are used in this work. Detailed information of these correction procedures
+can be found in the Aquarius algorithm theoretical basis document
+(ATBD) (Meissner et al., 2017; Wentz and Le Vine, 2012). In this work,
+the data were strictly filtered by excluding those with expected SSS
+retrieval uncertainties (provided in dataset) large than zero to avoid the
+contaminations of land, ice and RFI (Wentz et al., 2017). Also, data with
+instantaneous rain rate larger than 0 mm/h are excluded. The excess
+surface brightness temperature induced due to wind are calculated by
+subtracting the expected TB of an ideally flat ocean surface. Notably, the
+flat surface TB used in this work are provided in the product dataset of
+Aquarius (so is the following SMAP), which are computed using the
+Fresnel equations to obtain the reflectivity and the model of Meissner
+and Wentz (2004, 2012) for the dielectric constant of sea water (Wentz
+and Le Vine, 2012).
+The SMAP platform and mission was launched on January 31, 2015
+and began observations soon in April 2015. Similar to Aquarius mission,
+the SMAP combines an active radar and a passive radiometer, which
+share an L-band feed horn and an antenna working at the incidence
+angle of about 40◦ (Brown et al., 2013). Although the SMAP mission
+suffered from the failure of radar's high-power amplifier and a significant
+degradation in retrieval performance, its onboard radiometer is still
+continuously measuring fully polarimetric Stokes components of ocean
+surface emission and producing operational products of SSS and sea
+surface wind. In this study, we use the SMAP level-2C swath data from
+its version 4.0 validated release, which is consistent with the Aquarius
+version 5 release (Meissner et al., 2018). The data were collected from
+Remote Sensing System (RSS) over the time period from April 1, 2015 to
+March 31, 2016, including around 5000 passes. Also, same as the
+Aquarius data, a similar data filtering process was performed to SMAP
+sea surface TB measurements to remove the data contaminated by land,
+sea ice and rain. Specifically, we required that the land fraction and the
+sea-ice fraction are both less than 0.001, the Integrated Multi-satellitE
+Retrievals for Global precipitation measurement (IMERG) rain rate is
+less than 0.1 mm/h (RSS Technical Report 082219).
+ In the latest version of Aquarius level-2 and SMAP
+level-2C data, the ancillary SST and SSS are from the Canadian Meteorological
+Center (CMC) Gridded High-Resolution SST (GHRSST) level-4
+field and the HYbrid coordinate ocean model (HYCOM) SSS field,
+respectively (Meissner et al., 2018). For the calculation of seawater
+dielectric constant, the Meissner-Wentz model is used in both the data
+processing of satellite observations and present study (Meissner and
+Wentz, 2004, 2012).
+
+
 
 ### Atmospheric contributions at L-band ###
 
