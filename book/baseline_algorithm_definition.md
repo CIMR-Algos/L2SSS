@@ -454,7 +454,7 @@ following.
 Following Elfouhaily et al.(1987), the model of wave spectrum developed by Kudryatsev et al.
 [1999] is given in the full wavenumber range at surface wind speed $U_{10}$ by:
 
-$$W(\vec{k},,U_{10})=B(\vec{k},U_{10})/k^3=\frac{B_{lw}(\vec{k},c_p/U_{10})+B_{sw}(\vec{k},U_{10})}{k^3}$$
+$$W(\vec{k},U_{10})=B(\vec{k},U_{10})/k^3=\frac{B_{lw}(\vec{k},c_p/U_{10})+B_{sw}(\vec{k},U_{10})}{k^3}$$
 
 where $B_{lw}$ and $B_{sw}$ are the respective curvature spectrum contributions from low and high wavenumbers and where $c_p/U_{10}$ is the wave age.
 
@@ -474,7 +474,24 @@ $$
 where $g$ is gravitational constant and $k_m$=370 rad.m$^{-1}$. The function $F_p$ is given by:
 
 $$
-F_p=\gamma^{\Gamma}\exp{{-\Omega[(k_{\rho}'/k_{\rho})^{1/2}-1]\sqrt{10}}}
+F_p=\gamma^{\Gamma}\exp{[-\Omega[(k_{\rho}'/k_{\rho})^{1/2}-1]\sqrt{10}]}
+$$
+
+where
+
+$$
+\left\{
+\begin{array}\\
+    \gamma=1.7 & \mbox{if } \ 0.84 < \Omega\leq 1 \\
+   \gamma=1.7+6\mathrm{log}(\omega) & \mbox{if } \ 1 < \Omega\le 5 \\
+        \end{array}
+\right.
+$$
+
+and where
+
+$$
+\Gamma=\exp{(-[(k_{\rho}'/k_{\rho})^{1/2}-1]^2/2\sigma^2)} \ \ \ \ \sigma=0.08(1+4/\Omega^3)
 $$
 
 ###### Small-Scale Perturbation Model
