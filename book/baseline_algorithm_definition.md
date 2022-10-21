@@ -1566,17 +1566,24 @@ $$\zeta=S_c/σ_c$$
 
 and where the specular facet upwind and crosswind slopes are defined by:
 
-$$S_u=  s_{nx}⁄s_{nz}$$ 
+$$S_u=s_{nx}⁄s_{nz}$$ 
 
-$$S_c=  -s_{ny}⁄s_{nz}$$ 
+$$S_c=-s_{ny}⁄s_{nz}$$ 
 
 with the cartesian components of the specular facet normal vector which are proportional to:
      
-$$s_{nx}=\displaystyle\frac{\hat{k}_{ox}+\hat{k}_{sx}}{2}$$
+$$
+s_{nx}=\displaystyle\frac{\hat{k_{ox}}+\hat{k_{sx}}}{2}
+$$
 
-$$s_{ny}=\displaystyle\frac{\hat{k}_{oy}+\hat{k}_{sy}}{2}$$
 
-$$s_{nz}=\displaystyle\frac{\hat{k}_{oz}+\hat{k}_{sz}}{2}$$
+$$
+s_{ny}=\displaystyle\frac{\hat{k_{oy}}+\hat{k_{sy}}}{2}
+$$
+
+$$
+s_{nz}=\displaystyle\frac{\hat{k_{oz}}+\hat{k_{sz}}}{2}
+$$
 
 The unit vectors pointing outward from the origin towards the incident and scattered wave directions
 are: 
@@ -1947,7 +1954,24 @@ SubSubsection Text
 
 SubSubsection Text
 
-##### Appendix A: SPM  polarimetric bistatic coefficients
+##### Appendix A: TSM ROTATION MATRIX
+
+As shown in Fig. \ref{Conf_coordinate_system}, $\hat{z_l}$ is a normal unit vector to the local
+facet defined as follows
+
+$$
+\hat{z_l}=\displaystyle\frac{-s_x\hat{x}-s_y\hat{y}+\hat{z}}{\sqrt{1+s_x^2+s_y^2}}
+$$
+
+where $s_x$ and $s_y$ represent the slopes in the x- and y-directions for the local facet coordinate, respectively, relative to the mean surface. In addition, $\hat{z_l}$ can be expressed in terms of zenith and
+azimuth angles $\theta_n$ and $\phi_n$ of the local facet with respect to mean surface normal vector  $\hat{z}$ in the global coordinate system, by,
+
+$$
+\hat{z_l}=\sin{\theta_n}\cos{\phi_n}\hat{x}+\sin{\theta_n}\cos{\phi_n}\hat{x}+
+$$
+
+
+##### Appendix B: SPM  polarimetric bistatic coefficients
 
 The bistatic coefficients are exactly those given by Yueh et al
 (1994a) in appendix 1,2 and 3. 
