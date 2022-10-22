@@ -1566,24 +1566,22 @@ $$\zeta=S_c/σ_c$$
 
 and where the specular facet upwind and crosswind slopes are defined by:
 
-$$S_u=s_{nx}⁄s_{nz}$$ 
+$$
+S_u=s_{nx}⁄s_{nz}
+$$ 
 
-$$S_c=-s_{ny}⁄s_{nz}$$ 
+$$
+S_c=-s_{ny}⁄s_{nz}
+$$ 
 
 with the cartesian components of the specular facet normal vector which are proportional to:
      
-$$
-s_{nx}=\displaystyle\frac{\hat{k_{ox}}+\hat{k_{sx}}}{2}
-$$
+$$s_{nx}=\frac{k_{ox}+k_{sx}}{2}$$
 
 
-$$
-s_{ny}=\displaystyle\frac{\hat{k_{oy}}+\hat{k_{sy}}}{2}
-$$
+$$s_{ny}=\displaystyle\frac{\hat{k_{oy}}+\hat{k_{sy}}}{2}$$
 
-$$
-s_{nz}=\displaystyle\frac{\hat{k_{oz}}+\hat{k_{sz}}}{2}
-$$
+$$s_{nz}=\displaystyle\frac{\hat{k_{oz}}+\hat{k_{sz}}}{2}$$
 
 The unit vectors pointing outward from the origin towards the incident and scattered wave directions
 are: 
@@ -1596,9 +1594,9 @@ with:
 
 $$
 \begin{matrix}
-\hat{k}_{ox}=\sin\theta_o\cos\tilde{\phi_o} \\
-\hat{k}_{oy}=\sin\theta_o\sin\tilde{\phi_o} \\
-\hat{k}_{oz}=\cos\theta_o 
+\hat{k}_{ox}=\sin{\theta_o}\cos{\tilde{\phi_o}} \\
+\hat{k}_{oy}=\sin{\theta_o}\sin{\tilde{\phi_o}} \\
+\hat{k}_{oz}=\cos{\theta_o} 
 \end{matrix}
 $$
 
