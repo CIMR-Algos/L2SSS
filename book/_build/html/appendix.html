@@ -1,0 +1,2060 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Appendix &#8212; ATBD L2 SSS</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="References" href="references.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">ATBD L2 SSS</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    CIMR L2 Sea Surface Salinity ATBD
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="abstract.html">
+   Abstract
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="applicable_ref_docs.html">
+   Applicable and Reference Documents
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acronyms.html">
+   Acronyms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="definitions.html">
+   Definitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction_purpose_scope.html">
+   Introduction, purpose and scope
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="background_justification_algorithm.html">
+   Background and justification of selected algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="L2_product_definition.html">
+   Level-2 product definition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="baseline_algorithm_definition.html">
+   Baseline Algorithm Definition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="algorithm_input_output_data_definition.html">
+   Algorithm Input and Output Data Definition (IODD)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="algorithm_performance_assessment.html">
+   Algorithm Performance Assessment (Version 2 ATBD)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="references.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Appendix
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/CIMR-Algos/L2SSS"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/appendix.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-a-tsm-rotation-matrix">
+   Appendix A: TSM ROTATION MATRIX
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-b-tsm-projected-facet-area">
+   Appendix B: TSM Projected Facet Area
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-c-sea-surface-height-spectral-model">
+   Appendix C: Sea Surface Height spectral model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#low-wavenumber-spectrum">
+     Low-wavenumber spectrum
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#high-wavenumber-spectrum">
+     High-wavenumber spectrum
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-d-spm-polarimetric-bistatic-coefficients">
+   Appendix D: SPM  polarimetric bistatic coefficients
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-order-scattering-coefficients">
+     First-Order Scattering coefficients
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#second-order-scattering-coefficients">
+     Second-Order Scattering coefficients
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ssa-spm-azimuthal-harmonic-expansion">
+     SSA/SPM azimuthal harmonic expansion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-e-efficient-implementation-of-bistatic-scattering-coefficients">
+   Appendix E: Efficient Implementation of Bistatic Scattering Coefficients
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kirchhoff-integral-in-polar-coordinates">
+     Kirchhoff Integral in polar coordinates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kirchhoff-approximation-kernel-functions">
+     Kirchhoff Approximation kernel functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-implementation">
+     Numerical implementation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-f-coordinate-systems-used-for-sky-glint">
+   Appendix F: Coordinate systems used for Sky Glint
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Appendix</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-a-tsm-rotation-matrix">
+   Appendix A: TSM ROTATION MATRIX
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-b-tsm-projected-facet-area">
+   Appendix B: TSM Projected Facet Area
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-c-sea-surface-height-spectral-model">
+   Appendix C: Sea Surface Height spectral model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#low-wavenumber-spectrum">
+     Low-wavenumber spectrum
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#high-wavenumber-spectrum">
+     High-wavenumber spectrum
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-d-spm-polarimetric-bistatic-coefficients">
+   Appendix D: SPM  polarimetric bistatic coefficients
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-order-scattering-coefficients">
+     First-Order Scattering coefficients
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#second-order-scattering-coefficients">
+     Second-Order Scattering coefficients
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ssa-spm-azimuthal-harmonic-expansion">
+     SSA/SPM azimuthal harmonic expansion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-e-efficient-implementation-of-bistatic-scattering-coefficients">
+   Appendix E: Efficient Implementation of Bistatic Scattering Coefficients
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kirchhoff-integral-in-polar-coordinates">
+     Kirchhoff Integral in polar coordinates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kirchhoff-approximation-kernel-functions">
+     Kirchhoff Approximation kernel functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-implementation">
+     Numerical implementation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-f-coordinate-systems-used-for-sky-glint">
+   Appendix F: Coordinate systems used for Sky Glint
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="appendix">
+<h1>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">#</a></h1>
+<section id="appendix-a-tsm-rotation-matrix">
+<h2>Appendix A: TSM ROTATION MATRIX<a class="headerlink" href="#appendix-a-tsm-rotation-matrix" title="Permalink to this headline">#</a></h2>
+<p>As shown in <a class="reference internal" href="baseline_algorithm_definition.html#conf-coordinate-system"><span class="std std-numref">Fig. 10</span></a>, <span class="math notranslate nohighlight">\(\hat{z_l}\)</span> is a normal unit vector to the local
+facet defined as follows</p>
+<div class="math notranslate nohighlight" id="equation-eq-a1">
+<span class="eqno">(275)<a class="headerlink" href="#equation-eq-a1" title="Permalink to this equation">#</a></span>\[
+\hat{z_l}=\displaystyle\frac{-s_x\hat{x}-s_y\hat{y}+\hat{z}}{\sqrt{1+s_x^2+s_y^2}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(s_x\)</span> and <span class="math notranslate nohighlight">\(s_y\)</span> represent the slopes in the x- and y-directions for the local facet coordinate, respectively, relative to the mean surface. In addition, <span class="math notranslate nohighlight">\(\hat{z_l}\)</span> can be expressed in terms of zenith and
+azimuth angles <span class="math notranslate nohighlight">\(\theta_n\)</span> and <span class="math notranslate nohighlight">\(\phi_n\)</span> of the local facet with respect to mean surface normal vector  <span class="math notranslate nohighlight">\(\hat{z}\)</span> in the global coordinate system, by,</p>
+<div class="math notranslate nohighlight" id="equation-eq-a2">
+<span class="eqno">(276)<a class="headerlink" href="#equation-eq-a2" title="Permalink to this equation">#</a></span>\[
+\hat{z_l}=\sin{\theta_n}\cos{\phi_n}\hat{x}+\sin{\theta_n}\sin{\phi_n}\hat{y}+\cos{\theta_n}\hat{z}
+\]</div>
+<p>Assuming <span class="math notranslate nohighlight">\(\hat{x}\)</span> points in the wind direction without loss of
+generality, the local facet vector in the x-direction <span class="math notranslate nohighlight">\(\hat{x_l}\)</span> can be
+chosen to lie in the xz plane. By enforcing <span class="math notranslate nohighlight">\(\hat{x_l}\)</span> to be orthogonal
+to <span class="math notranslate nohighlight">\(\hat{z_l}\)</span> , we define an angle <span class="math notranslate nohighlight">\(\beta\)</span> to calculate <span class="math notranslate nohighlight">\(\hat{x_l}\)</span> and <span class="math notranslate nohighlight">\(\hat{y_l}\)</span> as :</p>
+<div class="math notranslate nohighlight" id="equation-eq-a3">
+<span class="eqno">(277)<a class="headerlink" href="#equation-eq-a3" title="Permalink to this equation">#</a></span>\[
+\beta=\tan^{-1}{(\tan{\theta_n}\cos{\phi_n})}
+\]</div>
+<p>Using <span class="math notranslate nohighlight">\(\beta\)</span> defined in previous equation, <span class="math notranslate nohighlight">\(\hat{x_l}\)</span> and <span class="math notranslate nohighlight">\(\hat{y_l}\)</span> can be written as follows:</p>
+<div class="math notranslate nohighlight" id="equation-eq-a4">
+<span class="eqno">(278)<a class="headerlink" href="#equation-eq-a4" title="Permalink to this equation">#</a></span>\[
+\hat{x_l}=\displaystyle\frac{\hat{x}+s_x\hat{z}}{\sqrt{1+s_x^2}}=\cos{\beta}\hat{x}-\sin{\beta}\hat{z}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-a5">
+<span class="eqno">(279)<a class="headerlink" href="#equation-eq-a5" title="Permalink to this equation">#</a></span>\[
+\hat{y_l}=\hat{z_l}\times\hat{x_l}
+\]</div>
+<p>Therefore, we can relate the unit vectors of the local
+coordinate system with those of the global coordinate system
+using a matrix, where the zenith and azimuth angles of the local normal vector
+can be calculated using the following relationship:</p>
+<div class="math notranslate nohighlight" id="equation-eq-a6">
+<span class="eqno">(280)<a class="headerlink" href="#equation-eq-a6" title="Permalink to this equation">#</a></span>\[
+\theta_n=\displaystyle\cos^{-1}{\left(\frac{1}{\sqrt{s_x^2+s_y^2+1}}\right)}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-a7">
+<span class="eqno">(281)<a class="headerlink" href="#equation-eq-a7" title="Permalink to this equation">#</a></span>\[
+\phi_n=\tan^{-1}{\left(\frac{s_y}{s_x}\right)}
+\]</div>
+<p>The electromagnetic wave vector <span class="math notranslate nohighlight">\(\bar{k}\)</span> in the global coordinate
+system can be related to that in the local coordinate system <span class="math notranslate nohighlight">\(\bar{k_l}\)</span> by implementing an associated matrix function
+<span class="math notranslate nohighlight">\(\overline{\overline A}\)</span>, that is,</p>
+<div class="math notranslate nohighlight" id="equation-eq-a8">
+<span class="eqno">(282)<a class="headerlink" href="#equation-eq-a8" title="Permalink to this equation">#</a></span>\[
+\bar{k_l}=\overline{\overline Ak}
+\]</div>
+<p>Now, the relationship between the polarization basis vector
+directions in the local and global coordinates can be determined.
+For the two linear polarization unit vectors <span class="math notranslate nohighlight">\((\hat{h},\hat{v})\)</span> and
+in the global coordinate system,</p>
+<div class="math notranslate nohighlight" id="equation-eq-a9">
+<span class="eqno">(283)<a class="headerlink" href="#equation-eq-a9" title="Permalink to this equation">#</a></span>\[
+\hat{h}=\displaystyle\frac{\bar{k}\times\bar{z}}{|\bar{k}\times\bar{z}|}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-a10">
+<span class="eqno">(284)<a class="headerlink" href="#equation-eq-a10" title="Permalink to this equation">#</a></span>\[
+\hat{v}=\displaystyle\frac{\bar{h}\times\bar{k}}{|\bar{h}\times\bar{k}|}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{h}\)</span> and <span class="math notranslate nohighlight">\(\hat{v}\)</span> are the global unit vectors for horizontal and
+vertical polarizations, respectively. Thus, for these unit vectors
+in the local coordinate system,</p>
+<div class="math notranslate nohighlight" id="equation-eq-a11">
+<span class="eqno">(285)<a class="headerlink" href="#equation-eq-a11" title="Permalink to this equation">#</a></span>\[
+\hat{h_l}=\displaystyle\frac{\bar{k}_l\times\bar{z}_l}{|\bar{k}_l\times\bar{z}_l|}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-a12">
+<span class="eqno">(286)<a class="headerlink" href="#equation-eq-a12" title="Permalink to this equation">#</a></span>\[
+\hat{v_l}=\displaystyle\frac{\bar{h}_l\times\bar{k}_l}{|\bar{h}_l\times\bar{k}_l|}
+\]</div>
+<p>Using the inner product, the cross-polarization angle <span class="math notranslate nohighlight">\(\alpha_r\)</span>  can
+be obtained as</p>
+<div class="math notranslate nohighlight" id="equation-eq-a13">
+<span class="eqno">(287)<a class="headerlink" href="#equation-eq-a13" title="Permalink to this equation">#</a></span>\[
+\alpha_r=\cos^{-1}{(\hat{v}\cdot\hat{v_l})}=\cos^{-1}{(\hat{h}\cdot\hat{h_l})}
+\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight" id="equation-eq-a14">
+<span class="eqno">(288)<a class="headerlink" href="#equation-eq-a14" title="Permalink to this equation">#</a></span>\[
+\alpha_r=\sin^{-1}{(\hat{v}\cdot\hat{h_l})}=\sin^{-1}{(-\hat{h}\cdot\hat{v_l})}
+\]</div>
+<p>The scattered electric field vector <span class="math notranslate nohighlight">\(\bar{E}\)</span> in the local coordinate
+system is written as <span class="math notranslate nohighlight">\(\bar{E}=E_{hl}\hat{h_l}+E_{vl}\hat{v_l}\)</span>, where <span class="math notranslate nohighlight">\(E_{hl}\)</span> and <span class="math notranslate nohighlight">\(E_{vl}\)</span> are the horizontally and vertically polarized electric field
+components in the local polarization coordinate, respectively.
+Thus, the linearly polarized component of electric fields in
+global coordinate can be written as</p>
+<div class="math notranslate nohighlight" id="equation-eq-a15">
+<span class="eqno">(289)<a class="headerlink" href="#equation-eq-a15" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{eqnarray}
+E_{vg} &amp; = &amp; \bar{E}\cdot\hat{v}=(E_{hl}\hat{h_l}+E_{vl}\hat{v_l})\cdot\hat{v} \\
+       &amp; = &amp; E_{hl}\sin{\alpha_r}+E_{vl}\cos{\alpha_r} \\
+E_{hg} &amp; = &amp; \bar{E}\cdot\hat{h}=(E_{hl}\hat{h_l}+E_{vl}\hat{v_l})\cdot\hat{h} \\
+       &amp; = &amp; E_{hl}\cos{\alpha_r}-E_{vl}\sin{\alpha_r} \\
+\end{eqnarray}	   
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(E_{hg}\)</span> and <span class="math notranslate nohighlight">\(E_{vg}\)</span> are the horizontally and vertically polarized electric field
+components in the global polarization coordinate,
+respectively. Therefore, the emissivity in the global
+coordinate system can be now expressed in the matrix form
+as</p>
+<div class="math notranslate nohighlight" id="equation-eq-a16">
+<span class="eqno">(290)<a class="headerlink" href="#equation-eq-a16" title="Permalink to this equation">#</a></span>\[
+\bar{e}_g=\overline{\overline{R}} \bar{e}_l
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar{e}_l\)</span> and <span class="math notranslate nohighlight">\(\bar{e}_g\)</span> are the Stokes vectors of the ocean surface
+emissivity in the local and global coordinate systems, respectively. The rotation matrix <span class="math notranslate nohighlight">\(\overline{\overline{R}}\)</span> for relating global
+and local coordinate systems is:</p>
+<div class="math notranslate nohighlight" id="equation-eq-a17">
+<span class="eqno">(291)<a class="headerlink" href="#equation-eq-a17" title="Permalink to this equation">#</a></span>\[\begin{split}
+ \begin{equation}
+\overline{\overline{R}} =
+\begin{pmatrix}
+\cos^2{\alpha_r} &amp; \sin^2{\alpha_r} &amp; \frac{1}{2}\sin{2\alpha_r} &amp; 0 \\
+\sin^2{\alpha_r} &amp; \cos^2{\alpha_r} &amp; -\frac{1}{2}\sin{2\alpha_r} &amp; 0 \\
+-\sin{2\alpha_r} &amp; \sin{2\alpha_r} &amp; \cos{2\alpha_r} &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}
+\end{equation}
+\end{split}\]</div>
+<p>The above form does not include foam influences for simplicity.</p>
+</section>
+<section id="appendix-b-tsm-projected-facet-area">
+<h2>Appendix B: TSM Projected Facet Area<a class="headerlink" href="#appendix-b-tsm-projected-facet-area" title="Permalink to this headline">#</a></h2>
+<p>The local incidence angle <span class="math notranslate nohighlight">\(\theta_l\)</span> for a certain slope tilted by
+large-scale ocean waves can be written as the inner product of
+local normal vector <span class="math notranslate nohighlight">\(\hat{z_l}\)</span> and unit vector <span class="math notranslate nohighlight">\(\hat{e}\)</span> for radiometer looking
+direction as</p>
+<div class="math notranslate nohighlight" id="equation-eq-b1">
+<span class="eqno">(292)<a class="headerlink" href="#equation-eq-b1" title="Permalink to this equation">#</a></span>\[
+\cos{\theta_l}=\hat{z_l}\cdot\hat{e}=\displaystyle\frac{\cos{\theta_i}-s_x\sin{\theta_i}}{\sqrt{s_x^2+s_y^2+1}}
+\]</div>
+<p>The projected facet area <span class="math notranslate nohighlight">\(g_0\)</span> is defined as a ratio of the
+inclined facet area to the flat surface area as</p>
+<div class="math notranslate nohighlight" id="equation-eq-b2">
+<span class="eqno">(293)<a class="headerlink" href="#equation-eq-b2" title="Permalink to this equation">#</a></span>\[
+g_0=\displaystyle\frac{\cos{\theta_l}\cdot\sec{\theta_n}}{\cos{\theta_i}}
+\]</div>
+<p>Substituing <a class="reference external" href="#eq:A6">Equation 262</a> and <a class="reference external" href="#eq:B1">Equation 274</a> into  <a class="reference external" href="#eq:B2">Equation 276</a>, the following equation can be obtained:</p>
+<div class="math notranslate nohighlight" id="equation-eq-b3">
+<span class="eqno">(294)<a class="headerlink" href="#equation-eq-b3" title="Permalink to this equation">#</a></span>\[
+g_0=\displaystyle\frac{\cos{\theta_l}\cdot\sec{\theta_n}}{\cos{\theta_i}}=\displaystyle\frac{\displaystyle\frac{\cos{\theta_i}-s_x\sin{\theta_i}}{\sqrt{s_x^2+s_y^2+1}}\left(\frac{1}{\sqrt{s_x^2+s_y^2+1}}\right)^{-1}}{\cos{\theta_i}}
+\]</div>
+<p>so that finally</p>
+<div class="math notranslate nohighlight" id="equation-eq-b4">
+<span class="eqno">(295)<a class="headerlink" href="#equation-eq-b4" title="Permalink to this equation">#</a></span>\[
+g_0=(1-s_x\tan{\theta_i})
+\]</div>
+</section>
+<section id="appendix-c-sea-surface-height-spectral-model">
+<h2>Appendix C: Sea Surface Height spectral model<a class="headerlink" href="#appendix-c-sea-surface-height-spectral-model" title="Permalink to this headline">#</a></h2>
+<p>In the present algorithm, we use the semi-empirical spectrum model developed by V. N. Kudryavtsev and co-authors (<span id="id1">Kudryavtsev <em>et al.</em> [<a class="reference internal" href="references.html#id62" title="V. N. Kudryavtsev, V. K. Makin, and B. Chapron. Coupled sea surface-atmosphere model: 2. spectrum of short wind waves. Journal of Geophysical Research: Oceans, 104(C4):7625-7639, 1999. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/1999JC900005, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/1999JC900005, doi:https://doi.org/10.1029/1999JC900005.">1999</a>]</span>,
+<span id="id2">Kudryavtsev <em>et al.</em> [<a class="reference internal" href="references.html#id63" title="Vladimir Kudryavtsev, Danièle Hauser, Gérard Caudal, and Bertrand Chapron. A semiempirical model of the normalized radar cross-section of the sea surface 1. background model. Journal of Geophysical Research: Oceans, 108(C3):FET 2-1-FET 2-24, 2003. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2001JC001003, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2001JC001003, doi:https://doi.org/10.1029/2001JC001003.">2003</a>]</span>,<span id="id3">Kudryavtsev <em>et al.</em> [<a class="reference internal" href="references.html#id64" title="V. Kudryavtsev, D. Akimov, J. Johannessen, and B. Chapron. On radar imaging of current features: 1. model and comparison with observations. Journal of Geophysical Research: Oceans, 110(C7):, 2005. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2004JC002505, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2004JC002505, doi:https://doi.org/10.1029/2004JC002505.">2005</a>]</span>; Appendix A in <span id="id4">Yurovskaya <em>et al.</em> [<a class="reference internal" href="references.html#id146" title="M. V. Yurovskaya, V. A. Dulov, B. Chapron, and V. N. Kudryavtsev. Directional short wind wave spectra derived from the sea surface photography. Journal of Geophysical Research: Oceans, 118(9):4380-4394, 2013. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/jgrc.20296, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1002/jgrc.20296, doi:https://doi.org/10.1002/jgrc.20296.">2013</a>]</span>). The Kudryavtsev spectrum model proposed in the first papers (<span id="id5">Kudryavtsev <em>et al.</em> [<a class="reference internal" href="references.html#id62" title="V. N. Kudryavtsev, V. K. Makin, and B. Chapron. Coupled sea surface-atmosphere model: 2. spectrum of short wind waves. Journal of Geophysical Research: Oceans, 104(C4):7625-7639, 1999. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/1999JC900005, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/1999JC900005, doi:https://doi.org/10.1029/1999JC900005.">1999</a>]</span>, <span id="id6">Kudryavtsev <em>et al.</em> [<a class="reference internal" href="references.html#id63" title="Vladimir Kudryavtsev, Danièle Hauser, Gérard Caudal, and Bertrand Chapron. A semiempirical model of the normalized radar cross-section of the sea surface 1. background model. Journal of Geophysical Research: Oceans, 108(C3):FET 2-1-FET 2-24, 2003. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2001JC001003, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2001JC001003, doi:https://doi.org/10.1029/2001JC001003.">2003</a>]</span>) had a gap in
+the gravity‐capillary range (see Fig. 4 in <span id="id7">Kudryavtsev <em>et al.</em> [<a class="reference internal" href="references.html#id63" title="Vladimir Kudryavtsev, Danièle Hauser, Gérard Caudal, and Bertrand Chapron. A semiempirical model of the normalized radar cross-section of the sea surface 1. background model. Journal of Geophysical Research: Oceans, 108(C3):FET 2-1-FET 2-24, 2003. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2001JC001003, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2001JC001003, doi:https://doi.org/10.1029/2001JC001003.">2003</a>]</span>). In 2013, the spectrum was improved using
+new experimental data. Data of a full‐scale experiment on stereographic measuring of the two‐dimensional
+spectrum with wavelengths from several millimeters to several centimeters are presented in the paper
+by <span id="id8">[<a class="reference internal" href="references.html#id146" title="M. V. Yurovskaya, V. A. Dulov, B. Chapron, and V. N. Kudryavtsev. Directional short wind wave spectra derived from the sea surface photography. Journal of Geophysical Research: Oceans, 118(9):4380-4394, 2013. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/jgrc.20296, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1002/jgrc.20296, doi:https://doi.org/10.1002/jgrc.20296.">Yurovskaya <em>et al.</em>, 2013</a>]</span>. Based on the data of this experiment, the Kudryavtsev spectrum was modified.
+The measurements were carried out at wind speeds <span class="math notranslate nohighlight">\(U_{10}\)</span> from 5 to 15 m/s. The wind fetch in the wave model is taken into account in the same way as in the
+<span id="id9">[<a class="reference internal" href="references.html#id39" title="T. Elfouhaily, B. Chapron, K. Katsaros, and D. Vandemark. A unified directional spectrum for long and short wind-driven waves. Journal of Geophysical Research: Oceans, 102(C7):15781-15796, 1997. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/97JC00467, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/97JC00467, doi:https://doi.org/10.1029/97JC00467.">Elfouhaily <em>et al.</em>, 1997</a>]</span> model. The long‐wavelength part of the spectrum is
+calculated by the model given in <span id="id10">Donelan <em>et al.</em> [<a class="reference internal" href="references.html#id28" title="M. A. Donelan, J. Hamilton, and W. H. Hui. Directional spectra of wind-generated waves. Phil. Trans. Roy. Soc. London A, 315(1534):509-562, 1985. doi:10.1098/rsta.1985.0054.">1985</a>]</span>. The transition between long‐ and short‐wavelength parts of the spectrum is described by the same exponential factor
+<span class="math notranslate nohighlight">\(F_{p}\)</span> which is provided in Appendix C as it was in <span id="id11">[<a class="reference internal" href="references.html#id39" title="T. Elfouhaily, B. Chapron, K. Katsaros, and D. Vandemark. A unified directional spectrum for long and short wind-driven waves. Journal of Geophysical Research: Oceans, 102(C7):15781-15796, 1997. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/97JC00467, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/97JC00467, doi:https://doi.org/10.1029/97JC00467.">Elfouhaily <em>et al.</em>, 1997</a>]</span>.
+The spatial spectrum of curvatures is presented as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-c1">
+<span class="eqno">(296)<a class="headerlink" href="#equation-eq-c1" title="Permalink to this equation">#</a></span>\[
+B(\vec{k},U_{10})=B_{lw}(\vec{k},U_{10},c_p/U_{10})\times F_{p} + B_{sw}(\vec{k},U_{10})\times (1-F_{p})
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(B_{lw}\)</span> and <span class="math notranslate nohighlight">\(B_{sw}\)</span> are the respective curvature spectrum contributions from low and high wavenumbers and where <span class="math notranslate nohighlight">\(c_p/U_{10}\)</span> is the wave age.</p>
+<section id="low-wavenumber-spectrum">
+<h3>Low-wavenumber spectrum<a class="headerlink" href="#low-wavenumber-spectrum" title="Permalink to this headline">#</a></h3>
+<p>In <span id="id12">Kudryavtsev <em>et al.</em> [<a class="reference internal" href="references.html#id62" title="V. N. Kudryavtsev, V. K. Makin, and B. Chapron. Coupled sea surface-atmosphere model: 2. spectrum of short wind waves. Journal of Geophysical Research: Oceans, 104(C4):7625-7639, 1999. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/1999JC900005, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/1999JC900005, doi:https://doi.org/10.1029/1999JC900005.">1999</a>]</span>’s model, the low-wavenumber curvature spectrum <span class="math notranslate nohighlight">\(B_{lw}\)</span> follows the
+approach suggested by <span id="id13">Elfouhaily <em>et al.</em> [<a class="reference internal" href="references.html#id39" title="T. Elfouhaily, B. Chapron, K. Katsaros, and D. Vandemark. A unified directional spectrum for long and short wind-driven waves. Journal of Geophysical Research: Oceans, 102(C7):15781-15796, 1997. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/97JC00467, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/97JC00467, doi:https://doi.org/10.1029/97JC00467.">1997</a>]</span>:  <span class="math notranslate nohighlight">\(B_{lw}\)</span> is assumed to obey <span id="id14">Donelan <em>et al.</em> [<a class="reference internal" href="references.html#id28" title="M. A. Donelan, J. Hamilton, and W. H. Hui. Directional spectra of wind-generated waves. Phil. Trans. Roy. Soc. London A, 315(1534):509-562, 1985. doi:10.1098/rsta.1985.0054.">1985</a>]</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-c2">
+<span class="eqno">(297)<a class="headerlink" href="#equation-eq-c2" title="Permalink to this equation">#</a></span>\[B_{lw}=\alpha_p L_{PM} F_p c(k_p)/2c(k_{\rho}') \]</div>
+<p>The degree of wind wave development is determined by the inverse wave age <span class="math notranslate nohighlight">\(\Omega\)</span>
+and its dependence on the dimensionless wind fetch is given by</p>
+<div class="math notranslate nohighlight" id="equation-eq-c3">
+<span class="eqno">(298)<a class="headerlink" href="#equation-eq-c3" title="Permalink to this equation">#</a></span>\[
+\Omega=0.84\cdot\tanh^{-0.75}{(\displaystyle\frac{\tilde{x}}{x_o})^{0.4}}
+\]</div>
+<p>The parameters in <a class="reference external" href="#equation-eq-c2">Equation(279)</a> are dependent on <span class="math notranslate nohighlight">\(U_{10}\)</span>, and on <span class="math notranslate nohighlight">\(\Omega=U_{10}/c(k_p)\)</span>, where <span class="math notranslate nohighlight">\(c(k_p)\)</span> is the phase speed at <span class="math notranslate nohighlight">\(k_p\)</span>,
+the wavenumber at the spectral peak.</p>
+<div class="math notranslate nohighlight" id="equation-eq-c4">
+<span class="eqno">(299)<a class="headerlink" href="#equation-eq-c4" title="Permalink to this equation">#</a></span>\[\begin{split} 
+\begin{matrix}
+\alpha_p=0.006 \Omega^{1/2} &amp; k_p=g \Omega^{2}/U^2_{10} \\
+c(k_{\rho}')=[g(1+k_{\rho}^{'2}/k_{m}^{2})/k^{'}_{\rho}]^{1/2} \\
+\end{matrix}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(g\)</span> is gravitational constant and <span class="math notranslate nohighlight">\(k_m\)</span>=370 rad.m<span class="math notranslate nohighlight">\(^{-1}\)</span>. The function <span class="math notranslate nohighlight">\(F_p\)</span> is given by:</p>
+<div class="math notranslate nohighlight" id="equation-eq-c5">
+<span class="eqno">(300)<a class="headerlink" href="#equation-eq-c5" title="Permalink to this equation">#</a></span>\[
+F_p=\gamma^{\Gamma}\exp{[-\Omega[(k_{\rho}'/k_{\rho})^{1/2}-1]\sqrt{10}]}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-eq-c6">
+<span class="eqno">(301)<a class="headerlink" href="#equation-eq-c6" title="Permalink to this equation">#</a></span>\[\begin{split}
+\left\{
+\begin{array}\\
+    \gamma=1.7 &amp; \mbox{if } \ 0.84 &lt; \Omega\leq 1 \\
+   \gamma=1.7+6\mathrm{log}(\omega) &amp; \mbox{if } \ 1 &lt; \Omega\le 5 \\
+        \end{array}
+\right.
+\end{split}\]</div>
+<p>and where</p>
+<div class="math notranslate nohighlight" id="equation-eq-c7">
+<span class="eqno">(302)<a class="headerlink" href="#equation-eq-c7" title="Permalink to this equation">#</a></span>\[
+\Gamma=\exp{(-[(k_{\rho}'/k_{\rho})^{1/2}-1]^2/2\sigma^2)} \ \ \ \ \sigma=0.08(1+4/\Omega^3)
+\]</div>
+<p>The function <span class="math notranslate nohighlight">\(F_p(k/k_p)\)</span> is the high-frequency ‘‘cut-off’’ function, suppressing <span class="math notranslate nohighlight">\(B_{lw}\)</span> at wave numbers
+exceeding <span class="math notranslate nohighlight">\(10 k_p\)</span> <span class="math notranslate nohighlight">\((k_p\)</span> is wave number of the spectral peak).</p>
+<p>The Pierson-Mosckowitz shape spectrum <span class="math notranslate nohighlight">\(L_{PM}\)</span> is defined as follows:</p>
+<div class="math notranslate nohighlight" id="equation-eq-c8">
+<span class="eqno">(303)<a class="headerlink" href="#equation-eq-c8" title="Permalink to this equation">#</a></span>\[
+L_{PM}=\exp{[-\frac{5}{4}(k_{\rho}'/k_{\rho})^{-2}]}
+\]</div>
+</section>
+<section id="high-wavenumber-spectrum">
+<h3>High-wavenumber spectrum<a class="headerlink" href="#high-wavenumber-spectrum" title="Permalink to this headline">#</a></h3>
+<p>The main features of the <span id="id15">Kudryavtsev <em>et al.</em> [<a class="reference internal" href="references.html#id62" title="V. N. Kudryavtsev, V. K. Makin, and B. Chapron. Coupled sea surface-atmosphere model: 2. spectrum of short wind waves. Journal of Geophysical Research: Oceans, 104(C4):7625-7639, 1999. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/1999JC900005, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/1999JC900005, doi:https://doi.org/10.1029/1999JC900005.">1999</a>]</span>’s spectral form is a  physical model of the short wind wave
+spectrum <span class="math notranslate nohighlight">\(B_{sw}(\vec{k},U_{10})\)</span> in the wavelength range from a few millimeters to few meters which take into
+account statistical properties of breaking waves and mechanism of generation of capillaries. The spectrum shape
+results from the solution of the energy spectral density balance equation:</p>
+<div class="math notranslate nohighlight" id="equation-eq-c9">
+<span class="eqno">(304)<a class="headerlink" href="#equation-eq-c9" title="Permalink to this equation">#</a></span>\[
+Q(B)=\displaystyle\beta_{\nu}(\mathbf{k})B(\mathbf{k})-B(\mathbf{k})(\displaystyle\frac{B(\mathbf{k})}{\alpha})^n+Q_b(\mathbf{k})=0
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(Q(B)\)</span>  is the total spectral energy source represented as a sum of the effective wind forcing, nonlinear energy
+losses (associated with wave breaking in the gravity range, and a nonlinear quadratic limitation of the spectral level in
+the capillary-gravity and capillary range), generation of short waves by breaking of longer waves <span class="math notranslate nohighlight">\(Q_b\)</span> including
+generation of parasitic capillaries. In this equation <span class="math notranslate nohighlight">\(B(\mathbf{k})\)</span> is
+the saturation spectrum, <span class="math notranslate nohighlight">\(\beta_{\nu}(\mathbf{k})=\beta(\mathbf{k})-4\nu k^2 /\omega\)</span> is the
+effective growth rate, which is the difference between the
+wind growth rate, <span class="math notranslate nohighlight">\(\beta(\mathbf{k})\)</span>, and the rate of viscous dissipation, <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(n\)</span>  are tuning functions of <span class="math notranslate nohighlight">\(k/k_{\gamma}\)</span> , which are equal to constants <span class="math notranslate nohighlight">\(\alpha=\alpha_g\)</span>, <span class="math notranslate nohighlight">\(n=n_g\)</span> at <span class="math notranslate nohighlight">\(k/k_{\gamma}\lt\lt 1\)</span>,  and equal to otherconstants (e.g., n=1) at <span class="math notranslate nohighlight">\(k/k_{\gamma}\gt 1\)</span>, <span class="math notranslate nohighlight">\(k_{\gamma}=\sqrt{g/\gamma}\)</span> -wave
+number of minimum phase velocity. Wind wave growth rate is parameterized as suggested
+in Kudryavtsev and Makin (2004):</p>
+<div class="math notranslate nohighlight" id="equation-eq-c10">
+<span class="eqno">(305)<a class="headerlink" href="#equation-eq-c10" title="Permalink to this equation">#</a></span>\[
+\beta(\vec{k})=c_{\beta}(1+cos^2\phi)u_{\star}(U_k\cos\phi-c)/c^2
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(c_{\beta}\)</span> is constant <span class="math notranslate nohighlight">\((c_{\beta}=1.2\cdot 10^{-3})\)</span>, <span class="math notranslate nohighlight">\(U_{k}\)</span> is mean wind velocity at <span class="math notranslate nohighlight">\(z=k^{-1}\)</span>. The source term <span class="math notranslate nohighlight">\(Q_b=Q_b^{pc}+Q_b^{w}\)</span> describes generation of short surface waves by wave breaking.
+Depending on the scale of a breaking wave, two mechanisms are specified. First, due to the effect of the surface
+tension, short breaking waves with <span class="math notranslate nohighlight">\(k\gt k_b\)</span> (where <span class="math notranslate nohighlight">\(k_b\)</span> is of order <span class="math notranslate nohighlight">\(k_b~10^2\)</span> rad/m) are not disrupted, but produce ‘‘regular’’
+trains of parasitic capillaries (bound waves). These
+parasitic capillaries provide energy losses in breaking
+waves. Therefore, rate of generation of parasitic capillaries
+is equal to the energy dissipation by the carrying short
+gravity wave at wave number <span class="math notranslate nohighlight">\(K=k_{\gamma}^2\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-c11">
+<span class="eqno">(306)<a class="headerlink" href="#equation-eq-c11" title="Permalink to this equation">#</a></span>\[
+Q_{b}^{pc}(\mathbf{k})=\phi(k)[B(B/\alpha)^n]_{k=K}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\phi(k)\)</span> is a filter function restricting generation of parasitic
+capillaries in wave number space. The crests of longer
+breaking waves with wave number <span class="math notranslate nohighlight">\(k\lt k_b\)</span> disrupt and produce
+mechanical perturbations of the sea surface. These
+mechanical perturbations generate ‘‘freely’’ propagating
+surface waves in all directions as reported by Rozenberg
+and Ritter (2005). The rate of their generation is defined by</p>
+<div class="math notranslate nohighlight" id="equation-eq-c12">
+<span class="eqno">(307)<a class="headerlink" href="#equation-eq-c12" title="Permalink to this equation">#</a></span>\[
+Q_{b}^{\omega}=c_{b}\omega^{-1}\int\int_{k\lt k_{bm}}\omega\beta(\mathbf{k})B(\mathbf{k}) dlnk d\phi
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(c_b\)</span> is an empirical constant (here <span class="math notranslate nohighlight">\(c_b=4.5\cdot 10^{-3}\)</span>); <span class="math notranslate nohighlight">\(k_{bm}=min(k/10,k_b)\)</span> is the upper limit of integration defining interval of breaking waves which generate freely propagating short waves at wave number <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>The wave spectrum in the equilibrium range, <span class="math notranslate nohighlight">\(B_{sw}\)</span>, can be represented as a superposition of the spectrum of freely propagating waves (generated by the wind
+per se and by wave breaking; hereinafter these waves are called as wind waves), <span class="math notranslate nohighlight">\(B_{w}\)</span>, and the spectrum of parasitic capillaries (bound waves), <span class="math notranslate nohighlight">\(B_{pc}\)</span>, generated
+on the crests of that freely propagating waves:</p>
+<div class="math notranslate nohighlight" id="equation-eq-c13">
+<span class="eqno">(308)<a class="headerlink" href="#equation-eq-c13" title="Permalink to this equation">#</a></span>\[
+B_{sw}(\vec{k})=B_{w}(\vec{k})+B_{pc}(\vec{k})
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(B_{w}\)</span> represents the contribution from short gravity and gravity-capillary waves while <span class="math notranslate nohighlight">\(B_{cap}\)</span> is the contribution from capillary waves. Either <span class="math notranslate nohighlight">\(B_w\)</span> and <span class="math notranslate nohighlight">\(B_{pc}\)</span> spectra are difined as solution of the energy balance equation. For the wind wave spectrum the wave breaking source <span class="math notranslate nohighlight">\(Q_b\)</span> in the energy source equation is <span class="math notranslate nohighlight">\(Q_{b}=Q^w_b\)</span>. Solution of such a nonlinear algebraic equation is not straightforward (index of
+power has an arbitrary value). However, it can be effectively found by iterations on the basis of its known asymptotic solutions at up-wind, down-wind, and cross-wind directions. Aligned in the wind directions, the wave breaking source <span class="math notranslate nohighlight">\(Q^w_b\)</span> is expected to be small in comparison with
+direct wind energy input. Then approximate solution in
+down-wind direction is</p>
+<div class="math notranslate nohighlight" id="equation-eq-c14">
+<span class="eqno">(309)<a class="headerlink" href="#equation-eq-c14" title="Permalink to this equation">#</a></span>\[
+B_w^d=\alpha\beta_{\nu}^{1/n}
+\]</div>
+<p>At cross-wind directions, where the effective wind
+input is small or vanishing, <span class="math notranslate nohighlight">\(\beta_{\nu}\simeq 0\)</span>, the wave spectrum
+approximately reads:</p>
+<div class="math notranslate nohighlight" id="equation-eq-c15">
+<span class="eqno">(310)<a class="headerlink" href="#equation-eq-c15" title="Permalink to this equation">#</a></span>\[
+B_w^{cr}=\alpha^{n/(n+1)}(Q^w_b)^{1/(n+1)}
+\]</div>
+<p>At the up-wind directions, where <span class="math notranslate nohighlight">\(\beta_{\nu}(\mathbf{k})\lt 0\)</span>, one
+may anticipate the low spectral density, thus nonlinear term
+in the energy balance equation can be omitted, and <span class="math notranslate nohighlight">\(B_w\)</span> results from the
+balance of wave breaking source and energy losses due to
+viscosity and interaction with the opposing wind:</p>
+<div class="math notranslate nohighlight" id="equation-eq-c16">
+<span class="eqno">(311)<a class="headerlink" href="#equation-eq-c16" title="Permalink to this equation">#</a></span>\[
+B_{w}^{up}\sim-I_{wb}/\beta_{\nu}
+\]</div>
+<p>Combination of these three “asymptotic” solutions,</p>
+<div class="math notranslate nohighlight" id="equation-eq-c17">
+<span class="eqno">(312)<a class="headerlink" href="#equation-eq-c17" title="Permalink to this equation">#</a></span>\[
+B_{w}^{0}=\mathrm{max}[B_w^d,\mathrm{min}(B_w^{cr},B_w^{up})]
+\]</div>
+<p>provides a first guess for wave spectrum. Next iteration for
+wave spectrum is defined by</p>
+<div class="math notranslate nohighlight" id="equation-eq-c18">
+<span class="eqno">(313)<a class="headerlink" href="#equation-eq-c18" title="Permalink to this equation">#</a></span>\[
+B_{w}^{j}=B_{w}^{j-1}-[Q(B_w)/(\partial Q/\partial B_w)]_{B_w=B_w^{j-1}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(Q(B_w)\)</span> is the total energy source function  for
+wind waves (where <span class="math notranslate nohighlight">\(Q_b\)</span> is equal to <span class="math notranslate nohighlight">\(Q_b=Q_b^w\)</span>). Practically,
+the iteration scheme <span class="math notranslate nohighlight">\(B_{w}^{j}\)</span> with the first-guess solution <span class="math notranslate nohighlight">\(B_{w}^{0}\)</span>
+converges to the exact solution after three iterations.</p>
+<p>Spectrum of parasitic capillaries results from the
+same energy balance equation where the parasitic capillary
+term, <span class="math notranslate nohighlight">\(Q_b=Q_b^{pc}\)</span>, is the only energy source (wind forcing
+is omitted) which is balanced by viscous and nonlinear
+dissipation. Solution of this equation is straightforward and
+reads:</p>
+<div class="math notranslate nohighlight" id="equation-eq-c19">
+<span class="eqno">(314)<a class="headerlink" href="#equation-eq-c19" title="Permalink to this equation">#</a></span>\[
+B_{pc}(\mathbf{k})=\displaystyle\frac{\alpha}{2}[-4\nu k^2/\omega+\sqrt{(4\nu k^2/\omega)^2+4Q_{b}^{pc}(\mathbf{k})/\alpha}]
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(Q_b^{pc}\)</span>  defined by relation above for the wind wave spectrum <span class="math notranslate nohighlight">\(B_w\)</span>. Now to complete the model we need to define the model functions, <span class="math notranslate nohighlight">\(n(k/k_{\gamma})\)</span> and <span class="math notranslate nohighlight">\(\alpha(k/k_{\gamma})\)</span>, following kudryavtsev et al. (2003). The key function <span class="math notranslate nohighlight">\(n(k/k_{\gamma})\)</span> is related to the wind exponent <span class="math notranslate nohighlight">\(m=2/n(k/k_{\gamma})\)</span>. Its shape is specified as:</p>
+<div class="math notranslate nohighlight" id="equation-eqc20">
+<span class="eqno">(315)<a class="headerlink" href="#equation-eqc20" title="Permalink to this equation">#</a></span>\[
+\displaystyle\frac{1}{n(k/k_{\gamma})}=(1-\frac{1}{n_g})f(k/k_{\gamma})+\frac{1}{n_g}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(f(k/k_{\gamma})\)</span> is a tuning function satisfying conditions, <span class="math notranslate nohighlight">\(f\rightarrow 0\)</span> at <span class="math notranslate nohighlight">\(k/k_{\gamma}\lt\lt1\)</span>, and <span class="math notranslate nohighlight">\(f\rightarrow 1\)</span> at <span class="math notranslate nohighlight">\(k/k_{\gamma}\sim 1\)</span>.
+In order to fit wind exponent determined from observations, the tuning function <span class="math notranslate nohighlight">\(f(k/k_{\gamma})\)</span> is defined as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-c21">
+<span class="eqno">(316)<a class="headerlink" href="#equation-eq-c21" title="Permalink to this equation">#</a></span>\[
+f(k/k_{\gamma})=[1+\mathrm{tanh}(2(\zeta-\zeta_b))]/2
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\zeta=\mathrm{ln}k\)</span>, <span class="math notranslate nohighlight">\(\zeta_b=\mathrm{ln}k_b\)</span> and <span class="math notranslate nohighlight">\(k_b\)</span> is a wave number corresponding
+to center of transition interval which is fixed at <span class="math notranslate nohighlight">\(k_b=1/4k_{\gamma}\)</span>. Parameter <span class="math notranslate nohighlight">\(n_g\)</span> is fixed at <span class="math notranslate nohighlight">\(n_g=10\)</span> in order to be consistent with Banner et al. [1989] data. As argued in Kudryavtsev et al. [2003], the other
+tuning function, <span class="math notranslate nohighlight">\(\alpha(k/k_{\gamma})\)</span>, is linked to <span class="math notranslate nohighlight">\(n(k/k_{\gamma})\)</span> as</p>
+<div class="math notranslate nohighlight" id="equation-eq-c22">
+<span class="eqno">(317)<a class="headerlink" href="#equation-eq-c22" title="Permalink to this equation">#</a></span>\[
+\mathrm{ln}[\alpha(k/k_{\gamma})]=\mathrm{ln} a -\mathrm{ln} (\bar{C_{\beta}})/n(k/k_{\gamma})
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\bar{C_{\beta}}=0.03\)</span> as a mean value of the growth rate, and <span class="math notranslate nohighlight">\(a\)</span> is
+a constant which is chosen as <span class="math notranslate nohighlight">\(a=2\cdot 10^{-3}\)</span> in order to get
+right value of the sea surface MSS.</p>
+<p>The filter function  <span class="math notranslate nohighlight">\(\phi(k)\)</span> restricting action of the parasitic
+capillaries source is refined to be consistent with
+spectral behavior of f-function defining nonlinear
+dissipation. The ‘‘high-frequency’’ cut-off of
+<span class="math notranslate nohighlight">\(\phi(k)\)</span> must be linked to the transition wave number, <span class="math notranslate nohighlight">\(k_b\)</span>, as
+<span class="math notranslate nohighlight">\(k_{pc}^{h}=k_{\gamma}^2/k_b\)</span>, while the low-frequency cut-off of
+<span class="math notranslate nohighlight">\(\phi(k)\)</span> to be <span class="math notranslate nohighlight">\(k_{pc}^{l}=nk_{\gamma}\)</span> where <span class="math notranslate nohighlight">\(n\)</span> should be about <span class="math notranslate nohighlight">\(n=2\)</span>, but the authors fixed it at
+n=3/2 in order to get location of the parasitic capillaries peak as observed in the experiments. Thus the filter function is</p>
+<div class="math notranslate nohighlight" id="equation-eq-c23">
+<span class="eqno">(318)<a class="headerlink" href="#equation-eq-c23" title="Permalink to this equation">#</a></span>\[
+\phi(k)=f(k/k_{pc}^{l})-f(k/k_{pc}^{h})
+\]</div>
+<p>Following the model construction, the wind exponent
+parameter <span class="math notranslate nohighlight">\(m=2/n(k/k_{\gamma})\)</span>, also imposes the angular
+distribution, as <span class="math notranslate nohighlight">\(B(\cos(\phi)^{2/n}\)</span>.  The measured
+spectrum is a folded spectrum, <span class="math notranslate nohighlight">\(B_j(\mathbf{k})\)</span>, that relates to the directional spectrum as</p>
+<div class="math notranslate nohighlight" id="equation-eqc24">
+<span class="eqno">(319)<a class="headerlink" href="#equation-eqc24" title="Permalink to this equation">#</a></span>\[
+B_j(\mathbf{k})=[B(\mathbf{k})+B(-\mathbf{k})]/2
+\]</div>
+<p>The angular modulation parameter, <span class="math notranslate nohighlight">\(\Delta\)</span>, of the folded
+spectra can be expressed through the directional spectrum
+in up-wind, down-wind, and cross-wind directions (spectra
+correspondingly) as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-c25">
+<span class="eqno">(320)<a class="headerlink" href="#equation-eq-c25" title="Permalink to this equation">#</a></span>\[
+\Delta(k)=\displaystyle\frac{\pi}{2}\frac{B_{up}+B_{d}-2B_{cr}}{B_o}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(B_o\)</span> is omnidirectional (integrated over all directions)
+spectrum.</p>
+</section>
+</section>
+<section id="appendix-d-spm-polarimetric-bistatic-coefficients">
+<h2>Appendix D: SPM  polarimetric bistatic coefficients<a class="headerlink" href="#appendix-d-spm-polarimetric-bistatic-coefficients" title="Permalink to this headline">#</a></h2>
+<p>The functions <span class="math notranslate nohighlight">\(g_i\)</span> (i = v, h, U, and V ) are the second-order weighting functions from
+the small perturbation method (<span id="id16">Yueh <em>et al.</em> [<a class="reference internal" href="references.html#id145" title="Simon H. Yueh, Ronald Kwok, and Son V. Nghiem. Polarimetric scattering and emission properties of targets with reflection symmetry. Radio Sci., 29(6):1409–1420, Nov-Dec 1994.">1994</a>]</span>), and the detailed information
+and formulation of <span class="math notranslate nohighlight">\(g_i\)</span> are provided as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-d1">
+<span class="eqno">(321)<a class="headerlink" href="#equation-eq-d1" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{matrix}
+g_h(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho},\phi)=2\Re{\left[R_{hh}^{(0)\star}f_{hh}^{(2)}\right]} +\displaystyle\frac{k_{zi}}{k_z}\left[|f_{hh}^{(1)}|^2+|f_{hv}^{(1)}|^2\right]F\\
+g_v(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho},\phi)=2\Re{\left[R_{vv}^{(0)\star}f_{vv}^{(2)}\right]}+\displaystyle\frac{k_{zi}}{k_z}\left[|f_{vv}^{(1)}|^2+|f_{vh}^{(1)}|^2\right]F\\
+g_U(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho},\phi)=2\Re{\left[(R_{hh}^{(0)\star}-R_{vv}^{(0)\star})f_{hv}^{(2)}\right]}+\displaystyle\frac{2k_{zi}}{k_z}\Re{\left[f_{vh}^{(1)}f_{hh}^{(1)\star}+f_{vv}^{(1)}f_{hv}^{(1)\star}\right]}F\\
+g_V(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho},\phi)=2\Im{\left[(R_{hh}^{(0)\star}+R_{vv}^{(0)\star})f_{hv}^{(2)}\right]}+\displaystyle\frac{2k_{zi}}{k_z}\Im{\left[f_{vh}^{(1)}f_{hh}^{(1)\star}+f_{vv}^{(1)}f_{hv}^{(1)\star}\right]}F\\
+\end{matrix}
+\end{split}\]</div>
+<p>In the above equations, <span class="math notranslate nohighlight">\(\Re\)</span> and <span class="math notranslate nohighlight">\(\Im\)</span> represent the real
+and imaginary part operators respectively, <span class="math notranslate nohighlight">\(k_o=2\pi/\lambda_o\)</span> is
+the electromagnetic wavenumber, <span class="math notranslate nohighlight">\(k_{zl}=k_o\cos(\theta_l)\)</span>, and
+<span class="math notranslate nohighlight">\(f_{\alpha\beta}^{(1)}\)</span> and <span class="math notranslate nohighlight">\(f_{\alpha\beta}^{(2)}\)</span> are the first
+and second order SPM scattering coefficients. The function <span class="math notranslate nohighlight">\(F\)</span> is a function
+defined as <span class="math notranslate nohighlight">\(F\)</span>=1 if <span class="math notranslate nohighlight">\(\Im{(k_z)}=0\)</span> and <span class="math notranslate nohighlight">\(F\)</span>=0 if <span class="math notranslate nohighlight">\(\Im{(k_z)}\neq 0\)</span>.</p>
+<p>The first terms in the above <span class="math notranslate nohighlight">\(g_{\gamma}\)</span> expressions represent the second order
+coherent reflection coefficient contributions, while the second
+terms represent the incoherent Bragg scatter contributions.</p>
+<p>Second order scattering coefficients are exactly those taken from <span id="id17">Yueh <em>et al.</em> [<a class="reference internal" href="references.html#id145" title="Simon H. Yueh, Ronald Kwok, and Son V. Nghiem. Polarimetric scattering and emission properties of targets with reflection symmetry. Radio Sci., 29(6):1409–1420, Nov-Dec 1994.">1994</a>]</span>, with the variables <span class="math notranslate nohighlight">\(k_x\)</span>, <span class="math notranslate nohighlight">\(k_y\)</span>, and <span class="math notranslate nohighlight">\(k_z\)</span>
+given by</p>
+<div class="math notranslate nohighlight" id="equation-eq-d2">
+<span class="eqno">(322)<a class="headerlink" href="#equation-eq-d2" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{matrix}
+k_x = k_{xl} +k_{\rho'}\cos{\phi'} \\
+k_y = k_{yl} +k_{\rho'}\sin{\phi'} \\
+k_z = \sqrt{k_o^2-k_{x}^2-k_y^2} \\
+\end{matrix}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(k_{xl} = k_o\sin{\theta_l}\cos{\phi_l}\)</span> and <span class="math notranslate nohighlight">\(k_{yi} =k_o\sin{\theta_l}\sin{\phi_l}\)</span>. Note that <span class="math notranslate nohighlight">\(f_{hv}^{(2)}\)</span>
+is used with <span class="math notranslate nohighlight">\(g_U\)</span> and <span class="math notranslate nohighlight">\(g_V\)</span> as opposed to <span class="math notranslate nohighlight">\(f_{vh}^{(2)}\)</span> in <span id="id18">Yueh <em>et al.</em> [<a class="reference internal" href="references.html#id145" title="Simon H. Yueh, Ronald Kwok, and Son V. Nghiem. Polarimetric scattering and emission properties of targets with reflection symmetry. Radio Sci., 29(6):1409–1420, Nov-Dec 1994.">1994</a>]</span> due to
+an evaluation of the second order reflection coefficient in
+scattered field coordinates.
+First order coefficients are as given in <span id="id19">Yueh <em>et al.</em> [<a class="reference internal" href="references.html#id145" title="Simon H. Yueh, Ronald Kwok, and Son V. Nghiem. Polarimetric scattering and emission properties of targets with reflection symmetry. Radio Sci., 29(6):1409–1420, Nov-Dec 1994.">1994</a>]</span>, except that the incident <span class="math notranslate nohighlight">\((k_{xl},k_{yl}, k_{zl})\)</span> and scattered <span class="math notranslate nohighlight">\((k_x, k_y, k_z)\)</span> variables
+are first interchanged and then the above equations used to
+represent <span class="math notranslate nohighlight">\(k_x\)</span>, etc. in terms of <span class="math notranslate nohighlight">\(k_{xl}\)</span> , <span class="math notranslate nohighlight">\(k_{\rho'}\)</span> and
+<span class="math notranslate nohighlight">\(\phi'\)</span>. This set of new projected coefficients are rewritten herebelow for completeness.</p>
+<section id="first-order-scattering-coefficients">
+<h3>First-Order Scattering coefficients<a class="headerlink" href="#first-order-scattering-coefficients" title="Permalink to this headline">#</a></h3>
+<p>The coefficients for the incoherent bistatic scattering
+coefficients due to the first-order scattered fields are defined
+as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-d3">
+<span class="eqno">(323)<a class="headerlink" href="#equation-eq-d3" title="Permalink to this equation">#</a></span>\[
+\Gamma_{\alpha\beta\mu\nu}(k_x,k_y,k_xi,k_yi)
+=f_{\alpha\beta}^{(1)}(\theta,\phi;\theta_i,\phi_i)f_{\mu\nu}^{(1)\star}(\theta,\phi;\theta_i,\phi_i)
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight" id="equation-eq-d4">
+<span class="eqno">(324)<a class="headerlink" href="#equation-eq-d4" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{matrix}
+f_{hh}^{(1)}(\theta,\phi;\theta_i,\phi_i)=\displaystyle\frac{2k_{zi}(k_1^2-k_o^2)}{k_z+k_{1z}}\displaystyle\frac{1}{k_{zi}+k_{1zi}}\\
+\\
+\cdot\left(\displaystyle\frac{k_{xi}}{k_{\rho_i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho_i}}\displaystyle\frac{k_y}{k_{\rho}}\right)
+\end{matrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-d5">
+<span class="eqno">(325)<a class="headerlink" href="#equation-eq-d5" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{matrix}
+f_{hv}^{(1)}(\theta,\phi;\theta_i,\phi_i)=\displaystyle\frac{2k_{zi}(k_1^2-k_o^2)}{k_z+k_{1z}}\displaystyle\frac{k_{1zi}k_o}{k_1^2k_{zi}+k_o^2k_{1zi}}\\
+\\
+\cdot\left(-\displaystyle\frac{k_{yi}}{k_{\rho_i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{xi}}{k_{\rho_i}}\displaystyle\frac{k_y}{k_{\rho}}\right)
+\end{matrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-d6">
+<span class="eqno">(326)<a class="headerlink" href="#equation-eq-d6" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{matrix}
+f_{vh}^{(1)}(\theta,\phi;\theta_i,\phi_i)=\displaystyle\frac{2k_{zi}(k_1^2-k_o^2)}{k_1^2k_z+k_o^2k_{1z}}\displaystyle\frac{k_{1z}k_o}{k_{zi}+k_{1zi}}\\
+\\
+\cdot\left(-\displaystyle\frac{k_{yi}}{k_{\rho_i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{xi}}{k_{\rho_i}}\displaystyle\frac{k_y}{k_{\rho}}\right)
+\end{matrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-d7">
+<span class="eqno">(327)<a class="headerlink" href="#equation-eq-d7" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{matrix}
+f_{vh}^{(1)}(\theta,\phi;\theta_i,\phi_i)=\displaystyle\frac{2k_{zi}(k_1^2-k_o^2)}{k_1^2k_z+k_o^2k_{1z}}\displaystyle\frac{1}{k_1^2k_{zi}+k_o^2k_{1zi}}\\
+\\
+\cdot\left[k_1^2k_{\rho}k_{\rho_i}-k_o^2k_{1z}k_{1zi}\left(\displaystyle\frac{k_{xi}}{k_{\rho_i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho_i}}\displaystyle\frac{k_y}{k_{\rho}}\right)\right]
+\end{matrix}
+\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-eq-d8">
+<span class="eqno">(328)<a class="headerlink" href="#equation-eq-d8" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{matrix}
+k_{\rho_i}=k_o\sin(\theta_i) \\
+\\
+k_{xi}=k_{\rho_i}\cos(\phi_i) \\
+\\
+k_{yi}=k_{\rho_i}\sin(\phi_i) \\
+\\
+k_{zi}=\sqrt{k_o^2-k_{\rho_i}^2} \\
+\\
+k_{1zi}=\sqrt{k_1^2-k_{\rho_i}^2} \\
+\\
+k_{\rho}=k_o\sin(\theta) \\
+\\
+k_{x}=k_{\rho}\cos(\phi) \\
+\\
+k_{y}=k_{\rho}\sin(\phi) \\
+\\
+k_{z}=\sqrt{k_o^2-k_{\rho}^2} \\
+\\
+k_{1z}=\sqrt{k_1^2-k_{\rho}^2} \\
+\end{matrix}
+\end{split}\]</div>
+<p>and <span class="math notranslate nohighlight">\(k_o\)</span> and <span class="math notranslate nohighlight">\(k_1\)</span> are the electromagnetic wavenumbers of the
+free space and lower half space. In sea water with complex
+dielectric constant <span class="math notranslate nohighlight">\(\epsilon_{sw}\)</span>, the electromagnetic
+wavenumber is complex and given by:
+<span class="math notranslate nohighlight">\(k_1=k_o\sqrt{\epsilon_{sw}}\)</span></p>
+</section>
+<section id="second-order-scattering-coefficients">
+<h3>Second-Order Scattering coefficients<a class="headerlink" href="#second-order-scattering-coefficients" title="Permalink to this headline">#</a></h3>
+<p>With  <span class="math notranslate nohighlight">\(k_{xi}\)</span>, <span class="math notranslate nohighlight">\(k_{yi}\)</span>, <span class="math notranslate nohighlight">\(k_{\rho i}\)</span>, <span class="math notranslate nohighlight">\(k_{zi}\)</span>, <span class="math notranslate nohighlight">\(k_{1zi}\)</span>,
+<span class="math notranslate nohighlight">\(k_{\rho}\)</span>, <span class="math notranslate nohighlight">\(k_z\)</span>, and <span class="math notranslate nohighlight">\(k_{1z}\)</span> as given just above, the second order bistactic scattering
+coefficients are:</p>
+<div class="math notranslate nohighlight" id="equation-eq-d9">
+<span class="eqno">(329)<a class="headerlink" href="#equation-eq-d9" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{array}{l}
+f^{(2)}_{hh}=\displaystyle\frac{k_1^2-k_o^2}{k_{zi}+k_{1zi}}\displaystyle\frac{2k_{zi}}{k_{zi}+k_{1zi}}\\
+\\
+\times\left\{k_{1zi}+
+\displaystyle\frac{(k_o^2-k_1^2)}{(k^2_{\rho}+k_{1z}k_z)(k_z+k_{1z})}
+\cdot\left[k_{1z}k_z+k^2_{\rho}\left(\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}\right)^2\right]\right\}\\
+\end{array}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-d10">
+<span class="eqno">(330)<a class="headerlink" href="#equation-eq-d10" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{array}{l}
+f^{(2)}_{vh}=\displaystyle\frac{k_1^2-k_o^2}{k_{zi}+k_{1zi}}\displaystyle\frac{2k_ok_{zi}}{k_1^2k_{zi}+k_o^2k_{1zi}}\left(\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}-\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}\right) \\
+\\
+\times\left[\displaystyle\frac{k_{\rho}k_{\rho
+i}k_1^2}{k^2_{\rho}+k_{1z}k_z}+\displaystyle\frac{k_{1zi}k^2_{\rho}(k_o^2-k_1^2)}{(k^2_{\rho}+k_{1z}k_z)(k_z+k_{1z})}\left(\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}\right)\right]
+\end{array}
+\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-d11">
+<span class="eqno">(331)<a class="headerlink" href="#equation-eq-d11" title="Permalink to this equation">#</a></span>\[
+f^{(2)}_{hv}=-f^{(2)}_{vh}
+\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-d12">
+<span class="eqno">(332)<a class="headerlink" href="#equation-eq-d12" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{array}{l}
+f^{(2)}_{vv}=\displaystyle\frac{k_o^2-k_1^2}{k_1^2k_{zi}+k_o^2k_{1zi}}\displaystyle\frac{2k_{zi}k_1^2k_o^2}{k_1^2k_{zi}+k_o^2k_{1zi}}
+\cdot\left\{\displaystyle\frac{k_{\rho
+i}^2k_{\rho}^2(k_1^2-k_o^2)}{k_o^2(k^2_{\rho}+k_{1z}k_z)(k_z+k_{1z})}\right.\\
+\\
++k_{1zi}\left[1-\displaystyle\frac{2k_{\rho
+i}k_{\rho}}{k_{1z}k_z+k^2_{\rho}}\left(\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}\right)\right]
+\\
++\displaystyle\frac{k_{1zi}^2(k_o^2-k_1^2)}{k_1^2(k_z+k_{1z})}
+\cdot\left.
+\left[1-\displaystyle\frac{k_{\rho}^2}{k_{1z}k_z+k^2_{\rho}}\left(\displaystyle\frac{k_{xi}}{k_{\rho
+i}}\displaystyle\frac{k_x}{k_{\rho}}+\displaystyle\frac{k_{yi}}{k_{\rho
+i}}\displaystyle\frac{k_y}{k_{\rho}}\right)^2\right]\right\}\\
+\end{array}
+\end{split}\]</div>
+</section>
+<section id="ssa-spm-azimuthal-harmonic-expansion">
+<h3>SSA/SPM azimuthal harmonic expansion<a class="headerlink" href="#ssa-spm-azimuthal-harmonic-expansion" title="Permalink to this headline">#</a></h3>
+<p>According to (<span id="id20">Yueh [<a class="reference internal" href="references.html#id144" title="S. H. Yueh. Modeling of wind direction signals in polarimetric sea surface brightness temperatures. IEEE Trans. Geosci. Remote Sens., 35(6):1400–1418, November 1997.">1997</a>]</span>, 1997; <span id="id21">Johnson [<a class="reference internal" href="references.html#id57" title="Joel T. Johnson. An Efficient Two-Scale Model for the Computation of Thermal Emission and Atmospheric Reflection from the Sea Surface. IEEE Trans. Geosci. Remote Sens., 44(3):560–568, March 2006. doi:10.1109/TGRS.2005.855999.">2006</a>]</span>), the emissivity perturbation <span class="math notranslate nohighlight">\(\Delta \bar{e_{ss}}\)</span> in
+the local polarization coordinate system with local incidence angle <span class="math notranslate nohighlight">\(\theta_l\)</span> and local azimuthal angle <span class="math notranslate nohighlight">\(\phi_l\)</span>  can be determined as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-d13">
+<span class="eqno">(333)<a class="headerlink" href="#equation-eq-d13" title="Permalink to this equation">#</a></span>\[\begin{split}
+\Delta \overline{e}_{ss}=
+\left[\begin{matrix}
+\Delta \overline{e}_{ssh} \\ 
+\Delta \overline{e}_{ssv} \\
+\Delta \overline{e}_{ssU} \\
+\Delta \overline{e}_{ssV} \\
+\end{matrix}\right]=
+\displaystyle\int_{k_{l}}^{k_{u}}\int_o^{2\pi}k_{\rho}'{W(k_{\rho}',\phi'+\phi_l)} 
+\left[
+\begin{matrix}
+g_h(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')\\
+g_v(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')\\
+g_U(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')\\
+g_V(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')\\
+\end{matrix}
+\right]
+k_{\rho}'dk_{\rho}'d\phi'
+\end{split}\]</div>
+<p>The integral in the equation  for emissivities is over all length
+scales of the ocean spectrum <span class="math notranslate nohighlight">\((k_{\rho'}\)</span>  from <span class="math notranslate nohighlight">\(k_l\)</span> to <span class="math notranslate nohighlight">\(k_u\)</span>; however, the integration
+of incoherent scattering coefficients should
+be limited to only those length scales which produced a
+propagating Bragg scattered wave. The function <span class="math notranslate nohighlight">\(\it{F}\)</span> in the second
+terms of the scattering coefficients equations indicates this fact: <span class="math notranslate nohighlight">\(\it{F}\)</span> is
+defined to be 1 for <span class="math notranslate nohighlight">\(k_z\)</span> real, 0 for <span class="math notranslate nohighlight">\(k_z\)</span> complex, and limits
+the incoherent contributions to waves propagating in the upper
+hemisphere. Evaluation of the rough surface emission is
+performed through numerical integration of the double integral for
+fixed values of all the radiometer and surface parameters <span class="math notranslate nohighlight">\((f,\theta_l, \phi_l, \epsilon_{sw}, \rm{and}, W(k_{\rho'},\phi'))\)</span>.
+Typical formulations based on <span id="id22">Yueh <em>et al.</em> [<a class="reference internal" href="references.html#id145" title="Simon H. Yueh, Ronald Kwok, and Son V. Nghiem. Polarimetric scattering and emission properties of targets with reflection symmetry. Radio Sci., 29(6):1409–1420, Nov-Dec 1994.">1994</a>]</span> would
+numerically calculate double integrals for the coherent and
+incoherent contributions separately; the above expression combines
+both into one integration. This is important because the coherent
+and incoherent terms when calculated separately for large height
+surfaces can both obtain very large values which cancel when
+combined to yield the total emission prediction. This cancellation
+effect results in extremely high accuracy required in the separate
+numerical integrations. Combining the two into one double integral
+eliminates this problem.</p>
+<p>Since evaluation of the integral emission equation results in an emissivity
+vector for one value of <span class="math notranslate nohighlight">\(\phi_i\)</span> only, studies of
+brightness temperature azimuthal harmonics require repeated
+evaluation of the double integral for varying values of  <span class="math notranslate nohighlight">\(\phi_i\)</span>
+to produce functions of azimuth. Harmonic coefficients can then be
+extracted from these functions through a Fourier transform.
+Calculation of emissivities azimuthal harmonic
+coefficients and their variations with other surface and
+radiometer parameters can therefore be quite time consuming.</p>
+<p><span id="id23">Johnson and Zhang [<a class="reference internal" href="references.html#id56" title="J. T. Johnson and M. Zhang. Theoretical study of the small slope approximation for ocean polarimetric thermal emission. IEEE Trans. Geosci. Remote Sens., 37(5):2305–2316, 1999.">1999</a>]</span> proposed to use several properties of the original <span class="math notranslate nohighlight">\(g_{\gamma}\)</span>
+functions and of the surface directional spectrum and this approach is
+applied in the present algorithm. First, it is widely accepted
+that the ocean surface spectrum should vary as <span class="math notranslate nohighlight">\(1/k_{\rho}^{'4}\)</span>
+for large values of <span class="math notranslate nohighlight">\(k_{\rho}'\)</span>; it is advantageous to remove this
+dependency through use of the ocean curvature spectrum,
+<span class="math notranslate nohighlight">\(C(k_{\rho}',\phi')\)</span>, defined as
+<span class="math notranslate nohighlight">\(k_{\rho}^{'4}W(k_{\rho}',\phi')\)</span>. Next it is noted that the
+<span class="math notranslate nohighlight">\(g_{\gamma}\)</span> functions have a <span class="math notranslate nohighlight">\(k_o^2\)</span> dependence on frequency
+which can be factored out by defining:</p>
+<div class="math notranslate nohighlight" id="equation-eq-d14">
+<span class="eqno">(334)<a class="headerlink" href="#equation-eq-d14" title="Permalink to this equation">#</a></span>\[
+\tilde{g_{\gamma}}(\theta_l,\phi_l,\epsilon_{sw},k_{\rho}'/k_o,\phi')=\frac{1}{k_o^2}g_{\gamma}(f,\theta_l,\phi_l,\epsilon_{sw},k_{\rho}',\phi')
+\]</div>
+<p>with the resulting <span class="math notranslate nohighlight">\(\tilde{g_{\gamma}}\)</span> functions depending on
+frequency only through: <span class="math notranslate nohighlight">\(\displaystyle\frac{k_{\rho}'}{k_o}\)</span>. Using these ideas and re-writing the second order change in emissivity from a flat surface <span class="math notranslate nohighlight">\((\Delta e_{\gamma})\)</span> in terms of
+<span class="math notranslate nohighlight">\(\beta=k_{\rho}'/k_o\)</span> yields</p>
+<div class="math notranslate nohighlight" id="equation-eq-d15">
+<span class="eqno">(335)<a class="headerlink" href="#equation-eq-d15" title="Permalink to this equation">#</a></span>\[\begin{split}
+\left[
+\begin{matrix}
+\Delta \bar{e_{ssh}} \\
+\Delta \bar{e_{ssv}} \\
+\Delta \bar{e_{ssU}}\\
+\Delta \bar{e_{ssV}}\\
+\end{matrix}
+\right]=- \left(
+\displaystyle\int_{k_l}^{k_u}\displaystyle\int_o^{2\pi}B(k_o\beta,\phi')
+\left[
+\begin{matrix}
+g_h'(\theta_l,\phi_l;\epsilon_{sw},\beta,\phi')\\
+g_v'(\theta_l,\phi_l;\epsilon_{sw},\beta,\phi')\\
+g_U'(\theta_l,\phi_l;\epsilon_{sw},\beta,\phi')\\
+g_V'(\theta_l,\phi_l;\epsilon_{sw},\beta,\phi')\\
+\end{matrix}
+\right]d\phi'd\beta \right)
+\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-eq-d16">
+<span class="eqno">(336)<a class="headerlink" href="#equation-eq-d16" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{array}{ll}
+g_{\gamma}'(\theta_l,\phi_l;\epsilon_{sw},\beta,\phi')d\beta&amp;=\displaystyle\frac{1}{\beta^3}\tilde{g_{\gamma}}
+\left(\theta_l,\phi_l;\epsilon_{sw},\displaystyle\frac{k_{\rho}'}{k_o}=\beta,\phi'\right)d\beta \\
+&amp;\hspace{-.5cm}=\displaystyle\frac{k_o^2}{k_{\rho}^{'3}}\left[\displaystyle\frac{1}{k_o^2}g_{\gamma}\left(f,\theta_l,\phi_l;\epsilon_{sw},k_{\rho}'=k_o\beta,\phi'\right)\right]dk_{\rho}'
+\end{array}
+\end{split}\]</div>
+<p>and the new <span class="math notranslate nohighlight">\(g_{\gamma}'\)</span> functions have no explicit dependence on frequency.</p>
+<p>A second simplification is used to separate individual azimuth
+harmonics of the emission vector. First a study of the
+<span class="math notranslate nohighlight">\(g_{\gamma}'\)</span> functions reveals them to be functions of
+<span class="math notranslate nohighlight">\(\phi_l-\phi'\)</span>  alone and not <span class="math notranslate nohighlight">\(\phi_l\)</span> and <span class="math notranslate nohighlight">\(\phi'\)</span> separately.
+This motivates expansion of the <span class="math notranslate nohighlight">\(g_{\gamma}'\)</span>  functions in a
+Fourier series as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-d17">
+<span class="eqno">(337)<a class="headerlink" href="#equation-eq-d17" title="Permalink to this equation">#</a></span>\[
+g_{\gamma}'(\theta_l,\phi_l;\epsilon_{sw},\beta,\phi')=\displaystyle\sum_{n=-\infty}^{\infty}e^{in(\phi_l-\phi')}g_{\gamma,n}'(\theta_l,\epsilon_{sw},\beta)
+\]</div>
+<p>Consideration of the fact that the <span class="math notranslate nohighlight">\(g_{\gamma}'\)</span>  functions are
+real functions and the symmetric properties in <span class="math notranslate nohighlight">\(\phi_l-\phi'\)</span> for
+each polarimetric quantity reveals that <span class="math notranslate nohighlight">\(g_h'\)</span> and <span class="math notranslate nohighlight">\(g_v'\)</span> should
+have only real valued <span class="math notranslate nohighlight">\(g_{\gamma,n}'\)</span> which are even in <span class="math notranslate nohighlight">\(\it{n}\)</span>, while
+<span class="math notranslate nohighlight">\(g_U'\)</span> and <span class="math notranslate nohighlight">\(g_V'\)</span> should have only imaginary valued
+<span class="math notranslate nohighlight">\(g_{\gamma,n}'\)</span> which are odd in <span class="math notranslate nohighlight">\(\it{n}\)</span>. Using the Fourier
+expansion in the emssion equation results in:</p>
+<div class="math notranslate nohighlight" id="equation-eq-d18">
+<span class="eqno">(338)<a class="headerlink" href="#equation-eq-d18" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{array}{l}
+\Delta e_{ss\gamma}=-\left(\left[
+\begin{array}{c}
+\displaystyle\int_o^{\infty} g_{\gamma,0}'B_0(k_o\beta) d\beta\\
+0 \\
+\end{array}\right]+ \right.
+\left. \displaystyle\sum_{n=1}^{\infty} \left[
+\begin{array}{c}
+2\cos(n\phi_l)\int_o^{\infty} \Re{\left[g_{\gamma,n}'(\beta)\right]}B_n(k_o\beta) d\beta\\
+-2\sin(n\phi_l)\int_o^{\infty} \Im{\left[g_{\gamma,n}'(\beta)\right]}B_n(k_o\beta) d\beta\\
+\end{array}\right]\right)\\
+\end{array}
+\end{split}\]</div>
+<p>where the upper row in the final equality holds for <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(v\)</span>,
+the lower row for <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span>, and an assumption that the
+curvature spectrum contains only cosine harmonics has been made.</p>
+<p>The last Equation has separated out individual
+emission azimuthal harmonic terms (the <span class="math notranslate nohighlight">\(\cos(n\phi_l)\)</span> and
+<span class="math notranslate nohighlight">\(\sin(n\phi_l)\)</span> terms) and reveals them to be proportional to an
+integral of a weighting function <span class="math notranslate nohighlight">\(g_{\gamma,n}'(\beta)\)</span> times the
+<span class="math notranslate nohighlight">\(B_n(k_o\beta)\)</span> functions. Note that:</p>
+<div class="math notranslate nohighlight" id="equation-eq-d19">
+<span class="eqno">(339)<a class="headerlink" href="#equation-eq-d19" title="Permalink to this equation">#</a></span>\[
+B_n(k_o\beta)=\displaystyle\int_o^{2\pi}e^{-in
+\phi'}C(k\beta,\phi')d\phi'
+\]</div>
+<p>represents the <span class="math notranslate nohighlight">\(n\)</span> th harmonic of the surface curvature spectrum,
+so the above equation demonstrates the direct correspondence
+between emission and surface azimuthal harmonics. Again, since the
+properties of a surface directional spectrum require it to have no
+odd azimuthal harmonics, the above equation clarifies that no odd
+emission harmonics will be obtained in this second order
+formulation. In addition, the above equation makes calculation of
+emission harmonics a much more direct procedure, since two single
+integrals (one for the Fourier series expansion of the
+<span class="math notranslate nohighlight">\(g_{\gamma}'\)</span> functions and the <span class="math notranslate nohighlight">\(d\beta\)</span> integration in this last equation
+replace the multiple double integrals in an
+azimuth sweep procedure.</p>
+<p>Given a sea surface roughness curvature spectrum model and the ssa/spm <span class="math notranslate nohighlight">\(g_{\gamma,n}'\)</span> fonctions, the sea surface roughness-induced Stokes vector emission can be estimated following:</p>
+<div class="math notranslate nohighlight" id="equation-eq-d20">
+<span class="eqno">(340)<a class="headerlink" href="#equation-eq-d20" title="Permalink to this equation">#</a></span>\[\begin{split}
+\left[
+\begin{matrix}
+\Delta \bar{e_{ssh}} \\ 
+\Delta \bar{e_{rv}} \\
+\Delta \bar{e_{rU}} \\
+\Delta \bar{e_{rV}} 
+\end{matrix}
+\right]=
+\left[
+\begin{matrix}
+e_{ssh}^{(0)}+e_{ssh}^{(2)}\cos(2\phi_{wr}) \\ 
+e_{ssv}^{(0)}+e_{ssv}^{(2)}\cos(2\phi_{wr}) \\
+e_{ssU}^{(2)}\sin(2\phi_{wr}) \\
+e_{ssV}^{(2)}\sin(2\phi_{wr}) 
+\end{matrix}
+\right]
+\end{split}\]</div>
+<p>where the  terms <span class="math notranslate nohighlight">\(e_{r\gamma}^{(n)}\)</span> represent the nth azimuthal harmonics of the wind-excess emissivity. Note that due to the assumption of gaussianity in the sea surface statistics,
+the solution can be expressed strictly in terms of a roughness spectrum. Properties of a directional spectrum result in no first azimuthal harmonic variations being obtained; introduction of non-gaussianity
+is required to obtain first azimuthal harmonics.</p>
+</section>
+</section>
+<section id="appendix-e-efficient-implementation-of-bistatic-scattering-coefficients">
+<h2>Appendix E: Efficient Implementation of Bistatic Scattering Coefficients<a class="headerlink" href="#appendix-e-efficient-implementation-of-bistatic-scattering-coefficients" title="Permalink to this headline">#</a></h2>
+<p>In this appendix we review the method we used for bistatic scattering
+coefficients efficient numerical implementation. First, the Kirchhoff Integral (\ref{eq:KI0}) is analytically expressed in polar coordinates so that  the
+bistatic scattering coefficients dependency on wind direction is separated from the dependencies on other
+variables, without introducing further approximations. This allows
+calculation of bistatic scattering coefficients using a single
+numerical integration over the radial distance instead of two as with
+a cartesian coordinate formulation, saving a large amount of processing time.</p>
+<p>Second, we make use of pre-calculated lookup tables (LUTS) of the bistatic scattering harmonic coefficients to provide a fast computing
+method to estimate rough sea surface bistatic coefficients using
+either the small slope or Kirchhoff asymptotic theory.</p>
+<section id="kirchhoff-integral-in-polar-coordinates">
+<h3>Kirchhoff Integral in polar coordinates<a class="headerlink" href="#kirchhoff-integral-in-polar-coordinates" title="Permalink to this headline">#</a></h3>
+<p>The Kirchoff Integral  can be written as follows in polar coordinates</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+I_K=\displaystyle\int_{0}^{\infty}\displaystyle\int_{0}^{2\pi}
+\left\{e^{\displaystyle\left[(q_s+q_o)^2\rho(\vec{r})\right]}-1\right\}
+e^{\displaystyle-i(\vec{k}_{s}-\vec{k}_{o}) \cdot \vec{r}}d\vec{r}
+\label{eq:A1}
+\end{equation}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\((\vec{k}_{s},\vec{k}_{o})\)</span> are the scattered
+and incident wavenumber vectors, <span class="math notranslate nohighlight">\((q_s,q_o) = (\hat{z}\cdot
+\vec{k}_{s}, -\hat{z}\cdot \vec{k}_{o})\)</span> represent the vertical
+projection of the wavevectors with <span class="math notranslate nohighlight">\(\hat{z}\)</span> a unit vector normal to the surface at target and directed upward, <span class="math notranslate nohighlight">\((r,\Phi)=\vec{r}\)</span> are the polar coordinates and <span class="math notranslate nohighlight">\(\rho(\vec{r})\)</span> is the
+sea surface
+elevation autocorrelation function. The Fourier series expansion of <span class="math notranslate nohighlight">\(\rho(\vec{r})\)</span> in azimuthal harmonics up to the second order can be expressed as follows (<span id="id24">Bourlier and Berginc [<a class="reference internal" href="references.html#id9" title="C. Bourlier and G. Berginc. Microwave analytical backscattering models from randomly rough anisotropic sea surface - Comparison with experimental data in C and Ku bands. Progress in Electromagnetics Research, 37:31-78, 2002.">2002</a>]</span>,
+<span id="id25">Elfouhaily <em>et al.</em> [<a class="reference internal" href="references.html#id39" title="T. Elfouhaily, B. Chapron, K. Katsaros, and D. Vandemark. A unified directional spectrum for long and short wind-driven waves. Journal of Geophysical Research: Oceans, 102(C7):15781-15796, 1997. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/97JC00467, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/97JC00467, doi:https://doi.org/10.1029/97JC00467.">1997</a>]</span>):</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\rho(r,\Phi)=\rho_0(r)-\rho_2(r)\cos 2(\Phi-\varphi_w),
+\label{eq:A2}
+\end{equation}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\varphi_w\)</span> is the wind direction, and where the isotropic <span class="math notranslate nohighlight">\(\rho_0(r)\)</span> and anisotropic <span class="math notranslate nohighlight">\(\rho_2(r)\)</span> parts are given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\left\{
+\begin{array}{l}
+\rho_0(r)=\displaystyle\int_0^{\infty}W(k)J_0(rk)dk \\
+\\
+\rho_2(r)=\displaystyle\int_0^{\infty} W(k)\Delta(k)J_2(rk)dk \\
+\end{array}
+\right.\label{eq:A3}
+\end{equation}
+\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(k\)</span> is a surface wavenumber, <span class="math notranslate nohighlight">\(J_n\)</span> is the <span class="math notranslate nohighlight">\(n^{th}\)</span> order Bessel function of the first kind, <span class="math notranslate nohighlight">\(W(k)\)</span> is the omni-directional sea surface height
+spectrum at wavenumber <span class="math notranslate nohighlight">\(k\)</span>, and <span class="math notranslate nohighlight">\(\Delta(k)\)</span> is the so-called upwind-crosswind ratio at wavenumber <span class="math notranslate nohighlight">\(k\)</span> (<span id="id26">Elfouhaily <em>et al.</em> [<a class="reference internal" href="references.html#id39" title="T. Elfouhaily, B. Chapron, K. Katsaros, and D. Vandemark. A unified directional spectrum for long and short wind-driven waves. Journal of Geophysical Research: Oceans, 102(C7):15781-15796, 1997. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/97JC00467, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/97JC00467, doi:https://doi.org/10.1029/97JC00467.">1997</a>]</span>).</p>
+<p>In the following, we denote <span class="math notranslate nohighlight">\(\vec{q}=\vec{k}_{s} - \vec{k}_{o} = q_{Hx}\hat{x} + q_{Hy}\hat{y}+ q_{z}\hat{z}\)</span>, the vector
+defined as the difference between the scattered and incident
+electromagnetic wavenumbers. We further denote <span class="math notranslate nohighlight">\(q_H = |q_{Hx}\hat{x}+ q_{Hy}\hat{y}|\)</span>, the horizontal component of <span class="math notranslate nohighlight">\(\vec{q}\)</span> and introduce the angle <span class="math notranslate nohighlight">\(\Phi_{si} =
+\tan^{-1}\left(q_{Hy}/q_{Hx}\right)\)</span>.</p>
+<p>Substituting (\ref{eq:A2})  into (\ref{eq:A1}), the Kirchhoff Integral in polar coordinates becomes</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+I_K=\displaystyle\int_0^\infty\displaystyle\int_0^{2\pi}\left\{e^{\displaystyle\left[q_z^2
+\rho_0(r)-q_z^2\rho_2(r)\cos2(\Phi-\varphi_w)\right]}-1\right\}
+\displaystyle e^{\displaystyle-iq_H r \cos(\Phi-\Phi_{si})}rd\Phi dr,
+\label{eq:A4}
+\end{equation}
+\]</div>
+<p>Gathering the terms functions of <span class="math notranslate nohighlight">\(\Phi\)</span> in (\ref{eq:A4}),</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+I_K=2\pi\displaystyle\int_0^{\infty}\left[I_{\Phi_1}(r)
+e^{\displaystyle q_z^2\rho_0(r)}-I_{\Phi_2}(r)\right]rdr.
+\label{eq:A5}
+\end{equation}
+\]</div>
+<p>where we need to solve the following integrals over <span class="math notranslate nohighlight">\(\Phi\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\left\{
+\begin{array}{l}
+I_{\Phi_1}(r)=\displaystyle\frac{1}{2\pi}\displaystyle\int_0^{2\pi}e^{-a(r)\cos2(\Phi-\varphi_w)-ib(r)
+\cos(\Phi-\Phi_{si})}d\Phi, \\ \\
+I_{\Phi_2}(r)=\displaystyle\frac{1}{2\pi}\displaystyle\int_0^{2\pi}e^{-ib(r)
+\cos(\Phi-\Phi_{si})}d\Phi, \\
+\end{array}\right.
+\label{eq:A6}
+\end{equation}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a(r)=q_z^2\rho_2(r)\)</span> and <span class="math notranslate nohighlight">\(b(r)=q_H r\)</span>. The complex exponential in (\ref{eq:A6}) can be expressed in terms of
+Bessel functions using the Jacobi-Anger expansion (see,
+e.g.,<span id="id27">Arfken and Weber [<a class="reference internal" href="references.html#id8" title="G. B. Arfken and H. J. Weber. Mathematical methods for physicists 6th ed. Materials and Manufacturing Processes, 2005.">2005</a>]</span>):</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+e^{-a\cos 2(\Phi-\varphi_w)}=\displaystyle\sum_{m=-\infty}^{\infty}i^m
+J_m(ia)e^{2im(\Phi-\varphi_w)}=J_0(ia)+2\displaystyle\sum_{m=1}^{\infty}i^m
+J_m(ia)\cos{2m(\Phi-\varphi_w)},
+\label{eq:A7}
+\end{equation}
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+e^{-ib \cos(\Phi-\Phi_{si})}=\displaystyle\sum_{n=-\infty}^{\infty}i^n
+J_n(b)e^{in(\Phi-\Phi_{si}+\pi)}=J_0(b)+2\displaystyle\sum_{n=1}^{\infty}i^{3n}
+J_n(b)\cos{n(\Phi-\Phi_{si})},
+\label{eq:A8}
+\end{equation}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(J_m\)</span> is the Bessel function of the first kind and order
+<span class="math notranslate nohighlight">\(m\)</span>. Substituting (\ref{eq:A7}) and (\ref{eq:A8}) into
+(\ref{eq:A6}) and performing the integration over <span class="math notranslate nohighlight">\(\Phi\)</span>, we obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+I_{\Phi_1}(r)=J_0(ia)J_0(b)
++2\displaystyle\sum_{m=1}^{\infty}\displaystyle\sum_{n=1}^
+{\infty}\delta(2m-n)J_m(ia)J_n(b)i^{m+3n}\cos{n(\Phi_{si}-\varphi_w)}
+\end{equation}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\delta\)</span> is the Kronecker Delta. Using the relation
+<span class="math notranslate nohighlight">\(J_m(ia)=i^mI_m(a)\)</span> where <span class="math notranslate nohighlight">\(I_m\)</span> denotes the modified Bessel function
+of the first kind and order <span class="math notranslate nohighlight">\(m\)</span>, we obtain:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+I_{\Phi_1}(r) = I_0(a)J_0(b)+2\displaystyle\sum_{m=1}^{\infty}I_m(a)J_{2m}(b)\cos{2m(\Phi_{si}-\varphi_w)}.\\
+\label{eq:A9}\end{equation}
+\end{split}\]</div>
+<p>For <span class="math notranslate nohighlight">\(I_{\Phi_2}(r)\)</span>, we have
+$<span class="math notranslate nohighlight">\(
+\begin{equation}
+I_{\Phi_2}(r) =  \frac{1}{2\pi}\displaystyle\int_0^{2\pi} \left[J_0(b)+2\displaystyle\sum_{n=1}^{\infty}i^n J_n(b)\cos{n(\Phi-\Phi_{si})}\right]d\Phi = J_0(b).
+\label{eq:A10}\end{equation}
+\)</span>$
+Substituting (\ref{eq:A9}) and (\ref{eq:A10}) into
+(\ref{eq:A5}),the Kirchhoff Integral reads</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+I_K = \displaystyle\sum_{m=0}^{\infty} I_K^{m} \cos{2m(\Phi_{si}-\varphi_w)}.
+\label{eq:A11}\end{equation}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+I_K^0 = 2\pi\displaystyle\int_0^\infty J_0(q_H r)\left[I_0(q_z^2\rho_2(r))e^{q_z^2\rho_0(r)}-1\right]r dr
+\end{equation}
+\]</div>
+<p>and where, for <span class="math notranslate nohighlight">\(m\)</span> from <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(\infty\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+I_K^m = 4\pi \displaystyle\int_0^\infty I_m(q_z^2\rho_2(r))J_{2m}(q_H r) e^{q_z^2\rho_0(r)} r dr,
+\end{equation}
+\]</div>
+<p>is the coefficient of harmonic <span class="math notranslate nohighlight">\(2m\)</span> in a cosine series decomposition
+of the Kirchhoff Integral.</p>
+<p>The formulation (\ref{eq:A11}) for the Kirchhoff Integral allows
+calculation of bistatic scattering coefficients using a single
+numerical integration over the radial distance instead of four as with
+a cartesian coordinate formulation.</p>
+</section>
+<section id="kirchhoff-approximation-kernel-functions">
+<h3>Kirchhoff Approximation kernel functions<a class="headerlink" href="#kirchhoff-approximation-kernel-functions" title="Permalink to this headline">#</a></h3>
+<p>The kernel functions <span class="math notranslate nohighlight">\(K_{\alpha\alpha_\circ}(\bf{k_{s}},\bf{k_o})\)</span>
+are functions of both the scattering geometry and the dielectric
+constant. Explicit expressions of these kernel functions for the Kirchhoff Approximation (KA)  may be found in
+<span id="id28">Voronovich and Zavorotny [<a class="reference internal" href="references.html#id129" title="A. G. Voronovich and V. U. Zavorotny. Theoretical Model for Scattering of Radar Signals in Ku- and C-bands from a Rough Sea Surface with Breaking Waves. Waves in Random Media, 11:247-269, 2001. doi:10.1080/13616670109409784.">2001</a>]</span>. We provide theuir definition herebeow:</p>
+<p>If <span class="math notranslate nohighlight">\(\lambda_o=c/f\)</span> is the EM wavelength with <em>c</em>, the speed of light [m/s], then <span class="math notranslate nohighlight">\(K_o=2\cdot\pi/\lambda_o\)</span>  is the amplitude of the incident EM wavenumber
+and we let <span class="math notranslate nohighlight">\(K=K_o\)</span>.
+Let <span class="math notranslate nohighlight">\(ko_x\)</span>, <span class="math notranslate nohighlight">\(ko_y\)</span>, and  <span class="math notranslate nohighlight">\(ko_z\)</span> be the horizontal projection on x-axis, on y-axis, and the vertical component of the incide wavevector, respectively:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+ko_x=-K_o\sin{(\theta_o)}\cdot\cos{(\phi_o)} \\
+ko_y=-K_o\sin{(\theta_o)}\cdot\sin{(\phi_o)} \\
+ko_z=-q_o=-K_o\cos{(\theta_o)}
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>Let also <span class="math notranslate nohighlight">\(k_x\)</span>, <span class="math notranslate nohighlight">\(k_y\)</span>, and  <span class="math notranslate nohighlight">\(k_z\)</span> be the horizontal projection on x-axis, on y-axis, and the vertical component of the  scattered wavenumber:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+k_x=K_o\sin{(\theta_s)}\cdot\cos{(\phi_s)} \\
+k_y=K_o\sin{(\theta_s)}\cdot\sin{(\phi_s)} \\
+k_z=q_k=K_o\cos{(\theta_s)}
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>We also define the vector <span class="math notranslate nohighlight">\(\bf{q}\)</span>, the difference between the scattered and incident wavenumber:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+q_{Hx}=k_x-ko_x \\
+q_{Hy}=k_y-ko_y \\
+q_z=k_z-ko_z 
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>and:</p>
+<div class="math notranslate nohighlight">
+\[q_H=\sqrt{(q^2_{Hx}+q^2_{Hy})}\]</div>
+<p>so that:</p>
+<div class="math notranslate nohighlight">
+\[
+q^2=q_{Hx}\cdot q_{Hx}+q_{Hy}\cdot q_{Hy}+q_z\cdot q_z
+\]</div>
+<p>Then:</p>
+<div class="math notranslate nohighlight">
+\[|k|=\sqrt{(k_x^2+k_y^2)}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[|ko|=\sqrt{(ko_x^2+ko_y^2)}\]</div>
+<p>and,</p>
+<div class="math notranslate nohighlight">
+\[\vec{k}\cdot\vec{ko}=\frac{(k_x\cdot ko_x+k_y\cdot ko_y)}{|k| |k_o|}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\vec{k}\times\vec{ko}=\frac{(k_x\cdot ko_y-k_y\cdot ko_x)}{|k| |k_o|}\]</div>
+<p>We then define the following vectors <span class="math notranslate nohighlight">\(V_i\)</span>, <span class="math notranslate nohighlight">\(H_i\)</span>, <span class="math notranslate nohighlight">\(V_s\)</span> and <span class="math notranslate nohighlight">\(H_s\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+V_{ix}=\displaystyle\frac{q_o\cdot ko_x}{|k| |k_o|} \\
+V_{iy}=\displaystyle\frac{q_o\cdot ko_y}{|k| |k_o|} \\
+V_{iz}=\displaystyle\frac{|k_o|}{k_o}
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+V_{sx}=\displaystyle\frac{q_k\cdot k_x}{|k| K} \\
+V_{sy}=\displaystyle\frac{q_k\cdot k_y}{|k| K} \\
+V_{sz}=\displaystyle\frac{|k|}{K}
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+H_{ix}=\displaystyle\frac{ko_y\cdot ko_x}{|k_o|} \\
+H_{iy}=\displaystyle\frac{-ko_x}{|k_o|} \\
+H_{iz}=0
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+H_{sx}=\displaystyle\frac{k_y}{|k|} \\
+H_{sy}=\displaystyle\frac{-k_x}{|k|} \\
+H_{sz}=0
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>Now we define:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+R_{VV}=\displaystyle\frac{\left(\frac{q}{2}\epsilon_{sw}-\sqrt{(\epsilon_{sw}-1)\cdot K^2+\frac{q^2}{4}}\right)}{(\frac{q}{2}\epsilon_{sw}+\sqrt{(\epsilon_{sw}-1)\cdot K^2+\frac{q^2}{4})}}\\
+R_{HH}=-\displaystyle\frac{(q/2-\sqrt{(\epsilon_{sw}-1)\cdot K^2+\frac{q^2}{4}}}{(\frac{q}{2}+\sqrt{(\epsilon_{sw}-1)\cdot K^2+\frac{q^2}{4})}}\\
+R_{VH}=(R_{VV}+R_{HH})/2 \\
+R_{HV}=R_{VH} 
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>Then, let:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+Ki_{x}=ko_x/K \\
+Ki_y=ko_y/K \\
+Ki_z=-qo/K \\
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+Ks_{x}=kx/K \\
+Ks_y=k_y/K \\
+Ks_z=q_k/K \\
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>We have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+(K_s\times K_i)_x= Ki_z\cdot Ks_y - Ki_y\cdot Ks_z \\ 
+(K_s\times K_i)_y= Ki_x\cdot Ks_z - Ki_z\cdot Ks_x \\
+(K_s\times K_i)_z= Ki_y\cdot Ks_x - Ki_x\cdot Ks_y
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>and we next define:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+V_iK_s=Vi_x\cdot Ks_x+Vi_y\cdot Ks_y+Vi_z\cdot Ks_z \\
+H_iK_s=Hi_x\cdot Ks_x+Hi_y\cdot Ks_y+Hi_z\cdot Ks_z \\
+K_iV_s=Ki_x.*Vs_x+Ki_y\cdot Vs_y+Ki_z\cdot Vs_z \\
+K_iH_s=Ki_x.*Hs_x+Ki_y\cdot Hs_y+Ki_z\cdot Hs_z \\
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+(V_iK_s\times K_i)=Vi_x\cdot (K_s\times K_i)_x+Vi_y\cdot(K_s\times K_i)_y+Vi_z\cdot(K_s\times K_i)_z \\
+(H_iK_s\times K_i)=Hi_x\cdot (K_s\times K_i)_x+Hi_y\cdot(K_s\times K_i)_y+Hi_z\cdot(K_s\times K_i)_z \\
+(K_s\times K_iV_s)=(K_s\times K_i)_x\cdot Vs_x+(K_s\times K_i)_y\cdot Vs_y+(K_s\times K_i)_z\cdot Vs_z \\
+(K_s\times K_iH_s)=(K_s\times K_i)_x\cdot Hs_x+(K_s\times K_i)_y\cdot Hs_y+(K_s\times K_i)_z\cdot Hs_z \\
+(K_s\times K_i)^2=(K_s\times K_i)_x^2+(K_s\times K_i)_y^2+(K_s\times K_i)_z^2
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>Finally, the kernel functions <span class="math notranslate nohighlight">\(K_{\alpha\alpha_\circ}(\bf{k_{s}},\bf{k_o})\)</span> are defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+K_{VV}=\displaystyle\frac{q^2}{2}\cdot\left(\frac{R_{VV}\cdot V_iK_s\cdot K_iV_s + R_{HH}\cdot (V_{i}K_{s}\times K_i) \cdot (K_s\times K_{i}V_{s})}{(K_s\times K_i)^2}\right) \\
+K_{VH}=\displaystyle\frac{q^2}{2}\cdot\left(\frac{R_{VV}\cdot V_iK_s\cdot K_iH_s + R_{HH}\cdot (V_{i}K_{s}\times K_i) \cdot (K_s\times K_{i}H_{s})}{(K_s\times K_i)^2}\right) \\
+K_{HV}=\displaystyle\frac{q^2}{2}\cdot\left(\frac{R_{VV}\cdot H_iK_s\cdot K_iV_s + R_{HH}\cdot (H_{i}K_{s}\times K_i) \cdot (K_s\times K_{i}V_{s})}{(K_s\times K_i)^2}\right) \\
+K_{HH}=\displaystyle\frac{q^2}{2}\cdot\left(\frac{R_{VV}\cdot H_iK_s\cdot K_iH_s + R_{HH}\cdot (H_{i}K_{s}\times K_i) \cdot (K_s\times K_{i}H_{s})}{(K_s\times K_i)^2}\right) \\
+\end{array}
+\end{equation}
+\end{split}\]</div>
+</section>
+<section id="numerical-implementation">
+<h3>Numerical implementation<a class="headerlink" href="#numerical-implementation" title="Permalink to this headline">#</a></h3>
+<p>Recalling the expression for the bistatic scattering coefficients,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+    \sigma_{\alpha\alpha_o}(\vec{k}_{s},\vec{k}_{o})=\displaystyle\frac{1}{\pi}\left|\frac{2q_s
+    q_o}{q_s+q_o}K_{\alpha\alpha_o}(\vec{k}_{s},
+    \vec{k}_{o})\right|^2e^{\displaystyle-(q_s+q_o)^2\rho(0)}\cdot I_K
+    \\ \\
+    \end{array}
+\end{equation}
+\end{split}\]</div>
+<p>we see that we can incorporate the polarization-dependent coefficients multiplying the Kirchhoff Integral into the sum (\ref{eq:A11}) over
+the Kirchoff Integral harmonics.  We thus obtain harmonic decompositions
+of the bistatic scattering coefficients:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\sigma_{\alpha\alpha_o}(\vec{k}_{s},\vec{k}_{o}, u_{10}, \varphi_w) =
+\displaystyle\sum_{m=0}^{\infty}
+\sigma^m_{\alpha\alpha_o}(\vec{k}_{s},\vec{k}_{o}) \cos{2m(\Phi_{si}-\varphi_w)},
+\label{eq:B2}
+\end{equation}
+\]</div>
+<p>where we have explicitly included the dependence of the final
+scattering coefficients on the wind speed <span class="math notranslate nohighlight">\(u_{10}\)</span> and wind direction
+<span class="math notranslate nohighlight">\(\varphi_w\)</span>, and where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{l}
+    \sigma^m_{\alpha\alpha_o}(\vec{k}_{s},\vec{k}_{o})=\displaystyle\frac{1}{\pi}\left|\frac{2q_s
+    q_o}{q_s+q_o}B_{\alpha\alpha_o}(\vec{k}_{s},
+    \vec{k}_{o})\right|^2e^{\displaystyle-(q_s+q_o)^2\rho(0)}\cdot I^m_K
+    \\ \\
+    \end{array}
+\end{equation}
+\end{split}\]</div>
+<p>Note that the scattering coefficient harmonics are independent of wind
+direction.  Moreover, these harmonics only depend on the incoming and
+scattered radiation incidence angles, the wind speed, the dielectric constant and the difference
+between the incoming and scattered radiation azimuth angles. Thus,
+switching from vector notation to angles, we can write the scattering
+coefficients as</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\sigma_{\alpha\alpha_o}(\theta_o, \phi_o, \phi_s, \theta_s, u_{10}, \varphi_w) =
+\displaystyle\sum_{m=0}^{\infty}
+\sigma^m_{\alpha\alpha_o}(\theta_o, \phi_s - \phi_o, \theta_s, u_{10}) \cos{2m(\Phi_{si}-\varphi_w)},
+\end{equation}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta_o\)</span> is the incoming radiation incidence angle, <span class="math notranslate nohighlight">\(\phi_s\)</span>
+is the scattered radiation azimuth angle, <span class="math notranslate nohighlight">\(\phi_o\)</span> is the incoming
+radiation azimuth angle, <span class="math notranslate nohighlight">\(\theta_s\)</span> is the scattered radiation
+incidence angle.  As defined previously, <span class="math notranslate nohighlight">\(\varphi_w\)</span> is the wind
+direction (towards which the wind is blowing) and <span class="math notranslate nohighlight">\(\Phi_{si}(\theta_o, \phi_o, \phi_s, \theta_s)  =
+\tan^{-1}\left(\frac{\sin \theta_s \sin \phi_s + \sin \theta_o \sin
+\phi_o}{\sin \theta_s \cos \phi_s + \sin \theta_o \cos \phi_o}\right)\)</span> is a function of the incidence
+and azimuth angles of the incoming and scattered radiation.</p>
+<p>We pre-calculate lookup tables (LUTS) of the harmonic coefficients
+<span class="math notranslate nohighlight">\(\sigma^m_{\alpha\alpha_o}(\theta_o, \phi_s - \phi_o, \theta_s,
+u_{10})\)</span> for even azimuthal wavenumbers 0 through 10 on a discrete
+grid and interpolate from that grid.  As a final step,  the sum is
+implemented over the harmonics, given specific values for the
+incoming and scattered azimuths and wind direction. As it has been
+found that only the first few harmonics contribute significantly
+to the scattering coefficients, the sum is over the first six
+even harmonics.</p>
+<p>It is found that linear interpolation introduces artifacts in all
+dimensions, but especially in incidence angle dimensions. We have
+therefore implemented a cubic Hermite interpolation method.   The basic idea
+behind the method is to ensure continuity of the first derivative
+of the interpolating function. To accomplish this, a multi point
+stencil along each dimension surrounding the interpolation point
+is required but the nature of the method is such that one can
+compute the coefficients once for all harmonics and reuse the
+weights, saving a large amount of processing time.</p>
+</section>
+</section>
+<section id="appendix-f-coordinate-systems-used-for-sky-glint">
+<h2>Appendix F: Coordinate systems used for Sky Glint<a class="headerlink" href="#appendix-f-coordinate-systems-used-for-sky-glint" title="Permalink to this headline">#</a></h2>
+<p>We begin by establishing several reference frames. The first is the
+earth fixed reference frame, or <span class="math notranslate nohighlight">\(\cal E\)</span>, centered at the center of
+the earth reference ellipsoid, with cartesian basis <span class="math notranslate nohighlight">\(({\bf\hat x_e},
+{\bf\hat y_e}, {\bf\hat{z}_e})\)</span>.  <span class="math notranslate nohighlight">\({\bf\hat x_e}\)</span> points outward along
+the equatorial plane towards the Greenwich meridian, <span class="math notranslate nohighlight">\({\bf\hat y_e}\)</span>
+points outward along the equatorial plane towards 90 <span class="math notranslate nohighlight">\(^\circ\)</span> E, and
+<span class="math notranslate nohighlight">\({\bf\hat{z}_e}\)</span> points towards the North Pole.</p>
+<p>The second frame is the so-called alt-azimuth frame, or <span class="math notranslate nohighlight">\(\cal A\)</span>, with
+cartesian basis <span class="math notranslate nohighlight">\(({\bf\hat x_t}, {\bf\hat y_t}, {\bf\hat z_t})\)</span>, with
+<span class="math notranslate nohighlight">\({\bf\hat x_t}\)</span> pointing eastward, <span class="math notranslate nohighlight">\({\bf\hat y_t}\)</span> pointing northward,
+and <span class="math notranslate nohighlight">\({\bf\hat z_t}\)</span> pointing upward (zenith).  This frame is the same
+as the topocentric frame defined in the EE CFI Mission Convention
+Document  and is the natural frame in which to express
+the surface scattering problem since the scattering geometry is
+typically defined relative to the local surface orientation. Since
+this coordinate frame is defined relative to the location on the
+earth’s surface, the projection of the cartesian basis vectors for
+this frame in the earth fixed coordinate System depends on latitude
+and longitude.</p>
+<p>The third frame is the True of Date (TOD) celestial frame, or <span class="math notranslate nohighlight">\(\cal
+C\)</span>, with cartesian basis <span class="math notranslate nohighlight">\(({\bf\hat x_c}, {\bf\hat y_c}, {\bf\hat
+z_c})\)</span>, in which the celestial noise map is provided. This frame is
+aligned with the earth fixed frame except for a time-dependent
+rotation of <span class="math notranslate nohighlight">\(({\bf\hat x_c}, {\bf\hat y_c})\)</span> relative to <span class="math notranslate nohighlight">\(({\bf\hat
+x_e}, {\bf\hat y_e})\)</span>. The center of the frame coincides with the
+center of the earth, and the x-axis coincides with the direction of
+the true vernal equinox of date. This coordinate system’s orientation
+accounts for the nutation of the earth owing to a periodic effect of
+the gravitation fields of the moon and other planets acting on the
+earth’s equatorial bulge.  Using the terminology in the EE CFI MCD, to
+transform a vector from the TOD celestial frame to the earth fixed
+frame we apply a rotation about the <span class="math notranslate nohighlight">\({\bf\hat z_e}\)</span>-axis by the earth
+rotation angle, <span class="math notranslate nohighlight">\(H\)</span>, which in turn is the sum of the Greenwich
+siderial angle <span class="math notranslate nohighlight">\(G\)</span> and a nutation angle <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+<p>The transformation from one frame to another can be written as a <span class="math notranslate nohighlight">\(3
+\times 3\)</span> matrix, and we denote the transform from frame <span class="math notranslate nohighlight">\({\bf I}\)</span> to
+frame <span class="math notranslate nohighlight">\({\bf J}\)</span> as <span class="math notranslate nohighlight">\({\bf T_{IJ}}\)</span>. The matrices are built with the
+help of EE CFI. As mentioned above, the transformation from the earth
+fixed frame to the TOD celestial frame, denoted <span class="math notranslate nohighlight">\({\bf T_{ec}}\)</span>, is a
+rotation about the <span class="math notranslate nohighlight">\({\bf\hat z_e}\)</span>-axis by an angle <span class="math notranslate nohighlight">\(H\)</span>. Introducing
+the rotation matrix <span class="math notranslate nohighlight">\({\bf R_z}\)</span> for a counterclockwise rotation by
+angle <span class="math notranslate nohighlight">\(\phi\)</span> of the coordinate system about the <span class="math notranslate nohighlight">\({\bf\hat z_c} =
+{\bf\hat z_e}\)</span>-axis:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{c}
+{\bf R_z}(\phi) = \left( \begin{array}{ccc}
+ \cos\phi &amp; \sin\phi &amp; 0 \\
+-\sin\phi &amp; \cos\phi &amp; 0 \\
+          0 &amp;          0 &amp; 1 \end{array} \right).
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>we can write the <span class="math notranslate nohighlight">\(\cal E\)</span> to <span class="math notranslate nohighlight">\(\cal C\)</span> transformation as</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+{\bf T_{ec}} = {\bf R_z}(-H) = {\bf R_z}(-G - \mu),
+\end{equation}
+\]</div>
+<p>Its inverse is</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+{\bf T_{ce}} = {\bf T_{ec}}^{-1} = {\bf R_z}(H) = {\bf R_z}(G + \mu).
+\end{equation}
+\]</div>
+<p><span class="math notranslate nohighlight">\(G\)</span> is a third-order polynomial in time.  When <span class="math notranslate nohighlight">\(G\)</span> is expressed in
+degrees and <span class="math notranslate nohighlight">\(T\)</span> is the so-called Universal Time (UT1) expressed in the
+Modified Julian Day 2000 (MJD2000) date convention, the formula for
+<span class="math notranslate nohighlight">\(G\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+G = 99.96779469 + 360.9856473662860 T + 0.29079 \times 10^{-12} T^2.
+\end{equation}
+\]</div>
+<p>Universal Time, UT1, is very close to the common Coordinated Universal
+Time (UTC), but differes slightly from it in that it does not differ
+from actual atomic clock time (TAI) by a constant integer number of
+seconds, whereas UTC time does. Since both UT1 and UTC are defined to
+be consistent with the mean diurnal motion of the earth relative to
+the stars, they must be adjusted periodically, but the adjustment is
+accomplished differently in the two systems.  For UT1 time this is
+done smoothly, whereas for UTC time this is accomplished by inserting
+leap seconds at scheduled times into UTC when it is predicted to lag
+behind UT1 time by a threshold (.9 s). This introduces discontinuities
+in UTC. In UT1, no discontinuities exist since the adjustment is
+continuous.</p>
+<p>In the Modified Julian Day 2000 (MJD2000) <span class="math notranslate nohighlight">\(J_m\)</span> date convention time,
+either in the UT1 system or in the UTC system, is expressed as the
+interval of time in days (including fractional days) since midnight
+January 1, 2000. It differs from true Julian date <span class="math notranslate nohighlight">\(J_d\)</span> by a constant
+value of 2451544.5 decimal days, so that in decimal days we have</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+J_d = J_m + 2451544.5.
+\end{equation}
+\]</div>
+<p>As previously mentioned, the transformation between the alt-azimuth
+frame <span class="math notranslate nohighlight">\(\cal A\)</span> and another frame is complicated by the fact that the
+alt-azimuth frame depends on location of the origin on the surface of
+the earth, so that <span class="math notranslate nohighlight">\({\cal A} = {\cal A}(\vartheta_g,\varphi_g)\)</span>, where
+<span class="math notranslate nohighlight">\(\vartheta_g\)</span> is geodetic latitude and <span class="math notranslate nohighlight">\(\varphi_g\)</span> is the geodetic
+longitude.  Here we take the geodetic longitude to be equal to the
+geocentric longitude. The geodetic latitude is the angle between the
+equatorial plane and the local normal to the earth’s surface at the
+point in question.  It is related to the spherical coordinate latitude
+<span class="math notranslate nohighlight">\(\theta_s\)</span> by the relation</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\theta_s = \tan^{-1}\left((1 - e^2)\tan \vartheta_g \right),
+\end{equation}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+e = \sqrt{\frac{A_e^2 - B_e^2}{A_e^2}},
+\end{equation}
+\]</div>
+<p>is the eccentricity of the ellipsoidal earth, <span class="math notranslate nohighlight">\(A_e=6378137\)</span> m is the
+earth’s major axis (equatorial) radius and <span class="math notranslate nohighlight">\(B_e=6356752.3142\)</span> m is the
+earth’s minor axis radius.  To determine explicitly the transformation
+from <span class="math notranslate nohighlight">\({\cal A}\)</span> to <span class="math notranslate nohighlight">\(\cal E\)</span> we introduce a second rotation matrix that
+rotates the coordinate system counterclockwise about the <span class="math notranslate nohighlight">\(x\)</span>-axis,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{c}
+{\bf R_x}(\phi) = \left( \begin{array}{ccc}
+1 &amp;           0 &amp;          0 \\
+0 &amp;  \cos\phi &amp; \sin\phi \\
+0 &amp; -\sin\phi &amp; \cos\phi \end{array} \right);
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>To compute the composite transformation from <span class="math notranslate nohighlight">\(\cal A\)</span> to <span class="math notranslate nohighlight">\(\cal E\)</span>, we
+rotate the local alt-azimuth frame about the <span class="math notranslate nohighlight">\({\bf\hat x_t}\)</span>-axis by
+the angle <span class="math notranslate nohighlight">\(\phi = \vartheta_g - \frac{\pi}{2}\)</span> to align <span class="math notranslate nohighlight">\({\bf\hat
+z_t}\)</span> with <span class="math notranslate nohighlight">\({\bf\hat z_e}\)</span>, and then we rotate the resulting
+intermediate (primed) frame about the new <span class="math notranslate nohighlight">\({\bf\hat z}\)</span>-axis <span class="math notranslate nohighlight">\({\bf
+\hat z_t'}\)</span> by the angle <span class="math notranslate nohighlight">\(-\varphi_g - \frac{\pi}{2}\)</span> to align <span class="math notranslate nohighlight">\({\bf
+\hat x_t'}\)</span> with <span class="math notranslate nohighlight">\(x_e\)</span>. The resulting composite transformation from
+<span class="math notranslate nohighlight">\(\cal A\)</span> to <span class="math notranslate nohighlight">\(\cal E\)</span> can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+{\bf T_{ae}}(\vartheta_g,\varphi_g) = {\bf R_z}\left(-\varphi_g - \frac{\pi}{2}\right) {\bf R_x}\left(\vartheta_g - \frac{\pi}{2}\right),
+\end{equation}
+\]</div>
+<p>and its inverse, mapping vectors from <span class="math notranslate nohighlight">\(\cal E\)</span> to <span class="math notranslate nohighlight">\(\cal A\)</span>, is simply</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+{\bf T_{ea}}(\vartheta_g,\varphi_g) = {\bf R_x}\left(-\vartheta_g + \frac{\pi}{2}\right) {\bf R_z}\left(\varphi_g + \frac{\pi}{2}\right).
+\end{equation}
+\]</div>
+<p>To organize the results of the scattering calculations and to compare
+results with specular reflection calculations, it is also useful to be
+able to compute the specular direction for a given incidence/azimuth
+angle.  This can be accomplished by applying a transformation matrix
+<span class="math notranslate nohighlight">\({\bf T_{ref}}\)</span> which rotates a vector by 180<span class="math notranslate nohighlight">\(^\circ\)</span> about the <span class="math notranslate nohighlight">\({\bf\hat
+z_t}\)</span> axis in the alt-azimuth coordinate system:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+{\bf T_{ref}} = {\bf R_z}\left(\pi\right).
+\end{equation}
+\]</div>
+<p>The fourth frame is the instrument reference frame, <span class="math notranslate nohighlight">\(\cal I\)</span>. By our
+convention, cartesian basis vectors for this frame, denoted <span class="math notranslate nohighlight">\(({\bf\hat
+x_i}, {\bf\hat y_i}, {\bf\hat z_i})\)</span> are such that <span class="math notranslate nohighlight">\({\bf\hat x_i}\)</span> points to the right
+of instrument motion, normal to the orbital plane, <span class="math notranslate nohighlight">\({\bf\hat y_i}\)</span> points
+in the direction of spacecraft motion, and <span class="math notranslate nohighlight">\({\bf\hat z_i}\)</span> points upward
+normal to the instrument plane containing <span class="math notranslate nohighlight">\({\bf\hat x_i}\)</span> and <span class="math notranslate nohighlight">\(\hat
+y_i\)</span>. The sign convention we adopt here for <span class="math notranslate nohighlight">\({\bf\hat x_i}\)</span> and <span class="math notranslate nohighlight">\({\bf\hat y_i}\)</span>
+is opposite that in EE CFI, in which <span class="math notranslate nohighlight">\({\bf\hat y_i}\)</span> is directed along
+spacecraft velocity vector towards the rear, while <span class="math notranslate nohighlight">\({\bf\hat x_i}\)</span> is
+directed normal to the orbital plane to the left of the spacecraft
+velocity vector.  This reference frame is complicated by the fact that
+the spacecraft position and orientation, or attitude, are functions of
+time in <span class="math notranslate nohighlight">\(\cal E\)</span>, so the transformation matrix between <span class="math notranslate nohighlight">\(\cal I\)</span> and
+<span class="math notranslate nohighlight">\(\cal E\)</span> is a function of time. Using CFI, at a particular time <span class="math notranslate nohighlight">\(t\)</span>
+(expressed in UTC) we obtain the transformation matrix <span class="math notranslate nohighlight">\({\bf T_{ie}}(t)\)</span>
+transforming a vector from the instrument frame to the earth fixed
+frame <span class="math notranslate nohighlight">\(\cal E\)</span> and the inverse transform <span class="math notranslate nohighlight">\({\bf T_{ei}}\)</span>.</p>
+<p>To find the transformation from the alt-azimuth frame to the celestial
+frame {\cal C}, we first transform from alt-azimuth to the earth fixed
+frame and then transform the resulting vector from the earth fixed
+frame to the celestial frame. The resulting transformation matrix is
+thus</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+{\bf T_{ac}} = {\bf T_{ec}} {\bf T_{ae}},
+\end{equation}
+\]</div>
+<p>and its inverse, going from celestial coordinates to alt-azimuth coordinates, is</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+{\bf T_{ca}} = {\bf T_{ac}}^{-1} = {\bf T_{ea}} {\bf T_{ce}}.
+\end{equation}
+\]</div>
+<p>In each of the above frames we can represent vectors in a spherical coordinate
+system, related to the corresponding cartesian coordinate system by the relations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{array}{rrl}
+x_k &amp;=&amp; r_k \cos \theta_k \cos \phi_k,\\
+y_k &amp;=&amp; r_k \cos \theta_k \sin \phi_k,\\
+z_k &amp;=&amp; r_k \sin \theta_k,
+\end{array}
+\end{equation}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> refers to the coordinate system, <span class="math notranslate nohighlight">\(\theta_k\)</span> is the altitude
+(or latitude), <span class="math notranslate nohighlight">\(\phi_k\)</span> is the azimuth, and <span class="math notranslate nohighlight">\(r_k\)</span> is range. In the
+instrument frame, we follow convention and introduce the additional
+director cosine representation of the spherical coordinates,
+$<span class="math notranslate nohighlight">\(
+\begin{equation}
+\begin{array}{rrl}
+\xi  &amp;=&amp; \sin \theta_b \cos \phi_i,\\
+\eta &amp;=&amp; \sin \theta_b \sin \phi_i,
+\end{array}
+\end{equation}
+\)</span>$</p>
+<p>where <span class="math notranslate nohighlight">\(\theta_b = \frac{\pi}{2} - \theta_i\)</span> is the angle from
+boresight. In considering the finite beamwidth of the synthetic
+antenna we need to integrate over the solid angle <span class="math notranslate nohighlight">\(d\Omega = \sin
+\theta_b d\theta_b d\phi = \sin\theta_b J^{-1}(\theta_b,\phi)d\xi
+d\eta\)</span> subtended by the beam, where J is the Jacobian of the
+transformation from <span class="math notranslate nohighlight">\((\theta_b,\phi)\)</span> to <span class="math notranslate nohighlight">\((\xi,\eta)\)</span>. The Jacobian is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+J(\theta_b,\phi) = \pp{(\xi,\eta)}{(\theta_b,\phi)} =
+\left|
+\begin{array}{cc}
+\pp{\xi}{\theta_b}  &amp; \pp{\xi}{\phi} \\
+\pp{\eta}{\theta_b} &amp; \pp{\eta}{\phi}
+\end{array}
+\right|
+=
+\left|
+\begin{array}{cc}
+\cos \theta_b \cos \phi &amp; -\sin \theta_b \sin \phi\\
+\cos \theta_b \sin \phi &amp;  \sin \theta_b \cos \phi
+\end{array}
+\right| &amp;=&amp; \cos \theta_b \sin \theta_b\nonumber\\
+&amp;=&amp; \sqrt{1-\xi^2-\eta^2} \sin\theta_b.
+\end{eqnarray}
+\end{split}\]</div>
+<p>and so the transformed solid angle increment is</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+d\Omega = \sin \theta_b d\theta d\phi = \frac{d\xi d\eta}{\cos \theta_b} =
+\frac{d\xi d\eta}{\sqrt{1 - \xi^2 - \eta^2}}.
+\end{equation}
+\]</div>
+<p>It should be noted that in the above transformations we are concerned
+about transforming directions rather than absolute positions, since we
+assume that the celestial signal is at such a large distance that
+origin shifts by distances on the order of the earth diameter do not
+alter significantly the direction of a particular celestial source.</p>
+<p>A fifth frame is termed the geographic frame, <span class="math notranslate nohighlight">\(\cal G\)</span>. This frame is
+related to the instrument frame by a rotation about the <span class="math notranslate nohighlight">\({\bf\hat
+x_i}\)</span> axis by a tilt angle <span class="math notranslate nohighlight">\(t\)</span> to align the instrument <span class="math notranslate nohighlight">\({\bf\hat
+z_i}\)</span> axis with the <span class="math notranslate nohighlight">\({\bf\hat z_t}\)</span> axis of the topocentric frame at
+the satellite subpoint <span class="math notranslate nohighlight">\(O=(\vartheta_{sp}, \varphi_{sp})\)</span>, <span class="math notranslate nohighlight">\({\cal A}_o
+= {\cal A}(\vartheta_{sp}, \varphi_{sp}) = \cal G\)</span>. Thus, <span class="math notranslate nohighlight">\({\bf\hat
+x_i}\)</span> is parallel to <span class="math notranslate nohighlight">\({\bf\hat x_t}(\vartheta_{sp},\varphi_{sp})\)</span>.</p>
+<p>As mentioned above, the alt-azimuth frame is the natural frame in
+which to perform bistatic scattering calculation, since in this frame
+relevant incidence and azimuth angles are readily computed. Therefore,
+in performing scattering calculations for CIMR, we must establish a
+local alt-azimuth frame for every point in the FOV at which we wish to
+compute the scattered signal in the instrument frame. To this end, for
+each <span class="math notranslate nohighlight">\((\xi,\eta)\)</span> in the director cosine coordinate system, we use CFI
+to determine the satellite location in <span class="math notranslate nohighlight">\(\cal E\)</span> and we then determine
+the location on the earth reference ellipsoid at which the line of
+sight (LOS) intersects the earth. We let <span class="math notranslate nohighlight">\((x_t,y_t,z_t)\)</span> be the
+unknown target location on the earth’s surface in <span class="math notranslate nohighlight">\(\cal E\)</span>,
+<span class="math notranslate nohighlight">\((x_s,y_s,z_s)\)</span> be the instrument location <span class="math notranslate nohighlight">\(\cal E\)</span>, and we let
+<span class="math notranslate nohighlight">\((d_x,d_y,d_z)\)</span> be the unit vector in the instrument look direction in
+<span class="math notranslate nohighlight">\(\cal E\)</span>. Then if we let <span class="math notranslate nohighlight">\(R\)</span> be the range from instrument to the
+target, the target location is <span class="math notranslate nohighlight">\((x_s+R d_x, y_s+R d_y, z_s+R d_z)\)</span>,
+and it must satisfy the equation for an ellipsoid,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\frac{(x_s + R d_x)^2}{A_e^2} + \frac{(y_s + R d_y)^2}{A_e^2} + \frac{(z_s + R d_z)^2}{B_e^2} = 1.
+\end{equation}
+\]</div>
+<p>Expanding this equation and letting</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+A &amp;=&amp; \frac{d_x^2}{A_e^2} + \frac{d_y^2}{A_e^2} + \frac{d_z^2}{B_e^2},\\
+B &amp;=&amp; \frac{2 x_s d_x}{A_e^2} + \frac{2 y_s d_y}{A_e^2} + \frac{2 z_s d_z}{B_e^2},\\
+C &amp;=&amp; \frac{x_s^2}{A_e^2} + \frac{y_s^2}{A_e^2} + \frac{z_s^2}{B_e^2} - 1,
+\end{eqnarray}
+\end{split}\]</div>
+<p>the solution for R, the distance to the target, is</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+R = -\frac{B}{2A} \pm \frac{\sqrt{B^2 - 4AC}}{2A}
+\end{equation}
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(B^2 - 4AC &lt; 0\)</span> or if <span class="math notranslate nohighlight">\(R &lt; 0\)</span> then the line of sight does not
+intersect the earth surface, in which case the instrument receives
+radiation directly from space. In the case of multiple positive
+solutions, the smaller one corresponds the first intersection of
+the line of sight with the earth surface, and the other is on the
+other side of the earth.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="references.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">References</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Nicolas Reul (IFREMER/LOPS) and Joseph Tenerelli (ODL)<br/>
+  
+    <div class="extra_footer">
+      <p>
+This ATBD was developed in the context of the ESA-funded CIMR DEVALGO study (2022-2024) (contract 4000137493).
+<br>
+ESA is not responsible in any way for the content of this document.
+</p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Background and justification of selected algorithm &#8212; ATBD L2 SSS</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Level-2 product definition" href="L2_product_definition.html" />
+    <link rel="prev" title="Introduction, purpose and scope" href="introduction_purpose_scope.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">ATBD L2 SSS</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    CIMR L2 Sea Surface Salinity ATBD
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="abstract.html">
+   Abstract
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="applicable_ref_docs.html">
+   Applicable and Reference Documents
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acronyms.html">
+   Acronyms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="definitions.html">
+   Definitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction_purpose_scope.html">
+   Introduction, purpose and scope
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Background and justification of selected algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="L2_product_definition.html">
+   Level-2 product definition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="baseline_algorithm_definition.html">
+   Baseline Algorithm Definition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="algorithm_input_output_data_definition.html">
+   Algorithm Input and Output Data Definition (IODD)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="algorithm_performance_assessment.html">
+   Algorithm Performance Assessment (Version 2 ATBD)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="references.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="appendix.html">
+   Appendix
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/CIMR-Algos/L2SSS"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/background_justification_algorithm.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#historical-heritage">
+   Historical Heritage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#justification-of-selected-algorithm">
+   Justification of selected algorithm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-for-the-dielectric-constant-of-the-seawater-at-l-band">
+     Model for the dielectric constant of the seawater at L-band
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-for-correcting-the-sea-surface-roughness-emission">
+     Model for correcting the sea surface roughness emission
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-for-other-geophysical-contributions">
+     Model for other geophysical contributions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Background and justification of selected algorithm</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#historical-heritage">
+   Historical Heritage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#justification-of-selected-algorithm">
+   Justification of selected algorithm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-for-the-dielectric-constant-of-the-seawater-at-l-band">
+     Model for the dielectric constant of the seawater at L-band
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-for-correcting-the-sea-surface-roughness-emission">
+     Model for correcting the sea surface roughness emission
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-for-other-geophysical-contributions">
+     Model for other geophysical contributions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="background-and-justification-of-selected-algorithm">
+<h1>Background and justification of selected algorithm<a class="headerlink" href="#background-and-justification-of-selected-algorithm" title="Permalink to this headline">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>Ocean salinity is a key physical-chemical variable that critically contributes to the density-driven global ocean circulation and the Earth’s climate <span id="id1">[<a class="reference internal" href="references.html#id111" title="G. Siedler, J. Church, and J. Gould. Ocean Circulation and Climate: Observing and Modelling the Global Ocean. Academic Press, London, 2001.">Siedler <em>et al.</em>, 2001</a>]</span>. The Sea Surface Salinity (SSS) is affected by (and thus reflects) the air-sea freshwater fluxes (<span id="id2">Wust [<a class="reference internal" href="references.html#id137" title="G. Wust. Oberflachensalzgehalt, Verdunstung und Niederschlag auf dem Weltmeere, pages 347-359. Landerkundliche Forschung, Festschrift Norbert Krebs, 1936.">1936</a>]</span>; <span id="id3">Schmitt [<a class="reference internal" href="references.html#id117" title="R. W. Schmitt. Salinity and the global water cycle. Oceanography, 21(1):12–19, 2008. URL: https://www.jstor.org/stable/24860148 (visited on 2022-11-30).">2008</a>]</span>; <span id="id4">Durack <em>et al.</em> [<a class="reference internal" href="references.html#id27" title="Paul J. Durack, Susan E. Wijffels, and Richard J. Matear. Ocean salinities reveal strong global water cycle intensification during 1950 to 2000. Science, 336(6080):455-458, 2012. URL: https://www.science.org/doi/abs/10.1126/science.1212222, arXiv:https://www.science.org/doi/pdf/10.1126/science.1212222, doi:10.1126/science.1212222.">2012</a>]</span>;
+<span id="id5">Skliris <em>et al.</em> [<a class="reference internal" href="references.html#id118" title="Nikolaos Skliris, Robert Marsh, Simon A. Josey, Simon A. Good, Chunlei Liu, and Richard P. Allan. Salinity changes in the world ocean since 1950 in relation to changing surface freshwater fluxes. Climate Dynamics, 43(3-4):709–736, August 2014. URL: https://eprints.soton.ac.uk/365182/.">2014</a>]</span>; <span id="id6">Zika <em>et al.</em> [<a class="reference internal" href="references.html#id147" title="Jan D. Zika, Nikolaos Skliris, A. J. George Nurser, Simon A. Josey, Lawrence Mudryk, Frédéric Laliberté, and Robert Marsh. Maintenance and broadening of the ocean’s salinity distribution by the water cycle. Journal of Climate, 28(24):9550 - 9560, 2015. URL: https://journals.ametsoc.org/view/journals/clim/28/24/jcli-d-15-0273.1.xml, doi:10.1175/JCLI-D-15-0273.1.">2015</a>]</span>), ice formation/melting, river runoff, horizontal advection and vertical exchanges through mixing and entrainment. It also provides fundamental information for ocean bio-geochemistry through its links with the carbonate system
+(<span id="id7">Land <em>et al.</em> [<a class="reference internal" href="references.html#id66" title="Peter E. Land, Jamie D. Shutler, Helen S. Findlay, Fanny Girard-Ardhuin, Roberto Sabia, Nicolas Reul, Jean-Francois Piolle, Bertrand Chapron, Yves Quilfen, Joseph Salisbury, Douglas Vandemark, Richard Bellerby, and Punyasloke Bhadury. Salinity from space unlocks satellite-based assessment of ocean acidification. Environmental Science &amp; Technology, 49(4):1987-1994, 2015. PMID: 25569587. URL: https://doi.org/10.1021/es504849s, arXiv:https://doi.org/10.1021/es504849s, doi:10.1021/es504849s.">2015</a>]</span>;<span id="id8">Fine <em>et al.</em> [<a class="reference internal" href="references.html#id42" title="Rana A. Fine, Debra A. Willey, and Frank J. Millero. Global variability and changes in ocean total alkalinity from aquarius satellite data. Geophysical Research Letters, 44(1):261-267, 2017. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/2016GL071712, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1002/2016GL071712, doi:https://doi.org/10.1002/2016GL071712.">2017</a>]</span>).  Stable fresh surface salinity layers (such as river plumes, rain-induced lenses) on top of saltier and denser deep waters can inhibit the upper-ocean mixing generated by intense atmospheric events (e.g., wind bursts, tropical cyclones) due to so-called barrier layer
+effect (e.g., <span id="id9">Lukas and Lindstrom [<a class="reference internal" href="references.html#id83" title="Roger Lukas and Eric Lindstrom. The mixed layer of the western equatorial pacific ocean. Journal of Geophysical Research: Oceans, 96(S01):3343-3357, 1991. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/90JC01951, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/90JC01951, doi:https://doi.org/10.1029/90JC01951.">1991</a>]</span>; <span id="id10">Balaguru <em>et al.</em> [<a class="reference internal" href="references.html#id13" title="K. Balaguru, P. Chang, R. Saravanan, L. R. Leung, Z. Xu, M. Li, and J.-S. Hsieh. Ocean barrier layers' effect on tropical cyclone intensification. Proc. Natl. Acad. Sci. U.S.A, 109(36):14343-14347, August 2012. URL: http://dx.doi.org/10.1073/pnas.1201364109, doi:10.1073/pnas.1201364109.">2012</a>]</span>). This suggests that mixed layer salinity can actively impact air-sea interactions from local to synoptic scales. Given its importance for many key ocean and climate processes, the SSS has been recognized as an Essential Climate Variable (ECV) by the Global Climate
+Observing System (GCOS) program.
+<span id="id11">[<a class="reference internal" href="references.html#id15" title="Frederick M. Bingham, Stephan D. Howden, and Chester J. Koblinsky. Sea surface salinity measurements in the historical database. J. Geophys. Res., 107(C12):8019, 2002. doi:10.1029/2000JC000767.">Bingham <em>et al.</em>, 2002</a>]</span> examined the global distribution of historical (1874-1998) in situ SSS observations measured at 5 m or less in depth from the World Ocean Database 1998 (WOD98) and showed how poorly SSS was sampled by the end of the 1990s, despite a peak period of ocean sampling (including near surface salinity) during the World Ocean
+Circulation Experiment (WOCE, 1990-1998). The Global Ocean Data Assimilation Experiment (GODAE) group, therefore, estimated that it would be necessary to develop global SSS measurements from both in situ sensor networks and dedicated satellite missions to reach an accuracy of about 0.1-0.2 pss  at monthly and 100 <span class="math notranslate nohighlight">\(\times\)</span> 100  km<span class="math notranslate nohighlight">\(^2\)</span>, or 10-day and 200 <span class="math notranslate nohighlight">\(\times\)</span> 200 km<span class="math notranslate nohighlight">\(^2\)</span> scales.
+Tremendous efforts to reach this goal using in situ sensor networks have been carried out by the ocean science community since the early 2000s. At global scale, the large increase in salinity data sampling is dominantly associated with the invention and deployment of the Argo profiler network. Since reaching its full planned capacity in 2007,
+the network includes ~3000 Argo floats in the global Ocean providing at least one salinity cast every 10 days in a 3<span class="math notranslate nohighlight">\(^{\circ}\times\)</span>3<span class="math notranslate nohighlight">\(^{\circ}\)</span> cell (see <span id="id12">Notarstefano [<a class="reference internal" href="references.html#id4" title="Giulio Notarstefano. Argo float data and metadata from global data assembly centre (argo gdac). Technical Report, IFREMER, SEANOE, 2022. doi:https://doi.org/10.17882/42182.">2022</a>]</span>).<br />
+In addition to Argo floats which profile to the top 2 km of the global ocean column, near surface salinity is monitored by thermosalinographs (TSG) on board numerous ships of opportunity and research vessels.<br />
+These TSGs are installed and maintained on board ships via international programs such as the Global Ocean Surface Underway Data (GOSUD; <span id="id13">Alory <em>et al.</em> [<a class="reference internal" href="references.html#id2" title="Gaël Alory, T. Delcroix, P. Téchiné, D. Diverrès, D. Varillon, S. Cravatte, Y. Gouriou, J. Grelet, S. Jacquin, E. Kestenare, and et al. The French contribution to the voluntary observing ships network of sea surface salinity. Deep-Sea Res. Pt. I, 105:1–18, November 2015. URL: http://dx.doi.org/10.1016/j.dsr.2015.08.005, doi:10.1016/j.dsr.2015.08.005.">2015</a>]</span>) and the Shipboard Automated Meteorological and Oceanographic System (SAMOS; <span id="id14">Smith <em>et al.</em> [<a class="reference internal" href="references.html#id116" title="SR Smith, JJ Rolph, K Briggs, and MA Bourassa. Quality-controlled underway oceanographic and meteorological data from the center for ocean-atmospheric predictions center (coaps)-shipboard automated meteorological and oceanographic system (samos). Asheville, NC: NOAA National Centers for Environmental Information. Dataset, doi, 10:V5QJ7F8R, 2009.">2009</a>]</span>),
+as well as a growing number of deployments of surface drifters equipped with salinity sensors.</p>
+<figure class="align-default" id="figure3a">
+<img alt="_images/Figure3a.png" src="_images/Figure3a.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Sensitivity of the ocean surface microwave brightness temperature to Salinity (First Stokes parameter) as a function of electromagnetic frequency and incidence angle (blue curve=0°, black curve=60°) and for a water body with salinity of 35 pss and temperature of 15°C.</span><a class="headerlink" href="#figure3a" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="figure3b">
+<img alt="_images/Figure3b.png" src="_images/Figure3b.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">First Stokes parameter of the Brightness temperature <span class="math notranslate nohighlight">\((T_{esh}+T_{esv})/2\)</span> changes at 1.4 GHz and nadir of the perfectly flat sea surface as a function of salinity (x-axis) and temperature (colors). The gray domain indicates the range of SSS values mostly encountered in the open ocean.</span><a class="headerlink" href="#figure3b" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Despite its oceanographic importance, SSS is an ocean ECV that only started to be estimated from space about ten years ago with the launch of the Soil Moisture and Ocean Salinity (SMOS) mission by the European Space Agency (ESA) in November 2009.
+The SMOS mission was then followed by the NASA/CONAE Aquarius/SAC-D mission also focused on the sea surface salinity. Both missions had an overlapping period between June 2011 and mid-2015. Next came the NASA Soil Moisture Active-Passive (SMAP) mission launched in early 2015, which also monitors SSS.
+SMOS and SMAP operation periods overlapped with Aquarius only during about four months (February to June 2015). The primary sensors onboard these three missions are L-band microwave radiometers operating at ~1.4 GHz (wavelength=21cm). When accurate corrections for external contributions to the measured
+radiometer signal are applied (e.g., radiation from the Sun and celestial radio sources, reflection/emission due to sea surface roughness, and temperature), the SSS can be estimated from L-band brightness temperature TB (<span id="id15">Font <em>et al.</em> [<a class="reference internal" href="references.html#id40" title="J. Font, G. S. E. Lagerloef, D. M. Le Vine, A. Camps, and O. -Z. Zanife. The determination of surface salinity with the European SMOS space mission. IEEE Trans. Geosci. Remote Sens., 42(10):2196–2205, Oct. 2004. doi:10.1109/TGRS.2004.834649.">2004</a>]</span>; <span id="id16">Lagerloef <em>et al.</em> [<a class="reference internal" href="references.html#id65" title="G. S. E. Lagerloef, C. Swift, and D. Le Vine. Sea surface salinity: The next remote sensing challenge. Oceanography, 8(2):44-50, 1995.">1995</a>]</span>). The feasibility of the measurement of
+SSS at L-band was demonstrated in the 1970s in a number of field campaigns from aircraft (<span id="id17">Droppleman <em>et al.</em> [<a class="reference internal" href="references.html#id35" title="JD Droppleman, RA Mennella, and DE Evans. An airborne measurement of the salinity variations of the mississippi river outflow. Journal of Geophysical Research, 75(30):5909–5913, 1970.">1970</a>]</span>), from a bridge which spans the  Cape Cod canal (<span id="id18">Swift [<a class="reference internal" href="references.html#id120" title="C. T. Swift. Microwave radiometer measurements of the Cape Code Canal. Radio Sci., 9(7):641-653, 1974.">1974</a>]</span>), and even with a satellite radiometer from the short-lived (2-week) Skylab S-194 mission (<span id="id19">Lerner and Hollinger [<a class="reference internal" href="references.html#id68" title="R. M. Lerner and J. P. Hollinger. Analysis of 1.4 GHz Radiometric measurements from Skylab. Remote Sens. Environ., 6(4):251–269, January 1977. URL: http://linkinghub.elsevier.com/retrieve/pii/0034425777900475, doi:10.1016/0034-4257(77)90047-5.">1977</a>]</span>).
+It took more than 40 years after the aforementioned pioneer experiments to develop and implement instruments to measure SSS regularly from space with sufficient accuracy and spatial resolution to address the GODAE recommendation. Two major technological factors limit L-band SSS measurements from space.
+First, at low microwave frequencies (decimeter wavelengths), classical radiometer sensors require large antenna size of ~3 to 8 m in diameter to meet a useful spatial resolution on the ground (100-150 km at most, 30-50 km wished for). Such large antenna technologies were not available before the late 1990s.
+Second, while being optimal in low microwave frequencies (see <a class="reference internal" href="#figure3a"><span class="std std-numref">Fig. 1</span></a> and <a class="reference internal" href="#figure3b"><span class="std std-numref">Fig. 2</span></a>), the sensitivity of the sea surface brightness temperature to salinity at 1.4 GHz and vertical (VV) polarization varies only between (<span class="math notranslate nohighlight">\(\partial T_{B}/\partial SSS\)</span>)~ -0.5 to -1 K/pss for incidence angles
+from 0° to 60° at characteristic ocean conditions (SSS= 35pss and Sea Surface Temperature (SST)=15°C). This sensitivity to SSS remains relatively small compared to (i) noise characteristics of  available radiometers (~0.3 to 2 K) and (ii) the small range of natural variability of SSS in the open ocean
+(32 to 38 pss). Finally, as illustrated in <a class="reference internal" href="#figure3b"><span class="std std-numref">Fig. 2</span></a>, (<span class="math notranslate nohighlight">\(\partial T_{B}/\partial SSS\)</span>) also decreases with decreasing SST from ~-0.7 K/pss at 30°C to ~ -0.2 K/pss at 0°C making SSS estimation in the high latitude cold waters even more challenging than in the tropics. Given the sensitivity of <span class="math notranslate nohighlight">\(T_B\)</span>
+to salinity at 1.4 GHz, very low noise radiometers and/or a large number of <span class="math notranslate nohighlight">\(T_B\)</span> observations for a given ocean scene within short integration times (~a few seconds) are required for accurate SSS estimations.
+Therefore, salinity satellite mission objectives are generally expected to be reached for SSS products obtained after spatio-temporal averaging of in-swath instantaneous data.</p>
+</section>
+<section id="historical-heritage">
+<h2>Historical Heritage<a class="headerlink" href="#historical-heritage" title="Permalink to this headline">#</a></h2>
+<p>In the late 1960s, <span id="id20">Sirounian [<a class="reference internal" href="references.html#id112" title="V Sirounian. Effect of temperature, angle of observation, salinity, and thin ice on the microwave emission of water. Journal of Geophysical Research, 73(14):4481–4486, 1968.">1968</a>]</span> and <span id="id21">Paris [<a class="reference internal" href="references.html#id98" title="Jack F Paris. Microwave radiometry and its application to marine meteorology and oceanography. Technical Report, TEXAS A AND M UNIV COLLEGE STATION DEPT OF OCEANOGRAPHY, 1969.">1969</a>]</span> recognized that ocean surface microwave emission in the 1 to 3 GHz range had measurable sensitivity to changes in ocean SSS. The first airborne salinity measurements were demonstrated in 1970 by <span id="id22">Droppleman <em>et al.</em> [<a class="reference internal" href="references.html#id35" title="JD Droppleman, RA Mennella, and DE Evans. An airborne measurement of the salinity variations of the mississippi river outflow. Journal of Geophysical Research, 75(30):5909–5913, 1970.">1970</a>]</span>. Combining aircraft mounted 1.4 GHz microwave and 11 µm infrared radiometers, they were able to observe strong SSS gradients near the mouth of the Mississippi River, and thus demonstrate the feasibility of 1.4-GHz passive radiometers to detect sea water salinity gradients.
+Multi-frequency (L-, X- and K-bands) microwave radiometer observations conducted by <span id="id23">Hollinger [<a class="reference internal" href="references.html#id53" title="James P Hollinger. Passive microwave measurements of sea surface roughness. IEEE Transactions on Geoscience Electronics, 9(3):165–169, 1971.">1971</a>]</span> from a research tower located off the island of Bermuda revealed the potential effect of sea surface roughness on L-band TB for wind speed conditions varying from calm to 15 m/s. <span id="id24">Thomann [<a class="reference internal" href="references.html#id126" title="Gary C Thomann. Experimental results of the remote sensing of sea-surface salinity at 21-cm wavelength. IEEE Transactions on Geoscience Electronics, 14(3):198–214, 1976.">1976</a>]</span> used a system similar to
+<span id="id25">Droppleman <em>et al.</em> [<a class="reference internal" href="references.html#id35" title="JD Droppleman, RA Mennella, and DE Evans. An airborne measurement of the salinity variations of the mississippi river outflow. Journal of Geophysical Research, 75(30):5909–5913, 1970.">1970</a>]</span> to map ocean surface salinity in the Gulf of Mexico. As reviewed in <span id="id26">Goodberlet <em>et al.</em> [<a class="reference internal" href="references.html#id47" title="Mark A Goodberlet, Calvin T Swift, Kevin P Kiley, Jerry L Miller, and James B Zaitzeff. Microwave remote sensing of coastal zone salinity. Journal of coastal research, pages 363–372, 1997.">1997</a>]</span>, these early instruments could achieve an acceptable measurement accuracy only by averaging over time periods from 12 to 16 seconds. The averaging time was later reduced below
+1 second using a NASA Langley built precise radiometer system (<span id="id27">Blume <em>et al.</em> [<a class="reference internal" href="references.html#id18" title="Hans-Juergen C Blume, Bruce M Kendall, and John C Fedors. Measurement of ocean temperature and salinity via microwave radiometry. Boundary-Layer Meteorology, 13(1):295–308, 1978.">1978</a>]</span>; <span id="id28">Blume and Kendall [<a class="reference internal" href="references.html#id12" title="Hans-Juergen C Blume and Bruce M Kendall. Passive microwave measurements of temperature and salinity in coastal zones. IEEE Transactions on Geoscience and Remote Sensing, pages 394–404, 1982.">1982</a>]</span>) operating at 1.4 GHz (L-band) and 2.65 GHz (S-band). Its improved noise characteristics (and lower integration times) allowed improvement in spatial resolution and measurements in the
+Chesapeake Bay SSS that resolved ~0.5 km spatial scales. The dual-frequency radiometer system was also successfully operated from an aircraft (<span id="id29">Kendall and Blanton [<a class="reference internal" href="references.html#id59" title="Bruce M Kendall and JO Blanton. Microwave radiometer measurement of tidally induced salinity changes off the georgia coast. Journal of Geophysical Research: Oceans, 86(C7):6435–6441, 1981.">1981</a>]</span>) to measure quasi-synoptic salinity changes induced by the Savannah River plume along the coast of Georgia.
+A key model component for the salinity retrieval algorithm from microwave radiometer data is the model for the sea water dielectric constant, <span class="math notranslate nohighlight">\(\epsilon_{sw}\)</span>. The semi-empirical Debye model was first proposed by <span id="id30">Stogryn [<a class="reference internal" href="references.html#id122" title="A Stogryn. Equations for calculating the dielectric constant of saline water (correspondence). IEEE transactions on microwave theory and Techniques, 19(8):733–736, 1971.">1971</a>]</span> and re-analyzed by <span id="id31">Klein and Swift [<a class="reference internal" href="references.html#id61" title="L. A. Klein and C. T. Swift. An improved model for the dielectric constant of sea water at microwave frequencies. IEEE Trans. Antennas Propag., 25(1):104-111, January 1977. doi:10.1109/TAP.1977.1141539.">1977</a>]</span> to include new S-band and
+L-band data from the NASA 2-band radiometer. <span id="id32">Shutko <em>et al.</em> [<a class="reference internal" href="references.html#id110" title="A Shutko, B Liberman, and G Chuhray. On the influence of dielectric property variations on the microwave radiation of a water surface. IEEE Journal of Oceanic Engineering, 7(1):35–39, 1982.">1982</a>]</span> further examined and refined the dependencies of ϵ on electromagnetic frequency, water temperature, and salinity. In addition, near nadir L-band measurements from the Bering Sea aircraft experiments as reported by
+<span id="id33">Webster Jr <em>et al.</em> [<a class="reference internal" href="references.html#id130" title="William J Webster Jr, Thomas T Wilheit, Duncan B Ross, and Per Gloersen. Spectral characteristics of the microwave emission from a wind-driven foam-covered sea. Journal of Geophysical Research, 81(18):3095–3099, 1976.">1976</a>]</span> allowed for better characterization of wind speed dependence of the surface emissivity.</p>
+<p>First attempts to measure SSS from space took place in 1968 aboard the Soviet Cosmos 243 and in 1973 aboard the Skylab S-194 satellite missions (<span id="id34">Lerner and Hollinger [<a class="reference internal" href="references.html#id68" title="R. M. Lerner and J. P. Hollinger. Analysis of 1.4 GHz Radiometric measurements from Skylab. Remote Sens. Environ., 6(4):251–269, January 1977. URL: http://linkinghub.elsevier.com/retrieve/pii/0034425777900475, doi:10.1016/0034-4257(77)90047-5.">1977</a>]</span>). They utilized nadir looking L-band horizontal (HH) microwave radiometers with 3dB beam width of 15° corresponding to ~110 km ground footprint.
+Unfortunately, only a very limited amount of L-band radiometer data were collected and there were no in situ measurements available to validate SSS retrievals estimated from the satellite data. Nevertheless, the retrieved SSS was found correlating with climatological in situ salinity. Overall,
+these experiments showed that open sea SSS (i.e., away from the land and coasts) could be measured with an accuracy of ~2 pss, a promising early result.
+Based on these first aircraft and satellite experiments, <span id="id35">Swift and McIntosh [<a class="reference internal" href="references.html#id121" title="Calvin T Swift and Robert E McIntosh. Considerations for microwave remote sensing of ocean-surface salinity. IEEE Transactions on Geoscience and Remote Sensing, pages 480–491, 1983.">1983</a>]</span> suggested a revised satellite concept to achieve an ideal precision of about 0.25 pss with a footprint spatial resolution of ~100 km. However, at that time, space agencies were primarily devoting efforts to develop
+missions to measure surface temperature (Advanced Very High Resolution Radiometers (AVHRRs) and Along-Track Scanning Radiometers (ATSRs)), surface dynamic topography (Geosat (GEOdetic SATellite)), wind stress (SEASAT A Scatterometer (SASS)), ocean color (Coastal Zone Color Scanner (CZCS)),
+and sea ice (scanning multichannel microwave radiometer (SMMR)). Mainly because of the technological challenges associated with the launch of sensors with large antenna size and the need for high radiometric sensitivity, salinity remote sensing was considered too costly and not given a high priority
+in the early 1980s.
+Interest in salinity remote sensing was renewed in the late 1980s with the development of an airborne demonstration instrument called the Electrically Scanning Thinned Array Radiometer (ESTAR), which was operated at 1.4 GHz and used the concept of aperture synthesis (<span id="id36">Le Vine <em>et al.</em> [<a class="reference internal" href="references.html#id69" title="David M Le Vine, Michael Kao, Alan B Tanner, Calvin T Swift, and Andrew Griffis. Initial results in the development of a synthetic aperture microwave radiometer. IEEE Transactions on Geoscience and Remote Sensing, 28:614–619, 1990.">1990</a>]</span>) allowing an
+increase in cross-track spatial resolution. Small salinity variations typical of the open ocean were retrieved from the data acquired by the ESTAR interferometer during flights across a coastal current in Delaware and the Gulf Stream (<span id="id37">Le Vine <em>et al.</em> [<a class="reference internal" href="references.html#id70" title="DM Le Vine, M Kao, RW Garvine, and T Sanders. Remote sensing of ocean salinity: results from the delaware coastal current experiment. Journal of Atmospheric and Oceanic Technology, 15(6):1478–1484, 1998.">1998</a>]</span>). Such a system demonstrated that it was feasible
+to achieve high spatial and radiometric resolution at a reasonable cost for a potential 1.4 GHz satellite radiometer design.
+By the mid-1990s, the Scanning Low Frequency Microwave Radiometer (SLFMR) was built (<span id="id38">Goodberlet and Swift [<a class="reference internal" href="references.html#id48" title="MA Goodberlet and CT Swift. A remote sensing system for measuring estuarine and coastal ocean surface salinity. Quadrant Eng., Hadley, MA, Progress Rep, 1993.">1993</a>]</span>) based on the similar concept as the ESTAR but with an improved radiometric resolution and adapted for light aircraft. Salinity in coastal and estuarine waters on the U.S. Atlantic coasts,
+as well as in the Australian Great Barrier reef waters have been mapped successfully using the SLFMR data acquired during several airborne campaigns (<span id="id39">Robinson [<a class="reference internal" href="references.html#id108" title="Ian Stuart Robinson. Satellite oceanography; an introduction for oceanographers and remote-sensing scientists. Chichester (UK) Horwood, 1985.">1985</a>]</span>; <span id="id40">Le Vine <em>et al.</em> [<a class="reference internal" href="references.html#id70" title="DM Le Vine, M Kao, RW Garvine, and T Sanders. Remote sensing of ocean salinity: results from the delaware coastal current experiment. Journal of Atmospheric and Oceanic Technology, 15(6):1478–1484, 1998.">1998</a>]</span>; <span id="id41">Miller <em>et al.</em> [<a class="reference internal" href="references.html#id92" title="Jerry L Miller, Mark A Goodberlet, and James B Zaitzeff. Airborne salinity mapper makes debut in coastal zone. Eos, Transactions American Geophysical Union, 79(14):173–177, 1998.">1998</a>]</span>; <span id="id42">Burrage <em>et al.</em> [<a class="reference internal" href="references.html#id11" title="DM Burrage, ML Heron, JM Hacker, Jorg L Miller, TC Stieglitz, Craig R Steinberg, and A Prytz. Structure and influence of tropical river plumes in the great barrier reef: application and performance of an airborne sea surface salinity mapping system. Remote Sensing of Environment, 85(2):204–220, 2003.">2003</a>]</span>; <span id="id43">Miller* and Goodberlet [<a class="reference internal" href="references.html#id93" title="Jerry L Miller* and Mark Goodberlet. Development and applications of starrs: a next generation airborne salinity imager. International Journal of Remote Sensing, 25(7-8):1319–1324, 2004.">2004</a>]</span>;
+<span id="id44">Perez <em>et al.</em> [<a class="reference internal" href="references.html#id100" title="Tabare Perez, Joel C Wesson, and Derek Burrage. Airborne remote sensing of the plata plume using starrs. Technical Report, NAVAL RESEARCH LAB STENNIS SPACE CENTER MS OCEANOGRAPHY DIV, 2006.">2006</a>]</span>).</p>
+<p>A detailed review of remote sensing of SSS in coastal waters is provided in <span id="id45">Klemas [<a class="reference internal" href="references.html#id60" title="Victor Klemas. Remote sensing of sea surface salinity: an overview with case studies. Journal of Coastal Research, 27(5):830–838, 2011.">2011</a>]</span>.
+A Passive-Active L-band System (PALS) (<span id="id46">Wilson <em>et al.</em> [<a class="reference internal" href="references.html#id133" title="William J Wilson, Simon H Yueh, Steve Dinardo, Yi Chao, and Fuk Li. Precision ocean salinity measurements using the passive active l/s-band aircraft instrument. In IGARSS 2003. 2003 IEEE International Geoscience and Remote Sensing Symposium. Proceedings (IEEE Cat. No. 03CH37477), volume 4, 2792–2794. IEEE, 2003.">2003</a>]</span>) providing coincident scatterometer and radiometer airborne L-band data was developed to better characterize the sea surface roughness impact on L-band TB. This instrument was deployed on ocean flights across the Gulf Stream
+in an attempt to  illustrate the use of active scatterometer data to correct the impact of surface roughness on passive radiometer data (<span id="id47">Yueh <em>et al.</em> [<a class="reference internal" href="references.html#id141" title="Simon H Yueh, Richard West, William J Wilson, Fuk K Li, Eni G Njoku, and Yahya Rahmat-Samii. Error sources and feasibility for microwave remote sensing of ocean surface salinity. IEEE Transactions on Geoscience and Remote Sensing, 39(5):1049–1060, 2001.">2001</a>]</span>). The PALS design and data provided the basis for the NASA Aquarius and SMAP instrument designs.
+In 1995, during the “Soil Moisture and Ocean Salinity” Workshop organized at the ESA ESTEC (European Space Research and Technology Centre, Noordwijk, the Netherlands), possible techniques to remotely measure SSS from space were discussed. The two most suitable approaches were identified
+to be L-band microwave radiometry using either real or synthetic, aperture antenna design.  The use of a real aperture antenna with moderate size (diameter &lt; 3m) eases sensor integration into a launch vehicle and better fulfills satellite weight constraints but results in lower spatial resolution
+on the ground. This option was realized for the Aquarius mission with a moderately large antenna (reflector diameter ~2.5m) used in the push broom mode. Another concept was realized for the SMAP mission, which has a relatively large deployable mesh antenna reflector of 6 meters in diameter.
+Both Aquarius and SMAP instruments were designed with combined active and passive measurements.
+The second approach involves the use of interferometric radiometers with a synthetic aperture antenna allowing TB measurements at higher spatial resolution than with a real-aperture antenna of the same size. The ESTAR interferometric 1-D imaging concept evolved into a 2-D imager in the mid-1990s
+(<span id="id48">Goutoule <em>et al.</em> [<a class="reference internal" href="references.html#id49" title="JM Goutoule, E Anterrieu, YH Kerr, A Lannes, and N Skou. Miras microwave radiometry critical technical development. TOULOUSE, MMS, 1996.">1996</a>]</span>). Its airborne prototype was made and operated (<span id="id49">Bayle <em>et al.</em> [<a class="reference internal" href="references.html#id7" title="Franck Bayle, J-P Wigneron, Yann H Kerr, Philippe Waldteufel, Eric Anterrieu, J-C Orlhac, Andre Chanzy, Olivier Marloie, Marc Bernardini, Sten Sobjaerg, and others. Two-dimensional synthetic aperture images over a land surface scene. IEEE Transactions on Geoscience and Remote Sensing, 40(3):710–714, 2002.">2002</a>]</span>) and then further evolved into the Microwave Imaging Radiometer with Aperture Synthesis (MIRAS), the instrument carried by the SMOS mission.</p>
+</section>
+<section id="justification-of-selected-algorithm">
+<h2>Justification of selected algorithm<a class="headerlink" href="#justification-of-selected-algorithm" title="Permalink to this headline">#</a></h2>
+<p>The new satellite SSS era started with the Soil Moisture and Ocean Salinity (SMOS) mission, launched in 2009 under the auspices of the European Spatial Agency (ESA), the French Centre National d’Etudes Spatiales (CNES), and the Spanish Centre for the Development of Industrial Technology (CDTI).
+Followed by the National Aeronautics and Space Administration (NASA) Aquarius instrument
+from mid-2011 to mid-2015, it is today complemented by the NASA Soil Moisture Active-Passive (SMAP) mission. Initially dedicated to Soil Moisture measurements only, SMAP applications have been extended to include the SSS, which is available since early 2015.
+All instruments on-board these different missions follow an early 1970s historical heritage that demonstrated how passive
+microwave radiometer observations in the L-band (frequency~1.4 GHz, wavelength~21 cm) could be used to retrieve SSS. Tthe SSS measurement principle was successfully developed and demonstrated in the 1970s from various platforms (land-based bridge, aircrafts, towers, short-lived satellites, etc).
+The long delay until the final development and launch of the first satellite salinity
+sensor was mainly dictated by technological challenges associated with space delivery and deployment of large antennas.  Indeed, to achieve a proper pixel resolution, a very large size (~3-8 m) radiometer antenna is needed for 1.4 GHz operations even from low polar orbits. There are major technological differences but also similarities between the three first
+satellite salinity missions. SMOS and SMAP spatial resolution (~40 km) is a factor 2-3 higher than Aquarius spatial resolution (~100 km - 150 km).
+Moreover, with their large swaths, observations cover almost the full globe in 3 days, while 7 days were needed in the case of Aquarius. Yet, Aquarius radiometric noise was significantly lower than SMOS or SMAP radiometric noise. For SMOS, image reconstruction errors are sources of specific and variable
+noise in the TB images (e.g., sun and land image aliasing in ocean scenes, noise floor errors …) and impact the quality of retrieved SSS from this sensor. But SMOS multi-angular viewing capability also provides a way to mitigate the noise in individual samples, thanks to a large number of
+TB acquisition for a given ocean target pixel. The Aquarius antenna emissivity was negligibly small, while the SMAP mesh reflector has an emissivity of about 0.2%, which needs to be accounted for in salinity retrieval. Moreover, the simultaneous acquisition of scatterometer and radiometer observations
+by Aquarius significantly helped to improve the correction for sea surface roughness effect. For SMOS and SMAP, retrieval algorithms must rely on external surface wind vector data, not always of sufficiently high quality to well characterize the actual impact of roughness on L-band passive sensors. For
+CIMR the case is different as higher frequency chanels can provide quasi-simulatneous SST and wind data.</p>
+<section id="model-for-the-dielectric-constant-of-the-seawater-at-l-band">
+<h3>Model for the dielectric constant of the seawater at L-band<a class="headerlink" href="#model-for-the-dielectric-constant-of-the-seawater-at-l-band" title="Permalink to this headline">#</a></h3>
+<p>The relative permittivity (also called dielectric constant) of the seawater,  <span class="math notranslate nohighlight">\(ε_{sw}(f, S, T)\)</span>, is a complex function dependent on <span class="math notranslate nohighlight">\(f\)</span>, the electromagnetic frequency, as well as, temperature <span class="math notranslate nohighlight">\(T\)</span>, and, salinity <span class="math notranslate nohighlight">\(S\)</span>. It is
+a key component of the radiative transfer forward model used for sea surface salinity retrieval from L-band radiometer data, as the accuracy of SSS retrievals
+strongly depends on how well the dielectric constant is known as a function of these two geophysical parameters (<span id="id50">Lang <em>et al.</em> [<a class="reference internal" href="references.html#id67" title="Roger Lang, Yiwen Zhou, Cuneyt Utku, and David Le Vine. Accurate measurements of the dielectric constant of seawater at l band. Radio Science, 51(1):2–24, 2016.">2016</a>]</span>). Models for <span class="math notranslate nohighlight">\(ε_{sw}(f, S, T)\)</span> at frequency <span class="math notranslate nohighlight">\(f\)</span>=1.4 GHz are still uncertain, particularly at
+low <span class="math notranslate nohighlight">\((\le 8^{\circ}C)\)</span>
+and high <span class="math notranslate nohighlight">\((\ge 28^{\circ}C)\)</span> SST. <span class="math notranslate nohighlight">\(ε_{sw}(f, S, T)\)</span> can be estimated at any frequency <span class="math notranslate nohighlight">\(f\)</span> within the microwave band from the <span id="id51">Debye [<a class="reference internal" href="references.html#id29" title="Peter Josef William Debye. Polar molecules. Dover publications, 1929.">1929</a>]</span> expression involving  <span class="math notranslate nohighlight">\(ε_{\infty}\)</span>, the electrical permittivity at very high frequencies, <span class="math notranslate nohighlight">\(ε_{s}\)</span> the static dielectric constant, <span class="math notranslate nohighlight">\(\tau\)</span> the
+relaxation time, <span class="math notranslate nohighlight">\(\sigma\)</span> the ionic conductivity, and <span class="math notranslate nohighlight">\(ε_0\)</span> the permittivity of free space, where <span class="math notranslate nohighlight">\(ε_{s}\)</span>, <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are functions of temperature <span class="math notranslate nohighlight">\(\it{T}\)</span> and salinity <span class="math notranslate nohighlight">\(\it{S}\)</span>.
+At the time the first salinity mission was developed, these functions had been evaluated historically by <span id="id52">Stogryn [<a class="reference internal" href="references.html#id122" title="A Stogryn. Equations for calculating the dielectric constant of saline water (correspondence). IEEE transactions on microwave theory and Techniques, 19(8):733–736, 1971.">1971</a>]</span>, <span id="id53">Stogryn <em>et al.</em> [<a class="reference internal" href="references.html#id119" title="AP Stogryn, HT Bull, K Rubayi, and S Iravanchy. The microwave permittivity of sea and fresh water. GenCorp Aerojet, Azusa, CA, 1995.">1995</a>]</span>,
+<span id="id54">Klein and Swift [<a class="reference internal" href="references.html#id61" title="L. A. Klein and C. T. Swift. An improved model for the dielectric constant of sea water at microwave frequencies. IEEE Trans. Antennas Propag., 25(1):104-111, January 1977. doi:10.1109/TAP.1977.1141539.">1977</a>]</span>, and <span id="id55">Ellison <em>et al.</em> [<a class="reference internal" href="references.html#id37" title="W. Ellison, A. Balana, G. Delbos, K. Lamkaouchi, L. Eymard, C. Guillou, and C. Prigent. New permittivity measurements of sea water. Radio Sci., 33(3):639–648, 1998. doi:10.1029/97RS02223.">1998</a>]</span>. <span id="id56">Klein and Swift [<a class="reference internal" href="references.html#id61" title="L. A. Klein and C. T. Swift. An improved model for the dielectric constant of sea water at microwave frequencies. IEEE Trans. Antennas Propag., 25(1):104-111, January 1977. doi:10.1109/TAP.1977.1141539.">1977</a>]</span> (denoted KS hereafter) modified the <span id="id57">Stogryn [<a class="reference internal" href="references.html#id122" title="A Stogryn. Equations for calculating the dielectric constant of saline water (correspondence). IEEE transactions on microwave theory and Techniques, 19(8):733–736, 1971.">1971</a>]</span> model by using a different expression
+for the static dielectric constant <span class="math notranslate nohighlight">\(ε_{s}(S,T)\)</span>, based on <span id="id58">Ho and Hall [<a class="reference internal" href="references.html#id54" title="W Ho and WF Hall. Measurements of the dielectric properties of seawater and nacl solutions at 2.65 ghz. Journal of Geophysical Research, 78(27):6301–6315, 1973.">1973</a>]</span> and <span id="id59">Ho <em>et al.</em> [<a class="reference internal" href="references.html#id55" title="WW Ho, AW Love, and MJ VanMelle. Measurements of the dielectric properties of sea water at 1.43 ghz. Technical Report, NASA, 1974.">1974</a>]</span> measurements at 2.6 and 1.4 GHz, respectively.
+The KS and Stogryn <span class="math notranslate nohighlight">\(ε_{sw}\)</span> models are valid for frequencies ranging from L- to X-bands (<span id="id60">Meissner and Wentz [<a class="reference internal" href="references.html#id86" title="Thomas Meissner and Frank J Wentz. The complex dielectric constant of pure and sea water from microwave satellite observations. IEEE Transactions on Geoscience and remote Sensing, 42(9):1836–1849, 2004.">2004</a>]</span>; <span id="id61">Meissner and Wentz [<a class="reference internal" href="references.html#id87" title="Thomas Meissner and Frank J Wentz. The emissivity of the ocean surface between 6 and 90 ghz over a large range of wind speeds and earth incidence angles. IEEE Transactions on Geoscience and Remote Sensing, 50(8):3004–3026, 2012.">2012</a>]</span>;<span id="id62">Meissner <em>et al.</em> [<a class="reference internal" href="references.html#id88" title="Thomas Meissner, Frank J Wentz, and Lucrezia Ricciardulli. The emission and scattering of l-band microwave radiation from rough ocean surfaces and wind speed measurements from the aquarius sensor. Journal of Geophysical Research: Oceans, 119(9):6499–6522, 2014.">2014</a>]</span>).
+Following SMOS pre-launch comparisons and analyses (<span id="id63">Camps <em>et al.</em> [<a class="reference internal" href="references.html#id22" title="A. Camps, J. Font, M. Vall-llossera, C. Gabarró, I. Corbella, N. Duffo, F. Torres, S. Blanch, A. Aguasca, R. Villarino, L. Enrique, J. J. Miranda, J. J. Arenas, A. Julià, J. Etcheto, V. Caselles, A. Weill, J. Boutin, S. Contardo, R. Niclós, R. Rivas, S. C. Reising, P. Wursteisen, M. Berger, and M. Martín-Neira. The WISE 2000 and 2001 Field Experiments in Support of the SMOS Mission: Sea Surface L-band Brightness Temperature Observations and their Application to Multi-Angular Salinity Retrieval. IEEE Trans. Geosci. Remote Sens., 42(4):804-823, 2004. doi:10.1109/TGRS.2003.819444.">2004</a>]</span>; <span id="id64">Wilson <em>et al.</em> [<a class="reference internal" href="references.html#id134" title="W. J. Wilson, S. H. Yueh, S. J. Dinardo, and F. K. Li. High-stability L-band radiometer measurements of saltwater. IEEE Trans. Geosci. Remote Sens., 42(9):1829-1835, 2004. doi:10.1109/TGRS.2004.833393.">2004</a>]</span>, <span id="id65">Blanch and Aguasca [<a class="reference internal" href="references.html#id17" title="Sebastián Blanch and Albert Aguasca. Seawater dielectric permittivity model from measurements at l band. In IGARSS 2004. 2004 IEEE International Geoscience and Remote Sensing Symposium, volume 2, 1362–1365. IEEE, 2004.">2004</a>]</span>), the KS model was selected in the Level 2 Ocean
+Salinity (OS) processor for the SMOS mission in the first phases post-launch (<span id="id66">Team and others [<a class="reference internal" href="references.html#id114" title="SMOS Team and others. Smos l2 os algorithm theoretical baseline document so-tn-arg-gs-0007. 2016.">2016</a>]</span>).<br />
+An alternative model function developed by <span id="id67">Meissner and Wentz [<a class="reference internal" href="references.html#id86" title="Thomas Meissner and Frank J Wentz. The complex dielectric constant of pure and sea water from microwave satellite observations. IEEE Transactions on Geoscience and remote Sensing, 42(9):1836–1849, 2004.">2004</a>]</span> (denoted MW hereafter) fits the dielectric constant data to a double Debye relaxation polynomial
+that performs best at higher frequencies. The seawater dielectric data were obtained by inverting <span class="math notranslate nohighlight">\(T_B\)</span> measurements from the Special Sensor Microwave Imager (SSM/I)
+at frequencies higher than 19 GHz; measurements from <span id="id68">Ho <em>et al.</em> [<a class="reference internal" href="references.html#id55" title="WW Ho, AW Love, and MJ VanMelle. Measurements of the dielectric properties of sea water at 1.43 ghz. Technical Report, NASA, 1974.">1974</a>]</span> were used to derive the model at the lower frequencies.  The MW model function was
+recently updated by providing small adjustments to the Debye parameters based on including results for the C-band and X-band channels of WindSat and AMSR
+(<span id="id69">Meissner and Wentz [<a class="reference internal" href="references.html#id87" title="Thomas Meissner and Frank J Wentz. The emissivity of the ocean surface between 6 and 90 ghz over a large range of wind speeds and earth incidence angles. IEEE Transactions on Geoscience and Remote Sensing, 50(8):3004–3026, 2012.">2012</a>]</span>;<span id="id70">Meissner <em>et al.</em> [<a class="reference internal" href="references.html#id88" title="Thomas Meissner, Frank J Wentz, and Lucrezia Ricciardulli. The emission and scattering of l-band microwave radiation from rough ocean surfaces and wind speed measurements from the aquarius sensor. Journal of Geophysical Research: Oceans, 119(9):6499–6522, 2014.">2014</a>]</span>).  The MW model is used in the Aquarius and SMAP SSS retrieval algorithms (<span id="id71">Meissner <em>et al.</em> [<a class="reference internal" href="references.html#id89" title="Thomas Meissner, Frank J Wentz, and David M LeVine. The salinity retrieval algorithms for the nasa aquarius version 5 and smap version 3 releases. Remote Sensing, 10(7):1121, 2018.">2018</a>]</span>).
+<span id="id72">Dinnat <em>et al.</em> [<a class="reference internal" href="references.html#id32" title="Emmanuel P Dinnat, Jacqueline Boutin, Xiaobin Yin, and David M Le Vine. Inter-comparison of smos and aquarius sea surface salinity: effects of the dielectric constant and vicarious calibration. In 2014 13th Specialist Meeting on Microwave Radiometry and Remote Sensing of the Environment (MicroRad), 55–60. IEEE, 2014.">2014</a>]</span> analyzed the difference in SSS retrieved by SMOS and Aquarius radiometers and found that both instruments observe similar large scale patterns, but
+also reported significant regional discrepancies (mostly between +/- 1 pss). SMOS SSS was found generally fresher than Aquarius SSS (within 0.2-0.5 pss depending on latitude
+and SST), except at the very high southern latitudes near the ice edge and in a few local (mostly coastal) areas. It was found that the differences exhibit large-scale
+patterns similar to SST variations. To investigate its source, <span id="id73">Dinnat <em>et al.</em> [<a class="reference internal" href="references.html#id32" title="Emmanuel P Dinnat, Jacqueline Boutin, Xiaobin Yin, and David M Le Vine. Inter-comparison of smos and aquarius sea surface salinity: effects of the dielectric constant and vicarious calibration. In 2014 13th Specialist Meeting on Microwave Radiometry and Remote Sensing of the Environment (MicroRad), 55–60. IEEE, 2014.">2014</a>]</span> reprocessed the Aquarius SSS, including the calibration, using the KS <span class="math notranslate nohighlight">\(ε_{sw}\)</span>  model
+that is used in SMOS processing. This reprocessing decreases the difference between Aquarius and SMOS SSS by a few tenths of a pss for SST between 6°C and 18°C while warmer
+waters show little change in the difference. Water colder than 3°C shows mixed results, probably due to a complex mix of error sources, such as the presence of sea ice and
+rough seas.  The comparison of the reprocessed Aquarius SSS with in situ data from Argo shows an improvement of a few tenths of a pss for temperatures between 6°C and 18°C.
+In warmer waters, both the nominal and reprocessed Aquarius data, as well as SMOS data, have a fresh SSS bias. For very cold waters (less than 3°C), the reprocessed Aquarius
+data using the KS model show significant degradation of the SSS in comparison with the Argo, in turn suggesting that the KS model might be in error in the lowest sea surface
+temperature regime.
+Direct laboratory measurements of the <span class="math notranslate nohighlight">\(ε_{sw}\)</span> at 1.413 GHz and SSS=30, 33, 35, and 38 (<span id="id74">Lang <em>et al.</em> [<a class="reference internal" href="references.html#id67" title="Roger Lang, Yiwen Zhou, Cuneyt Utku, and David Le Vine. Accurate measurements of the dielectric constant of seawater at l band. Radio Science, 51(1):2–24, 2016.">2016</a>]</span>) were used to develop a new model (<span id="id75">Zhou <em>et al.</em> [<a class="reference internal" href="references.html#id148" title="Yiwen Zhou, Roger H Lang, Emmanuel P Dinnat, and David M Le Vine. L-band model function of the dielectric constant of seawater. IEEE Transactions on Geoscience and Remote Sensing, 55(12):6964–6974, 2017.">2017</a>]</span>)
+by fitting the measurements with a third-order polynomial. This new L-band <span class="math notranslate nohighlight">\(ε_{sw}\)</span> model has been compared with KS and MW.  The authors claimed that this new model function
+gives more accurate SSS at high (25°C to 30°C) and low (0.5°C to 7°C) SSTs than other existing model functions. Laboratory measurements at low SSS lead to a small increase
+in the accuracy of the model function.  Although the model showed improvements in salinity retrieval, it had an inconsistent behavior between
+partitioned salinities.  To overcomme these problems, two new parametrizations were recently developed based on one hand on SMOS satellite multi-angular brightness
+temperature measurements by <span id="id76">Boutin <em>et al.</em> [<a class="reference internal" href="references.html#id20" title="Jacqueline Boutin, Jean-Luc Vergely, Emmanuel P. Dinnat, Philippe Waldteufel, Francesco D’Amico, Nicolas Reul, Alexandre Supply, and Clovis Thouvenin-Masson. Correcting sea surface temperature spurious effects in salinity retrieved from spaceborne l-band radiometer measurements. IEEE Transactions on Geoscience and Remote Sensing, 59(9):7256-7269, 2021. doi:10.1109/TGRS.2020.3030488.">2021</a>]</span> (BV), and on the other hand on new George Washington laboratory measurements by <span id="id77">Zhou <em>et al.</em> [<a class="reference internal" href="references.html#id149" title="Yiwen Zhou, Roger H Lang, Emmanuel P Dinnat, and David M Le Vine. Seawater debye model function at l-band and its impact on salinity retrieval from aquarius satellite data. IEEE Transactions on Geoscience and Remote Sensing, 59(10):8103–8116, 2021.">2021</a>]</span> (hereafter denoted
+GW2020). These two approaches are fully independent. The brightness temperatures Tb simulated through the BV and GW2020 parametrizations agree particularly well
+for most SSS and SST conditions commonly observed over the open ocean, and better than with earlier parametrizations previously used in the SMOS,
+SMAP and Aquarius SSS retrievals. Nevertheless, uncertainty remains below 10°C where a ~0.1K relative difference between the two models is observed.</p>
+<p>Recently, <span id="id78">Le Vine <em>et al.</em> [<a class="reference internal" href="references.html#id75" title="David M. Le Vine, Roger H. Lang, Yiwen Zhou, Emmanuel P. Dinnat, and Thomas Meissner. Status of the dielectric constant of sea water at l-band for remote sensing of salinity. IEEE Transactions on Geoscience and Remote Sensing, 60():1-14, 2022. doi:10.1109/TGRS.2022.3207944.">2022</a>]</span> compared available models in the context of how well they represent the dielectric constant of sea water at 1.4 GHz.
+Among the criteria applied were the recent measurements at the George Washington University of the dielectric constant at 1.4 GHz. As reviewed, in the two models, BV and MW, parameters were tuned to
+optimize the science retrieval algorithm by choosing the model
+parameters to minimize the differences between radiative
+transfer simulations of the brightness temperature and the TB
+actually observed by the satellite. These two models are close
+to the measurements but diverge in some significant respects.
+This is particularly evident in the temperature dependence
+of the real part. The BV model was tuned to
+optimize the retrieval of salinity from SMOS observations of
+brightness temperature at 1.4 GHz. The tuning was done on the
+temperature dependence of the static term,
+which is strongly coupled to the real part. The MW model
+is a double Debye resonance model intended to cover a large
+range of higher frequencies and the tuning was done to fit the
+satellite observations from Windsat and SSM/I in this higher
+range and particularly near 37 GHz.</p>
+<p>Three of the models have been used in remote
+sensing of salinity: KS and BV have been used in SMOS
+retrievals and MW was used for Aquarius and is now used for
+retrieving salinity from soil moisture active passive (SMAP).
+In addition, a combination of the MW and KS model has
+been used in the combined active passive (CAP) algorithm for
+retrievals from Aquarius and SMAP.  While these models have
+been used quite successfully to retrieve salinity, this
+success does not guarantee that they are a good representation
+of the dielectric constant of sea water. For salinity typical of the open ocean, 32&lt;S&lt;38 psu,  the differences in the dependence of the models on S are on the order 0.1 K, which is acceptable. As found by <span id="id79">Le Vine <em>et al.</em> [<a class="reference internal" href="references.html#id75" title="David M. Le Vine, Roger H. Lang, Yiwen Zhou, Emmanuel P. Dinnat, and Thomas Meissner. Status of the dielectric constant of sea water at l-band for remote sensing of salinity. IEEE Transactions on Geoscience and Remote Sensing, 60():1-14, 2022. doi:10.1109/TGRS.2022.3207944.">2022</a>]</span>,
+except for cold temperatures, KS appears to be a better fit to the dielectric constant at 1.4 GHz. Because BV and MW are satellite sensor-dependent and tuned to best fit their specific datasets, and because KS seems biased in low SSTs, as a first step,
+we plan here to rely on the GW2020 empirical model based the most recent George Washington laboratory measurements as describe in <span id="id80">Zhou <em>et al.</em> [<a class="reference internal" href="references.html#id149" title="Yiwen Zhou, Roger H Lang, Emmanuel P Dinnat, and David M Le Vine. Seawater debye model function at l-band and its impact on salinity retrieval from aquarius satellite data. IEEE Transactions on Geoscience and Remote Sensing, 59(10):8103–8116, 2021.">2021</a>]</span>.</p>
+</section>
+<section id="model-for-correcting-the-sea-surface-roughness-emission">
+<h3>Model for correcting the sea surface roughness emission<a class="headerlink" href="#model-for-correcting-the-sea-surface-roughness-emission" title="Permalink to this headline">#</a></h3>
+<p>The current status in the development of forward models to estimate and correct for the sea surface roughness contribution to L-band TB measured at antenna level can be summarized as follows. To first order, Geophysical Model Functions (GMF) developed are dependent on the surface wind speed.
+There is a good agreement between L-band GMFs used in the  latest versions of Aquarius, SMAP,
+and SMOS products (V5 for Aquarius, RSS V5 for SMAP, JPL V4 for SMAP and ESA V772 for SMOS) (<span id="id81">Yin <em>et al.</em> [<a class="reference internal" href="references.html#id138" title="Xiaobin Yin, Jacqueline Boutin, Emmanuel Dinnat, Qingtao Song, and Adrien Martin. Roughness and foam signature on smos-miras brightness temperatures: a semi-theoretical approach. Remote sensing of environment, 180:221–233, 2016.">2016</a>]</span>; <span id="id82">Meissner <em>et al.</em> [<a class="reference internal" href="references.html#id89" title="Thomas Meissner, Frank J Wentz, and David M LeVine. The salinity retrieval algorithms for the nasa aquarius version 5 and smap version 3 releases. Remote Sensing, 10(7):1121, 2018.">2018</a>]</span>). The JPL CAP algorithm developped for Aquarius data (<span id="id83">Yueh <em>et al.</em> [<a class="reference internal" href="references.html#id139" title="Simon Yueh, Wenqing Tang, Alexander Fore, Akiko Hayashi, Yuhe T Song, and Gary Lagerloef. Aquarius geophysical model function and combined active passive algorithm for ocean surface salinity and wind retrieval. Journal of Geophysical Research: Oceans, 119(8):5360–5379, 2014.">2014</a>]</span>,<span id="id84">Fore <em>et al.</em> [<a class="reference internal" href="references.html#id41" title="Alexander G. Fore, Simon H. Yueh, Wenqing Tang, Bryan W. Stiles, and Akiko K. Hayashi. Combined active/passive retrievals of ocean vector wind and sea surface salinity with smap. IEEE Transactions on Geoscience and Remote Sensing, 54(12):7396-7404, 2016. doi:10.1109/TGRS.2016.2601486.">2016</a>]</span>) relies on a purely-empirical GMF for the roughness correction.  In all other operational algorithms, a semi-empirical
+two-scale scattering model approach is used for that correction, such as in <span id="id85">[<a class="reference internal" href="references.html#id138" title="Xiaobin Yin, Jacqueline Boutin, Emmanuel Dinnat, Qingtao Song, and Adrien Martin. Roughness and foam signature on smos-miras brightness temperatures: a semi-theoretical approach. Remote sensing of environment, 180:221–233, 2016.">Yin <em>et al.</em>, 2016</a>]</span> for SMOS, and in <span id="id86">[<a class="reference internal" href="references.html#id89" title="Thomas Meissner, Frank J Wentz, and David M LeVine. The salinity retrieval algorithms for the nasa aquarius version 5 and smap version 3 releases. Remote Sensing, 10(7):1121, 2018.">Meissner <em>et al.</em>, 2018</a>]</span> for SMAP and Aquarius.  Development and analysis of the two-scale model for ocean waves and resulting microwave ocean emissivities were presented in (<span id="id87">Yueh [<a class="reference internal" href="references.html#id144" title="S. H. Yueh. Modeling of wind direction signals in polarimetric sea surface brightness temperatures. IEEE Trans. Geosci. Remote Sens., 35(6):1400–1418, November 1997.">1997</a>]</span>)
+and (<span id="id88">Yueh <em>et al.</em> [<a class="reference internal" href="references.html#id145" title="Simon H. Yueh, Ronald Kwok, and Son V. Nghiem. Polarimetric scattering and emission properties of targets with reflection symmetry. Radio Sci., 29(6):1409–1420, Nov-Dec 1994.">1994</a>]</span>, <span id="id89">Yueh <em>et al.</em> [<a class="reference internal" href="references.html#id143" title="S. H. Yueh, W. J. Wilson, S. J. Dinardo, and F. K. Li. Polarimetric microwave brightness signatures of ocean wind directions. IEEE Trans. Geosci. Remote Sens., 37(2):949–959, mar 1999. URL: http://dx.doi.org/10.1109/36.752213, doi:10.1109/36.752213.">1999</a>]</span>; <span id="id90">Johnson [<a class="reference internal" href="references.html#id57" title="Joel T. Johnson. An Efficient Two-Scale Model for the Computation of Thermal Emission and Atmospheric Reflection from the Sea Surface. IEEE Trans. Geosci. Remote Sens., 44(3):560–568, March 2006. doi:10.1109/TGRS.2005.855999.">2006</a>]</span>; <span id="id91">Ma <em>et al.</em> [<a class="reference internal" href="references.html#id84" title="Wentao Ma, Yanlei Du, Guihong Liu, Yang Yu, Xiaofeng Yang, Jian Yang, and Kun-Shan Chen. Study on direction dependence of the fully polarimetric wind-induced ocean emissivity at l-band using a semi-theoretical approach for aquarius and smap observations. Remote Sensing of Environment, 265:112661, 2021. URL: https://www.sciencedirect.com/science/article/pii/S0034425721003813, doi:https://doi.org/10.1016/j.rse.2021.112661.">2021</a>]</span>; <span id="id92">Lee and Gasiewski [<a class="reference internal" href="references.html#id76" title="Sang-Moo Lee and Albin J. Gasiewski. A physically based two-scale ocean surface emissivity model tuned to windsat and ssm/i polarimetric brightness temperatures. IEEE Transactions on Geoscience and Remote Sensing, 60():1-23, 2022. doi:10.1109/TGRS.2021.3133852.">2022</a>]</span>), within which were published two-scale model algorithms that have
+been successfully used to date for the prediction of ocean wave influences on surface emission.
+Ocean foam (i.e., white capping) is an air–sea mixture caused by ocean wave breaking and is an additional
+surface process that strongly increases ocean surface emissivity (<span id="id93">Monahan and O'Muircheartaigh [<a class="reference internal" href="references.html#id94" title="E.C. Monahan and I. G. O'Muircheartaigh. Whitecaps and the passive remote sensing of the ocean surface. Int. J. Remote Sens., 7(5):627-642, 1986. doi:10.1080/01431168608954716.">1986</a>]</span>; <span id="id94">Stogryn [<a class="reference internal" href="references.html#id123" title="A. Stogryn. The Emissivity of Sea Foam at Microwave Frequencies. J. Geophys. Res., 77(9):1658–1666, March 1972. URL: http://dx.doi.org/10.1029/JC077i009p01658, doi:10.1029/JC077i009p01658.">1972</a>]</span>; <span id="id95">Reul and Chapron [<a class="reference internal" href="references.html#id106" title="Nicolas Reul and Bertrand Chapron. A model of sea-foam thickness distribution for passive microwave remote sensing applications. J. Geophys. Res., 108(C10):3321, 2003. doi:10.1029/2003JC001887.">2003</a>]</span>; <span id="id96">Camps <em>et al.</em> [<a class="reference internal" href="references.html#id23" title="A. Camps, M. Vall-llossera, R. Villarino, N. Reul, B. Chapron, I. Corbella, N. Duffo, F. Torres, J. J. Miranda, R. Sabia, A. Monerris, and R. Rodriguez. The emissivity of foam-covered water surface at L-band: theoretical modeling and experimental results from the FROG 2003 field experiment. IEEE Trans. Geosci. Remote Sens., 43(5):925–937, May 2005. doi:10.1109/TGRS.2004.839651.">2005</a>]</span>)
+at microwave frequencies due to its near-blackbody behavior. As wind speed increases, ocean foam coverage also increases, resulting in a large
+discrepancy between two-scale emissivity calculations made with and without consideration of foam coverage. The
+quasi-blackbody models used for both foam emissivity and coverage are in themselves of limited accuracy due to the
+paucity of in situ observations for both foam coverage and emissivity that have been able to be made in conjunction with
+brightness temperatures from passive microwave instruments. In spite of numerous efforts to derive a suitable empirical
+relationship between foam coverage and ocean surface wind speed (<span id="id97">Monahan and O'Muircheartaigh [<a class="reference internal" href="references.html#id94" title="E.C. Monahan and I. G. O'Muircheartaigh. Whitecaps and the passive remote sensing of the ocean surface. Int. J. Remote Sens., 7(5):627-642, 1986. doi:10.1080/01431168608954716.">1986</a>]</span>; <span id="id98">Erickson <em>et al.</em> [<a class="reference internal" href="references.html#id38" title="David J. Erickson, John T. Merrill, and Robert A. Duce. Seasonal estimates of global oceanic whitecap coverage. Journal of Geophysical Research: Oceans, 91(C11):12975-12977, 1986. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/JC091iC11p12975, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/JC091iC11p12975, doi:https://doi.org/10.1029/JC091iC11p12975.">1986</a>]</span>; <span id="id99">Asher <em>et al.</em> [<a class="reference internal" href="references.html#id6" title="William Asher, James Edson, Wade Mcgillis, Rik Wanninkhof, David T. Ho, and Trina Litchendor. Fractional Area Whitecap Coverage and Air-Sea Gas Transfer Velocities Measured During GasEx-98, chapter, pages 199-203. American Geophysical Union (AGU), 2002. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/GM127p0199, arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/GM127p0199, doi:https://doi.org/10.1029/GM127p0199.">2002</a>]</span>;
+<span id="id100">Bondur and Sharkov [<a class="reference internal" href="references.html#id10" title="V. G. Bondur and E. A. Sharkov. Statistical properties of whitecaps on a rough sea. Oceanology, 22(3):274–279, 1982.">1982</a>]</span>; <span id="id101">Anguelova and Webster [<a class="reference internal" href="references.html#id3" title="Magdalena D. Anguelova and Ferris Webster. Whitecap coverage from satellite measurements: A first step toward modeling the variability of oceanic whitecaps. J. Geophys. Res., March 2006. URL: http://dx.doi.org/10.1029/2005JC003158, doi:10.1029/2005JC003158.">2006</a>]</span>; <span id="id102">Callaghan <em>et al.</em> [<a class="reference internal" href="references.html#id21" title="Adrian Callaghan, Gerrit de Leeuw, Leo Cohen, and Colin D. O'Dowd. Relationship of oceanic whitecap coverage to wind speed and wind history. Geophys. Res. Lett., 35(23):L23609, December 2008. doi:10.1029/2008GL036165.">2008</a>]</span>), there is to date no universally accepted relationship between them due to the variable conditions under
+which foam is produced, as well as its spatial inhomogeneity. This shortcoming is especially true for breaking waves caused by shoaling. <span id="id103">Smith <em>et al.</em> [<a class="reference internal" href="references.html#id115" title="Dean F. Smith, Bob L. Weber, and Albin J. Gasiewski. An anisotropic ocean surface emissivity model based on windsat polarimetric brightness observations. In 2008 Microwave Radiometry and Remote Sensing of the Environment, volume, 1-4. 2008. doi:10.1109/MICRAD.2008.4579491.">2008</a>]</span> found that
+the differences in surface-referenced microwave brightness temperatures between WindSat observations and a two-scale model
+developed by <span id="id104">Johnson [<a class="reference internal" href="references.html#id57" title="Joel T. Johnson. An Efficient Two-Scale Model for the Computation of Thermal Emission and Atmospheric Reflection from the Sea Surface. IEEE Trans. Geosci. Remote Sens., 44(3):560–568, March 2006. doi:10.1109/TGRS.2005.855999.">2006</a>]</span> were significant, especially in the zeroth-azimuthal-harmonic components of ocean brightness
+at a wind speed of 8–20 m/s. The discrepancy was largely due to foam coverage and emissivity models. They concluded
+that an empirical tuning process using observed satellite data is needed to model ocean surface emissivity with enough precision
+for general retrieval and data assimilation applications.</p>
+<p>The limitations on the various purely physical published models on the ocean surface emissivity include a limited
+range of validity in frequency and incidence angle. Combined physical and empirical models have been used to correct for
+these shortcomings but do not necessarily permit extension of the models to arbitrary frequencies and incidence angles,
+as required for the design and development of new observation systems.</p>
+<p>In this algorithm for CIMR, a full Stokes vector model for ocean surface emissivity based on the two-scale approach is used,
+applicable at arbitrary microwave frequencies, incidence and azimuth angles, and polarizations, and subsequently tuned
+at L-band within a limited set of selected model parameters against SMOS, Aquarius, and SMAP observations from 0- to
+20-m/s wind speeds.</p>
+<p>In the case of Aquarius, the direct use of scatterometer measurements significantly improves the accuracy of the surface roughness correction. While there is a consensus on the first-order wind-speed dependencies of the GMFs, the wind direction signature,
+the wave impact (significant wave height, wave-age), and the air/sea temperature dependencies of this correction still exhibit significant differences.
+Remaining uncertainties for these second order effects are still the subject of on-going research efforts.</p>
+</section>
+<section id="model-for-other-geophysical-contributions">
+<h3>Model for other geophysical contributions<a class="headerlink" href="#model-for-other-geophysical-contributions" title="Permalink to this headline">#</a></h3>
+<p>In the SSS retrieval algorithm,  accurate corrections associated with ionospheric, atmospheric, solar, and sky radiation contributions to the antenna measured
+brightness are needed.</p>
+<p>The ionospheric correction commonly involve the use of the ratio of the third Stokes (U) parameter to the difference between the vertical and horizontal polarization channels (<span id="id105">Yueh [<a class="reference internal" href="references.html#id142" title="Simon H Yueh. Estimates of faraday rotation with passive microwave polarimetry for microwave remote sensing of earth surfaces. IEEE Transactions on Geoscience and Remote Sensing, 38(5):2434–2438, 2000.">2000</a>]</span>,<span id="id106">Le Vine and Abraham [<a class="reference internal" href="references.html#id73" title="David M Le Vine and Saji Abraham. The effect of the ionosphere on remote sensing of sea surface salinity from space: absorption and emission at l band. IEEE Transactions on Geoscience and Remote Sensing, 40(4):771–782, 2002.">2002</a>]</span>,<span id="id107">Vergely <em>et al.</em> [<a class="reference internal" href="references.html#id128" title="Jean-Luc Vergely, Philippe Waldteufel, Jacqueline Boutin, Xiaobin Yin, Paul Spurgeon, and Steven Delwart. New total electron content retrieval improves smos sea surface salinity. Journal of Geophysical Research: Oceans, 119(10):7295–7307, 2014.">2014</a>]</span>). This helps to infer
+the rotation angle (geometry plus Faraday) across the ionosphere. Again, accurate calibration of the third Stokes parameter is still challenging.
+The ionospheric rotation estimates also rely on the first guess data, including the Total Electronic Content (TEC) and geomagnetic field data (<span id="id108">Vergely <em>et al.</em> [<a class="reference internal" href="references.html#id128" title="Jean-Luc Vergely, Philippe Waldteufel, Jacqueline Boutin, Xiaobin Yin, Paul Spurgeon, and Steven Delwart. New total electron content retrieval improves smos sea surface salinity. Journal of Geophysical Research: Oceans, 119(10):7295–7307, 2014.">2014</a>]</span>) for which uncertainties still remain.</p>
+<p>For L-band, sources of atmospheric attenuation are due to absorption by oxygen, water vapor, and liquid water. The contribution from the atmosphere is found to be a few Kelvins on average, rather stable in space and time, with the dominant source of signal associated with oxygen.
+As presently implemented, atmospheric corrections used in salinity retrieval algorithms all rely on time interpolated and integrated vertical profiles of atmospheric pressure, temperature, relative humidity, and cloud water mixing ratio obtained from numerical weather forecast models (ECMWF or NCEP).
+The overall error in salinity retrievals due to the atmosphere is estimated to be less than 0.2 pss (e.g., <span id="id109">Meissner <em>et al.</em> [<a class="reference internal" href="references.html#id89" title="Thomas Meissner, Frank J Wentz, and David M LeVine. The salinity retrieval algorithms for the nasa aquarius version 5 and smap version 3 releases. Remote Sensing, 10(7):1121, 2018.">2018</a>]</span>).</p>
+<p>Correcting for the Sun and Sky direct and reflected radiation further demands accurate characterization of the antenna patterns, and sun, and sky TB at the time of acquisition. Models for the bi-static scattering coefficients of the sea surface at L-band are then also needed. Sun flux measurements made by
+he United States Air Force Radio Solar Telescope Network are used but remain uncertain to within 10%, which is significant for salinity retrieval algorithms as the Sun is an extremely bright source at 1.4 GHz (~<span class="math notranslate nohighlight">\(10^6\)</span> K). Bi-static
+sea surface scattering coefficient models are generally estimated using the Physical Optics (<span id="id110">Reul <em>et al.</em> [<a class="reference internal" href="references.html#id104" title="N. Reul, J. Tenerelli, B. Chapron, and P. Waldteufel. Modeling Sun Glitter at L-Band for Sea Surface Salinity Remote Sensing With SMOS. IEEE Trans. Geosci. Remote Sens., 45(7):2073–2087, July 2007. doi:10.1109/TGRS.2006.890421.">2007</a>]</span>), or the Geometric Optics approaches (<span id="id111">Khazâal <em>et al.</em> [<a class="reference internal" href="references.html#id58" title="Ali Khazâal, Joseph Tenerelli, and François Cabot. Impact of sun glint on the smos retrieved brightness temperature maps for almost four years of data. Remote Sensing of Environment, 180:234-245, 2016. Special Issue: ESA's Soil Moisture and Ocean Salinity Mission - Achievements and Applications. URL: https://www.sciencedirect.com/science/article/pii/S0034425716300311, doi:https://doi.org/10.1016/j.rse.2016.02.003.">2016</a>]</span>,<span id="id112">Meissner <em>et al.</em> [<a class="reference internal" href="references.html#id89" title="Thomas Meissner, Frank J Wentz, and David M LeVine. The salinity retrieval algorithms for the nasa aquarius version 5 and smap version 3 releases. Remote Sensing, 10(7):1121, 2018.">2018</a>]</span>).
+A practical rule for L-band measurements is to consider a reduced, by about 50 %, surface slope variance as a function of wind speed, as compared to optical data. Applied corrections remove the reflected galactic radiation correctly to about 90% as estimated in the
+Aquarius and SMAP cases (e.g., <span id="id113">Meissner <em>et al.</em> [<a class="reference internal" href="references.html#id89" title="Thomas Meissner, Frank J Wentz, and David M LeVine. The salinity retrieval algorithms for the nasa aquarius version 5 and smap version 3 releases. Remote Sensing, 10(7):1121, 2018.">2018</a>]</span>). Remaining uncertainties from the rough ocean surface scattering models in the L-band, the TB map of the celestial sky, and the antenna gain pattern appear as sources of remaining ascending-descending biases in all the satellite data.
+Empirical corrections to best mitigate these remaining signals are currently under investigation. They are based on either alternative antenna gain-weighted sky maps obtained from the satellite data or rely on the multiple view capabilities of the instrument (e.g., use of the fore and aft-look for SMAP).
+Antenna gain-weighted sky maps can be derived from the acumulated radiometer direct observation of the sky as recorded during the regular cold-sky calibration maneuvers.</p>
+<p>Being significantly warmer than the ocean water at L-band, land surfaces can significantly impact the ocean TB measured, and this over a 400 to 1000 km-wide band off the coasts of the major land masses. A correction for land entering the antenna side-lobes when the sensor observation gets close to the
+land has been derived from simulated TB (<span id="id114">Meissner <em>et al.</em> [<a class="reference internal" href="references.html#id89" title="Thomas Meissner, Frank J Wentz, and David M LeVine. The salinity retrieval algorithms for the nasa aquarius version 5 and smap version 3 releases. Remote Sensing, 10(7):1121, 2018.">2018</a>]</span>). Such empirical corrections appear to be efficient globally to reduce the land-contamination biases in satellite SSS.
+Yet, uncertainties remain in the antenna gain patterns and the reference geophysical fields (e.g. coastal SSS, land TBs), which are used to model the expected ocean-land transition signal. Alternatively, corrections can also be successfully applied after the SSS has been retrieved from
+the uncorrected TB. These corrections, based on filtering largely biased estimates, are empirical adjustments, or based on advanced filtering of the salinity products (e.g., <span id="id115">Boutin <em>et al.</em> [<a class="reference internal" href="references.html#id19" title="Jacqueline Boutin, Jean-Luc Vergely, Stéphane Marchand, Francesco d'Amico, Audrey Hasson, Nicolas Kolodziejczyk, Nicolas Reul, Gilles Reverdin, and Jérôme Vialard. New smos sea surface salinity with reduced systematic errors and improved variability. Remote Sensing of Environment, 214:115–134, 2018.">2018</a>]</span>, <span id="id116">Olmedo <em>et al.</em> [<a class="reference internal" href="references.html#id96" title="Estrella Olmedo, Justino Martínez, Antonio Turiel, Joaquim Ballabrera-Poy, and Marcos Portabella. Debiased non-bayesian retrieval: a novel approach to smos sea surface salinity. Remote Sensing of Environment, 193:103–126, 2017.">2017</a>]</span>, <span id="id117">Olmedo <em>et al.</em> [<a class="reference internal" href="references.html#id97" title="Estrella Olmedo, Isabelle Taupier-Letage, Antonio Turiel, and Aida Alvera-Azcárate. Improving smos sea surface salinity in the western mediterranean sea through multivariate and multifractal analysis. Remote Sensing, 2018. URL: https://www.mdpi.com/2072-4292/10/3/485, doi:10.3390/rs10030485.">2018</a>]</span>). Accordingly, while the absolute salinity retrievals can degrade
+quickly as the footprint approaches land, the SSS Anomalies (SSSA) derived from satellites generally show coherent and informative signatures in many coastal zones (<span id="id118">Boutin <em>et al.</em> [<a class="reference internal" href="references.html#id19" title="Jacqueline Boutin, Jean-Luc Vergely, Stéphane Marchand, Francesco d'Amico, Audrey Hasson, Nicolas Kolodziejczyk, Nicolas Reul, Gilles Reverdin, and Jérôme Vialard. New smos sea surface salinity with reduced systematic errors and improved variability. Remote Sensing of Environment, 214:115–134, 2018.">2018</a>]</span>; <span id="id119">Grodsky <em>et al.</em> [<a class="reference internal" href="references.html#id50" title="Semyon A Grodsky, Douglas Vandemark, and Hui Feng. Assessing coastal smap surface salinity accuracy and its application to monitoring gulf of maine circulation dynamics. Remote Sensing, 10(8):1232, 2018.">2018</a>]</span>; <span id="id120">Grodsky <em>et al.</em> [<a class="reference internal" href="references.html#id51" title="Semyon A Grodsky, Nicolas Reul, Abderrahim Bentamy, Douglas Vandemark, and Sebastien Guimbard. Eastern mediterranean salinification observed in satellite salinity from smap mission. Journal of Marine Systems, 198:103190, 2019.">2019</a>]</span>).</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="introduction_purpose_scope.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Introduction, purpose and scope</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="L2_product_definition.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Level-2 product definition</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Nicolas Reul (IFREMER/LOPS) and Joseph Tenerelli (ODL)<br/>
+  
+    <div class="extra_footer">
+      <p>
+This ATBD was developed in the context of the ESA-funded CIMR DEVALGO study (2022-2024) (contract 4000137493).
+<br>
+ESA is not responsible in any way for the content of this document.
+</p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
