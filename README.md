@@ -1,5 +1,4 @@
-# ATBD Template
-A JupyterBook template for CIMR DEVALGO ATBDs
+# CIMR Level-2 Sea Surface Salinity ATBD
 
 ## Fetch and read the book
 If you just want to download the repo and read the book (not building it):
